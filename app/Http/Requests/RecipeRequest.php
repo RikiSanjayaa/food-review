@@ -29,5 +29,20 @@ class RecipeRequest extends FormRequest
             'tags.*' => ['integer', 'exists:tags,id'],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'title.required' => 'Judul resep wajib diisi.',
+            'title.max' => 'Judul resep tidak boleh lebih dari 255 karakter.',
+            'ingredients.required' => 'Bahan-bahan wajib diisi.',
+            'steps.required' => 'Langkah-langkah pembuatan wajib diisi.',
+            'prep_time.integer' => 'Waktu persiapan harus berupa angka.',
+            'cook_time.integer' => 'Waktu masak harus berupa angka.',
+            'servings.integer' => 'Jumlah porsi harus berupa angka.',
+            'hero_image.image' => 'File yang diunggah harus berupa gambar.',
+            'hero_image.max' => 'Ukuran gambar tidak boleh lebih dari 2MB.',
+        ];
+    }
 }
 

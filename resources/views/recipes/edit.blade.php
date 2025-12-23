@@ -5,8 +5,8 @@
         <div class="card shadow-sm">
             <div class="card-body">
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h1 class="h5 mb-0">Edit recipe</h1>
-                    <a href="{{ route('recipes.show', $recipe) }}" class="text-secondary small text-decoration-none">Back</a>
+                    <h1 class="h5 mb-0">Edit Resep</h1>
+                    <a href="{{ route('recipes.show', $recipe) }}" class="text-secondary small text-decoration-none">Kembali</a>
                 </div>
 
                 @include('recipes._form', [

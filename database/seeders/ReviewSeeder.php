@@ -18,19 +18,34 @@ class ReviewSeeder extends Seeder
             return;
         }
 
-        Review::factory(30)->make()->each(function ($review) use ($recipes, $users): void {
-            $review->recipe_id = $recipes->random()->id;
-            $review->user_id = $users->random()->id;
-            $review->save();
-        });
+        $comments = [
+            'Resepnya sangat enak, keluarga saya suka!',
+            'Mudah diikuti, hasilnya memuaskan.',
+            'Bumbunya pas, mantap!',
+            'Saya tambahkan sedikit cabai, makin jos.',
+            'Terima kasih resepnya, sangat membantu.',
+            'Kurang asin dikit bagi saya, tapi oke.',
+            'Wajib coba nih!',
+            'Anak-anak suka sekali menu ini.',
+            'Cocok untuk menu makan siang.',
+            'Rasanya otentik banget!',
+            'Saya sudah recook 3 kali, tidak pernah bosan.',
+            'Sangat recommended!',
+            'Bahannya mudah didapat di pasar.',
+            'Enak banget, mirip masakan ibu saya.',
+            'Porsinya pas untuk keluarga kecil.'
+        ];
 
-        // Ensure each recipe has at least one review
+        // Create random reviews
         foreach ($recipes as $recipe) {
-            if (! $recipe->reviews()->exists()) {
+            // Create 3-5 reviews per recipe
+            $reviewCount = rand(3, 5);
+            
+            for ($i = 0; $i < $reviewCount; $i++) {
                 $recipe->reviews()->create([
                     'user_id' => $users->random()->id,
-                    'rating' => rand(3, 5),
-                    'comment' => 'Tasty and easy to follow.',
+                    'rating' => rand(4, 5), // Mostly positive ratings
+                    'comment' => $comments[array_rand($comments)],
                 ]);
             }
 

@@ -1,51 +1,65 @@
-<div class="list-group list-group-flush">
+<div class="d-flex flex-column gap-3">
     @forelse ($reviews as $review)
-        <div class="list-group-item">
-            <div class="d-flex gap-3">
-                <div class="rounded-circle bg-light d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
-                    <span class="text-muted fw-semibold">{{ strtoupper(substr($review->user->name, 0, 1)) }}</span>
+        <div class="d-flex gap-3" data-aos="fade-up" data-aos-duration="500">
+            <!-- Avatar -->
+            <div class="flex-shrink-0">
+                <div class="rounded-circle bg-gradient bg-success text-white d-flex align-items-center justify-content-center shadow-sm fw-bold fs-5" style="width: 50px; height: 50px; background: linear-gradient(45deg, #198754, #20c997);">
+                    {{ strtoupper(substr($review->user->name, 0, 1)) }}
                 </div>
-                <div class="flex-grow-1">
-                    <div class="d-flex justify-content-between align-items-start gap-2">
+            </div>
+            
+            <!-- Chat Bubble Content -->
+            <div class="flex-grow-1">
+                <div class="card border-0 bg-light rounded-4 rounded-tl-0 shadow-sm p-3">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
                         <div>
-                            <div class="fw-semibold">{{ $review->user->name }}</div>
-                            <div class="text-muted small">{{ $review->created_at->diffForHumans() }}</div>
+                            <h6 class="fw-bold mb-0 text-dark">{{ $review->user->name }}</h6>
+                            <small class="text-secondary" style="font-size: 0.75rem;">{{ $review->created_at->diffForHumans() }}</small>
                         </div>
-                        <div class="d-flex align-items-center gap-2 small">
-                            <span class="fw-semibold text-warning">{{ $review->rating }}★</span>
-                            @if ($review->is_hidden)
-                                <span class="badge text-bg-danger">Hidden</span>
-                            @endif
-                            @if ($review->is_reported)
-                                <span class="badge text-bg-warning">Reported</span>
-                            @endif
+                        <div class="d-flex align-items-center">
+                            <span class="badge bg-warning text-dark rounded-pill px-2 py-1 d-flex align-items-center gap-1 shadow-sm">
+                                <i class="bi bi-star-fill text-white small"></i> {{ $review->rating }}
+                            </span>
                         </div>
                     </div>
-                    @if ($review->comment)
-                        <p class="mt-2 mb-2">{{ $review->comment }}</p>
+                    
+                    @if ($review->is_hidden)
+                        <div class="alert alert-secondary py-2 px-3 small rounded-3 mb-2">
+                            <i class="bi bi-eye-slash me-1"></i> Konten disembunyikan oleh moderator.
+                        </div>
+                    @else
+                        <p class="text-dark mb-2" style="font-size: 0.95rem;">{{ $review->comment }}</p>
                     @endif
-                    <div class="d-flex align-items-center gap-3 text-muted small">
-                        @can('delete', $review)
-                            <form method="POST" action="{{ route('reviews.destroy', [$recipe, $review]) }}" onsubmit="return confirm('Delete this review?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-link btn-sm p-0">Delete</button>
-                            </form>
-                        @endcan
+
+                    <!-- Actions -->
+                    <div class="d-flex gap-3 justify-content-end opacity-75">
                         @auth
-                            @if (! $review->is_reported && ! auth()->user()->is_admin)
+                            @can('delete', $review)
+                                <form method="POST" action="{{ route('reviews.destroy', [$recipe, $review]) }}" onsubmit="return confirm('Hapus ulasan ini?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-link link-danger p-0 text-decoration-none small" style="font-size: 0.8rem;">
+                                        <i class="bi bi-trash"></i> Hapus
+                                    </button>
+                                </form>
+                            @endcan
+                            
+                            @if(auth()->id() !== $review->user_id && !$review->is_reported)
                                 <form method="POST" action="{{ route('reviews.report', $review) }}">
                                     @csrf
-                                    <button type="submit" class="btn btn-link btn-sm p-0">Report</button>
+                                    <button type="submit" class="btn btn-link link-secondary p-0 text-decoration-none small" style="font-size: 0.8rem;">
+                                        <i class="bi bi-flag"></i> Laporkan
+                                    </button>
                                 </form>
                             @endif
                         @endauth
+                        
                         @can('moderate', $review)
                             <form method="POST" action="{{ route('reviews.moderate', $review) }}">
                                 @csrf
                                 @method('PATCH')
-                                <button type="submit" class="btn btn-link btn-sm p-0">
-                                    {{ $review->is_hidden ? 'Unhide' : 'Hide' }}
+                                <button type="submit" class="btn btn-link link-dark p-0 text-decoration-none small" style="font-size: 0.8rem;">
+                                    <i class="bi bi-shield-check"></i> {{ $review->is_hidden ? 'Tampilkan' : 'Sembunyikan' }}
                                 </button>
                             </form>
                         @endcan
@@ -54,12 +68,15 @@
             </div>
         </div>
     @empty
-        <p class="text-muted small py-3">No reviews yet. Be the first!</p>
+        <div class="text-center py-5 text-secondary">
+            <i class="bi bi-chat-square-dots display-4 opacity-25 mb-3"></i>
+            <p>Belum ada ulasan. Jadilah yang pertama memberikan ulasan!</p>
+        </div>
     @endforelse
 </div>
 
-@if ($reviews instanceof \Illuminate\Pagination\LengthAwarePaginator)
-    <div class="mt-3">
+@if (method_exists($reviews, 'links'))
+    <div class="mt-4 d-flex justify-content-center">
         {{ $reviews->links() }}
     </div>
 @endif

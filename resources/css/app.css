@@ -1,11 +1,45 @@
-@import 'tailwindcss';
+.recipe-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+.info-box {
+    text-align: center;
+    background: var(--bs-light);
+    border: 1px solid var(--bs-border-color);
+    border-radius: 1rem;
+    padding: 0.75rem;
+}
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+.info-box i {
+    font-size: 1.75rem;
+    color: var(--bs-success);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.info-box .label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--bs-secondary);
+}
+
+.info-box .value {
+    font-weight: 700;
+}
+
+.info-box.full {
+    grid-column: span 2;
+}
+
+@media (max-width: 576px) {
+    .recipe-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-box.full {
+        grid-column: auto;
+    }
 }

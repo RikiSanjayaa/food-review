@@ -18,5 +18,15 @@ class ReviewRequest extends FormRequest
             'comment' => ['nullable', 'string', 'max:1000'],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'rating.required' => 'Mohon berikan rating bintang.',
+            'rating.min' => 'Rating minimal 1 bintang.',
+            'rating.max' => 'Rating maksimal 5 bintang.',
+            'comment.max' => 'Komentar tidak boleh lebih dari 1000 karakter.',
+        ];
+    }
 }
 

@@ -10,20 +10,19 @@ class TagSeeder extends Seeder
 {
     public function run(): void
     {
-        $defaults = [
-            'Quick',
-            'Vegan',
-            'Vegetarian',
-            'Gluten-free',
-            'High-protein',
-            'Dessert',
-            'Weeknight',
-            'Budget',
-            'One-pot',
-            'Breakfast',
+        $tags = [
+            'Sarapan',
+            'Makan Siang',
+            'Makan Malam',
+            'Camilan',
+            'Pedas',
+            'Sehat',
+            'Tradisional',
+            'Minuman',
+            'Vegetarian'
         ];
 
-        foreach ($defaults as $name) {
+        foreach ($tags as $name) {
             Tag::firstOrCreate(
                 ['slug' => Str::slug($name)],
                 ['name' => $name]

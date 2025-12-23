@@ -13,7 +13,11 @@
         @endauth
     </div>
 
-    @include('components.filter-bar', ['filters' => $filters, 'tags' => $tags, 'sort' => $sort ?? 'newest'])
+    @include('components.filter-bar', [
+        'filters' => $filters,
+        'tags' => $tags,
+        'sort' => $sort ?? 'newest',
+    ])
 
     @if ($recipes->isEmpty())
         <div class="text-center text-secondary py-4">
@@ -23,9 +27,11 @@
         <div class="row g-3">
             @foreach ($recipes as $recipe)
                 <div class="col-md-4">
-                    <a href="{{ route('recipes.show', $recipe) }}" class="card h-100 text-decoration-none text-dark shadow-sm">
+                    <a href="{{ route('recipes.show', $recipe) }}"
+                        class="card h-100 text-decoration-none text-dark shadow-sm">
                         @if ($recipe->hero_image)
-                            <img src="{{ Storage::url($recipe->hero_image) }}" class="card-img-top" alt="{{ $recipe->title }}" style="height: 180px; object-fit: cover;">
+                            <img src="{{ Storage::url($recipe->hero_image) }}" class="card-img-top"
+                                alt="{{ $recipe->title }}" style="height: 180px; object-fit: cover;">
                         @else
                             <div class="d-flex align-items-center justify-content-center bg-light" style="height: 180px;">
                                 <span class="text-secondary small">Tidak ada gambar</span>
@@ -35,7 +41,10 @@
                             <h2 class="card-title h6">{{ $recipe->title }}</h2>
                             <p class="card-text text-secondary small">{{ Str::limit($recipe->description, 120) }}</p>
                             <div class="d-flex align-items-center gap-3 text-muted small mb-2">
-                                <span class="fw-semibold text-success">{{ number_format($recipe->rating_avg, 1) }}★</span>
+                                <div class="d-flex align-items-center gap-2 fw-bold text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <span class="fw-semibold">{{ number_format($recipe->rating_avg, 1) }}</span>
+                                </div>
                                 <span>{{ $recipe->visible_reviews_count ?? $recipe->rating_count }} ulasan</span>
                                 @if ($recipe->totalTime())
                                     <span>{{ $recipe->totalTime() }} menit</span>
@@ -57,4 +66,3 @@
         </div>
     @endif
 @endsection
-

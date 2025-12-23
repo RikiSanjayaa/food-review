@@ -11,6 +11,7 @@ Minimalist Baker–style mini food review site with recipe search, filters, user
 
 1. Install dependencies  
    `composer install`
+   `npm install`
 
 2. Copy env & generate key  
    `cp .env.example .env`  
@@ -21,6 +22,7 @@ Minimalist Baker–style mini food review site with recipe search, filters, user
 
 4. Serve  
    `php artisan serve`
+   `npm run build`
 
 ### Demo accounts
 

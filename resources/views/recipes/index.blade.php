@@ -22,9 +22,9 @@
 
         {{-- BACKGROUND SLIDER (Absolute Position & Smooth Fade) --}}
         <template x-for="(img, index) in images" :key="index">
-            <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-[3000ms] ease-in-out"
+            <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-[2000ms] ease-in-out"
                 :style="`background-image: url('${img}')`"
-                :class="activeSlide === index ? 'opacity-100 scale-105' : 'opacity-0 scale-100'">
+                :class="activeSlide === index ? 'opacity-100' : 'opacity-0'">
             </div>
         </template>
 
@@ -206,7 +206,7 @@
 
                                     {{-- Description --}}
                                     <p class="text-gray-500 text-[11px] leading-relaxed mb-2 line-clamp-2 font-medium tracking-wide">
-                                        {{ Str::limit($recipe->description, 60) }}
+                                        {{ Str::limit($recipe->description, 90) }}
                                     </p>
 
                                     {{-- Separator --}}

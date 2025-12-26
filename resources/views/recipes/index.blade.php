@@ -72,8 +72,12 @@
                            placeholder="Mau masak apa hari ini?"
                            autocomplete="off">
                            
-                    @if(request('tags'))
-                        <input type="hidden" name="tags" value="{{ request('tags') }}">
+                    @if(request('tags') && is_array(request('tags')))
+                        @foreach(request('tags') as $tag)
+                            <input type="hidden" name="tags[]" value="{{ $tag }}">
+                        @endforeach
+                    @elseif(request('tags'))
+                         <input type="hidden" name="tags[]" value="{{ request('tags') }}">
                     @endif
                     @if(request('sort'))
                         <input type="hidden" name="sort" value="{{ request('sort') }}">
@@ -89,87 +93,140 @@
         </div>
     </section>
 
-    {{-- FILTER SECTION (Moved down/simplified) --}}
-    <section class="py-8 bg-white border-bottom relative z-30">
-        <div class="container">
+    {{-- FILTER SECTION --}}
+    <section class="relative z-30 -mt-12 md:-mt-20 px-4 lg:px-6 mb-20 w-full">
+        <div class="w-full">
             @include('components.filter-bar', [
                 'filters' => $filters,
                 'tags' => $tags,
                 'sort' => $sort ?? 'newest',
-                'hideSearch' => true // Optional: Pass a flag to hide search in component if adaptable
+                'hideSearch' => true
             ])
         </div>
     </section>
 
     {{-- =========================
-   RECIPE GRID (TARGET SCROLL)
-   ========================= --}}
-    <section class="recipe-section" id="recipe-results">
-        <div class="container">
+    RECIPE GRID (Bento & Breathable)
+    ========================= --}}
+    <section class="pb-24 min-h-screen relative overflow-hidden" id="recipe-results">
+        
+        {{-- Decorative Background Elements --}}
+        <div class="absolute top-0 right-0 w-96 h-96 bg-orange-100/30 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-amber-50/40 rounded-full blur-3xl -z-10 -translate-x-1/3 translate-y-1/3"></div>
+
+        <div class="container mx-auto max-w-7xl px-4">
+
+            {{-- Section Title --}}
+            <div class="mb-12 text-center" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">Jelajahi Resep</h2>
+                <div class="w-20 h-1.5 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full mx-auto"></div>
+            </div>
 
             @if ($recipes->isEmpty())
-                <div class="text-center text-secondary py-5">
-                    <i class="bi bi-search fs-1 mb-3 d-block"></i>
-                    <p class="mb-0">Belum ada resep yang cocok.</p>
+                <div class="flex flex-col items-center justify-center py-32 text-center" data-aos="fade-up">
+                    <div class="w-32 h-32 bg-gray-50 rounded-full flex items-center justify-center mb-8 shadow-inner">
+                        <i class="bi bi-search text-5xl text-gray-300"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-800 mb-3">Tidak ditemukan</h3>
+                    <p class="text-gray-500 text-lg max-w-lg mx-auto leading-relaxed">Maaf, kami tidak menemukan resep yang cocok dengan pencarian Anda. Coba kata kunci lain atau reset filter.</p>
                 </div>
             @else
-                <div class="row g-4">
-                    @foreach ($recipes as $recipe)
-                        <div class="col-md-4">
-                            <a href="{{ route('recipes.show', $recipe) }}"
-                                class="card recipe-card h-100 text-decoration-none text-dark shadow-sm">
-
-                                @if ($recipe->hero_image)
-                                    <img src="{{ Storage::url($recipe->hero_image) }}" class="card-img-top"
-                                        alt="{{ $recipe->title }}" style="height:180px;object-fit:cover;">
-                                @else
-                                    <div class="d-flex align-items-center justify-content-center bg-light"
-                                        style="height:180px;">
-                                        <span class="text-secondary small">
-                                            Tidak ada gambar
-                                        </span>
-                                    </div>
-                                @endif
-
-                                <div class="card-body">
-
-                                    <h6 class="fw-bold mb-1">
-                                        {{ $recipe->title }}
-                                    </h6>
-
-                                    <p class="small text-secondary mb-2">
-                                        {{ Str::limit($recipe->description, 120) }}
-                                    </p>
-
-                                    <div class="d-flex align-items-center gap-3 small text-muted mb-2">
-                                        <div class="fw-bold text-warning">
-                                            <i class="bi bi-star-fill"></i> {{ number_format($recipe->rating_avg, 1) }}
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+                    @foreach ($recipes as $loop => $recipe)
+                        {{-- CARD ITEM --}}
+                        <div class="group h-full" 
+                             data-aos="fade-up" 
+                             data-aos-delay="{{ $loop->index * 150 }}" 
+                             data-aos-duration="1000">
+                            
+                            <a href="{{ route('recipes.show', $recipe) }}" class="block h-full bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-orange-100/60 transition-all duration-500 transform hover:-translate-y-2 relative border border-gray-100/50">
+                                
+                                {{-- Image Wrapper --}}
+                                <div class="relative w-full aspect-[4/3] overflow-hidden bg-gray-100">
+                                    @if ($recipe->hero_image)
+                                        <img src="{{ Storage::url($recipe->hero_image) }}" 
+                                             class="w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                                             alt="{{ $recipe->title }}"
+                                             loading="lazy">
+                                    @else
+                                        <div class="w-full h-full flex flex-col items-center justify-center text-gray-300 gap-2">
+                                            <i class="bi bi-card-image text-4xl"></i>
+                                            <span class="text-xs uppercase tracking-widest font-bold opacity-50">No Image</span>
                                         </div>
+                                    @endif
+                                    
+                                    {{-- Overlay --}}
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                                        <span>
-                                            {{ $recipe->visible_reviews_count ?? $recipe->rating_count }} ulasan
-                                        </span>
-
+                                    {{-- Badges --}}
+                                    <div class="absolute top-4 left-4 flex flex-wrap gap-2">
                                         @if ($recipe->totalTime())
-                                            <span>{{ $recipe->totalTime() }} menit</span>
+                                            <div class="bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-bold text-gray-800 shadow-sm border border-white/20 flex items-center gap-1.5">
+                                                <i class="bi bi-clock text-amber-500"></i> {{ $recipe->totalTime() }}m
+                                            </div>
                                         @endif
                                     </div>
 
-                                    <div class="d-flex flex-wrap gap-1">
-                                        @foreach ($recipe->tags->take(3) as $tag)
-                                            <span class="badge text-bg-light">
+                                    {{-- Rating Badge --}}
+                                    <div class="absolute top-4 right-4">
+                                        <div class="bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-bold text-gray-800 shadow-sm border border-white/20 flex items-center gap-1.5">
+                                            <i class="bi bi-star-fill text-amber-400"></i> {{ number_format($recipe->rating_avg, 1) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- Content --}}
+                                <div class="p-8">
+                                    {{-- Title --}}
+                                    <h3 class="text-xl font-bold text-gray-900 mb-3 leading-tight group-hover:text-amber-600 transition-colors">
+                                        {{ $recipe->title }}
+                                    </h3>
+
+                                    {{-- Description --}}
+                                    <p class="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-2 font-medium">
+                                        {{ Str::limit($recipe->description, 100) }}
+                                    </p>
+
+                                    {{-- Tags --}}
+                                    <div class="flex flex-wrap gap-2">
+                                        @php
+                                            $tags_styles = [
+                                                'bg-rose-50 text-rose-600 border-rose-100', 
+                                                'bg-emerald-50 text-emerald-600 border-emerald-100', 
+                                                'bg-sky-50 text-sky-600 border-sky-100', 
+                                                'bg-violet-50 text-violet-600 border-violet-100', 
+                                                'bg-amber-50 text-amber-600 border-amber-100'
+                                            ];
+                                        @endphp
+                                        @foreach ($recipe->tags->take(3) as $i => $tag)
+                                            <span class="text-[0.7rem] uppercase tracking-wider font-bold px-3 py-1.5 rounded-full border {{ $tags_styles[$i % count($tags_styles)] }}">
                                                 {{ $tag->name }}
                                             </span>
                                         @endforeach
+                                        @if($recipe->tags->count() > 3)
+                                            <span class="text-[0.7rem] font-bold px-2 py-1.5 text-gray-400">
+                                                +{{ $recipe->tags->count() - 3 }}
+                                            </span>
+                                        @endif
                                     </div>
-
+                                    
+                                    {{-- Footer Meta --}}
+                                    <div class="mt-6 pt-5 border-t border-gray-100 flex items-center justify-between text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                                        <span>
+                                            {{ $recipe->visible_reviews_count ?? $recipe->rating_count }} Ulasan
+                                        </span>
+                                        <span class="group-hover:translate-x-1 transition-transform duration-300 text-amber-500 flex items-center gap-1">
+                                            Lihat Resep <i class="bi bi-arrow-right"></i>
+                                        </span>
+                                    </div>
                                 </div>
                             </a>
                         </div>
                     @endforeach
                 </div>
 
-                <div class="mt-5 d-flex justify-content-center">
+                {{-- Pagination --}}
+                <div class="mt-20 flex justify-center" data-aos="fade-up">
                     {{ $recipes->links() }}
                 </div>
             @endif

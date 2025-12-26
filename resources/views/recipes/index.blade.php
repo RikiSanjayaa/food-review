@@ -114,7 +114,7 @@
         <div class="absolute top-0 right-0 w-96 h-96 bg-orange-100/30 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
         <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-amber-50/40 rounded-full blur-3xl -z-10 -translate-x-1/3 translate-y-1/3"></div>
 
-        <div class="container mx-auto max-w-7xl px-4">
+        <div class="w-full max-w-[1600px] mx-auto px-6 md:px-12">
 
             {{-- Section Title --}}
             <div class="mb-12 text-center" data-aos="fade-up">
@@ -131,93 +131,102 @@
                     <p class="text-gray-500 text-lg max-w-lg mx-auto leading-relaxed">Maaf, kami tidak menemukan resep yang cocok dengan pencarian Anda. Coba kata kunci lain atau reset filter.</p>
                 </div>
             @else
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     @foreach ($recipes as $loop => $recipe)
                         {{-- CARD ITEM --}}
                         <div class="group h-full" 
                              data-aos="fade-up" 
-                             data-aos-delay="{{ $loop->index * 150 }}" 
+                             data-aos-delay="{{ ($loop->index % 4) * 100 }}" 
                              data-aos-duration="1000">
                             
                             <a href="{{ route('recipes.show', $recipe) }}" class="block h-full bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-orange-100/60 transition-all duration-500 transform hover:-translate-y-2 relative border border-gray-100/50">
                                 
                                 {{-- Image Wrapper --}}
-                                <div class="relative w-full aspect-[4/3] overflow-hidden bg-gray-100">
+                                <div class="relative w-full aspect-video overflow-hidden bg-gray-100 group-hover:brightness-[1.02] transition-all">
                                     @if ($recipe->hero_image)
                                         <img src="{{ Storage::url($recipe->hero_image) }}" 
                                              class="w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-in-out"
                                              alt="{{ $recipe->title }}"
                                              loading="lazy">
                                     @else
-                                        <div class="w-full h-full flex flex-col items-center justify-center text-gray-300 gap-2">
-                                            <i class="bi bi-card-image text-4xl"></i>
-                                            <span class="text-xs uppercase tracking-widest font-bold opacity-50">No Image</span>
+                                        <div class="w-full h-full flex flex-col items-center justify-center text-gray-300 gap-1 bg-gray-50">
+                                            <i class="bi bi-card-image text-3xl opacity-50"></i>
+                                            <span class="text-[10px] uppercase tracking-widest font-bold opacity-30">No Image</span>
                                         </div>
                                     @endif
                                     
-                                    {{-- Overlay --}}
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                    {{-- Overlay (Gradient Bottom) --}}
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
 
-                                    {{-- Badges --}}
-                                    <div class="absolute top-4 left-4 flex flex-wrap gap-2">
-                                        @if ($recipe->totalTime())
-                                            <div class="bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-bold text-gray-800 shadow-sm border border-white/20 flex items-center gap-1.5">
-                                                <i class="bi bi-clock text-amber-500"></i> {{ $recipe->totalTime() }}m
+                                    {{-- Time Badge (Top Left) --}}
+                                    @if ($recipe->totalTime())
+                                        <div class="absolute top-3 left-3">
+                                            <div class="bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-bold text-white border border-white/10 flex items-center gap-1.5 shadow-sm">
+                                                <i class="bi bi-clock text-amber-400"></i> {{ $recipe->totalTime() }}m
                                             </div>
-                                        @endif
-                                    </div>
+                                        </div>
+                                    @endif
 
-                                    {{-- Rating Badge --}}
-                                    <div class="absolute top-4 right-4">
-                                        <div class="bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-bold text-gray-800 shadow-sm border border-white/20 flex items-center gap-1.5">
+                                    {{-- Rating Badge (Top Right) --}}
+                                    <div class="absolute top-3 right-3">
+                                        <div class="bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-extrabold text-gray-900 border border-white/20 flex items-center gap-1 shadow-sm">
                                             <i class="bi bi-star-fill text-amber-400"></i> {{ number_format($recipe->rating_avg, 1) }}
                                         </div>
                                     </div>
                                 </div>
 
                                 {{-- Content --}}
-                                <div class="p-8">
+                                <div class="p-4 flex flex-col h-full bg-white relative">
+                                    
+                                    {{-- Tags (Modern Pills) --}}
+                                    <div class="flex flex-wrap gap-1.5 mb-2.5">
+                                        @php
+                                            $tags_styles = [
+                                                'bg-orange-50 text-orange-600 border-orange-100', 
+                                                'bg-blue-50 text-blue-600 border-blue-100', 
+                                                'bg-emerald-50 text-emerald-600 border-emerald-100', 
+                                            ];
+                                        @endphp
+                                        @foreach ($recipe->tags->take(2) as $index => $tag)
+                                            <div class="px-2 py-[3px] rounded-md text-[9px] uppercase tracking-widest font-bold border {{ $tags_styles[$index % 3] }}">
+                                                {{ $tag->name }}
+                                            </div>
+                                        @endforeach
+                                        @if($recipe->tags->count() > 2)
+                                            <div class="px-2 py-[3px] rounded-md text-[9px] font-bold text-gray-400 bg-gray-50 border border-gray-100">
+                                                +{{ $recipe->tags->count() - 2 }}
+                                            </div>
+                                        @endif
+                                    </div>
+
                                     {{-- Title --}}
-                                    <h3 class="text-xl font-bold text-gray-900 mb-3 leading-tight group-hover:text-amber-600 transition-colors">
+                                    <h3 class="text-[15px] font-extrabold text-gray-900 mb-1.5 leading-snug group-hover:text-orange-600 transition-colors line-clamp-1 tracking-tight">
                                         {{ $recipe->title }}
                                     </h3>
 
                                     {{-- Description --}}
-                                    <p class="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-2 font-medium">
-                                        {{ Str::limit($recipe->description, 100) }}
+                                    <p class="text-gray-500 text-[11px] leading-relaxed mb-4 line-clamp-2 font-medium tracking-wide">
+                                        {{ Str::limit($recipe->description, 60) }}
                                     </p>
 
-                                    {{-- Tags --}}
-                                    <div class="flex flex-wrap gap-2">
-                                        @php
-                                            $tags_styles = [
-                                                'bg-rose-50 text-rose-600 border-rose-100', 
-                                                'bg-emerald-50 text-emerald-600 border-emerald-100', 
-                                                'bg-sky-50 text-sky-600 border-sky-100', 
-                                                'bg-violet-50 text-violet-600 border-violet-100', 
-                                                'bg-amber-50 text-amber-600 border-amber-100'
-                                            ];
-                                        @endphp
-                                        @foreach ($recipe->tags->take(3) as $i => $tag)
-                                            <span class="text-[0.7rem] uppercase tracking-wider font-bold px-3 py-1.5 rounded-full border {{ $tags_styles[$i % count($tags_styles)] }}">
-                                                {{ $tag->name }}
+                                    {{-- Separator --}}
+                                    <div class="border-t border-gray-100 w-full mb-3 mt-4"></div>
+
+                                    {{-- Footer (Actionable) --}}
+                                    <div class="flex items-center justify-between">
+                                        
+                                        {{-- Reviews --}}
+                                        <div class="flex items-center gap-1.5 text-xs text-gray-500 font-medium group-hover:text-orange-500 transition-colors">
+                                            <i class="bi bi-chat-text-fill text-orange-400"></i>
+                                            <span>
+                                                <span class="font-bold text-gray-700 group-hover:text-orange-600">{{ $recipe->visible_reviews_count ?? 0 }}</span> Ulasan
                                             </span>
-                                        @endforeach
-                                        @if($recipe->tags->count() > 3)
-                                            <span class="text-[0.7rem] font-bold px-2 py-1.5 text-gray-400">
-                                                +{{ $recipe->tags->count() - 3 }}
-                                            </span>
-                                        @endif
-                                    </div>
-                                    
-                                    {{-- Footer Meta --}}
-                                    <div class="mt-6 pt-5 border-t border-gray-100 flex items-center justify-between text-xs font-semibold text-gray-400 uppercase tracking-wide">
-                                        <span>
-                                            {{ $recipe->visible_reviews_count ?? $recipe->rating_count }} Ulasan
-                                        </span>
-                                        <span class="group-hover:translate-x-1 transition-transform duration-300 text-amber-500 flex items-center gap-1">
-                                            Lihat Resep <i class="bi bi-arrow-right"></i>
-                                        </span>
+                                        </div>
+                                        
+                                        {{-- Link --}}
+                                        <div class="flex items-center gap-1 text-xs font-bold text-gray-700 group-hover:text-orange-600 transition-colors">
+                                            Lihat Detail Resep <i class="bi bi-arrow-right"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </a>

@@ -8,7 +8,7 @@
 @endphp
 
 <form method="GET" action="{{ route('recipes.index') }}" 
-      class="w-full relative z-40 bg-white/80 backdrop-blur-2xl rounded-[2.5rem] border border-white/60 shadow-[0_15px_35px_-5px_rgba(0,0,0,0.08)] p-6 md:p-8 transition-all duration-300 hover:shadow-xl hover:shadow-amber-500/5 group"
+      class="w-full relative z-40 bg-white/80 backdrop-blur-xl rounded-[2.5rem] border border-white/40 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] p-6 md:p-10 mb-16 transition-all duration-300"
       data-aos="fade-up" 
       data-aos-duration="1000">
 
@@ -28,9 +28,9 @@
             @foreach ($tags as $tag)
                 <label class="cursor-pointer relative select-none group flex-shrink-0 snap-start">
                     <input type="checkbox" name="tags[]" value="{{ $tag->id }}" class="peer sr-only" @checked(in_array($tag->id, $filters['tags'] ?? []))>
-                    <div class="px-5 py-2.5 rounded-full border border-gray-100 bg-white text-gray-600 text-sm font-semibold transition-all duration-300 
+                    <div class="px-6 py-3 rounded-full border border-gray-100 bg-white text-gray-500 text-sm font-bold transition-all duration-300 
                                 group-hover:border-amber-400 group-hover:text-amber-600 group-hover:-translate-y-0.5 group-hover:shadow-md
-                                peer-checked:bg-gradient-to-r peer-checked:from-amber-500 peer-checked:to-orange-500 peer-checked:text-white peer-checked:border-transparent peer-checked:shadow-lg peer-checked:shadow-orange-200 peer-checked:-translate-y-0.5
+                                peer-checked:bg-orange-500 peer-checked:text-white peer-checked:border-orange-500 peer-checked:shadow-lg peer-checked:shadow-orange-200 peer-checked:-translate-y-0.5
                                 whitespace-nowrap">
                         {{ $tag->name }}
                     </div>
@@ -40,12 +40,12 @@
     </div>
 
     {{-- =========================
-       FILTER GRID (Visual upgrade: Integrated Icons)
+       FILTER INPUTS (Horizontal Row on Desktop)
        ========================= --}}
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 mb-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:flex lg:items-center lg:gap-6 gap-3 mb-8 w-full">
 
         {{-- DIET --}}
-        <div>
+        <div class="lg:flex-1 w-full text-left">
             <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-1 text-[0.65rem] md:text-xs">Diet</label>
             <div class="relative group">
                 <i class="bi bi-leaf absolute left-3 md:left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-amber-500 transition-colors bg-white md:bg-transparent pr-1"></i>
@@ -62,7 +62,7 @@
         </div>
 
         {{-- SORT --}}
-        <div>
+        <div class="lg:flex-1 w-full text-left">
             <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-1 text-[0.65rem] md:text-xs">Urutkan</label>
             <div class="relative group">
                 <i class="bi bi-sort-down absolute left-3 md:left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-amber-500 transition-colors bg-white md:bg-transparent pr-1"></i>
@@ -82,8 +82,8 @@
         </div>
 
         {{-- MIN TIME --}}
-        <div>
-            <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-1 text-[0.65rem] md:text-xs">Min Waktu (Mnt)</label>
+        <div class="lg:flex-1 w-full text-left">
+            <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-1 text-[0.65rem] md:text-xs">Min Waktu</label>
             <div class="relative group">
                 <div class="absolute inset-y-0 left-0 pl-3 md:pl-4 flex items-center pointer-events-none">
                      <span class="text-gray-400 font-bold text-xs md:text-sm">Min</span>
@@ -95,8 +95,8 @@
         </div>
 
         {{-- MAX TIME --}}
-        <div>
-            <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-1 text-[0.65rem] md:text-xs">Max Waktu (Mnt)</label>
+        <div class="lg:flex-1 w-full text-left">
+            <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-1 text-[0.65rem] md:text-xs">Max Waktu</label>
             <div class="relative group">
                 <div class="absolute inset-y-0 left-0 pl-3 md:pl-4 flex items-center pointer-events-none">
                      <span class="text-gray-400 font-bold text-xs md:text-sm">Max</span>

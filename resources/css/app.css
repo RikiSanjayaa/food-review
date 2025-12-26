@@ -3,44 +3,101 @@ body {
     color: #212529;
 }
 
-   /* HERO SECTION */
-.explore-hero {
-    position: relative;
-    background:
-        linear-gradient(135deg, rgba(8,153,85,.88), rgba(42,177,136,.88)),
-        url('/images/food-bg.png');
-    background-size: cover;
-    background-position: center;
-    border-radius: 32px;
-    padding: 5rem 4rem 6.5rem;
-    color: #ffffff;
-    box-shadow: 0 40px 100px rgba(0,0,0,.2);
-    overflow: hidden;
+.recipe-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
 }
 
+.recipe-info-grid .info-box {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 1rem 0.75rem;
+    text-align: center;
+    border: 2px solid #e9ecef;
+    transition: 0.25s ease;
+}
+
+.recipe-info-grid .info-box:hover {
+    border: 2px solid #5cc57f;
+}
+
+.recipe-info-grid .info-box i {
+    font-size: 1.6rem;
+    color: #198754;
+    margin-bottom: 0.35rem;
+    display: block;
+}
+
+.recipe-info-grid .info-box .label {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6c757d;
+    margin-bottom: 0.15rem;
+}
+
+.recipe-info-grid .info-box .value {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #212529;
+}
+
+.recipe-info-grid .info-box.full {
+    grid-column: span 2;
+}
+
+@media (max-width: 992px) {
+    .recipe-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .recipe-info-grid .info-box.full {
+        grid-column: span 1;
+    }
+}
+
+/* HERO SECTION */
+.explore-hero {
+    position: relative;
+    background: linear-gradient(
+            135deg,
+            rgba(8, 153, 85, 0.88),
+            rgba(42, 177, 136, 0.88)
+        ),
+        url("/images/food-bg.png");
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+    overflow: hidden;
+}
+/*
 .explore-hero::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
-    background:
-        radial-gradient(circle at top right, rgba(255,255,255,.18), transparent 60%);
-}
+    background: radial-gradient(
+        circle at top right,
+        rgba(255, 255, 255, 0.18),
+        transparent 60%
+    );
+} */
 
 .explore-hero-content {
     position: relative;
-    max-width: 1200px;
     margin: auto;
     z-index: 2;
 }
 
 .hero-badge {
-    background: rgba(255,255,255,.22);
-    padding: .5rem 1.4rem;
+    background: rgba(255, 255, 255, 0.22);
+    padding: 0.5rem 1.4rem;
     border-radius: 999px;
     font-weight: 600;
-    font-size: .85rem;
+    font-size: 0.85rem;
     display: inline-flex;
-    gap: .4rem;
+    gap: 0.4rem;
     margin-bottom: 1.5rem;
 }
 
@@ -53,18 +110,11 @@ body {
 .hero-subtitle {
     max-width: 640px;
     font-size: 1.05rem;
-    opacity: .95;
+    opacity: 0.95;
     margin-bottom: 3.2rem;
 }
 
-.action-top-wrapper {
-    position: relative;
-    z-index: 5;              
-    background: #f8f9fa;     
-    padding: 1.25rem 0 0.5rem;
-}
-
-   /* HERO CAROUSEL */
+/* HERO CAROUSEL */
 .recipe-carousel-wrapper {
     position: relative;
     padding: 0 3.5rem;
@@ -88,12 +138,12 @@ body {
     border-radius: 24px;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 24px 55px rgba(0,0,0,.3);
-    transition: .35s ease;
+    box-shadow: 0 24px 55px rgba(0, 0, 0, 0.3);
+    transition: 0.35s ease;
 }
 
 .recipe-slide:hover {
-    transform: translateY(-8px) scale(1.04);
+    transform: translateY(-8px);
 }
 
 .recipe-slide img {
@@ -103,13 +153,13 @@ body {
 }
 
 .recipe-slide::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     background: linear-gradient(
         to top,
-        rgba(0,0,0,.7),
-        rgba(0,0,0,.4),
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.4),
         transparent
     );
 }
@@ -128,22 +178,22 @@ body {
 .slide-overlay h4 {
     font-size: 1.2rem;
     font-weight: 800;
-    text-shadow: 0 3px 8px rgba(0,0,0,.8);
+    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.8);
     margin: 0;
 }
 
 .slide-tag {
-    display: inline-block;         
-    width: auto;                       
-    max-width: max-content;            
+    display: inline-block;
+    width: auto;
+    max-width: max-content;
     background: linear-gradient(135deg, #198754, #20c997);
-    padding: .35rem .9rem;             
+    padding: 0.35rem 0.9rem;
     border-radius: 999px;
-    font-size: .7rem;
+    font-size: 0.7rem;
     font-weight: 800;
-    line-height: 1;                    
-    margin-bottom: .45rem;
-    box-shadow: 0 6px 16px rgba(0,0,0,.35);
+    line-height: 1;
+    margin-bottom: 0.45rem;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
 }
 
 /* ======================================================
@@ -156,48 +206,38 @@ body {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: rgba(255,255,255,.95);
+    background: rgba(255, 255, 255, 0.95);
     color: #198754;
     font-size: 1.6rem;
     border: none;
     cursor: pointer;
-    box-shadow: 0 14px 35px rgba(0,0,0,.3);
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.3);
     z-index: 5;
 }
 
-.carousel-nav.prev { left: 0; }
-.carousel-nav.next { right: 0; }
+.carousel-nav.prev {
+    left: 0;
+}
+.carousel-nav.next {
+    right: 0;
+}
 
 .carousel-nav:hover {
     transform: translateY(-50%) scale(1.08);
 }
 
-   /* FILTER SECTION  */
+/* FILTER SECTION  */
 .search-section {
     margin-top: -4.5rem;
     padding-bottom: 6rem;
 }
 
 .filter-outer {
-    max-width: 1200px;
     margin: auto;
-    background: linear-gradient(180deg, #ffffff, #f6fffb);
+    background: #ffffff;
     border-radius: 32px;
-    padding: 3.5rem;
-    box-shadow:
-        0 45px 110px rgba(0,0,0,.18),
-        inset 0 1px 0 rgba(255,255,255,.9);
+    padding: 3rem;
     position: relative;
-}
-
-.filter-outer::after {
-    content: '';
-    position: absolute;
-    top: -80px;
-    right: -80px;
-    width: 260px;
-    height: 260px;
-    background: radial-gradient(circle, rgba(32,201,151,.25), transparent 70%);
 }
 
 /* ======================================================
@@ -207,12 +247,9 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
-    background: linear-gradient(135deg, #ffffff, #ecfff7);
     border-radius: 999px;
     padding: 1rem 1.6rem;
-    max-width: 760px;
     border: 2px solid #d4f4e6;
-    box-shadow: 0 18px 45px rgba(25,135,84,.22);
 }
 
 .filter-search input {
@@ -225,34 +262,39 @@ body {
 /* ======================================================
    FILTER TAGS
    ====================================================== */
+.filter-label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #212529;
+}
 .filter-tags {
-    display: flex;
-    gap: .75rem;
-    overflow-x: auto;
-    padding-bottom: .3rem;
+    gap: 2rem;
 }
 
 .tag-chip {
-    padding: .6rem 1.4rem;
+    margin: 0.3rem;
+    padding: 0.6rem 1.4rem;
     border-radius: 999px;
     background: #eafaf3;
     border: 1.5px solid #bfe9d5;
-    font-size: .85rem;
+    font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
-    transition: .25s ease;
+    transition: 0.25s ease;
 }
 
-.tag-chip input { display: none; }
+.tag-chip input {
+    display: none;
+}
 
 .tag-chip:hover {
-    background: #dff6ec;
+    background: #a0e7c9;
 }
 
 .tag-chip:has(input:checked) {
     background: linear-gradient(135deg, #198754, #20c997);
     color: #ffffff;
-    box-shadow: 0 12px 30px rgba(25,135,84,.45);
 }
 
 /* ======================================================
@@ -265,27 +307,20 @@ body {
 }
 
 .filter-btn {
-    padding: .9rem 3.2rem;
+    padding: 0.9rem 3.2rem;
     border-radius: 999px;
     background: linear-gradient(135deg, #198754, #20c997);
     color: #ffffff;
     border: none;
     font-weight: 700;
-    box-shadow: 0 18px 45px rgba(25,135,84,.45);
+    box-shadow: 0 8px 24px rgba(25, 135, 84, 0.45);
 }
 
-.filter-reset-btn {
-    padding: .85rem 2.4rem;
-    border-radius: 999px;
-    background: #f1fdf7;
-    border: 1.5px dashed #bfe9d5;
-    font-weight: 600;
-}
-
+/* gaperlu ini, container bootstrap udh responsive */
 /* ======================================================
    RESPONSIVE
    ====================================================== */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .explore-hero {
         padding: 3.5rem 2rem 5rem;
     }
@@ -301,5 +336,180 @@ body {
 @media (max-width: 576px) {
     .hero-title {
         font-size: 2rem;
+    }
+} */
+
+/* ======================================================
+   STAR RATING (Interactive)
+   ====================================================== */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    font-size: 2rem;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    cursor: pointer;
+    color: #e4e5e9;
+    transition: all 0.2s ease;
+    margin: 0;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #ffc107;
+    transform: scale(1.1);
+}
+
+.star-rating input[type="radio"]:checked ~ label {
+    color: #ffc107;
+}
+
+.star-rating input[type="radio"]:checked + label {
+    color: #ffc107;
+    animation: starPulse 0.4s ease;
+}
+
+@keyframes starPulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+@media (max-width: 576px) {
+    .star-rating {
+        font-size: 2.5rem;
+        gap: 0.3rem;
+    }
+}
+
+/* ======================================================
+   TOAST NOTIFICATIONS
+   ====================================================== */
+.toast {
+    min-width: 300px;
+    border-radius: 12px !important;
+    backdrop-filter: blur(10px);
+}
+
+.toast.showing {
+    animation: toastSlideIn 0.4s ease-out;
+}
+
+.toast.hide {
+    animation: toastSlideOut 0.3s ease-in;
+}
+
+@keyframes toastSlideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes toastSlideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.toast-body {
+    padding: 1rem 1.25rem;
+    font-weight: 500;
+}
+
+.toast .btn-close {
+    padding: 0.5rem;
+    opacity: 0.8;
+}
+
+.toast .btn-close:hover {
+    opacity: 1;
+}
+
+@media (max-width: 576px) {
+    .toast {
+        min-width: 280px;
+        max-width: calc(100vw - 2rem);
+    }
+
+    .toast-container {
+        width: 100%;
+    }
+}
+
+/* ======================================================
+   FLOATING BACK BUTTON
+   ====================================================== */
+.btn-float-back {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #198754, #20c997);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 8px 24px rgba(25, 135, 84, 0.35);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    text-decoration: none;
+}
+
+.btn-float-back:hover {
+    background: linear-gradient(135deg, #146c43, #1aa179);
+    color: #ffffff;
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 12px 32px rgba(25, 135, 84, 0.5);
+}
+
+.btn-float-back:active {
+    transform: translateY(-2px) scale(1);
+}
+
+.btn-float-back i {
+    line-height: 1;
+}
+
+@media (max-width: 768px) {
+    .btn-float-back {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 52px;
+        height: 52px;
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .btn-float-back {
+        bottom: 1rem;
+        right: 1rem;
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
     }
 }

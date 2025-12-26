@@ -20,7 +20,6 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('recipes.index')->with('status', 'Welcome aboard!');
+        return redirect()->route('recipes.index')->with('status', 'Selamat datang user baru!');
     }
 }
-

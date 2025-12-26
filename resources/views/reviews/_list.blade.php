@@ -22,9 +22,8 @@
 
                     <!-- Star Rating -->
                     <div class="d-flex align-items-center">
-                        <span
-                            class="badge bg-warning text-dark rounded-pill px-2 py-1 d-flex align-items-center gap-1 shadow-sm">
-                            <i class="bi bi-star-fill text-white small"></i> {{ $review->rating }}
+                        <span class="text-warning px-2 py-1 d-flex align-items-center gap-1">
+                            <i class="bi bi-star-fill small"></i> {{ $review->rating }}
                         </span>
                     </div>
                 </div>

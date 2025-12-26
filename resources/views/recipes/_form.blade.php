@@ -69,11 +69,11 @@
 
     <div class="mt-2">
         <label class="form-label small">Kategori (Tag)</label>
-        <div class="d-flex flex-wrap gap-2">
+        <div class="tag-selector">
             @foreach ($tags as $tag)
-                <label class="form-check-label d-flex align-items-center gap-2 small">
-                    <input class="form-check-input" type="checkbox" name="tags[]" value="{{ $tag->id }}" @checked(in_array($tag->id, old('tags', $recipe->tags->pluck('id')->toArray())))>
-                    <span>{{ $tag->name }}</span>
+                <label class="tag-pill">
+                    <input type="checkbox" name="tags[]" value="{{ $tag->id }}" @checked(in_array($tag->id, old('tags', $recipe->tags->pluck('id')->toArray())))>
+                    <span class="tag-pill-text">{{ $tag->name }}</span>
                 </label>
             @endforeach
         </div>

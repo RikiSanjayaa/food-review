@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="col-lg-10 col-xl-8 mx-auto">
+    <div class="col-lg-10 col-xl-8 mx-auto my-5">
         <div class="card shadow-sm">
             <div class="card-body">
                 <div class="d-flex align-items-center justify-content-between mb-3">
@@ -19,4 +19,3 @@
         </div>
     </div>
 @endsection
-

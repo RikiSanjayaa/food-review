@@ -205,12 +205,12 @@
                                     </h3>
 
                                     {{-- Description --}}
-                                    <p class="text-gray-500 text-[11px] leading-relaxed mb-4 line-clamp-2 font-medium tracking-wide">
+                                    <p class="text-gray-500 text-[11px] leading-relaxed mb-2 line-clamp-2 font-medium tracking-wide">
                                         {{ Str::limit($recipe->description, 60) }}
                                     </p>
 
                                     {{-- Separator --}}
-                                    <div class="border-t border-gray-100 w-full mb-3 mt-4"></div>
+                                    <div class="border-t border-gray-100 w-full my-2"></div>
 
                                     {{-- Footer (Actionable) --}}
                                     <div class="flex items-center justify-between">

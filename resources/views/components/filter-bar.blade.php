@@ -12,11 +12,15 @@
     {{-- =========================
        SEARCH BAR
        ========================= --}}
-    <div class="filter-search mb-4">
-        <i class="bi bi-search"></i>
-        <input type="search" name="q" value="{{ $filters['q'] ?? '' }}"
-            placeholder="Cari resep atau bahan favorit...">
-    </div>
+    @if (!empty($hideSearch))
+        <input type="hidden" name="q" value="{{ $filters['q'] ?? '' }}">
+    @else
+        <div class="filter-search mb-4">
+            <i class="bi bi-search"></i>
+            <input type="search" name="q" value="{{ $filters['q'] ?? '' }}"
+                placeholder="Cari resep atau bahan favorit...">
+        </div>
+    @endif
 
     {{-- =========================
        KATEGORI

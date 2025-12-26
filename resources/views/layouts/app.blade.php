@@ -33,6 +33,9 @@
     {{-- VITE --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -55,17 +58,14 @@
             margin-inline: auto;
         }
 
+        /* HARD FIX V2: Ultra-Micro Navbar Overrides REMOVED - BALANCED V2 APPLIED */
         .navbar {
-            backdrop-filter: saturate(180%) blur(10px);
-            background: rgba(255, 255, 255, .92);
+            transition: all 0.3s ease;
+            min-height: 70px; /* Standard Professional Height */
         }
-
-        .navbar-brand {
-            letter-spacing: -.02em;
-        }
-
+        
         .navbar-logo {
-            height: 40px;
+            height: 40px; /* Clear & Authoritative */
             width: auto;
             transition: transform .2s ease;
         }
@@ -74,34 +74,64 @@
             transform: scale(1.05);
         }
 
-        .nav-link {
+        .nav-link, .btn {
+            font-size: 16px; /* Comfortable Readability */
             font-weight: 500;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            letter-spacing: -.02em;
+            height: 100%; /* Ensure full height alignment */
+        }
+        
+        /* Ensure dropdown button matches symmetry */
+        .user-dropdown-btn {
+            padding: 8px 24px; /* Balanced padding */
         }
     </style>
 </head>
 
-<body>
     <div class="app-wrapper">
 
         <!-- NAVBAR -->
-        <nav class="navbar navbar-expand-lg sticky-top border-bottom">
-            <div class="container">
-                <div class="w-100 d-flex justify-content-between align-items-center">
+        <nav x-data="{ scrolled: false }" 
+             @scroll.window="scrolled = (window.pageYOffset > 50)"
+             class="navbar navbar-expand-lg transition-all duration-1000 ease-in-out py-0
+             {{ request()->routeIs('recipes.index') ? 'fixed-top' : 'sticky-top bg-white border-bottom shadow-sm' }}"
+             :class="{
+                 'bg-white/95 backdrop-blur-md shadow-sm': {{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && scrolled,
+                 'bg-transparent': {{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled
+             }"
+             style="z-index: 1000;">
+            
+            <div class="container"> {{-- Symmetry Enforced --}}
+                <div class="w-100 d-flex justify-content-between align-items-center" style="min-height: 70px;">
 
                     <!-- BRAND LOGO (LEFT) -->
-                    <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-success"
-                        href="{{ route('recipes.index') }}">
+                    <a class="navbar-brand d-flex align-items-center gap-3 fw-bold transition-colors duration-1000 ease-in-out"
+                        href="{{ route('recipes.index') }}"
+                        :class="{{ request()->routeIs('recipes.index') ? 'scrolled ? \'text-success\' : \'text-white\'' : '\'text-success\'' }}">
 
-                        <img src="{{ asset('logo.svg') }}" alt="Food Reviews Logo" class="navbar-logo">
+                        <img src="{{ asset('logo.svg') }}" alt="Logo" class="navbar-logo">
 
-                        <span>Food Reviews</span>
+                        <span class="d-none d-sm-block" style="font-size: 1.25rem; font-weight: 700;">Food Reviews</span>
                     </a>
 
                     <!-- BERANDA (CENTER) - Hidden on Mobile -->
-                    <ul class="navbar-nav d-none d-lg-flex">
+                    <ul class="navbar-nav d-none d-lg-flex gap-5 align-items-center"> {{-- Wide gap for luxury feel --}}
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('recipes.index') ? 'text-success fw-semibold' : '' }}"
-                                href="{{ route('recipes.index') }}">
+                            <a class="nav-link transition-colors duration-1000 ease-in-out px-2"
+                               href="{{ route('recipes.index') }}"
+                               :class="[
+                                   {{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled 
+                                        ? 'text-white hover:text-white/80' 
+                                        : 'text-dark hover:text-success',
+                                   {{ request()->routeIs('recipes.index') ? 'true' : 'false' }} 
+                                        ? (scrolled ? 'fw-bold text-success' : 'fw-bold text-white') 
+                                        : ''
+                               ]">
                                 Beranda
                             </a>
                         </li>
@@ -111,16 +141,22 @@
                     <div class="d-none d-lg-flex align-items-center gap-3">
                         @auth
                             <div class="dropdown">
-                                <button class="btn btn-outline-success rounded-pill px-4 dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown">
+                                <button class="btn user-dropdown-btn rounded-pill dropdown-toggle border-0 transition-all duration-1000 ease-in-out" 
+                                        type="button"
+                                        data-bs-toggle="dropdown"
+                                        :class="[
+                                            {{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled 
+                                                ? 'bg-white/20 text-white backdrop-blur-sm hover:bg-white/30' 
+                                                : 'btn-outline-success text-dark'
+                                        ]">
                                     {{ Auth::user()->name }}
                                 </button>
-
+                                
                                 <ul class="dropdown-menu dropdown-menu-end border-0 shadow rounded-4 mt-2">
                                     @if (Auth::user()->is_admin)
                                         <li>
                                             <a href="{{ route('recipes.create') }}"
-                                                class="dropdown-item py-2 text-success">
+                                                class="dropdown-item py-2 text-success text-sm">
                                                 <i class="bi bi-plus-circle me-1"></i>
                                                 Tambah Resep
                                             </a>
@@ -132,7 +168,7 @@
                                     <li>
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
-                                            <button type="submit" class="dropdown-item py-2 text-danger">
+                                            <button type="submit" class="dropdown-item py-2 text-danger text-sm">
                                                 Keluar
                                             </button>
                                         </form>
@@ -140,51 +176,58 @@
                                 </ul>
                             </div>
                         @else
-                            <a href="{{ route('login') }}" class="btn btn-link text-secondary text-decoration-none">
+                            <a href="{{ route('login') }}" 
+                               class="btn btn-link text-decoration-none transition-colors duration-1000 ease-in-out text-sm font-medium py-1 px-2"
+                               :class="{{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled ? 'text-white/90 hover:text-white' : 'text-secondary'">
                                 Masuk
                             </a>
-                            <a href="{{ route('register') }}" class="btn btn-success rounded-pill px-4">
+                            <a href="{{ route('register') }}" 
+                               class="btn rounded-pill px-4 border-0 transition-all duration-1000 ease-in-out text-sm py-1 font-semibold"
+                               :class="{{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled ? 'bg-white text-success hover:bg-white/90' : 'btn-success text-white'">
                                 Daftar
                             </a>
                         @endauth
                     </div>
 
                     <!-- Hamburger Menu (Mobile) -->
-                    <button class="navbar-toggler border-0 d-lg-none" type="button" data-bs-toggle="collapse"
+                    <button class="navbar-toggler border-0 d-lg-none transition-all duration-1000 ease-in-out py-1" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNav">
-                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon" 
+                              style="width: 1.2em; height: 1.2em;"
+                              :style="{{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled ? 'filter: invert(1);' : ''">
+                        </span>
                     </button>
 
                 </div>
 
                 <!-- Mobile Menu -->
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav mt-3">
+                <div class="collapse navbar-collapse bg-white rounded-3 p-3 mt-2 shadow-lg d-lg-none" id="navbarNav">
+                    <ul class="navbar-nav">
                         @auth
                             @if (Auth::user()->is_admin)
-                                <li class="nav-item d-lg-none">
-                                    <a href="{{ route('recipes.create') }}" class="nav-link text-success">
+                                <li class="nav-item">
+                                    <a href="{{ route('recipes.create') }}" class="nav-link text-success text-sm">
                                         <i class="bi bi-plus-circle me-1"></i>
                                         Tambah Resep
                                     </a>
                                 </li>
                             @endif
-                            <li class="nav-item d-lg-none">
+                            <li class="nav-item">
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <button type="submit" class="nav-link btn btn-link text-danger text-start p-0 ">
+                                    <button type="submit" class="nav-link btn btn-link text-danger text-start p-0 text-sm">
                                         Keluar
                                     </button>
                                 </form>
                             </li>
                         @else
-                            <li class="nav-item d-lg-none">
-                                <a href="{{ route('login') }}" class="nav-link">
+                            <li class="nav-item">
+                                <a href="{{ route('login') }}" class="nav-link text-sm">
                                     Masuk
                                 </a>
                             </li>
-                            <li class="nav-item d-lg-none">
-                                <a href="{{ route('register') }}" class="nav-link">
+                            <li class="nav-item">
+                                <a href="{{ route('register') }}" class="nav-link text-sm">
                                     Daftar
                                 </a>
                             </li>
@@ -196,7 +239,7 @@
         </nav>
 
         <!-- MAIN CONTENT -->
-        <main class="page-content">
+        <main class="page-content {{ !request()->routeIs('recipes.index') ? 'py-4' : '' }}">
 
             @yield('content')
 
@@ -207,7 +250,7 @@
             <div class="container text-center">
                 <p class="text-secondary small mb-0">
                     &copy; {{ date('Y') }} Food Reviews.
-                    Dibuat dengan <span class="text-danger">&hearts;</span> di Lombok.
+                    Dibuat di Lombok.
                 </p>
             </div>
         </footer>

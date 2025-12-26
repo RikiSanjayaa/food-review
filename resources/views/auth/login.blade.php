@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="col-md-6 col-lg-5 col-xl-4 mx-auto">
+    <div class="col-md-6 col-lg-5 col-xl-4 mx-auto my-5">
         <div class="card shadow-sm">
             <div class="card-body">
                 <h1 class="h5 mb-4">Masuk</h1>

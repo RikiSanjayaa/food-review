@@ -8,13 +8,21 @@
     
     <div class="mb-3">
         <label class="form-label fw-medium small text-uppercase text-secondary">Rating</label>
-        <div class="rating-css">
-            <select name="rating" class="form-select rounded-pill" required>
-                <option value="" disabled selected>Pilih Bintang...</option>
-                @for ($i = 5; $i >= 1; $i--)
-                    <option value="{{ $i }}" @selected(old('rating', $existingReview?->rating) == $i)>{{ $i }} Bintang {{ str_repeat('★', $i) }}</option>
-                @endfor
-            </select>
+        <div class="star-rating">
+            <input type="radio" name="rating" value="5" id="star5" @checked(old('rating', $existingReview?->rating) == 5) required>
+            <label for="star5" title="5 bintang"><i class="bi bi-star-fill"></i></label>
+
+            <input type="radio" name="rating" value="4" id="star4" @checked(old('rating', $existingReview?->rating) == 4)>
+            <label for="star4" title="4 bintang"><i class="bi bi-star-fill"></i></label>
+
+            <input type="radio" name="rating" value="3" id="star3" @checked(old('rating', $existingReview?->rating) == 3)>
+            <label for="star3" title="3 bintang"><i class="bi bi-star-fill"></i></label>
+
+            <input type="radio" name="rating" value="2" id="star2" @checked(old('rating', $existingReview?->rating) == 2)>
+            <label for="star2" title="2 bintang"><i class="bi bi-star-fill"></i></label>
+
+            <input type="radio" name="rating" value="1" id="star1" @checked(old('rating', $existingReview?->rating) == 1)>
+            <label for="star1" title="1 bintang"><i class="bi bi-star-fill"></i></label>
         </div>
     </div>
 

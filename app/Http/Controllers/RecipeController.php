@@ -63,7 +63,13 @@ class RecipeController extends Controller
         $recipes = $query->paginate(9)->withQueryString();
         $tags = Tag::orderBy('name')->get();
 
-        return view('recipes.index', compact('recipes', 'tags', 'filters', 'sort'));
+        // Get top 5 recipes with most ratings for carousel
+        $topRatedRecipes = Recipe::where('rating_count', '>', 0)
+            ->orderByDesc('rating_count')
+            ->limit(5)
+            ->get();
+
+        return view('recipes.index', compact('recipes', 'tags', 'filters', 'sort', 'topRatedRecipes'));
     }
 
     public function create()

@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="col-lg-10 col-xl-8 mx-auto">
-        <div class="card shadow-sm">
-            <div class="card-body">
-                <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h1 class="h5 mb-0">Edit Resep</h1>
-                    <a href="{{ route('recipes.show', $recipe) }}" class="text-secondary small text-decoration-none">Kembali</a>
+    <div class="max-w-4xl mx-auto my-4 px-4">
+        <div class="bg-white shadow-sm rounded-2xl">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h1 class="text-xl font-bold">Edit Resep</h1>
+                    <a href="{{ route('recipes.show', $recipe) }}" class="text-gray-500 text-sm no-underline hover:text-gray-700">Kembali</a>
                 </div>
 
                 @include('recipes._form', [
@@ -19,4 +19,3 @@
         </div>
     </div>
 @endsection
-

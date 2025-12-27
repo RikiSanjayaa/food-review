@@ -1,56 +1,69 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="position-relative w-100 d-flex align-items-center justify-content-center" 
-         style="height: 100vh; overflow: hidden; background: url('{{ asset('images/food-bg.png') }}') no-repeat center center/cover;">
-        
+    <div class="relative w-full flex items-center justify-center h-screen overflow-hidden"
+        style="background: url('{{ asset('images/food-bg.png') }}') no-repeat center center/cover;">
 
-        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark" style="opacity: 0.5;"></div>
-        <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.3), rgba(234, 88, 12, 0.3));"></div>
+        <div class="absolute top-0 left-0 w-full h-full bg-black/50"></div>
+        <div class="absolute top-0 left-0 w-full h-full"
+            style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.3), rgba(234, 88, 12, 0.3));"></div>
 
-        <div class="container position-relative z-2 py-5">
-            <div class="row justify-content-center">
-                <div class="col-md-7 col-lg-5 col-xl-5">
-                    <div class="card border-0 shadow-lg rounded-5 overflow-hidden" data-aos="zoom-in" data-aos-duration="800"
-                         style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px);">
-                        <div class="card-body p-4 p-md-5">
-                            
-                            <div class="text-center mb-4">
-                                <h2 class="fw-bold text-dark mb-1">Buat Akun Baru</h2>
-                                <p class="text-secondary small">Bergabunglah dengan komunitas pecinta kuliner.</p>
+        <div class="max-w-7xl mx-auto px-4 relative z-10 py-10">
+            <div class="flex justify-center">
+                <div class="w-full max-w-md">
+                    <div class="bg-white/80 backdrop-blur-xl shadow-xl rounded-3xl overflow-hidden" data-aos="zoom-in"
+                        data-aos-duration="800">
+                        <div class="p-6 md:p-8">
+
+                            <div class="text-center mb-6">
+                                <h2 class="font-bold text-gray-900 mb-1 text-xl">Buat Akun Baru</h2>
+                                <p class="text-gray-500 text-sm">Bergabunglah dengan komunitas pecinta kuliner.</p>
                             </div>
 
                             <form method="POST" action="{{ route('register') }}" class="mb-3">
                                 @csrf
-                                <div class="form-floating mb-3">
-                                    <input type="text" name="name" class="form-control rounded-4 border-0 bg-light" 
-                                           id="nameInput" placeholder="Nama Lengkap" value="{{ old('name') }}" required>
-                                    <label for="nameInput" class="text-secondary">Nama Lengkap</label>
+                                <div class="relative mb-3">
+                                    <input type="text" name="name"
+                                        class="w-full px-4 py-3 bg-gray-100 border-0 rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none transition peer placeholder-transparent"
+                                        id="nameInput" placeholder="Nama Lengkap" value="{{ old('name') }}" required>
+                                    <label for="nameInput"
+                                        class="absolute left-4 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-xs peer-[:not(:placeholder-shown)]:top-1 peer-[:not(:placeholder-shown)]:text-xs">Nama
+                                        Lengkap</label>
                                 </div>
-                                <div class="form-floating mb-3">
-                                    <input type="email" name="email" class="form-control rounded-4 border-0 bg-light" 
-                                           id="emailInput" placeholder="name@example.com" value="{{ old('email') }}" required>
-                                    <label for="emailInput" class="text-secondary">Email</label>
+                                <div class="relative mb-3">
+                                    <input type="email" name="email"
+                                        class="w-full px-4 py-3 bg-gray-100 border-0 rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none transition peer placeholder-transparent"
+                                        id="emailInput" placeholder="Email" value="{{ old('email') }}" required>
+                                    <label for="emailInput"
+                                        class="absolute left-4 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-xs peer-[:not(:placeholder-shown)]:top-1 peer-[:not(:placeholder-shown)]:text-xs">Email</label>
                                 </div>
-                                <div class="form-floating mb-3">
-                                    <input type="password" name="password" class="form-control rounded-4 border-0 bg-light" 
-                                           id="passwordInput" placeholder="Password" required>
-                                    <label for="passwordInput" class="text-secondary">Kata Sandi</label>
+                                <div class="relative mb-3">
+                                    <input type="password" name="password"
+                                        class="w-full px-4 py-3 bg-gray-100 border-0 rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none transition peer placeholder-transparent"
+                                        id="passwordInput" placeholder="Kata Sandi" required>
+                                    <label for="passwordInput"
+                                        class="absolute left-4 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-xs peer-[:not(:placeholder-shown)]:top-1 peer-[:not(:placeholder-shown)]:text-xs">Kata
+                                        Sandi</label>
                                 </div>
-                                <div class="form-floating mb-4">
-                                    <input type="password" name="password_confirmation" class="form-control rounded-4 border-0 bg-light" 
-                                           id="passwordConfirmInput" placeholder="Konfirmasi Password" required>
-                                    <label for="passwordConfirmInput" class="text-secondary">Konfirmasi Kata Sandi</label>
+                                <div class="relative mb-4">
+                                    <input type="password" name="password_confirmation"
+                                        class="w-full px-4 py-3 bg-gray-100 border-0 rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none transition peer placeholder-transparent"
+                                        id="passwordConfirmInput" placeholder="Konfirmasi Kata Sandi" required>
+                                    <label for="passwordConfirmInput"
+                                        class="absolute left-4 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-xs peer-[:not(:placeholder-shown)]:top-1 peer-[:not(:placeholder-shown)]:text-xs">Konfirmasi
+                                        Kata Sandi</label>
                                 </div>
 
-                                <button type="submit" class="btn btn-gradient-orange w-100 py-3 rounded-pill fw-bold shadow-sm mb-3">
+                                <button type="submit"
+                                    class="w-full py-3 bg-linear-to-r from-amber-500 to-orange-600 text-white rounded-full font-bold hover:from-amber-600 hover:to-orange-700 transition-all mb-3 cursor-pointer">
                                     Daftar Sekarang
                                 </button>
                             </form>
-                            
+
                             <div class="text-center">
-                                <p class="text-secondary small mb-0">Sudah punya akun? 
-                                    <a href="{{ route('login') }}" class="text-orange fw-bold text-decoration-none">Masuk</a>
+                                <p class="text-gray-500 text-sm mb-0">Sudah punya akun?
+                                    <a href="{{ route('login') }}"
+                                        class="text-orange-600 font-bold no-underline hover:underline">Masuk</a>
                                 </p>
                             </div>
 

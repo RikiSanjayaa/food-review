@@ -75,7 +75,6 @@ body {
     overflow: hidden;
 }
 
-
 .explore-hero-content {
     position: relative;
     margin: auto;
@@ -308,11 +307,9 @@ body {
     box-shadow: 0 8px 24px rgba(234, 88, 12, 0.45);
 }
 
-
 /* ======================================================
    RESPONSIVE
    ====================================================== */
-
 
 /* ======================================================
    STAR RATING (Interactive)
@@ -369,56 +366,25 @@ body {
 }
 
 /* ======================================================
-   TOAST NOTIFICATIONS
+   TOAST NOTIFICATIONS (Pure CSS/JS - No Bootstrap)
    ====================================================== */
 .toast {
     min-width: 300px;
-    border-radius: 12px !important;
+    border-radius: 12px;
     backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.3s ease;
 }
 
-.toast.showing {
-    animation: toastSlideIn 0.4s ease-out;
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .toast.hide {
-    animation: toastSlideOut 0.3s ease-in;
-}
-
-@keyframes toastSlideIn {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes toastSlideOut {
-    from {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    to {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-}
-
-.toast-body {
-    padding: 1rem 1.25rem;
-    font-weight: 500;
-}
-
-.toast .btn-close {
-    padding: 0.5rem;
-    opacity: 0.8;
-}
-
-.toast .btn-close:hover {
-    opacity: 1;
+    opacity: 0;
+    transform: translateX(100%);
 }
 
 @media (max-width: 576px) {
@@ -426,10 +392,33 @@ body {
         min-width: 280px;
         max-width: calc(100vw - 2rem);
     }
+}
 
-    .toast-container {
-        width: 100%;
-    }
+/* ======================================================
+   INGREDIENT CHECKBOX (Stylish Custom Checkbox)
+   ====================================================== */
+.ingredient-item .checkbox-icon {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+.ingredient-item:has(input:checked) {
+    background-color: #fff7ed;
+}
+
+.ingredient-item:has(input:checked) .checkbox-box {
+    background: linear-gradient(135deg, #f59e0b, #ea580c);
+    border-color: transparent;
+}
+
+.ingredient-item:has(input:checked) .checkbox-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.ingredient-item:has(input:checked) .ingredient-text {
+    text-decoration: line-through;
+    color: #9ca3af;
 }
 
 /* ======================================================
@@ -489,41 +478,3 @@ body {
     }
 }
 
-/* ======================================================
-   CUSTOM ORANGE THEME UTILITIES
-   ====================================================== */
-.text-orange {
-    color: #ea580c !important;
-}
-
-.bg-orange-subtle {
-    background-color: #ffedd5 !important;
-    color: #c2410c !important;
-}
-
-.border-orange-subtle {
-    border-color: #fed7aa !important;
-}
-
-.bg-gradient-orange-plain {
-    background: linear-gradient(135deg, #f59e0b, #ea580c) !important;
-    color: #ffffff;
-}
-
-.btn-gradient-orange {
-    background: linear-gradient(135deg, #f59e0b, #ea580c);
-    color: #ffffff;
-    border: none;
-    transition: all 0.3s ease;
-}
-
-.btn-gradient-orange:hover {
-    background: linear-gradient(135deg, #d97706, #c2410c);
-    color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
-}
-
-.btn-gradient-orange:active {
-    transform: translateY(0);
-}

@@ -8,32 +8,23 @@
 
     <title>{{ config('app.name', 'Food Reviews') }}</title>
 
-    <!-- FAVICON -->
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
 
-    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    {{-- VITE --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
@@ -58,107 +49,130 @@
             margin-inline: auto;
         }
 
-        /* HARD FIX V2: Ultra-Micro Navbar Overrides REMOVED - BALANCED V2 APPLIED */
         .navbar {
             transition: all 0.3s ease;
-            min-height: 70px; /* Standard Professional Height */
+            height: 58px !important;
+            min-height: 58px !important;
+            padding: 0 !important;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.04) !important; 
         }
         
         .navbar-logo {
-            height: 40px; /* Clear & Authoritative */
+            height: 36px !important;
             width: auto;
             transition: transform .2s ease;
+            object-fit: contain;
         }
 
         .navbar-logo:hover {
             transform: scale(1.05);
         }
 
-        .nav-link, .btn {
-            font-size: 16px; /* Comfortable Readability */
+        .nav-link {
+            font-size: 15px;
             font-weight: 500;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            line-height: 58px;
         }
 
         .navbar-brand {
             display: flex;
             align-items: center;
             letter-spacing: -.02em;
-            height: 100%; /* Ensure full height alignment */
+            height: 58px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            padding-left: 12px !important; 
         }
         
-        /* Ensure dropdown button matches symmetry */
         .user-dropdown-btn {
-            padding: 8px 24px; /* Balanced padding */
+            padding: 4px 14px !important;
+            font-size: 14px;
+            line-height: normal;
+            height: auto;
+            display: flex;
+            align-items: center;
         }
     </style>
 </head>
 
+<body>
+
     <div class="app-wrapper">
 
-        <!-- NAVBAR -->
-        <nav x-data="{ scrolled: false }" 
+        <nav x-data="{ scrolled: false, mobileMenuOpen: false }" 
              @scroll.window="scrolled = (window.pageYOffset > 50)"
-             class="navbar navbar-expand-lg transition-all duration-1000 ease-in-out py-0
-             {{ request()->routeIs('recipes.index') ? 'fixed-top' : 'sticky-top bg-white border-bottom shadow-sm' }}"
+             class="navbar navbar-expand-lg transition-all duration-1000 ease-in-out
+             {{ request()->routeIs('recipes.index') ? 'fixed-top' : 'sticky-top bg-white border-bottom' }}"
              :class="{
-                 'bg-white/95 backdrop-blur-md shadow-sm': {{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && scrolled,
-                 'bg-transparent': {{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled
+                 'bg-white/95 backdrop-blur-md': {{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && (scrolled || mobileMenuOpen),
+                 'bg-white': !{{ request()->routeIs('recipes.index') ? 'true' : 'false' }} || ({{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && (scrolled || mobileMenuOpen)),
+                 'bg-transparent': {{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled && !mobileMenuOpen
              }"
              style="z-index: 1000;">
             
-            <div class="container"> {{-- Symmetry Enforced --}}
-                <div class="w-100 d-flex justify-content-between align-items-center" style="min-height: 70px;">
+            <div class="w-[90%] md:w-[85%] lg:w-[80%] mx-auto h-100 relative">
+                <div class="w-100 d-flex justify-content-between align-items-center h-100">
 
-                    <!-- BRAND LOGO (LEFT) -->
-                    <a class="navbar-brand d-flex align-items-center gap-3 fw-bold transition-colors duration-1000 ease-in-out"
-                        href="{{ route('recipes.index') }}"
-                        :class="{{ request()->routeIs('recipes.index') ? 'scrolled ? \'text-success\' : \'text-white\'' : '\'text-success\'' }}">
+                    <a class="navbar-brand d-flex align-items-center gap-2 fw-bold transition-colors duration-1000 ease-in-out"
+                        href="{{ route('recipes.index') }}">
 
                         <img src="{{ asset('logo.svg') }}" alt="Logo" class="navbar-logo">
 
-                        <span class="d-none d-sm-block" style="font-size: 1.25rem; font-weight: 700;">Food Reviews</span>
+                        <span class="d-none d-sm-block text-nowrap" 
+                              style="font-size: 1.15rem; font-weight: 700; line-height: 1; padding-top: 2px;"
+                              :class="[
+                                  {{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && (scrolled || mobileMenuOpen)
+                                      ? 'bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent' 
+                                      : ({{ request()->routeIs('recipes.index') ? 'true' : 'false' }} 
+                                          ? 'text-white' 
+                                          : 'bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent')
+                              ]">Food Reviews</span>
                     </a>
 
-                    <!-- BERANDA (CENTER) - Hidden on Mobile -->
-                    <ul class="navbar-nav d-none d-lg-flex gap-5 align-items-center"> {{-- Wide gap for luxury feel --}}
+                    <ul class="navbar-nav d-none d-lg-flex position-absolute start-50 top-50 translate-middle mb-0">
                         <li class="nav-item">
-                            <a class="nav-link transition-colors duration-1000 ease-in-out px-2"
-                               href="{{ route('recipes.index') }}"
-                               :class="[
-                                   {{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled 
-                                        ? 'text-white hover:text-white/80' 
-                                        : 'text-dark hover:text-success',
+                            <a class="nav-link transition-colors duration-1000 ease-in-out px-3 d-flex align-items-center"
+                               href="{{ route('recipes.index') }}">
+                                <span :class="
                                    {{ request()->routeIs('recipes.index') ? 'true' : 'false' }} 
-                                        ? (scrolled ? 'fw-bold text-success' : 'fw-bold text-white') 
-                                        : ''
-                               ]">
-                                Beranda
+                                       ? (scrolled 
+                                            ? 'fw-bold bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent' 
+                                            : 'text-white hover:text-white/80')
+                                       : 'text-dark hover:text-orange-600'
+                               ">Beranda</span>
                             </a>
                         </li>
                     </ul>
 
-                    <!-- AUTH SECTION (RIGHT) - Desktop -->
-                    <div class="d-none d-lg-flex align-items-center gap-3">
+                    <div class="d-none d-lg-flex align-items-center gap-3" style="margin-right: -16px !important;">
                         @auth
                             <div class="dropdown">
-                                <button class="btn user-dropdown-btn rounded-pill dropdown-toggle border-0 transition-all duration-1000 ease-in-out" 
+                                <button class="btn user-dropdown-btn rounded-pill dropdown-toggle border-0 transition-all duration-1000 ease-in-out d-flex align-items-center gap-1" 
                                         type="button"
                                         data-bs-toggle="dropdown"
                                         :class="[
                                             {{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled 
                                                 ? 'bg-white/20 text-white backdrop-blur-sm hover:bg-white/30' 
-                                                : 'btn-outline-success text-dark'
+                                                : 'hover:bg-orange-50 border border-orange-200'
                                         ]">
-                                    {{ Auth::user()->name }}
+                                    <span :class="[
+                                            {{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled 
+                                                ? 'text-white' 
+                                                : 'bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent fw-bold'
+                                        ]">{{ Auth::user()->name }}</span>
                                 </button>
                                 
                                 <ul class="dropdown-menu dropdown-menu-end border-0 shadow rounded-4 mt-2">
                                     @if (Auth::user()->is_admin)
                                         <li>
                                             <a href="{{ route('recipes.create') }}"
-                                                class="dropdown-item py-2 text-success text-sm">
-                                                <i class="bi bi-plus-circle me-1"></i>
-                                                Tambah Resep
+                                                class="dropdown-item py-2 hover:bg-orange-50 text-sm font-bold d-flex align-items-center gap-2">
+                                                <i class="bi bi-plus-circle text-orange-500"></i>
+                                                <span class="bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">Tambah Resep</span>
                                             </a>
                                         </li>
                                         <li>
@@ -168,7 +182,7 @@
                                     <li>
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
-                                            <button type="submit" class="dropdown-item py-2 text-danger text-sm">
+                                            <button type="submit" class="dropdown-item py-2 text-danger hover:bg-red-50 text-sm">
                                                 Keluar
                                             </button>
                                         </form>
@@ -177,75 +191,85 @@
                             </div>
                         @else
                             <a href="{{ route('login') }}" 
-                               class="btn btn-link text-decoration-none transition-colors duration-1000 ease-in-out text-sm font-medium py-1 px-2"
-                               :class="{{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled ? 'text-white/90 hover:text-white' : 'text-secondary'">
+                               class="btn text-decoration-none transition-colors duration-300 ease-in-out text-sm font-bold py-2 px-3"
+                               :class="{{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled ? 'text-white hover:text-white/80' : 'text-gray-500 hover:text-orange-600'">
                                 Masuk
                             </a>
                             <a href="{{ route('register') }}" 
-                               class="btn rounded-pill px-4 border-0 transition-all duration-1000 ease-in-out text-sm py-1 font-semibold"
-                               :class="{{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled ? 'bg-white text-success hover:bg-white/90' : 'btn-success text-white'">
+                               class="btn rounded-full px-4 transition-all duration-300 ease-in-out text-sm py-2 font-bold hover:-translate-y-0.5"
+                               :class="[
+                                   {{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled 
+                                        ? 'bg-transparent border-2 border-white text-white hover:bg-white hover:text-orange-600' 
+                                        : 'border-0 shadow-lg shadow-amber-500/20 hover:shadow-orange-500/40 bg-gradient-to-r from-amber-500 to-orange-600 text-white'
+                               ]">
                                 Daftar
                             </a>
                         @endauth
                     </div>
 
-                    <!-- Hamburger Menu (Mobile) -->
-                    <button class="navbar-toggler border-0 d-lg-none transition-all duration-1000 ease-in-out py-1" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarNav">
+                    <button class="navbar-toggler border-0 d-lg-none transition-all duration-1000 ease-in-out py-1" 
+                            type="button" 
+                            @click="mobileMenuOpen = !mobileMenuOpen">
                         <span class="navbar-toggler-icon" 
                               style="width: 1.2em; height: 1.2em;"
-                              :style="{{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled ? 'filter: invert(1);' : ''">
+                              :style="{{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled && !mobileMenuOpen ? 'filter: invert(1);' : ''">
                         </span>
                     </button>
 
                 </div>
 
-                <!-- Mobile Menu -->
-                <div class="collapse navbar-collapse bg-white rounded-3 p-3 mt-2 shadow-lg d-lg-none" id="navbarNav">
-                    <ul class="navbar-nav">
-                        @auth
-                            @if (Auth::user()->is_admin)
-                                <li class="nav-item">
-                                    <a href="{{ route('recipes.create') }}" class="nav-link text-success text-sm">
-                                        <i class="bi bi-plus-circle me-1"></i>
-                                        Tambah Resep
-                                    </a>
-                                </li>
-                            @endif
-                            <li class="nav-item">
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button type="submit" class="nav-link btn btn-link text-danger text-start p-0 text-sm">
-                                        Keluar
-                                    </button>
-                                </form>
-                            </li>
-                        @else
-                            <li class="nav-item">
-                                <a href="{{ route('login') }}" class="nav-link text-sm">
-                                    Masuk
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('register') }}" class="nav-link text-sm">
-                                    Daftar
-                                </a>
-                            </li>
-                        @endauth
-                    </ul>
+                <!-- Mobile Menu (Alpine.js) -->
+                <div x-show="mobileMenuOpen" 
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 -translate-y-2"
+                     x-transition:enter-end="opacity-100 translate-y-0"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100 translate-y-0"
+                     x-transition:leave-end="opacity-0 -translate-y-2"
+                     class="absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-t border-gray-100 shadow-xl p-4 flex flex-col gap-3 d-lg-none"
+                     style="border-radius: 0 0 1.5rem 1.5rem;"
+                     @click.outside="mobileMenuOpen = false">
+                    
+                    @auth
+                        <div class="px-4 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider">
+                            Menu User
+                        </div>
+                        
+                        @if (Auth::user()->is_admin)
+                        <a href="{{ route('recipes.create') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-orange-50 text-orange-600 font-bold transition-colors">
+                            <i class="bi bi-plus-circle text-lg"></i>
+                            Tambah Resep
+                        </a>
+                        @endif
+
+                        <form method="POST" action="{{ route('logout') }}" class="w-full">
+                            @csrf
+                            <button type="submit" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-red-50 text-danger font-bold transition-colors text-left">
+                                <i class="bi bi-box-arrow-right text-lg"></i>
+                                Keluar
+                            </button>
+                        </form>
+                    @else
+                        <div class="grid grid-cols-2 gap-3">
+                            <a href="{{ route('login') }}" class="flex items-center justify-center py-3 rounded-full border border-gray-200 text-gray-600 font-bold hover:bg-gray-50 transition-colors">
+                                Masuk
+                            </a>
+                            <a href="{{ route('register') }}" class="flex items-center justify-center py-3 rounded-full bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold shadow-lg shadow-amber-500/20 hover:shadow-orange-500/40 transition-all">
+                                Daftar
+                            </a>
+                        </div>
+                    @endauth
                 </div>
 
             </div>
         </nav>
 
-        <!-- MAIN CONTENT -->
         <main class="page-content {{ !request()->routeIs('recipes.index') ? 'py-4' : '' }}">
 
             @yield('content')
 
         </main>
 
-        <!-- FOOTER -->
         <footer class="bg-white border-top py-4">
             <div class="container text-center">
                 <p class="text-secondary small mb-0">
@@ -257,7 +281,6 @@
 
     </div>
 
-    <!-- Toast Notifications Container -->
     <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
         @if (session('status'))
             <div class="toast align-items-center text-white bg-success border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="5000">
@@ -301,7 +324,6 @@
             offset: 60
         });
 
-        // Auto-show toasts on page load
         document.addEventListener('DOMContentLoaded', function() {
             const toastElements = document.querySelectorAll('.toast');
             toastElements.forEach(function(toastEl) {

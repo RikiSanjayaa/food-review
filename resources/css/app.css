@@ -21,12 +21,12 @@ body {
 }
 
 .recipe-info-grid .info-box:hover {
-    border: 2px solid #5cc57f;
+    border: 2px solid #f97316;
 }
 
 .recipe-info-grid .info-box i {
     font-size: 1.6rem;
-    color: #198754;
+    color: #ea580c;
     margin-bottom: 0.35rem;
     display: block;
 }
@@ -65,8 +65,8 @@ body {
     position: relative;
     background: linear-gradient(
             135deg,
-            rgba(8, 153, 85, 0.88),
-            rgba(42, 177, 136, 0.88)
+            rgba(245, 158, 11, 0.88),
+            rgba(234, 88, 12, 0.88)
         ),
         url("/images/food-bg.png");
     background-size: cover;
@@ -188,7 +188,7 @@ body {
     display: inline-block;
     width: auto;
     max-width: max-content;
-    background: linear-gradient(135deg, #198754, #20c997);
+    background: linear-gradient(135deg, #f59e0b, #ea580c);
     padding: 0.35rem 0.9rem;
     border-radius: 999px;
     font-size: 0.7rem;
@@ -209,7 +209,7 @@ body {
     height: 50px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.95);
-    color: #198754;
+    color: #ea580c;
     font-size: 1.6rem;
     border: none;
     cursor: pointer;
@@ -251,7 +251,7 @@ body {
     gap: 1rem;
     border-radius: 999px;
     padding: 1rem 1.6rem;
-    border: 2px solid #d4f4e6;
+    border: 2px solid #fed7aa;
 }
 
 .filter-search input {
@@ -278,8 +278,8 @@ body {
     margin: 0.3rem;
     padding: 0.6rem 1.4rem;
     border-radius: 999px;
-    background: #eafaf3;
-    border: 1.5px solid #bfe9d5;
+    background: #fff7ed;
+    border: 1.5px solid #ffedd5;
     font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
@@ -291,11 +291,11 @@ body {
 }
 
 .tag-chip:hover {
-    background: #a0e7c9;
+    background: #fed7aa;
 }
 
 .tag-chip:has(input:checked) {
-    background: linear-gradient(135deg, #198754, #20c997);
+    background: linear-gradient(135deg, #f59e0b, #ea580c);
     color: #ffffff;
 }
 
@@ -311,11 +311,11 @@ body {
 .filter-btn {
     padding: 0.9rem 3.2rem;
     border-radius: 999px;
-    background: linear-gradient(135deg, #198754, #20c997);
+    background: linear-gradient(135deg, #f59e0b, #ea580c);
     color: #ffffff;
     border: none;
     font-weight: 700;
-    box-shadow: 0 8px 24px rgba(25, 135, 84, 0.45);
+    box-shadow: 0 8px 24px rgba(234, 88, 12, 0.45);
 }
 
 /* gaperlu ini, container bootstrap udh responsive */
@@ -468,24 +468,24 @@ body {
     right: 2rem;
     width: 56px;
     height: 56px;
-    background: linear-gradient(135deg, #198754, #20c997);
+    background: linear-gradient(135deg, #f59e0b, #ea580c);
     color: #ffffff;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
-    box-shadow: 0 8px 24px rgba(25, 135, 84, 0.35);
+    box-shadow: 0 8px 24px rgba(234, 88, 12, 0.35);
     transition: all 0.3s ease;
     z-index: 1000;
     text-decoration: none;
 }
 
 .btn-float-back:hover {
-    background: linear-gradient(135deg, #146c43, #1aa179);
+    background: linear-gradient(135deg, #d97706, #c2410c);
     color: #ffffff;
     transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 12px 32px rgba(25, 135, 84, 0.5);
+    box-shadow: 0 12px 32px rgba(234, 88, 12, 0.5);
 }
 
 .btn-float-back:active {

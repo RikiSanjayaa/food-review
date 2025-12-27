@@ -1,36 +1,22 @@
-@php
-    $diets = [
-        'vegan' => 'Vegan',
-        'vegetarian' => 'Vegetarian',
-        'gluten-free' => 'Bebas Gluten',
-        'halal' => 'Halal',
-    ];
-@endphp
+
 
 <form method="GET" action="{{ route('recipes.index') }}" 
-      class="w-full relative z-40 bg-white/80 backdrop-blur-xl rounded-[2.5rem] border border-white/40 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] p-6 md:p-10 mb-16 transition-all duration-300"
+      class="w-full md:w-[85%] lg:w-[80%] mx-auto relative z-40 bg-white/80 backdrop-blur-xl rounded-[2.5rem] border border-white/40 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] p-6 md:p-10 mb-16 transition-all duration-300"
       data-aos="fade-up" 
       data-aos-duration="1000">
 
-    {{-- =========================
-       KATEGORI (Visual upgrade: Pills with Icon)
-       ========================= --}}
-    {{-- =========================
-       KATEGORI (Visual upgrade: Pills with Icon)
-       ========================= --}}
     <div class="mb-6 md:mb-8">
         <label class="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-widest mb-3 pl-1">
             <i class="bi bi-tag-fill text-amber-500"></i> Cari Berdasarkan Kategori
         </label>
         
-        {{-- Tags Container: Scrollable on Mobile, Wrap on Desktop --}}
         <div class="flex overflow-x-auto pb-4 md:pb-0 md:flex-wrap gap-2.5 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide snap-x">
             @foreach ($tags as $tag)
                 <label class="cursor-pointer relative select-none group flex-shrink-0 snap-start">
                     <input type="checkbox" name="tags[]" value="{{ $tag->id }}" class="peer sr-only" @checked(in_array($tag->id, $filters['tags'] ?? []))>
                     <div class="px-6 py-3 rounded-full border border-gray-100 bg-white text-gray-500 text-sm font-bold transition-all duration-300 
                                 group-hover:border-amber-400 group-hover:text-amber-600 group-hover:-translate-y-0.5 group-hover:shadow-md
-                                peer-checked:bg-orange-500 peer-checked:text-white peer-checked:border-orange-500 peer-checked:shadow-lg peer-checked:shadow-orange-200 peer-checked:-translate-y-0.5
+                                peer-checked:bg-gradient-to-r peer-checked:from-amber-500 peer-checked:to-orange-600 peer-checked:text-white peer-checked:border-transparent peer-checked:-translate-y-0.5
                                 whitespace-nowrap">
                         {{ $tag->name }}
                     </div>
@@ -39,12 +25,8 @@
         </div>
     </div>
 
-    {{-- =========================
-       FILTER INPUTS (Horizontal Row on Desktop)
-       ========================= --}}
     <div class="grid grid-cols-2 md:grid-cols-4 lg:flex lg:items-center lg:gap-6 gap-3 mb-8 w-full">
 
-        {{-- DIET --}}
         <div class="lg:flex-1 w-full text-left">
             <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-1 text-[0.65rem] md:text-xs">Diet</label>
             <div class="relative group">
@@ -61,7 +43,6 @@
             </div>
         </div>
 
-        {{-- SORT --}}
         <div class="lg:flex-1 w-full text-left">
             <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-1 text-[0.65rem] md:text-xs">Urutkan</label>
             <div class="relative group">
@@ -81,7 +62,6 @@
             </div>
         </div>
 
-        {{-- MIN TIME --}}
         <div class="lg:flex-1 w-full text-left">
             <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-1 text-[0.65rem] md:text-xs">Min Waktu</label>
             <div class="relative group">
@@ -94,7 +74,6 @@
             </div>
         </div>
 
-        {{-- MAX TIME --}}
         <div class="lg:flex-1 w-full text-left">
             <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-1 text-[0.65rem] md:text-xs">Max Waktu</label>
             <div class="relative group">
@@ -109,19 +88,14 @@
 
     </div>
 
-    {{-- =========================
-       ACTION BUTTONS (Mobile Optimized, Desktop Swapped)
-       ========================= --}}
     <div class="flex items-center gap-4 pt-4 md:pt-6 border-t border-gray-100/80 mt-2 justify-between md:justify-end">
         
-        {{-- Reset (Mobile: Left, Desktop: Right of Apply) --}}
         <a href="{{ route('recipes.index') }}" 
            class="flex items-center gap-2 text-sm font-bold text-gray-400 hover:text-red-500 transition-colors duration-300 px-2 py-2 order-1 md:order-2">
             <i class="bi bi-arrow-counterclockwise text-lg"></i>
             <span class="text-xs md:text-sm uppercase tracking-wide">Reset</span>
         </a>
 
-        {{-- Apply Button (Mobile: Right, Desktop: Left of Reset) --}}
         <button type="submit" 
                 style="border-radius: 50px;"
                 class="flex-1 md:flex-none px-6 py-3 md:px-10 md:py-4 bg-gradient-to-r from-amber-500 to-orange-600 !rounded-full text-white font-bold text-sm shadow-lg shadow-amber-500/20 hover:shadow-orange-500/40 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2 md:gap-3 whitespace-nowrap order-2 md:order-1">

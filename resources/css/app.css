@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 body {
     background: #f8f9fa;
     color: #212529;
@@ -19,12 +21,12 @@ body {
 }
 
 .recipe-info-grid .info-box:hover {
-    border: 2px solid #5cc57f;
+    border: 2px solid #f97316;
 }
 
 .recipe-info-grid .info-box i {
     font-size: 1.6rem;
-    color: #198754;
+    color: #ea580c;
     margin-bottom: 0.35rem;
     display: block;
 }
@@ -63,8 +65,8 @@ body {
     position: relative;
     background: linear-gradient(
             135deg,
-            rgba(8, 153, 85, 0.88),
-            rgba(42, 177, 136, 0.88)
+            rgba(245, 158, 11, 0.88),
+            rgba(234, 88, 12, 0.88)
         ),
         url("/images/food-bg.png");
     background-size: cover;
@@ -72,17 +74,6 @@ body {
     color: #ffffff;
     overflow: hidden;
 }
-/*
-.explore-hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-        circle at top right,
-        rgba(255, 255, 255, 0.18),
-        transparent 60%
-    );
-} */
 
 .explore-hero-content {
     position: relative;
@@ -186,7 +177,7 @@ body {
     display: inline-block;
     width: auto;
     max-width: max-content;
-    background: linear-gradient(135deg, #198754, #20c997);
+    background: linear-gradient(135deg, #f59e0b, #ea580c);
     padding: 0.35rem 0.9rem;
     border-radius: 999px;
     font-size: 0.7rem;
@@ -207,7 +198,7 @@ body {
     height: 50px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.95);
-    color: #198754;
+    color: #ea580c;
     font-size: 1.6rem;
     border: none;
     cursor: pointer;
@@ -249,7 +240,7 @@ body {
     gap: 1rem;
     border-radius: 999px;
     padding: 1rem 1.6rem;
-    border: 2px solid #d4f4e6;
+    border: 2px solid #fed7aa;
 }
 
 .filter-search input {
@@ -276,8 +267,8 @@ body {
     margin: 0.3rem;
     padding: 0.6rem 1.4rem;
     border-radius: 999px;
-    background: #eafaf3;
-    border: 1.5px solid #bfe9d5;
+    background: #fff7ed;
+    border: 1.5px solid #ffedd5;
     font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
@@ -289,11 +280,11 @@ body {
 }
 
 .tag-chip:hover {
-    background: #a0e7c9;
+    background: #fed7aa;
 }
 
 .tag-chip:has(input:checked) {
-    background: linear-gradient(135deg, #198754, #20c997);
+    background: linear-gradient(135deg, #f59e0b, #ea580c);
     color: #ffffff;
 }
 
@@ -309,35 +300,16 @@ body {
 .filter-btn {
     padding: 0.9rem 3.2rem;
     border-radius: 999px;
-    background: linear-gradient(135deg, #198754, #20c997);
+    background: linear-gradient(135deg, #f59e0b, #ea580c);
     color: #ffffff;
     border: none;
     font-weight: 700;
-    box-shadow: 0 8px 24px rgba(25, 135, 84, 0.45);
+    box-shadow: 0 8px 24px rgba(234, 88, 12, 0.45);
 }
 
-/* gaperlu ini, container bootstrap udh responsive */
 /* ======================================================
    RESPONSIVE
    ====================================================== */
-/* @media (max-width: 768px) {
-    .explore-hero {
-        padding: 3.5rem 2rem 5rem;
-    }
-    .filter-outer {
-        padding: 2.2rem;
-        margin: 0 1rem;
-    }
-    .carousel-nav {
-        display: none;
-    }
-}
-
-@media (max-width: 576px) {
-    .hero-title {
-        font-size: 2rem;
-    }
-} */
 
 /* ======================================================
    STAR RATING (Interactive)
@@ -394,56 +366,25 @@ body {
 }
 
 /* ======================================================
-   TOAST NOTIFICATIONS
+   TOAST NOTIFICATIONS (Pure CSS/JS - No Bootstrap)
    ====================================================== */
 .toast {
     min-width: 300px;
-    border-radius: 12px !important;
+    border-radius: 12px;
     backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.3s ease;
 }
 
-.toast.showing {
-    animation: toastSlideIn 0.4s ease-out;
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .toast.hide {
-    animation: toastSlideOut 0.3s ease-in;
-}
-
-@keyframes toastSlideIn {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes toastSlideOut {
-    from {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    to {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-}
-
-.toast-body {
-    padding: 1rem 1.25rem;
-    font-weight: 500;
-}
-
-.toast .btn-close {
-    padding: 0.5rem;
-    opacity: 0.8;
-}
-
-.toast .btn-close:hover {
-    opacity: 1;
+    opacity: 0;
+    transform: translateX(100%);
 }
 
 @media (max-width: 576px) {
@@ -451,10 +392,33 @@ body {
         min-width: 280px;
         max-width: calc(100vw - 2rem);
     }
+}
 
-    .toast-container {
-        width: 100%;
-    }
+/* ======================================================
+   INGREDIENT CHECKBOX (Stylish Custom Checkbox)
+   ====================================================== */
+.ingredient-item .checkbox-icon {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+.ingredient-item:has(input:checked) {
+    background-color: #fff7ed;
+}
+
+.ingredient-item:has(input:checked) .checkbox-box {
+    background: linear-gradient(135deg, #f59e0b, #ea580c);
+    border-color: transparent;
+}
+
+.ingredient-item:has(input:checked) .checkbox-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.ingredient-item:has(input:checked) .ingredient-text {
+    text-decoration: line-through;
+    color: #9ca3af;
 }
 
 /* ======================================================
@@ -466,24 +430,24 @@ body {
     right: 2rem;
     width: 56px;
     height: 56px;
-    background: linear-gradient(135deg, #198754, #20c997);
+    background: linear-gradient(135deg, #f59e0b, #ea580c);
     color: #ffffff;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
-    box-shadow: 0 8px 24px rgba(25, 135, 84, 0.35);
+    box-shadow: 0 8px 24px rgba(234, 88, 12, 0.35);
     transition: all 0.3s ease;
     z-index: 1000;
     text-decoration: none;
 }
 
 .btn-float-back:hover {
-    background: linear-gradient(135deg, #146c43, #1aa179);
+    background: linear-gradient(135deg, #d97706, #c2410c);
     color: #ffffff;
     transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 12px 32px rgba(25, 135, 84, 0.5);
+    box-shadow: 0 12px 32px rgba(234, 88, 12, 0.5);
 }
 
 .btn-float-back:active {
@@ -513,3 +477,4 @@ body {
         font-size: 1.2rem;
     }
 }
+

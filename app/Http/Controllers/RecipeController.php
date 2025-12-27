@@ -69,7 +69,14 @@ class RecipeController extends Controller
             ->limit(5)
             ->get();
 
-        return view('recipes.index', compact('recipes', 'tags', 'filters', 'sort', 'topRatedRecipes'));
+        $diets = [
+            'vegan' => 'Vegan',
+            'vegetarian' => 'Vegetarian',
+            'gluten-free' => 'Bebas Gluten',
+            'halal' => 'Halal',
+        ];
+
+        return view('recipes.index', compact('recipes', 'tags', 'filters', 'sort', 'topRatedRecipes', 'diets'));
     }
 
     public function create()

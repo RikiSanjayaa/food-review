@@ -1,13 +1,19 @@
 @php
-    $existingReview = $recipe->reviews()->where('user_id', auth()->id())->first();
+    $existingReview = $recipe
+        ->reviews()
+        ->where('user_id', auth()->id())
+        ->first();
 @endphp
 
-<form method="POST" action="{{ route('reviews.store', $recipe) }}" class="mb-4 bg-light p-4 rounded-4 shadow-sm border-0">
+<form method="POST" action="{{ route('reviews.store', $recipe) }}" class="mb-4 bg-gray-100 p-4 rounded-2xl">
     @csrf
-    <h5 class="fw-bold mb-3"><i class="bi bi-pencil-square me-2"></i>{{ $existingReview ? 'Edit Ulasan Anda' : 'Tulis Ulasan' }}</h5>
-    
+    <h5 class="font-bold mb-3 flex items-center gap-2">
+        <i class="bi bi-pencil-square"></i>
+        {{ $existingReview ? 'Edit Ulasan Anda' : 'Tulis Ulasan' }}
+    </h5>
+
     <div class="mb-3">
-        <label class="form-label fw-medium small text-uppercase text-secondary">Rating</label>
+        <label class="block font-medium text-xs uppercase text-gray-500 mb-1">Rating</label>
         <div class="star-rating">
             <input type="radio" name="rating" value="5" id="star5" @checked(old('rating', $existingReview?->rating) == 5) required>
             <label for="star5" title="5 bintang"><i class="bi bi-star-fill"></i></label>
@@ -27,17 +33,16 @@
     </div>
 
     <div class="mb-3">
-        <label class="form-label fw-medium small text-uppercase text-secondary">Komentar</label>
-        <textarea name="comment" rows="3" class="form-control rounded-4" placeholder="Bagikan pengalaman memasak Anda..." required>{{ old('comment', $existingReview?->comment) }}</textarea>
+        <label class="block font-medium text-xs uppercase text-gray-500 mb-1">Komentar</label>
+        <textarea name="comment" rows="3"
+            class="w-full px-3 py-2 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition"
+            placeholder="Bagikan pengalaman memasak Anda..." required>{{ old('comment', $existingReview?->comment) }}</textarea>
     </div>
 
-    <div class="d-flex align-items-center gap-2">
-        <button type="submit" class="btn btn-success rounded-pill px-4 fw-bold">
+    <div class="flex items-center gap-2">
+        <button type="submit"
+            class="px-4 py-2 bg-linear-to-r from-amber-500 to-orange-600 text-white font-bold rounded-full hover:from-amber-600 hover:to-orange-700 transition-all">
             {{ $existingReview ? 'Perbarui Ulasan' : 'Kirim Ulasan' }}
         </button>
-        @if ($existingReview)
-            <span class="text-secondary small ms-2"><i class="bi bi-info-circle me-1"></i>Anda sedang mengedit ulasan sebelumnya.</span>
-        @endif
     </div>
 </form>
-

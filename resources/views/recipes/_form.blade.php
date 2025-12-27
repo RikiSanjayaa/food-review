@@ -3,85 +3,118 @@
     @if ($method !== 'POST')
         @method($method)
     @endif
-    <div class="row g-3">
-        <div class="col-md-6">
-            <label class="form-label small">Judul Resep</label>
-            <input type="text" name="title" value="{{ old('title', $recipe->title) }}" class="form-control" placeholder="Masukkan judul resep..." required>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Judul Resep</label>
+            <input type="text" name="title" value="{{ old('title', $recipe->title) }}"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition"
+                placeholder="Masukkan judul resep..." required>
         </div>
-        <div class="col-md-6">
-            <label class="form-label small">Foto Utama</label>
-            <input type="file" name="hero_image" class="form-control form-control-sm">
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Foto Utama</label>
+            <input type="file" name="hero_image"
+                class="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm file:mr-3 file:py-1 file:px-3 file:rounded-md file:border-0 file:bg-orange-50 file:text-orange-600 file:font-medium hover:file:bg-orange-100 cursor-pointer">
             @if ($recipe->hero_image)
-                <img src="{{ Storage::url($recipe->hero_image) }}" alt="" class="mt-2 rounded" style="height: 64px; width: 64px; object-fit: cover;">
+                <img src="{{ Storage::url($recipe->hero_image) }}" alt=""
+                    class="mt-2 rounded-lg h-16 w-16 object-cover">
             @endif
         </div>
     </div>
 
     <div class="mt-3">
-        <label class="form-label small">Deskripsi Singkat</label>
-        <textarea name="description" rows="2" class="form-control" placeholder="Deskripsikan resep Anda secara singkat...">{{ old('description', $recipe->description) }}</textarea>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Deskripsi Singkat</label>
+        <textarea name="description" rows="2"
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition"
+            placeholder="Deskripsikan resep Anda secara singkat...">{{ old('description', $recipe->description) }}</textarea>
     </div>
 
-    <div class="row g-3 mt-1">
-        <div class="col-md-4">
-            <label class="form-label small">Waktu Persiapan (menit)</label>
-            <input type="number" name="prep_time" value="{{ old('prep_time', $recipe->prep_time) }}" class="form-control" placeholder="Contoh: 15">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3">
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Waktu Persiapan (menit)</label>
+            <input type="number" name="prep_time" value="{{ old('prep_time', $recipe->prep_time) }}"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition"
+                placeholder="Contoh: 15">
         </div>
-        <div class="col-md-4">
-            <label class="form-label small">Waktu Masak (menit)</label>
-            <input type="number" name="cook_time" value="{{ old('cook_time', $recipe->cook_time) }}" class="form-control" placeholder="Contoh: 30">
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Waktu Masak (menit)</label>
+            <input type="number" name="cook_time" value="{{ old('cook_time', $recipe->cook_time) }}"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition"
+                placeholder="Contoh: 30">
         </div>
-        <div class="col-md-4">
-            <label class="form-label small">Porsi (orang)</label>
-            <input type="number" name="servings" value="{{ old('servings', $recipe->servings) }}" class="form-control" placeholder="Contoh: 4">
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Porsi (orang)</label>
+            <input type="number" name="servings" value="{{ old('servings', $recipe->servings) }}"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition"
+                placeholder="Contoh: 4">
         </div>
     </div>
 
-    <div class="row g-3 mt-1">
-        <div class="col-md-4">
-            <label class="form-label small">Tingkat Kesulitan</label>
-            <select name="difficulty" class="form-select">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3">
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Tingkat Kesulitan</label>
+            <select name="difficulty"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition bg-white">
                 <option value="mudah" @selected(old('difficulty', $recipe->difficulty) == 'mudah')>Mudah</option>
                 <option value="sedang" @selected(old('difficulty', $recipe->difficulty) == 'sedang')>Sedang</option>
                 <option value="sulit" @selected(old('difficulty', $recipe->difficulty) == 'sulit')>Sulit</option>
             </select>
         </div>
-        <div class="col-md-4">
-            <label class="form-label small">Jenis Diet</label>
-            <input type="text" name="diet" value="{{ old('diet', $recipe->diet) }}" class="form-control" placeholder="Contoh: vegetarian, halal">
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Jenis Diet</label>
+            <input type="text" name="diet" value="{{ old('diet', $recipe->diet) }}"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition"
+                placeholder="Contoh: vegetarian, halal">
         </div>
-        <div class="col-md-4">
-            <label class="form-label small">Asal Masakan</label>
-            <input type="text" name="cuisine" value="{{ old('cuisine', $recipe->cuisine) }}" class="form-control" placeholder="Contoh: Indonesia, Lombok">
-        </div>
-    </div>
-
-    <div class="row g-3 mt-1">
-        <div class="col-md-6">
-            <label class="form-label small">Bahan-bahan</label>
-            <textarea name="ingredients" rows="6" class="form-control" placeholder="Tuliskan bahan-bahan, satu per baris..." required>{{ old('ingredients', $recipe->ingredients) }}</textarea>
-        </div>
-        <div class="col-md-6">
-            <label class="form-label small">Cara Membuat</label>
-            <textarea name="steps" rows="6" class="form-control" placeholder="Tuliskan langkah-langkah, satu per baris..." required>{{ old('steps', $recipe->steps) }}</textarea>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Asal Masakan</label>
+            <input type="text" name="cuisine" value="{{ old('cuisine', $recipe->cuisine) }}"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition"
+                placeholder="Contoh: Indonesia, Lombok">
         </div>
     </div>
 
-    <div class="mt-2">
-        <label class="form-label small">Kategori (Tag)</label>
-        <div class="tag-selector">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Bahan-bahan</label>
+            <textarea name="ingredients" rows="6"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition"
+                placeholder="Tuliskan bahan-bahan, satu per baris..." required>{{ old('ingredients', $recipe->ingredients) }}</textarea>
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Cara Membuat</label>
+            <textarea name="steps" rows="6"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition"
+                placeholder="Tuliskan langkah-langkah, satu per baris..." required>{{ old('steps', $recipe->steps) }}</textarea>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <label class="flex items-center gap-2 mb-3 font-bold text-gray-500 text-sm">
+            <i class="bi bi-tag-fill text-orange-600"></i> Kategori (Tag)
+        </label>
+        <div class="flex flex-wrap gap-2">
             @foreach ($tags as $tag)
-                <label class="tag-pill">
-                    <input type="checkbox" name="tags[]" value="{{ $tag->id }}" @checked(in_array($tag->id, old('tags', $recipe->tags->pluck('id')->toArray())))>
-                    <span class="tag-pill-text">{{ $tag->name }}</span>
+                <label class="cursor-pointer relative select-none group">
+                    <input type="checkbox" name="tags[]" value="{{ $tag->id }}" class="peer sr-only"
+                        @checked(in_array($tag->id, old('tags', $recipe->tags->pluck('id')->toArray())))>
+                    <div
+                        class="px-3 py-2 rounded-full border-2 border-gray-100 bg-white text-gray-500 text-sm font-bold transition-all duration-300
+                                group-hover:border-amber-400 group-hover:text-amber-600 group-hover:border-2
+                                peer-checked:bg-linear-to-r peer-checked:from-amber-500 peer-checked:to-orange-600 peer-checked:text-white
+                                whitespace-nowrap">
+                        {{ $tag->name }}
+                    </div>
                 </label>
             @endforeach
         </div>
     </div>
 
-    <div class="d-flex align-items-center gap-3 mt-3">
-        <button type="submit" class="btn btn-success btn-sm">Simpan Resep</button>
-        <a href="{{ $recipe->exists ? route('recipes.show', $recipe) : route('recipes.index') }}" class="text-secondary small text-decoration-none">Batal</a>
+    <div class="flex items-center gap-3 mt-8">
+        <button type="submit"
+            class="px-6 py-2.5 bg-linear-to-r from-amber-500 to-orange-600 text-white font-bold rounded-lg hover:from-amber-600 hover:to-orange-700 transition-all">
+            Simpan Resep
+        </button>
+        <button type="button" href="{{ $recipe->exists ? route('recipes.show', $recipe) : route('recipes.index') }}"
+            class="text-gray-500 text-sm no-underline hover:text-gray-700">Batal</button>
     </div>
 </form>
-

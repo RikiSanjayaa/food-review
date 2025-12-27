@@ -106,11 +106,11 @@
         <nav x-data="{ scrolled: false, mobileMenuOpen: false }" 
              @scroll.window="scrolled = (window.pageYOffset > 50)"
              class="navbar navbar-expand-lg transition-all duration-1000 ease-in-out
-             {{ request()->routeIs('recipes.index') ? 'fixed-top' : 'sticky-top bg-white border-bottom' }}"
+             {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'fixed-top' : 'sticky-top bg-white border-bottom' }}"
              :class="{
-                 'bg-white/95 backdrop-blur-md': {{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && (scrolled || mobileMenuOpen),
-                 'bg-white': !{{ request()->routeIs('recipes.index') ? 'true' : 'false' }} || ({{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && (scrolled || mobileMenuOpen)),
-                 'bg-transparent': {{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled && !mobileMenuOpen
+                 'bg-white/95 backdrop-blur-md': {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} && (scrolled || mobileMenuOpen),
+                 'bg-white': !{{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} || ({{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} && (scrolled || mobileMenuOpen)),
+                 'bg-transparent': {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} && !scrolled && !mobileMenuOpen
              }"
              style="z-index: 1000;">
             
@@ -125,9 +125,9 @@
                         <span class="d-none d-sm-block text-nowrap" 
                               style="font-size: 1.15rem; font-weight: 700; line-height: 1; padding-top: 2px;"
                               :class="[
-                                  {{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && (scrolled || mobileMenuOpen)
+                                  {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} && (scrolled || mobileMenuOpen)
                                       ? 'bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent' 
-                                      : ({{ request()->routeIs('recipes.index') ? 'true' : 'false' }} 
+                                      : ({{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} 
                                           ? 'text-white' 
                                           : 'bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent')
                               ]">Food Reviews</span>
@@ -138,7 +138,7 @@
                             <a class="nav-link transition-colors duration-1000 ease-in-out px-3 d-flex align-items-center"
                                href="{{ route('recipes.index') }}">
                                 <span :class="
-                                   {{ request()->routeIs('recipes.index') ? 'true' : 'false' }} 
+                                   {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} 
                                        ? (scrolled 
                                             ? 'fw-bold bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent' 
                                             : 'text-white hover:text-white/80')
@@ -155,12 +155,12 @@
                                         type="button"
                                         data-bs-toggle="dropdown"
                                         :class="[
-                                            {{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled 
+                                            {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} && !scrolled 
                                                 ? 'bg-white/20 text-white backdrop-blur-sm hover:bg-white/30' 
                                                 : 'hover:bg-orange-50 border border-orange-200'
                                         ]">
                                     <span :class="[
-                                            {{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled 
+                                            {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} && !scrolled 
                                                 ? 'text-white' 
                                                 : 'bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent fw-bold'
                                         ]">{{ Auth::user()->name }}</span>
@@ -192,13 +192,13 @@
                         @else
                             <a href="{{ route('login') }}" 
                                class="btn text-decoration-none transition-colors duration-300 ease-in-out text-sm font-bold py-2 px-3"
-                               :class="{{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled ? 'text-white hover:text-white/80' : 'text-gray-500 hover:text-orange-600'">
+                               :class="{{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} && !scrolled ? 'text-white hover:text-white/80' : 'text-gray-500 hover:text-orange-600'">
                                 Masuk
                             </a>
                             <a href="{{ route('register') }}" 
                                class="btn rounded-full px-4 transition-all duration-300 ease-in-out text-sm py-2 font-bold hover:-translate-y-0.5"
                                :class="[
-                                   {{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled 
+                                   {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} && !scrolled 
                                         ? 'bg-transparent border-2 border-white text-white hover:bg-white hover:text-orange-600' 
                                         : 'border-0 shadow-lg shadow-amber-500/20 hover:shadow-orange-500/40 bg-gradient-to-r from-amber-500 to-orange-600 text-white'
                                ]">
@@ -212,13 +212,13 @@
                             @click="mobileMenuOpen = !mobileMenuOpen">
                         <span class="navbar-toggler-icon" 
                               style="width: 1.2em; height: 1.2em;"
-                              :style="{{ request()->routeIs('recipes.index') ? 'true' : 'false' }} && !scrolled && !mobileMenuOpen ? 'filter: invert(1);' : ''">
+                              :style="{{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} && !scrolled && !mobileMenuOpen ? 'filter: invert(1);' : ''">
                         </span>
                     </button>
 
                 </div>
 
-                <!-- Mobile Menu (Alpine.js) -->
+
                 <div x-show="mobileMenuOpen" 
                      x-transition:enter="transition ease-out duration-200"
                      x-transition:enter-start="opacity-0 -translate-y-2"
@@ -264,26 +264,28 @@
             </div>
         </nav>
 
-        <main class="page-content {{ !request()->routeIs('recipes.index') ? 'py-4' : '' }}">
+        <main class="page-content {{ !in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'py-4' : '' }}">
 
             @yield('content')
 
         </main>
 
-        <footer class="bg-white border-top py-4">
-            <div class="container text-center">
-                <p class="text-secondary small mb-0">
-                    &copy; {{ date('Y') }} Food Reviews.
-                    Dibuat di Lombok.
-                </p>
-            </div>
-        </footer>
+        @if(!in_array(request()->route()->getName(), ['login', 'register']))
+            <footer class="bg-white border-top py-4">
+                <div class="container text-center">
+                    <p class="text-secondary small mb-0">
+                        &copy; {{ date('Y') }} Food Reviews.
+                        Dibuat di Lombok.
+                    </p>
+                </div>
+            </footer>
+        @endif
 
     </div>
 
     <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
         @if (session('status'))
-            <div class="toast align-items-center text-white bg-success border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="5000">
+            <div class="toast align-items-center text-white bg-gradient-orange-plain border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="5000">
                 <div class="d-flex">
                     <div class="toast-body d-flex align-items-center">
                         <i class="bi bi-check-circle-fill me-2 fs-5"></i>

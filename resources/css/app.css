@@ -74,17 +74,7 @@ body {
     color: #ffffff;
     overflow: hidden;
 }
-/*
-.explore-hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-        circle at top right,
-        rgba(255, 255, 255, 0.18),
-        transparent 60%
-    );
-} */
+
 
 .explore-hero-content {
     position: relative;
@@ -318,28 +308,11 @@ body {
     box-shadow: 0 8px 24px rgba(234, 88, 12, 0.45);
 }
 
-/* gaperlu ini, container bootstrap udh responsive */
+
 /* ======================================================
    RESPONSIVE
    ====================================================== */
-/* @media (max-width: 768px) {
-    .explore-hero {
-        padding: 3.5rem 2rem 5rem;
-    }
-    .filter-outer {
-        padding: 2.2rem;
-        margin: 0 1rem;
-    }
-    .carousel-nav {
-        display: none;
-    }
-}
 
-@media (max-width: 576px) {
-    .hero-title {
-        font-size: 2rem;
-    }
-} */
 
 /* ======================================================
    STAR RATING (Interactive)
@@ -514,4 +487,43 @@ body {
         height: 48px;
         font-size: 1.2rem;
     }
+}
+
+/* ======================================================
+   CUSTOM ORANGE THEME UTILITIES
+   ====================================================== */
+.text-orange {
+    color: #ea580c !important;
+}
+
+.bg-orange-subtle {
+    background-color: #ffedd5 !important;
+    color: #c2410c !important;
+}
+
+.border-orange-subtle {
+    border-color: #fed7aa !important;
+}
+
+.bg-gradient-orange-plain {
+    background: linear-gradient(135deg, #f59e0b, #ea580c) !important;
+    color: #ffffff;
+}
+
+.btn-gradient-orange {
+    background: linear-gradient(135deg, #f59e0b, #ea580c);
+    color: #ffffff;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-gradient-orange:hover {
+    background: linear-gradient(135deg, #d97706, #c2410c);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
+}
+
+.btn-gradient-orange:active {
+    transform: translateY(0);
 }

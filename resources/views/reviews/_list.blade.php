@@ -6,8 +6,8 @@
                     <div class="d-flex gap-3 align-items-center">
                         <!-- Avatar -->
                         <div class="shrink-0">
-                            <div class="rounded-circle bg-gradient bg-success text-white d-flex align-items-center justify-content-center shadow-sm fw-bold fs-5"
-                                style="width: 50px; height: 50px; background: linear-gradient(45deg, #198754, #20c997);">
+                            <div class="rounded-circle bg-gradient bg-gradient-orange-plain text-white d-flex align-items-center justify-content-center shadow-sm fw-bold fs-5"
+                                style="width: 50px; height: 50px; background: linear-gradient(135deg, #f59e0b, #ea580c);">
                                 {{ strtoupper(substr($review->user->name, 0, 1)) }}
                             </div>
                         </div>

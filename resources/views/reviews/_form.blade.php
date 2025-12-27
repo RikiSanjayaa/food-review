@@ -32,7 +32,7 @@
     </div>
 
     <div class="d-flex align-items-center gap-2">
-        <button type="submit" class="btn btn-success rounded-pill px-4 fw-bold">
+        <button type="submit" class="btn btn-gradient-orange rounded-pill px-4 fw-bold">
             {{ $existingReview ? 'Perbarui Ulasan' : 'Kirim Ulasan' }}
         </button>
         @if ($existingReview)

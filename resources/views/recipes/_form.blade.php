@@ -67,20 +67,26 @@
         </div>
     </div>
 
-    <div class="mt-2">
-        <label class="form-label small">Kategori (Tag)</label>
-        <div class="tag-selector">
+    <div class="mt-4">
+        <label class="form-label small d-flex align-items-center gap-2 mb-3 fw-bold text-secondary">
+            <i class="bi bi-tag-fill text-orange"></i> Kategori (Tag)
+        </label>
+        <div class="d-flex flex-wrap gap-2">
             @foreach ($tags as $tag)
-                <label class="tag-pill">
-                    <input type="checkbox" name="tags[]" value="{{ $tag->id }}" @checked(in_array($tag->id, old('tags', $recipe->tags->pluck('id')->toArray())))>
-                    <span class="tag-pill-text">{{ $tag->name }}</span>
+                <label class="cursor-pointer relative select-none group">
+                    <input type="checkbox" name="tags[]" value="{{ $tag->id }}" class="peer sr-only" @checked(in_array($tag->id, old('tags', $recipe->tags->pluck('id')->toArray())))>
+                    <div class="px-4 py-2 rounded-5 border border-secondary-subtle bg-white text-secondary small fw-bold transition-all duration-300 
+                                group-hover:border-orange-400 group-hover:text-orange group-hover:-translate-y-0.5 group-hover:shadow-sm
+                                peer-checked:bg-gradient-orange-plain peer-checked:text-white peer-checked:border-transparent peer-checked:-translate-y-0.5 peer-checked:shadow-md">
+                        {{ $tag->name }}
+                    </div>
                 </label>
             @endforeach
         </div>
     </div>
 
     <div class="d-flex align-items-center gap-3 mt-3">
-        <button type="submit" class="btn btn-success btn-sm">Simpan Resep</button>
+        <button type="submit" class="btn btn-gradient-orange btn-sm">Simpan Resep</button>
         <a href="{{ $recipe->exists ? route('recipes.show', $recipe) : route('recipes.index') }}" class="text-secondary small text-decoration-none">Batal</a>
     </div>
 </form>

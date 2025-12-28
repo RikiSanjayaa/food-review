@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Hide elements with x-cloak until Alpine.js initializes */
+[x-cloak] {
+    display: none !important;
+}
+
 body {
     background: #f8f9fa;
     color: #212529;

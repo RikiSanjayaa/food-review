@@ -1,29 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="col-lg-6 mx-auto my-5">
-        <div class="card shadow-sm">
-            <div class="card-body">
-                <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h5 mb-0">Tambah Kategori</h1>
-                    <a href="{{ route('admin.tags.index') }}" class="text-secondary small text-decoration-none">Kembali</a>
+    <div class="max-w-xl mx-auto my-10 px-4">
+        <div class="bg-white rounded-lg shadow-sm">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h1 class="text-lg font-semibold text-gray-800">Tambah Kategori</h1>
+                    <a href="{{ route('admin.tags.index') }}"
+                        class="text-sm text-gray-500 hover:text-gray-700 transition-colors">Kembali</a>
                 </div>
 
                 <form action="{{ route('admin.tags.store') }}" method="POST">
                     @csrf
-                    <div class="mb-3">
-                        <label for="name" class="form-label small">Nama Kategori</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" placeholder="Masukkan nama kategori..." autofocus>
+                    <div class="mb-4">
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nama Kategori</label>
+                        <input type="text"
+                            class="w-full px-4 py-2 rounded-lg focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
+                            id="name" name="name" value="{{ old('name') }}"
+                            placeholder="Masukkan nama kategori..." autofocus>
                         @error('name')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
 
-                    <div class="d-flex justify-content-end gap-2 mt-4">
-                        <a href="{{ route('admin.tags.index') }}" class="btn btn-light btn-sm text-secondary">Batal</a>
-                        <button type="submit" class="btn btn-gradient-orange btn-sm">Simpan</button>
+                    <div class="flex justify-end gap-2 mt-6">
+                        <a href="{{ route('admin.tags.index') }}"
+                            class="px-4 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+                            Batal
+                        </a>
+                        <button type="submit"
+                            class="px-4 py-2 text-sm font-medium text-white bg-linear-to-r from-orange-400 to-orange-500 rounded-lg hover:from-orange-500 hover:to-orange-600 transition-all">
+                            Simpan
+                        </button>
                     </div>
                 </form>
             </div>

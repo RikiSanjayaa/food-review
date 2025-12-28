@@ -1,14 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="max-w-7xl mx-auto px-4">
+        <!-- Floating Back Button -->
         <a href="{{ url()->previous() }}" class="btn-float-back" title="Kembali">
             <i class="bi bi-arrow-left"></i>
         </a>
 
-        <div class="row g-4 py-5">
-            <div class="col-lg-8">
-                <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4" data-aos="fade-up">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 py-10">
+            <!-- Main Content -->
+            <div class="lg:col-span-2">
+                <!-- Hero Image & Header -->
+                <div class="bg-white shadow-sm rounded-2xl overflow-hidden mb-4" data-aos="fade-up">
                     @if ($recipe->hero_image)
                         <img src="{{ Storage::url($recipe->hero_image) }}" alt="{{ $recipe->title }}"
                             class="w-full h-96 object-cover">
@@ -139,6 +142,7 @@
                                 <div class="value">{{ $recipe->cuisine ?? '-' }}</div>
                             </div>
 
+                            <!-- Full width -->
                             <div class="info-box full">
                                 <i class="bi bi-bar-chart-fill"></i>
                                 <div class="label">Tingkat Kesulitan</div>
@@ -154,7 +158,7 @@
                                     <i class="bi bi-pencil mr-1"></i> Edit Resep
                                 </a>
                                 <form method="POST" action="{{ route('recipes.destroy', $recipe) }}"
-                                    onsubmit="return confirm('Hapus resep ini?');" class="flex-1">
+                                    onsubmit="return showConfirmModal(this, 'Hapus Resep', 'Apakah Anda yakin ingin menghapus resep ini? Tindakan ini tidak dapat dibatalkan.')" class="flex-1">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"

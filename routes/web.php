@@ -40,3 +40,5 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
 });
 
 Route::get('/recipes/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
+
+Route::get('/users/{user}', [ProfileController::class, 'show'])->name('users.show');

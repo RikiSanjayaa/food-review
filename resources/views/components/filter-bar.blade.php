@@ -108,7 +108,7 @@
             <span class="text-xs md:text-sm uppercase">Reset</span>
         </a>
 
-        <button type="submit" style="border-radius: 50px;"
+        <button type="submit"
             class="flex-1 md:flex-none px-6 py-3 border-2 border-amber-100 hover:border-amber-400 md:px-10 md:py-4 bg-linear-to-r from-amber-500 to-orange-600 hover:bg-orange-600 rounded-full! text-white font-bold text-sm transition-colors duration-300 flex items-center justify-center gap-2 md:gap-3 whitespace-nowrap order-2 md:order-1">
             <span>Terapkan Filter</span>
             <i class="bi bi-arrow-right"></i>

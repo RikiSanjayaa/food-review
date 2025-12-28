@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests\PasswordUpdateRequest;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,19 +13,44 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $user = auth()->user()->load(['recipes' => function($q) {
-            $q->withCount('reviews');
-        }, 'reviews.recipe']);
-        return view('profile.index', compact('user'));
+        /** @var User $user */
+        $user = Auth::user();
+        $user->load([
+            'recipes' => fn($q) => $q->withCount('reviews'),
+            'reviews.recipe'
+        ]);
+        $isOwner = true;
+
+        return view('profile.index', compact('user', 'isOwner'));
+    }
+
+    public function show(User $user)
+    {
+        // If viewing own profile, redirect to profile.index
+        if (Auth::check() && Auth::id() === $user->id) {
+            return redirect()->route('profile.index');
+        }
+
+        $user->load([
+            'recipes' => fn($q) => $q->withCount('reviews'),
+            'reviews.recipe'
+        ]);
+        $isOwner = false;
+
+        return view('profile.index', compact('user', 'isOwner'));
     }
 
     public function edit()
     {
-        return view('profile.edit', ['user' => auth()->user()]);
+        /** @var User $user */
+        $user = Auth::user();
+
+        return view('profile.edit', compact('user'));
     }
 
     public function update(ProfileUpdateRequest $request)
     {
+        /** @var User $user */
         $user = $request->user();
         $data = $request->validated();
 
@@ -38,15 +63,17 @@ class ProfileController extends Controller
 
         $user->update($data);
 
-        return back()->with('success', 'Profil berhasil diperbarui.');
+        return redirect()->route('profile.index')->with('status', 'Profil berhasil diperbarui.');
     }
 
     public function updatePassword(PasswordUpdateRequest $request)
     {
-        $request->user()->update([
+        /** @var User $user */
+        $user = $request->user();
+        $user->update([
             'password' => Hash::make($request->validated()['password']),
         ]);
 
-        return back()->with('success', 'Kata sandi berhasil diperbarui.');
+        return redirect()->route('profile.index')->with('status', 'Kata sandi berhasil diperbarui.');
     }
 }

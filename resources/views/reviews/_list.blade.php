@@ -5,16 +5,25 @@
                 <div class="flex justify-between items-start mb-2">
                     <div class="flex gap-3 items-center">
                         <!-- Avatar -->
-                        <div class="shrink-0">
-                            <div
-                                class="rounded-full bg-linear-to-r from-amber-500 to-orange-600 text-white flex items-center justify-center font-bold text-lg w-12 h-12">
-                                {{ strtoupper(substr($review->user->name, 0, 1)) }}
-                            </div>
-                        </div>
+                        <a href="{{ route('users.show', $review->user) }}" class="shrink-0 group">
+                            @if ($review->user->avatar)
+                                <img src="{{ asset('storage/' . $review->user->avatar) }}"
+                                    alt="{{ $review->user->name }}"
+                                    class="w-12 h-12 rounded-full object-cover ring-2 ring-transparent group-hover:ring-orange-400 transition-all">
+                            @else
+                                <div
+                                    class="rounded-full bg-linear-to-r from-amber-500 to-orange-600 text-white flex items-center justify-center font-bold text-lg w-12 h-12 ring-2 ring-transparent group-hover:ring-orange-400 transition-all">
+                                    {{ strtoupper(substr($review->user->name, 0, 1)) }}
+                                </div>
+                            @endif
+                        </a>
 
                         <div>
-                            <h6 class="font-bold mb-0 text-gray-900">{{ $review->user->name }}</h6>
-                            <small class="text-gray-500 text-xs">{{ $review->created_at->diffForHumans() }}</small>
+                            <a href="{{ route('users.show', $review->user) }}"
+                                class="font-bold mb-0 text-gray-900 hover:text-orange-600 transition-colors">
+                                {{ $review->user->name }}
+                            </a>
+                            <small class="text-gray-500 text-xs block">{{ $review->created_at->diffForHumans() }}</small>
                         </div>
                     </div>
 
@@ -39,7 +48,7 @@
                     @auth
                         @can('delete', $review)
                             <form method="POST" action="{{ route('reviews.destroy', [$recipe, $review]) }}"
-                                onsubmit="return confirm('Hapus ulasan ini?');">
+                                onsubmit="return showConfirmModal(this, 'Hapus Ulasan', 'Apakah Anda yakin ingin menghapus ulasan ini?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"

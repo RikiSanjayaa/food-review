@@ -7,6 +7,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Admin\TagController as AdminTagController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [RecipeController::class, 'index'])->name('recipes.index');
@@ -16,6 +18,11 @@ Route::post('/login', [LoginController::class, 'store']);
 Route::get('/register', [RegisterController::class, 'create'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 Route::post('/logout', LogoutController::class)->name('logout');
+
+Route::get('forgot-password', [ForgotPasswordController::class, 'create'])->name('password.request');
+Route::post('forgot-password', [ForgotPasswordController::class, 'store'])->name('password.email');
+Route::get('reset-password/{token}', [ResetPasswordController::class, 'create'])->name('password.reset');
+Route::post('reset-password', [ResetPasswordController::class, 'store'])->name('password.reset.update');
 
 Route::middleware('auth')->group(function (): void {
     Route::get('/recipes/create', [RecipeController::class, 'create'])->name('recipes.create');

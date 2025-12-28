@@ -50,6 +50,13 @@
                                             {{ old('remember') ? 'checked' : '' }}>
                                         <span class="text-sm text-gray-500">Ingat Saya</span>
                                     </label>
+                                    
+                                    @if (Route::has('password.request'))
+                                        <a class="text-sm font-medium text-gray-500 hover:text-orange-500 transition-colors no-underline" 
+                                           href="{{ route('password.request') }}">
+                                            Lupa Password?
+                                        </a>
+                                    @endif
                                 </div>
 
                                 <button type="submit"

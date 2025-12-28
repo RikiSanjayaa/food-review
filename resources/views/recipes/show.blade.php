@@ -21,7 +21,8 @@
                             <div>
                                 <h1 class="font-bold text-3xl md:text-4xl mb-2">{{ $recipe->title }}</h1>
                                 <p class="text-gray-500 mb-0">Oleh <span
-                                        class="font-semibold text-gray-900">{{ $recipe->user?->name ?? 'Anonim' }}</span></p>
+                                        class="font-semibold text-gray-900">{{ $recipe->user?->name ?? 'Anonim' }}</span>
+                                </p>
                             </div>
                             <div class="text-right bg-gray-100 p-3 rounded-2xl">
                                 <div class="font-bold text-amber-500 text-2xl flex items-center justify-end gap-2">
@@ -59,11 +60,15 @@
                                 <div class="flex flex-col gap-2">
                                     @foreach (explode("\n", $recipe->ingredients) as $index => $ingredient)
                                         @if (trim($ingredient))
-                                            <label class="ingredient-item flex items-center gap-3 cursor-pointer p-2 rounded-xl hover:bg-gray-50 transition-all">
+                                            <label
+                                                class="ingredient-item flex items-center gap-3 cursor-pointer p-2 rounded-xl hover:bg-gray-50 transition-all">
                                                 <input type="checkbox" id="ing-{{ $index }}" class="sr-only">
-                                                <div class="checkbox-box w-6 h-6 shrink-0 rounded-lg border-2 border-gray-300 flex items-center justify-center transition-all">
-                                                    <svg class="checkbox-icon w-4 h-4 text-white transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                                <div
+                                                    class="checkbox-box w-6 h-6 shrink-0 rounded-lg border-2 border-gray-300 flex items-center justify-center transition-all">
+                                                    <svg class="checkbox-icon w-4 h-4 text-white transition-all"
+                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="3" d="M5 13l4 4L19 7"></path>
                                                     </svg>
                                                 </div>
                                                 <span class="ingredient-text text-base text-gray-700 transition-all">
@@ -153,10 +158,11 @@
                                     <i class="bi bi-pencil mr-1"></i> Edit Resep
                                 </a>
                                 <form method="POST" action="{{ route('recipes.destroy', $recipe) }}"
-                                    onsubmit="return confirm('Hapus resep ini?');" class="flex-1">
+                                    onsubmit="return showConfirmModal(this, 'Hapus Resep', 'Apakah Anda yakin ingin menghapus resep ini? Tindakan ini tidak dapat dibatalkan.')" class="flex-1">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="w-full px-4 py-2 bg-red-500 text-white rounded-full font-bold hover:bg-red-600 transition cursor-pointer">
+                                    <button type="submit"
+                                        class="w-full px-4 py-2 bg-red-500 text-white rounded-full font-bold hover:bg-red-600 transition cursor-pointer">
                                         <i class="bi bi-trash mr-1"></i> Hapus Resep
                                     </button>
                                 </form>

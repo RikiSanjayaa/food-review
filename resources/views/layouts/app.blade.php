@@ -143,19 +143,35 @@
                                     x-transition:leave="transition ease-in duration-75"
                                     x-transition:leave-start="opacity-100 scale-100"
                                     x-transition:leave-end="opacity-0 scale-95"
-                                    class="absolute right-0 mt-2 w-48 bg-white border-0 rounded-2xl py-2 list-none z-50">
+                                    class="absolute right-0 mt-2 w-48 bg-white border-0 rounded-xl py-2 list-none z-50">
+                                    <div class="px-4 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider">
+                                        Menu User
+                                    </div>
+
+                                    <li>
+                                        <a href="{{ route('profile.index') }}"
+                                            class="px-4 py-2 hover:bg-orange-50 text-sm font-bold flex items-center gap-2 no-underline">
+                                            <i class="bi bi-person-circle text-orange-500"></i>
+                                            <span class="bg-linear-to-r text-orange-500 bg-clip-text">
+                                                Profil Saya</span>
+                                        </a>
+                                    </li>
                                     @if (Auth::user()->is_admin)
                                         <li>
                                             <a href="{{ route('recipes.create') }}"
                                                 class="px-4 py-2 hover:bg-orange-50 text-sm font-bold flex items-center gap-2 no-underline">
                                                 <i class="bi bi-plus-circle text-orange-500"></i>
-                                                <span
-                                                    class="bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">Tambah
+                                                <span class="bg-linear-to-r text-orange-500 bg-clip-text">Tambah
                                                     Resep</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <hr class="my-1 border-gray-100">
+                                            <a href="{{ route('admin.tags.index') }}"
+                                                class="px-4 py-2 hover:bg-orange-50 text-sm font-bold flex items-center gap-2 no-underline">
+                                                <i class="bi bi-tags text-orange-500"></i>
+                                                <span class="bg-linear-to-r text-orange-500 bg-clip-text">Kelola
+                                                    Kategori</span>
+                                            </a>
                                         </li>
                                     @endif
                                     <li>
@@ -219,11 +235,23 @@
                             Menu User
                         </div>
 
+                        <a href="{{ route('profile.index') }}"
+                            class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-orange-50 text-orange-600 font-bold transition-colors">
+                            <i class="bi bi-person-circle text-orange-500"></i>
+                            <span class="bg-linear-to-r text-orange-500 bg-clip-text">
+                                Profil Saya</span>
+                        </a>
+
                         @if (Auth::user()->is_admin)
                             <a href="{{ route('recipes.create') }}"
-                                class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-orange-50 text-orange-600 font-bold transition-colors no-underline">
+                                class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-orange-50 text-orange-600 font-bold transition-colors">
                                 <i class="bi bi-plus-circle text-lg"></i>
                                 Tambah Resep
+                            </a>
+                            <a href="{{ route('admin.tags.index') }}"
+                                class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-orange-50 text-orange-600 font-bold transition-colors">
+                                <i class="bi bi-tags text-lg"></i>
+                                Kelola Kategori
                             </a>
                         @endif
 
@@ -253,7 +281,7 @@
         </nav>
 
         <main
-            class="page-content {{ !in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'py-4' : '' }}">
+            class="page-content {{ !in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? '' : '' }}">
 
             @yield('content')
 
@@ -313,9 +341,96 @@
         @endif
     </div>
 
+    <!-- Confirm Modal -->
+    <div id="confirm-modal" x-data="{
+        open: false,
+        title: '',
+        message: '',
+        formToSubmit: null,
+        show(form, title, message) {
+            this.formToSubmit = form;
+            this.title = title || 'Konfirmasi Hapus';
+            this.message = message || 'Apakah Anda yakin ingin menghapus ini?';
+            this.open = true;
+        },
+        confirm() {
+            if (this.formToSubmit) {
+                this.formToSubmit.submit();
+            }
+            this.open = false;
+        },
+        cancel() {
+            this.formToSubmit = null;
+            this.open = false;
+        }
+    }" x-cloak
+        @open-confirm-modal.window="show($event.detail.form, $event.detail.title, $event.detail.message)">
+
+        <div x-show="open" class="fixed inset-0 z-9999 overflow-y-auto" aria-labelledby="modal-title"
+            role="dialog" aria-modal="true">
+            <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
+                <!-- Background overlay -->
+                <div x-show="open" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
+                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                    class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm transition-opacity" @click="cancel()">
+                </div>
+
+                <!-- Modal panel -->
+                <div x-show="open" x-transition:enter="ease-out duration-300"
+                    x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave="ease-in duration-200"
+                    x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    class="relative inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-2xl rounded-3xl sm:p-8">
+
+                    <!-- Icon -->
+                    <div class="flex items-center justify-center w-16 h-16 mx-auto mb-6 rounded-full bg-red-100">
+                        <svg class="w-8 h-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                    </div>
+
+                    <!-- Title -->
+                    <h3 class="text-xl font-bold text-center text-gray-900 mb-2" x-text="title"></h3>
+
+                    <!-- Message -->
+                    <p class="text-center text-gray-500 mb-8" x-text="message"></p>
+
+                    <!-- Buttons -->
+                    <div class="flex flex-col-reverse sm:flex-row gap-3">
+                        <button type="button" @click="cancel()"
+                            class="flex-1 px-6 py-3 text-sm font-semibold text-gray-700 bg-gray-100 rounded-xl hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300">
+                            Batal
+                        </button>
+                        <button type="button" @click="confirm()"
+                            class="flex-1 px-6 py-3 text-sm font-semibold text-white bg-linear-to-r from-red-500 to-red-600 rounded-xl hover:from-red-600 hover:to-red-700 transition-all focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                            Ya, Hapus
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
+        // Global function to show confirm modal
+        function showConfirmModal(form, title, message) {
+            window.dispatchEvent(new CustomEvent('open-confirm-modal', {
+                detail: {
+                    form,
+                    title,
+                    message
+                }
+            }));
+            return false;
+        }
+
         AOS.init({
             duration: 900,
             once: true,

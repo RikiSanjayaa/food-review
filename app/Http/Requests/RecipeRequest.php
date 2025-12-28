@@ -27,6 +27,8 @@ class RecipeRequest extends FormRequest
             'hero_image' => ['nullable', 'image', 'max:2048'],
             'tags' => ['nullable', 'array'],
             'tags.*' => ['integer', 'exists:tags,id'],
+            'images' => ['nullable', 'array'],
+            'images.*' => ['image', 'max:2048'],
         ];
     }
 
@@ -42,6 +44,8 @@ class RecipeRequest extends FormRequest
             'servings.integer' => 'Jumlah porsi harus berupa angka.',
             'hero_image.image' => 'File yang diunggah harus berupa gambar.',
             'hero_image.max' => 'Ukuran gambar tidak boleh lebih dari 2MB.',
+            'images.*.image' => 'File galeri harus berupa gambar.',
+            'images.*.max' => 'Ukuran gambar galeri tidak boleh lebih dari 2MB.',
         ];
     }
 }

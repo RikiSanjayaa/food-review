@@ -24,7 +24,7 @@ class RecipeController extends Controller
         ];
 
         $query = Recipe::query()
-            ->with(['tags', 'user'])
+            ->with(['tags', 'user', 'images'])
             ->withCount([
                 'reviews as visible_reviews_count' => fn($q) => $q->where('is_hidden', false),
             ]);
@@ -102,6 +102,13 @@ class RecipeController extends Controller
 
         $recipe->tags()->sync($request->input('tags', []));
 
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('recipes/gallery', 'public');
+                $recipe->images()->create(['image_path' => $path]);
+            }
+        }
+
         return redirect()->route('recipes.show', $recipe)->with('status', 'Recipe published.');
     }
 
@@ -111,10 +118,11 @@ class RecipeController extends Controller
         $user = $request->user();
 
         $reviews = $recipe->reviews()
-            ->with('user')
+            ->with(['user', 'replies.user'])
+            ->whereNull('parent_id') // Only top-level reviews
             ->when(! $user || ! $user->is_admin, fn($q) => $q->where('is_hidden', false))
             ->latest()
-            ->paginate(6);
+            ->paginate(5);
 
         return view('recipes.show', compact('recipe', 'reviews'));
     }
@@ -142,6 +150,13 @@ class RecipeController extends Controller
         $recipe->update($data);
         $recipe->tags()->sync($request->input('tags', []));
 
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('recipes/gallery', 'public');
+                $recipe->images()->create(['image_path' => $path]);
+            }
+        }
+
         return redirect()->route('recipes.show', $recipe)->with('status', 'Recipe updated.');
     }
 
@@ -151,6 +166,11 @@ class RecipeController extends Controller
 
         if ($recipe->hero_image) {
             Storage::disk('public')->delete($recipe->hero_image);
+        }
+
+        foreach ($recipe->images as $image) {
+            Storage::disk('public')->delete($image->image_path);
+            $image->delete();
         }
 
         $recipe->delete();

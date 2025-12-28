@@ -24,22 +24,26 @@
                                 <p class="text-gray-500 text-sm">Masuk untuk mulai berbagi resep.</p>
                             </div>
 
-                            <form method="POST" action="{{ route('login') }}" class="mb-3">
+                            <form method="POST" action="{{ route('login') }}" class="mb-3" x-data="{ showPassword: false }">
                                 @csrf
                                 <div class="relative mb-3">
                                     <input type="email" name="email"
-                                        class="w-full px-4 py-3 bg-gray-100 border-0 rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none transition peer placeholder-transparent"
+                                        class="w-full px-4 pt-6 pb-2 bg-gray-100 border-0 rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none transition peer placeholder-transparent"
                                         id="emailInput" placeholder="Email" value="{{ old('email') }}" required>
                                     <label for="emailInput"
                                         class="absolute left-4 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-xs peer-[:not(:placeholder-shown)]:top-1 peer-[:not(:placeholder-shown)]:text-xs">Email</label>
                                 </div>
                                 <div class="relative mb-4">
-                                    <input type="password" name="password"
-                                        class="w-full px-4 py-3 bg-gray-100 border-0 rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none transition peer placeholder-transparent"
+                                    <input :type="showPassword ? 'text' : 'password'" name="password"
+                                        class="w-full px-4 pt-6 pb-2 bg-gray-100 border-0 rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none transition peer placeholder-transparent"
                                         id="passwordInput" placeholder="Kata Sandi" required>
                                     <label for="passwordInput"
                                         class="absolute left-4 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-xs peer-[:not(:placeholder-shown)]:top-1 peer-[:not(:placeholder-shown)]:text-xs">Kata
                                         Sandi</label>
+                                    <button type="button" @click="showPassword = !showPassword"
+                                        class="absolute right-4 top-3 text-gray-500 hover:text-orange-600 focus:outline-none cursor-pointer">
+                                        <i class="bi" :class="showPassword ? 'bi-eye-slash-fill' : 'bi-eye-fill'"></i>
+                                    </button>
                                 </div>
 
                                 <div class="flex justify-between items-center mb-4">

@@ -33,7 +33,7 @@
                                 @csrf
                                 <div class="relative mb-4">
                                     <input type="email" name="email"
-                                        class="w-full px-4 py-3 bg-gray-100 border-0 rounded-full focus:ring-2 focus:ring-orange-500 outline-none transition peer placeholder-transparent"
+                                        class="w-full px-4 pt-6 pb-2 bg-gray-100 border-0 rounded-full focus:ring-2 focus:ring-orange-500 outline-none transition peer placeholder-transparent"
                                         id="emailInput" placeholder="Email" value="{{ old('email') }}" required autofocus>
                                     <label for="emailInput"
                                         class="absolute left-4 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-xs peer-[:not(:placeholder-shown)]:top-1 peer-[:not(:placeholder-shown)]:text-xs">Email</label>

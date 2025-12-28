@@ -29,7 +29,7 @@
 
                                 <div class="relative mb-4">
                                     <input type="email" name="email"
-                                        class="w-full px-4 py-3 bg-gray-100/50 border-0 rounded-full focus:ring-2 focus:ring-orange-500 outline-none transition peer placeholder-transparent cursor-not-allowed text-gray-500"
+                                        class="w-full px-4 pt-6 pb-2 bg-gray-100/50 border-0 rounded-full focus:ring-2 focus:ring-orange-500 outline-none transition peer placeholder-transparent cursor-not-allowed text-gray-500"
                                         id="emailInput" placeholder="Email" value="{{ $request->email ?? old('email') }}" readonly required>
                                     <label for="emailInput"
                                         class="absolute left-4 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-xs peer-[:not(:placeholder-shown)]:top-1 peer-[:not(:placeholder-shown)]:text-xs">Email</label>
@@ -37,7 +37,7 @@
 
                                 <div class="relative mb-4">
                                     <input :type="showPassword ? 'text' : 'password'" name="password"
-                                        class="w-full px-4 py-3 bg-gray-100 border-0 rounded-full focus:ring-2 focus:ring-orange-500 outline-none transition peer placeholder-transparent"
+                                        class="w-full px-4 pt-6 pb-2 bg-gray-100 border-0 rounded-full focus:ring-2 focus:ring-orange-500 outline-none transition peer placeholder-transparent"
                                         id="passwordInput" placeholder="Password Baru" required autofocus>
                                     <label for="passwordInput"
                                         class="absolute left-4 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-xs peer-[:not(:placeholder-shown)]:top-1 peer-[:not(:placeholder-shown)]:text-xs">Password Baru</label>
@@ -52,7 +52,7 @@
 
                                 <div class="relative mb-6">
                                     <input :type="showConfirmPassword ? 'text' : 'password'" name="password_confirmation"
-                                        class="w-full px-4 py-3 bg-gray-100 border-0 rounded-full focus:ring-2 focus:ring-orange-500 outline-none transition peer placeholder-transparent"
+                                        class="w-full px-4 pt-6 pb-2 bg-gray-100 border-0 rounded-full focus:ring-2 focus:ring-orange-500 outline-none transition peer placeholder-transparent"
                                         id="passwordConfirmInput" placeholder="Konfirmasi Password" required>
                                     <label for="passwordConfirmInput"
                                         class="absolute left-4 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-xs peer-[:not(:placeholder-shown)]:top-1 peer-[:not(:placeholder-shown)]:text-xs">Konfirmasi Password</label>

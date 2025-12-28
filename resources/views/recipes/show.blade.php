@@ -2,15 +2,12 @@
 
 @section('content')
     <div class="container">
-        <!-- Floating Back Button -->
         <a href="{{ url()->previous() }}" class="btn-float-back" title="Kembali">
             <i class="bi bi-arrow-left"></i>
         </a>
 
         <div class="row g-4 py-5">
-            <!-- Main Content -->
             <div class="col-lg-8">
-                <!-- Hero Image & Header -->
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4" data-aos="fade-up">
                     @if ($recipe->hero_image)
                         <img src="{{ Storage::url($recipe->hero_image) }}" alt="{{ $recipe->title }}"
@@ -45,7 +42,6 @@
                 </div>
 
                 <div class="row g-4">
-                    <!-- Ingredients Checklist -->
                     <div class="col-md-5" data-aos="fade-up" data-aos-delay="100">
                         <div class="card border-0 shadow-sm rounded-4 h-100">
                             <div class="card-body p-4">
@@ -72,7 +68,6 @@
                         </div>
                     </div>
 
-                    <!-- Cooking Steps -->
                     <div class="col-md-7" data-aos="fade-up" data-aos-delay="200">
                         <div class="card border-0 shadow-sm rounded-4 h-100">
                             <div class="card-body p-4">
@@ -101,7 +96,6 @@
                     </div>
                 </div>
 
-                <!-- Recipe Information -->
                 <div class="card border-0 shadow-sm rounded-4 mt-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="card-body p-4 p-md-5">
                         <h3 class="fw-bold mb-4">Informasi Resep</h3>
@@ -131,7 +125,6 @@
                                 <div class="value">{{ $recipe->cuisine ?? '-' }}</div>
                             </div>
 
-                            <!-- Full width -->
                             <div class="info-box full">
                                 <i class="bi bi-bar-chart-fill"></i>
                                 <div class="label">Tingkat Kesulitan</div>
@@ -160,7 +153,6 @@
                 </div>
             </div>
 
-            <!-- Sidebar -->
             <div class="col-lg-4">
                 <div class="card border-0 shadow-sm rounded-4" data-aos="fade-left">
                     <div class="card-body p-4">

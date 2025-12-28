@@ -188,9 +188,7 @@ body {
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
 }
 
-/* ======================================================
-   CAROUSEL NAV
-   ====================================================== */
+/* CAROUSEL NAV */
 .carousel-nav {
     position: absolute;
     top: 50%;
@@ -232,9 +230,7 @@ body {
     position: relative;
 }
 
-/* ======================================================
-   SEARCH BAR
-   ====================================================== */
+/* SEARCH BAR */
 .filter-search {
     display: flex;
     align-items: center;
@@ -251,9 +247,7 @@ body {
     width: 100%;
 }
 
-/* ======================================================
-   FILTER TAGS
-   ====================================================== */
+/* FILTER TAGS */
 .filter-label {
     font-size: 0.9rem;
     font-weight: 700;
@@ -289,9 +283,7 @@ body {
     color: #ffffff;
 }
 
-/* ======================================================
-   ACTION BUTTON
-   ====================================================== */
+/* ACTION BUTTON */
 .filter-actions {
     display: flex;
     gap: 1.2rem;
@@ -309,14 +301,10 @@ body {
 }
 
 
-/* ======================================================
-   RESPONSIVE
-   ====================================================== */
+/* RESPONSIVE */
 
 
-/* ======================================================
-   STAR RATING (Interactive)
-   ====================================================== */
+/* STAR RATING (Interactive) */
 .star-rating {
     display: flex;
     flex-direction: row-reverse;
@@ -368,9 +356,7 @@ body {
     }
 }
 
-/* ======================================================
-   TOAST NOTIFICATIONS
-   ====================================================== */
+/* TOAST NOTIFICATIONS */
 .toast {
     min-width: 300px;
     border-radius: 12px !important;
@@ -432,9 +418,7 @@ body {
     }
 }
 
-/* ======================================================
-   FLOATING BACK BUTTON
-   ====================================================== */
+/* FLOATING BACK BUTTON */
 .btn-float-back {
     position: fixed;
     bottom: 2rem;
@@ -489,9 +473,7 @@ body {
     }
 }
 
-/* ======================================================
-   CUSTOM ORANGE THEME UTILITIES
-   ====================================================== */
+/* CUSTOM ORANGE THEME UTILITIES */
 .text-orange {
     color: #ea580c !important;
 }

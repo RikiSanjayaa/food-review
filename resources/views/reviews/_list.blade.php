@@ -4,7 +4,6 @@
             <div class="card border-0 bg-light rounded-4 rounded-tl-0 shadow-sm p-3">
                 <div class="d-flex justify-content-between align-items-start mb-2">
                     <div class="d-flex gap-3 align-items-center">
-                        <!-- Avatar -->
                         <div class="shrink-0">
                             <div class="rounded-circle bg-gradient bg-gradient-orange-plain text-white d-flex align-items-center justify-content-center shadow-sm fw-bold fs-5"
                                 style="width: 50px; height: 50px; background: linear-gradient(135deg, #f59e0b, #ea580c);">
@@ -12,7 +11,6 @@
                             </div>
                         </div>
 
-                        <!-- Name and Time -->
                         <div>
                             <h6 class="fw-bold mb-0 text-dark">{{ $review->user->name }}</h6>
                             <small class="text-secondary"
@@ -20,7 +18,6 @@
                         </div>
                     </div>
 
-                    <!-- Star Rating -->
                     <div class="d-flex align-items-center">
                         <span class="text-warning px-2 py-1 d-flex align-items-center gap-1">
                             <i class="bi bi-star-fill small"></i> {{ $review->rating }}
@@ -36,7 +33,6 @@
                     <p class="text-dark mb-2" style="font-size: 0.95rem;">{{ $review->comment }}</p>
                 @endif
 
-                <!-- Actions -->
                 <div class="d-flex gap-3 justify-content-end opacity-75">
                     @auth
                         @can('delete', $review)

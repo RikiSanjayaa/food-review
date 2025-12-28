@@ -176,13 +176,31 @@
                                             </a>
                                         </li>
                                         <li>
+                                            <a href="{{ route('admin.tags.index') }}"
+                                                class="dropdown-item py-2 hover:bg-orange-50 text-sm font-bold d-flex align-items-center gap-2">
+                                                <i class="bi bi-tags text-orange-500"></i>
+                                                <span class="bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">Kelola Kategori</span>
+                                            </a>
+                                        </li>
+                                        <li>
                                             <hr class="dropdown-divider">
                                         </li>
                                     @endif
+                                    <li class="mb-1">
+                                        <a href="{{ route('profile.index') }}"
+                                            class="dropdown-item py-2 hover:bg-orange-50 text-sm font-bold d-flex align-items-center gap-2">
+                                            <i class="bi bi-person-circle text-orange-500"></i>
+                                            <span class="bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">Profil Saya</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider my-1">
+                                    </li>
                                     <li>
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
-                                            <button type="submit" class="dropdown-item py-2 text-danger hover:bg-red-50 text-sm">
+                                            <button type="submit" class="dropdown-item py-2 text-danger hover:bg-red-50 text-sm d-flex align-items-center gap-2">
+                                                <i class="bi bi-box-arrow-right"></i>
                                                 Keluar
                                             </button>
                                         </form>
@@ -239,6 +257,10 @@
                         <a href="{{ route('recipes.create') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-orange-50 text-orange-600 font-bold transition-colors">
                             <i class="bi bi-plus-circle text-lg"></i>
                             Tambah Resep
+                        </a>
+                        <a href="{{ route('admin.tags.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-orange-50 text-orange-600 font-bold transition-colors">
+                            <i class="bi bi-tags text-lg"></i>
+                            Kelola Kategori
                         </a>
                         @endif
 

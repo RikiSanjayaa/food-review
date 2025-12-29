@@ -73,6 +73,57 @@ Minimalist Baker–style mini food review site with recipe search, filters, user
 -   **Reviews**: 1–5 stars, report + admin hide/unhide, rating aggregates.
 -   **Modern UI**: Glassmorphism design, Dark/Light mode ready (default Light), Responsive.
 
+### Docker Deployment
+
+For a quick local setup using Docker, just run:
+
+```bash
+docker compose up -d
+```
+
+This automatically handles:
+
+-   APP_KEY generation
+-   Database migrations
+-   Database seeding
+-   Asset building
+-   Storage linking
+
+**Access the app at:** http://localhost:8000
+
+#### Docker Commands
+
+```bash
+# Start containers
+docker compose up -d
+
+# Stop containers
+docker compose down
+
+# Rebuild after Dockerfile changes
+docker compose build --no-cache && docker compose up -d
+
+# View logs
+docker compose logs -f app
+
+# Enter the app container
+docker exec -it food-reviews-app bash
+
+# Re-seed database (delete marker file first)
+docker exec food-reviews-app rm /var/www/html/storage/.seeded
+docker compose restart app
+```
+
+#### Docker Environment
+
+The Docker setup uses `.env.docker` with these defaults:
+
+-   **Database:** MySQL 8.0 (container: `food-reviews-db`)
+-   **Web server:** Nginx (port 8000)
+-   **PHP:** 8.4-FPM
+
+To customize, copy `.env.docker` to `.env` and modify as needed before running `docker compose up`.
+
 ### Testing
 
 -   Feature coverage in progress. Run `php artisan test`.

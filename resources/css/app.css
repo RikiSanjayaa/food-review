@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tailwindcss";
 
 /* Hide elements with x-cloak until Alpine.js initializes */
 [x-cloak] {
@@ -9,6 +10,116 @@ body {
     background: #f8f9fa;
     color: #212529;
 }
+
+/* ... semua CSS anda tetap ... */
+
+/* ======================= DARK MODE STYLE ======================= */
+body.dark-mode {
+    background: #171717 !important;
+    color: #f3f3f3 !important;
+}
+
+body.dark-mode .app-wrapper,
+body.dark-mode .page-content {
+    background: #171717 !important;
+    color: #f3f3f3 !important;
+}
+
+body.dark-mode header,
+body.dark-mode nav,
+body.dark-mode .bg-white,
+body.dark-mode .border-gray-200,
+body.dark-mode .filter-outer,
+body.dark-mode .filter-search {
+    background: #232323 !important;
+    color: #f3f3f3 !important;
+    border-color: #262626 !important;
+}
+
+body.dark-mode .toast {
+    background: linear-gradient(135deg,#262626 80%, #ea580c) !important;
+    color: #ffe6b1 !important;
+}
+
+body.dark-mode .toast .toast-close {
+    color: #ffe6b1 !important;
+}
+
+body.dark-mode .info-box,
+body.dark-mode .tag-chip,
+body.dark-mode .btn-float-back,
+body.dark-mode .carousel-nav,
+body.dark-mode .filter-outer,
+body.dark-mode .filter-btn {
+    background: #232323 !important;
+    color: #ffc876 !important;
+    border-color: #393939 !important;
+}
+
+body.dark-mode .hero-title,
+body.dark-mode .slide-overlay,
+body.dark-mode .filter-label {
+    color: #fff !important;
+}
+
+body.dark-mode .explore-hero {
+    background-blend-mode: multiply, normal !important;
+}
+
+body.dark-mode .carousel-nav {
+    background: #232323 !important;
+    color: #f59e0b !important;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.dark-mode .carousel-nav:hover {
+    background: #353535 !important;
+}
+
+body.dark-mode .filter-search input {
+    background: transparent !important;
+    color: #fff !important;
+}
+
+body.dark-mode .tag-chip {
+    background: #232323 !important;
+    color: #ffc876 !important;
+}
+
+body.dark-mode .tag-chip:has(input:checked) {
+    background: linear-gradient(135deg, #a96d07, #ea580c) !important;
+    color: #fff !important;
+}
+
+body.dark-mode .ingredient-item {
+    background: #1e1e1e !important;
+}
+body.dark-mode .ingredient-item:has(input:checked) {
+    background: #28291b !important;
+}
+
+body.dark-mode footer,
+body.dark-mode .bg-white {
+    background: #181818 !important;
+    color: #f3f3f3 !important;
+    border-color: #232323 !important;
+}
+
+/* Navbar toggle button style */
+.dark-toggle-btn {
+    background: #e5e5e5;
+    color: #222 !important;
+}
+
+body.dark-mode .dark-toggle-btn {
+    background: #222;
+    color: #ffeaac !important;
+    border: 1px solid #313131;
+}
+
+/* ======================= END DARK MODE STYLE ======================= */
+
+/* ... semua CSS lain tetap seperti file original ... */
 
 .recipe-info-grid {
     display: grid;

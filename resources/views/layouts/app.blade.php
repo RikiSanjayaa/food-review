@@ -57,20 +57,13 @@
         .navbar-logo:hover {
             transform: scale(1.05);
         }
-
-        [x-cloak] {
-            display: none !important;
-        }
     </style>
+</head>
 
-<body class="transition-colors duration-500" x-data="{
-    scrolled: false,
-    mobileMenuOpen: false
-}">
-
+<body>
     <div class="app-wrapper">
 
-        <nav @scroll.window="scrolled = (window.pageYOffset > 50)"
+        <nav x-data="{ scrolled: false, mobileMenuOpen: false }" @scroll.window="scrolled = (window.pageYOffset > 50)"
             class="h-14.5 flex items-center transition-all duration-1000 ease-in-out z-1000
              {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'fixed top-0 left-0 right-0' : 'sticky top-0 bg-white border-b border-gray-200' }}"
             :class="{
@@ -111,18 +104,17 @@
                                 href="{{ route('recipes.index') }}">
                                 <span
                                     :class="{{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }}
-                                        ?
-                                        (scrolled ?
-                                            'font-bold bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent' :
-                                            'text-white hover:text-white/80') :
-                                        'text-gray-900 hover:text-orange-600'">Beranda</span>
+                                    ?
+                                    (scrolled ?
+                                        'font-bold bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent' :
+                                        'text-white hover:text-white/80') :
+                                    'text-gray-900 hover:text-orange-600'">Beranda</span>
                             </a>
                         </li>
                     </ul>
 
                     <div class="hidden lg:flex items-center gap-3 -mr-4">
                         @auth
-
                             <div x-data="{ open: false }" class="relative">
                                 <button
                                     class="px-3.5 py-1 rounded-full border-0 transition-all duration-1000 ease-in-out flex items-center gap-1 text-sm cursor-pointer"
@@ -140,13 +132,7 @@
                                             'text-white' :
                                             'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent font-bold'
                                         ]">{{ Auth::user()->name }}</span>
-                                    <i class="bi bi-chevron-down text-xs"
-                                        :class="[
-                                            {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
-                                            !scrolled ?
-                                            'text-white' :
-                                            'text-gray-500'
-                                        ]"></i>
+                                    <i class="bi bi-chevron-down text-xs"></i>
                                 </button>
 
                                 <ul x-show="open" @click.outside="open = false"
@@ -156,7 +142,7 @@
                                     x-transition:leave="transition ease-in duration-75"
                                     x-transition:leave-start="opacity-100 scale-100"
                                     x-transition:leave-end="opacity-0 scale-95"
-                                    class="absolute right-0 mt-2 w-48 bg-white border-0 rounded-xl py-2 list-none z-50 shadow-xl shadow-gray-200/50">
+                                    class="absolute right-0 mt-2 w-48 bg-white border-0 rounded-xl py-2 list-none z-50">
                                     <div class="px-4 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider">
                                         Menu User
                                     </div>
@@ -169,15 +155,15 @@
                                                 Profil Saya</span>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="{{ route('recipes.create') }}"
-                                            class="px-4 py-2 hover:bg-orange-50 text-sm font-bold flex items-center gap-2 no-underline">
-                                            <i class="bi bi-plus-circle text-orange-500"></i>
-                                            <span class="bg-linear-to-r text-orange-500 bg-clip-text">Tambah
-                                                Resep</span>
-                                        </a>
-                                    </li>
                                     @if (Auth::user()->is_admin)
+                                        <li>
+                                            <a href="{{ route('recipes.create') }}"
+                                                class="px-4 py-2 hover:bg-orange-50 text-sm font-bold flex items-center gap-2 no-underline">
+                                                <i class="bi bi-plus-circle text-orange-500"></i>
+                                                <span class="bg-linear-to-r text-orange-500 bg-clip-text">Tambah
+                                                    Resep</span>
+                                            </a>
+                                        </li>
                                         <li>
                                             <a href="{{ route('admin.tags.index') }}"
                                                 class="px-4 py-2 hover:bg-orange-50 text-sm font-bold flex items-center gap-2 no-underline">
@@ -218,7 +204,13 @@
                                 Daftar
                             </a>
                         @endauth
-                    </div>
+
+                        <button id="darkModeToggle"
+                            class="ml-2 w-10 h-10 rounded-full transition bg-gray-200 hover:bg-gray-300 text-gray-700 dark-toggle-btn flex items-center justify-center border-0 cursor-pointer"
+                            title="Toggle Mode Gelap/Cerah" aria-label="Toggle Dark Mode">
+                            <i id="darkModeIcon" class="bi bi-moon-fill" style="font-size: 1.2rem;"></i>
+                        </button>
+                        </div>
 
                     <button
                         class="lg:hidden border-0 bg-transparent transition-all duration-1000 ease-in-out py-1 cursor-pointer"
@@ -240,7 +232,7 @@
                     x-transition:leave="transition ease-in duration-150"
                     x-transition:leave-start="opacity-100 translate-y-0"
                     x-transition:leave-end="opacity-0 -translate-y-2"
-                    class="absolute top-full right-0 min-w-70 max-w-80 bg-white/95 backdrop-blur-xl border border-gray-100 rounded-2xl p-4 flex flex-col gap-3 lg:hidden shadow-2xl"
+                    class="absolute top-full right-0 min-w-70 max-w-80 bg-white/95 backdrop-blur-xl border border-gray-100 rounded-2xl p-4 flex flex-col gap-3 lg:hidden"
                     @click.outside="mobileMenuOpen = false">
 
                     @auth
@@ -354,7 +346,6 @@
         @endif
     </div>
 
-    <!-- Confirm Modal -->
     <div id="confirm-modal" x-data="{
         open: false,
         title: '',
@@ -382,14 +373,12 @@
         <div x-show="open" class="fixed inset-0 z-9999 overflow-y-auto" aria-labelledby="modal-title"
             role="dialog" aria-modal="true">
             <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
-                <!-- Background overlay -->
                 <div x-show="open" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
                     x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
                     x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
                     class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm transition-opacity" @click="cancel()">
                 </div>
 
-                <!-- Modal panel -->
                 <div x-show="open" x-transition:enter="ease-out duration-300"
                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
@@ -398,7 +387,6 @@
                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     class="relative inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-2xl rounded-3xl sm:p-8">
 
-                    <!-- Icon -->
                     <div class="flex items-center justify-center w-16 h-16 mx-auto mb-6 rounded-full bg-red-100">
                         <svg class="w-8 h-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                             stroke-width="2">
@@ -407,13 +395,10 @@
                         </svg>
                     </div>
 
-                    <!-- Title -->
                     <h3 class="text-xl font-bold text-center text-gray-900 mb-2" x-text="title"></h3>
 
-                    <!-- Message -->
                     <p class="text-center text-gray-500 mb-8" x-text="message"></p>
 
-                    <!-- Buttons -->
                     <div class="flex flex-col-reverse sm:flex-row gap-3">
                         <button type="button" @click="cancel()"
                             class="flex-1 px-6 py-3 text-sm font-semibold text-gray-700 bg-gray-100 rounded-xl hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300">
@@ -468,6 +453,44 @@
                     });
                 }
             });
+
+            // DARK MODE TOGGLE - Script (Updated for Icons)
+            const darkToggleBtn = document.getElementById('darkModeToggle');
+            const darkModeIcon = document.getElementById('darkModeIcon');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            function applyDarkMode(isDark) {
+                if (isDark) {
+                    document.body.classList.add('dark-mode');
+                    // Ganti icon ke Matahari (untuk switch ke Light Mode)
+                    darkModeIcon.className = 'bi bi-sun-fill';
+                } else {
+                    document.body.classList.remove('dark-mode');
+                    // Ganti icon ke Bulan (untuk switch ke Dark Mode)
+                    darkModeIcon.className = 'bi bi-moon-fill';
+                }
+                // Pastikan ukuran icon tetap konsisten
+                darkModeIcon.style.fontSize = '1.2rem';
+            }
+
+            // load status awal dari localStorage/user preference
+            let isDark = false;
+            if (localStorage.getItem('foodreview-theme') === 'dark') {
+                isDark = true;
+            } else if (localStorage.getItem('foodreview-theme') === 'light') {
+                isDark = false;
+            } else if (prefersDark) {
+                isDark = true;
+            }
+            applyDarkMode(isDark);
+
+            if (darkToggleBtn) {
+                darkToggleBtn.addEventListener('click', function() {
+                    isDark = !document.body.classList.contains('dark-mode');
+                    applyDarkMode(isDark);
+                    localStorage.setItem('foodreview-theme', isDark ? 'dark' : 'light');
+                });
+            }
         });
     </script>
 

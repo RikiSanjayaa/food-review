@@ -454,7 +454,7 @@
                 }
             });
 
-            // DARK MODE TOGGLE - Script (Updated for Icons)
+            // DARK MODE TOGGLE 
             const darkToggleBtn = document.getElementById('darkModeToggle');
             const darkModeIcon = document.getElementById('darkModeIcon');
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -462,18 +462,16 @@
             function applyDarkMode(isDark) {
                 if (isDark) {
                     document.body.classList.add('dark-mode');
-                    // Ganti icon ke Matahari (untuk switch ke Light Mode)
                     darkModeIcon.className = 'bi bi-sun-fill';
                 } else {
                     document.body.classList.remove('dark-mode');
-                    // Ganti icon ke Bulan (untuk switch ke Dark Mode)
                     darkModeIcon.className = 'bi bi-moon-fill';
                 }
-                // Pastikan ukuran icon tetap konsisten
+
                 darkModeIcon.style.fontSize = '1.2rem';
             }
 
-            // load status awal dari localStorage/user preference
+
             let isDark = false;
             if (localStorage.getItem('foodreview-theme') === 'dark') {
                 isDark = true;

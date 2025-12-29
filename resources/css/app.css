@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tailwindcss";
 
-/* Hide elements with x-cloak until Alpine.js initializes */
 [x-cloak] {
     display: none !important;
 }
@@ -10,8 +9,6 @@ body {
     background: #f8f9fa;
     color: #212529;
 }
-
-/* ... semua CSS anda tetap ... */
 
 /* ======================= DARK MODE STYLE ======================= */
 body.dark-mode {
@@ -118,9 +115,6 @@ body.dark-mode .dark-toggle-btn {
 }
 
 /* ======================= END DARK MODE STYLE ======================= */
-
-/* ... semua CSS lain tetap seperti file original ... */
-
 .recipe-info-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -137,8 +131,8 @@ body.dark-mode .dark-toggle-btn {
 }
 
 :is(.dark .recipe-info-grid .info-box) {
-    background: #0f172a; /* slate-900 */
-    border-color: #1e293b; /* slate-800 */
+    background: #0f172a; 
+    border-color: #1e293b; 
 }
 
 .recipe-info-grid .info-box:hover {
@@ -166,7 +160,7 @@ body.dark-mode .dark-toggle-btn {
 }
 
 :is(.dark .recipe-info-grid .info-box .label) {
-    color: #94a3b8; /* slate-400 */
+    color: #94a3b8; 
 }
 
 .recipe-info-grid .info-box .value {
@@ -176,7 +170,7 @@ body.dark-mode .dark-toggle-btn {
 }
 
 :is(.dark .recipe-info-grid .info-box .value) {
-    color: #e2e8f0; /* slate-200 */
+    color: #e2e8f0; 
 }
 
 .recipe-info-grid .info-box.full {

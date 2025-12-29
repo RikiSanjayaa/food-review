@@ -23,6 +23,12 @@ fi
 
 php artisan optimize:clear
 
+if [ ! -f public/build/manifest.json ]; then
+    echo "Ui build not found, building..."
+    npm install
+    npm run build
+fi
+
 rm -rf public/storage
 php artisan storage:link
 

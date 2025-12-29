@@ -8,6 +8,10 @@ if [ ! -f .env ]; then
     elif [ -f .env.example ]; then
         cp .env.example .env
     fi
+
+    # Force file driver for cache and session to avoid 'no such table' errors on startup
+    sed -i 's/CACHE_STORE=database/CACHE_STORE=file/g' .env
+    sed -i 's/SESSION_DRIVER=database/SESSION_DRIVER=file/g' .env
 fi
 
 if grep -q "DB_CONNECTION=sqlite" .env; then

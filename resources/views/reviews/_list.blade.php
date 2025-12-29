@@ -99,7 +99,7 @@
                     <form action="{{ route('reviews.store', $recipe) }}" method="POST" class="bg-gray-50 p-3 rounded-xl border border-gray-200">
                         @csrf
                         <input type="hidden" name="parent_id" value="{{ $review->id }}">
-                        <input type="hidden" name="rating" value="5"> <!-- Dummy rating for reply -->
+                        <input type="hidden" name="rating" value="5">
                         
                         <div class="flex gap-2">
                              <input type="text" name="comment" required

@@ -142,34 +142,9 @@
 <script>
     document.getElementById('gallery-input').addEventListener('change', function(event) {
         const previewContainer = document.getElementById('gallery-preview');
-        // Clear only new previews, keep existing ones if we want (or clear all to show current selection state)
-        // Since input 'change' replaces files, we should probably clear to show *current* new selection.
-        // However, if we want to show existing DB images + new ones, we need to be careful.
-        // For simplicity, let's append new previews to the list or create a clear distinction.
-        // The user asked for "buttons but just give preview", implying simple multi-select.
-        
-        // Let's create a visual separator or just append.
-        // Actually, pure file input replaces selection. So standard behavior is: selected files replace previous *selection*.
-        // Existing database images are separate entities.
-        
-        // Remove old *preview* elements (custom class?) or just let them stack? 
-        // Let's clear any *previous preview* elements but keep DB images. 
-        // We can mark DB images with a class or just clear everything if we assume new selection replaces everything (which it does for the INPUT, but not DB).
-        
-        // Strategy: Clear only elements that are NOT existing DB images.
-        // But finding them might be tricky without classes. 
-        // Let's just append for now, or clear "newly added" ones provided we track them.
-        // Easier: Clear a specific container for "new" previews.
-        
-        // Let's modify the HTML above to have a specific container for NEW images if we want to keep DB images separate.
-        // OR, just clear the container? If clear container, we lose DB images visualization? 
-        // No, DB images are rendered by server. JS runs client side. 
-        // If I clear `innerHTML`, I remove DB images too.
-        // So I should append.
-        
         const files = event.target.files;
         
-        // Optional: clear previous *new* previews if any
+        // Clear previous new previews
         const existingPreviews = previewContainer.querySelectorAll('.new-preview');
         existingPreviews.forEach(el => el.remove());
 

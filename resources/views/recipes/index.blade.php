@@ -161,7 +161,6 @@
                                                 @endforeach
 
                                                 <!-- Navigation Arrows -->
-                                                <!-- Using div with role=button and prevent.stop to avoid triggering parent anchor -->
                                                 <div role="button" @click.prevent.stop="prev()"
                                                     class="absolute left-1 top-1/2 -translate-y-1/2 p-1 text-white/70 hover:text-white transition-colors duration-300 opacity-0 group-hover/carousel:opacity-100 z-10 cursor-pointer">
                                                     <i class="bi bi-chevron-left text-2xl drop-shadow-md"></i>

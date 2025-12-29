@@ -128,24 +128,76 @@
                             <a href="{{ route('recipes.show', $recipe) }}"
                                 class="block h-full bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-orange-100/60 transition-all duration-500 transform hover:-translate-y-2 relative border border-gray-100/50 no-underline! text-gray-900!">
 
-                                <div
-                                    class="relative w-full aspect-video overflow-hidden bg-gray-100 group-hover:brightness-[1.02] transition-all">
-                                    @if ($recipe->hero_image)
-                                        <img src="{{ Storage::url($recipe->hero_image) }}"
-                                            class="w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-in-out"
-                                            alt="{{ $recipe->title }}" loading="lazy">
-                                    @else
-                                        <div
-                                            class="w-full h-full flex flex-col items-center justify-center text-gray-300 gap-1 bg-gray-50">
-                                            <i class="bi bi-card-image text-3xl opacity-50"></i>
-                                            <span class="text-[10px] uppercase tracking-widest font-bold opacity-30">No
-                                                Image</span>
-                                        </div>
-                                    @endif
+                                    <div class="relative w-full aspect-video overflow-hidden bg-gray-100 group-hover:brightness-[1.02] transition-all">
+                                        @php
+                                            $allImages = collect();
+                                            if ($recipe->hero_image) {
+                                                $allImages->push($recipe->hero_image);
+                                            }
+                                            foreach ($recipe->images as $img) {
+                                                $allImages->push($img->image_path);
+                                            }
+                                        @endphp
 
-                                    <div
-                                        class="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500">
-                                    </div>
+                                        @if ($allImages->count() > 1)
+                                            <!-- Alpine.js Carousel -->
+                                            <div x-data="{
+                                                activeSlide: 0,
+                                                total: {{ $allImages->count() }},
+                                                next() { this.activeSlide = (this.activeSlide === this.total - 1) ? 0 : this.activeSlide + 1 },
+                                                prev() { this.activeSlide = (this.activeSlide === 0) ? this.total - 1 : this.activeSlide - 1 },
+                                                autoPlay() { setInterval(() => { this.next() }, 5000) }
+                                            }" x-init="autoPlay()" class="relative w-full h-full group/carousel">
+                                                
+                                                @foreach ($allImages as $index => $image)
+                                                    <div x-show="activeSlide === {{ $index }}"
+                                                        x-transition:enter="transition ease-out duration-700"
+                                                        x-transition:enter-start="opacity-0 scale-105"
+                                                        x-transition:enter-end="opacity-100 scale-100"
+                                                        class="absolute inset-0 w-full h-full">
+                                                        <img src="{{ Storage::url($image) }}" alt="{{ $recipe->title }}"
+                                                            class="w-full h-full object-cover">
+                                                    </div>
+                                                @endforeach
+
+                                                <!-- Navigation Arrows -->
+                                                <!-- Using div with role=button and prevent.stop to avoid triggering parent anchor -->
+                                                <div role="button" @click.prevent.stop="prev()"
+                                                    class="absolute left-1 top-1/2 -translate-y-1/2 p-1 text-white/70 hover:text-white transition-colors duration-300 opacity-0 group-hover/carousel:opacity-100 z-10 cursor-pointer">
+                                                    <i class="bi bi-chevron-left text-2xl drop-shadow-md"></i>
+                                                </div>
+                                                <div role="button" @click.prevent.stop="next()"
+                                                    class="absolute right-1 top-1/2 -translate-y-1/2 p-1 text-white/70 hover:text-white transition-colors duration-300 opacity-0 group-hover/carousel:opacity-100 z-10 cursor-pointer">
+                                                    <i class="bi bi-chevron-right text-2xl drop-shadow-md"></i>
+                                                </div>
+
+                                                <!-- Dots -->
+                                                <div
+                                                    class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10 opacity-0 group-hover/carousel:opacity-100 transition-opacity">
+                                                    @foreach ($allImages as $index => $image)
+                                                        <div role="button" @click.prevent.stop="activeSlide = {{ $index }}"
+                                                            class="h-1.5 rounded-full transition-all duration-300 shadow-sm cursor-pointer"
+                                                            :class="activeSlide === {{ $index }} ? 'w-4 bg-orange-500' : 'w-1.5 bg-white/60 hover:bg-white'">
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @elseif ($allImages->count() === 1)
+                                            <img src="{{ Storage::url($allImages->first()) }}"
+                                                class="w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                                                alt="{{ $recipe->title }}" loading="lazy">
+                                        @else
+                                            <div
+                                                class="w-full h-full flex flex-col items-center justify-center text-gray-300 gap-1 bg-gray-50">
+                                                <i class="bi bi-card-image text-3xl opacity-50"></i>
+                                                <span class="text-[10px] uppercase tracking-widest font-bold opacity-30">No
+                                                    Image</span>
+                                            </div>
+                                        @endif
+
+                                        <div
+                                            class="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500 pointer-events-none">
+                                        </div>
 
                                     @if ($recipe->totalTime())
                                         <div class="absolute top-3 left-3">

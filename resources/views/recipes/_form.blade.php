@@ -3,21 +3,41 @@
     @if ($method !== 'POST')
         @method($method)
     @endif
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Judul Resep</label>
-            <input type="text" name="title" value="{{ old('title', $recipe->title) }}"
-                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition"
-                placeholder="Masukkan judul resep..." required>
-        </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Foto Utama</label>
-            <input type="file" name="hero_image"
+    <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Judul Resep</label>
+        <input type="text" name="title" value="{{ old('title', $recipe->title) }}"
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition"
+            placeholder="Masukkan judul resep..." required>
+    </div>
+
+    <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Foto Utama</label>
+        <input type="file" name="hero_image"
+            class="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm file:mr-3 file:py-1 file:px-3 file:rounded-md file:border-0 file:bg-orange-50 file:text-orange-600 file:font-medium hover:file:bg-orange-100 cursor-pointer">
+        @if ($recipe->hero_image)
+            <img src="{{ Storage::url($recipe->hero_image) }}" alt=""
+                class="mt-2 rounded-lg h-16 w-16 object-cover bg-gray-100">
+        @endif
+    </div>
+
+    <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Galeri Foto Tambahan</label>
+        <div class="space-y-3">
+            <input type="file" name="images[]" multiple id="gallery-input"
                 class="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm file:mr-3 file:py-1 file:px-3 file:rounded-md file:border-0 file:bg-orange-50 file:text-orange-600 file:font-medium hover:file:bg-orange-100 cursor-pointer">
-            @if ($recipe->hero_image)
-                <img src="{{ Storage::url($recipe->hero_image) }}" alt=""
-                    class="mt-2 rounded-lg h-16 w-16 object-cover">
-            @endif
+            <p class="text-xs text-gray-500">Bisa pilih banyak foto sekaligus. Kapasitas timbun foto tak terbatas!</p>
+
+            <!-- Preview Container -->
+            <div id="gallery-preview" class="flex flex-wrap gap-3">
+                @if ($recipe->images->count() > 0)
+                    @foreach ($recipe->images as $image)
+                        <div class="relative w-20 h-20 rounded-lg overflow-hidden border border-gray-200 group">
+                            <img src="{{ Storage::url($image->image_path) }}" class="w-full h-full object-cover">
+                            <!-- Helper text for existing images could go here if needed, or delete button -->
+                        </div>
+                    @endforeach
+                @endif
+            </div>
         </div>
     </div>
 
@@ -118,3 +138,52 @@
             class="text-gray-500 text-sm no-underline hover:text-gray-700">Batal</button>
     </div>
 </form>
+
+<script>
+    document.getElementById('gallery-input').addEventListener('change', function(event) {
+        const previewContainer = document.getElementById('gallery-preview');
+        // Clear only new previews, keep existing ones if we want (or clear all to show current selection state)
+        // Since input 'change' replaces files, we should probably clear to show *current* new selection.
+        // However, if we want to show existing DB images + new ones, we need to be careful.
+        // For simplicity, let's append new previews to the list or create a clear distinction.
+        // The user asked for "buttons but just give preview", implying simple multi-select.
+        
+        // Let's create a visual separator or just append.
+        // Actually, pure file input replaces selection. So standard behavior is: selected files replace previous *selection*.
+        // Existing database images are separate entities.
+        
+        // Remove old *preview* elements (custom class?) or just let them stack? 
+        // Let's clear any *previous preview* elements but keep DB images. 
+        // We can mark DB images with a class or just clear everything if we assume new selection replaces everything (which it does for the INPUT, but not DB).
+        
+        // Strategy: Clear only elements that are NOT existing DB images.
+        // But finding them might be tricky without classes. 
+        // Let's just append for now, or clear "newly added" ones provided we track them.
+        // Easier: Clear a specific container for "new" previews.
+        
+        // Let's modify the HTML above to have a specific container for NEW images if we want to keep DB images separate.
+        // OR, just clear the container? If clear container, we lose DB images visualization? 
+        // No, DB images are rendered by server. JS runs client side. 
+        // If I clear `innerHTML`, I remove DB images too.
+        // So I should append.
+        
+        const files = event.target.files;
+        
+        // Optional: clear previous *new* previews if any
+        const existingPreviews = previewContainer.querySelectorAll('.new-preview');
+        existingPreviews.forEach(el => el.remove());
+
+        if (files) {
+            Array.from(files).forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const div = document.createElement('div');
+                    div.className = 'relative w-20 h-20 rounded-lg overflow-hidden border border-gray-200 group new-preview';
+                    div.innerHTML = `<img src="${e.target.result}" class="w-full h-full object-cover">`;
+                    previewContainer.appendChild(div);
+                }
+                reader.readAsDataURL(file);
+            });
+        }
+    });
+</script>

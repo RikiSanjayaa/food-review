@@ -12,10 +12,72 @@
             <div class="lg:col-span-2">
                 <!-- Hero Image & Header -->
                 <div class="bg-white shadow-sm rounded-2xl overflow-hidden mb-4" data-aos="fade-up">
-                    @if ($recipe->hero_image)
-                        <img src="{{ Storage::url($recipe->hero_image) }}" alt="{{ $recipe->title }}"
-                            class="w-full h-96 object-cover">
+
+                    @php
+                        $allImages = collect();
+                        if ($recipe->hero_image) {
+                            $allImages->push($recipe->hero_image);
+                        }
+                        foreach ($recipe->images as $img) {
+                            $allImages->push($img->image_path);
+                        }
+                    @endphp
+
+                    @if ($allImages->count() > 1)
+                        <!-- Alpine.js Carousel -->
+                        <div x-data="{
+                            activeSlide: 0,
+                            total: {{ $allImages->count() }},
+                            next() { this.activeSlide = (this.activeSlide === this.total - 1) ? 0 : this.activeSlide + 1 },
+                            prev() { this.activeSlide = (this.activeSlide === 0) ? this.total - 1 : this.activeSlide - 1 },
+                            autoPlay() { setInterval(() => { this.next() }, 5000) }
+                        }" x-init="autoPlay()" class="relative w-full h-96 group">
+
+                            <!-- Slides -->
+                            @foreach ($allImages as $index => $image)
+                                <div x-show="activeSlide === {{ $index }}"
+                                    x-transition:enter="transition ease-out duration-700"
+                                    x-transition:enter-start="opacity-0 scale-105"
+                                    x-transition:enter-end="opacity-100 scale-100"
+                                    class="absolute inset-0 w-full h-full">
+                                    <img src="{{ Storage::url($image) }}" alt="{{ $recipe->title }}"
+                                        class="w-full h-full object-cover">
+                                </div>
+                            @endforeach
+
+                            <!-- Navigation Arrows (Transparent) -->
+                            <button @click="prev()"
+                                class="absolute left-2 top-1/2 -translate-y-1/2 p-2 text-white/70 hover:text-white transition-colors duration-300 opacity-0 group-hover:opacity-100">
+                                <i class="bi bi-chevron-left text-4xl drop-shadow-md"></i>
+                            </button>
+                            <button @click="next()"
+                                class="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-white/70 hover:text-white transition-colors duration-300 opacity-0 group-hover:opacity-100">
+                                <i class="bi bi-chevron-right text-4xl drop-shadow-md"></i>
+                            </button>
+
+                            <!-- Dots -->
+                            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                                @foreach ($allImages as $index => $image)
+                                    <button @click="activeSlide = {{ $index }}"
+                                        class="h-2 rounded-full transition-all duration-300 shadow-sm"
+                                        :class="activeSlide === {{ $index }} ? 'w-6 bg-orange-500' : 'w-2 bg-white/60 hover:bg-white'">
+                                    </button>
+                                @endforeach
+                            </div>
+                        </div>
+                    @elseif ($allImages->count() === 1)
+                        <!-- Single Image -->
+                        <div class="w-full h-96">
+                            <img src="{{ Storage::url($allImages->first()) }}" alt="{{ $recipe->title }}"
+                                class="w-full h-full object-cover">
+                        </div>
+                    @else
+                        <!-- Fallback -->
+                        <div class="w-full h-96 bg-gray-100 flex items-center justify-center text-gray-400">
+                            <i class="bi bi-image text-6xl"></i>
+                        </div>
                     @endif
+
                     <div class="p-6 md:p-8">
                         <div class="flex flex-col md:flex-row justify-between items-start gap-4 mb-3">
                             <div>
@@ -195,4 +257,5 @@
             </div>
         </div>
     </div>
+
 @endsection

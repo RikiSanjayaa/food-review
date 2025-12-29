@@ -57,14 +57,20 @@
         .navbar-logo:hover {
             transform: scale(1.05);
         }
-    </style>
-</head>
 
-<body>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
+
+<body class="transition-colors duration-500" x-data="{
+    scrolled: false,
+    mobileMenuOpen: false
+}">
 
     <div class="app-wrapper">
 
-        <nav x-data="{ scrolled: false, mobileMenuOpen: false }" @scroll.window="scrolled = (window.pageYOffset > 50)"
+        <nav @scroll.window="scrolled = (window.pageYOffset > 50)"
             class="h-14.5 flex items-center transition-all duration-1000 ease-in-out z-1000
              {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'fixed top-0 left-0 right-0' : 'sticky top-0 bg-white border-b border-gray-200' }}"
             :class="{
@@ -116,6 +122,7 @@
 
                     <div class="hidden lg:flex items-center gap-3 -mr-4">
                         @auth
+
                             <div x-data="{ open: false }" class="relative">
                                 <button
                                     class="px-3.5 py-1 rounded-full border-0 transition-all duration-1000 ease-in-out flex items-center gap-1 text-sm cursor-pointer"
@@ -133,7 +140,13 @@
                                             'text-white' :
                                             'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent font-bold'
                                         ]">{{ Auth::user()->name }}</span>
-                                    <i class="bi bi-chevron-down text-xs"></i>
+                                    <i class="bi bi-chevron-down text-xs"
+                                        :class="[
+                                            {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
+                                            !scrolled ?
+                                            'text-white' :
+                                            'text-gray-500'
+                                        ]"></i>
                                 </button>
 
                                 <ul x-show="open" @click.outside="open = false"
@@ -143,7 +156,7 @@
                                     x-transition:leave="transition ease-in duration-75"
                                     x-transition:leave-start="opacity-100 scale-100"
                                     x-transition:leave-end="opacity-0 scale-95"
-                                    class="absolute right-0 mt-2 w-48 bg-white border-0 rounded-xl py-2 list-none z-50">
+                                    class="absolute right-0 mt-2 w-48 bg-white border-0 rounded-xl py-2 list-none z-50 shadow-xl shadow-gray-200/50">
                                     <div class="px-4 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider">
                                         Menu User
                                     </div>
@@ -156,15 +169,15 @@
                                                 Profil Saya</span>
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="{{ route('recipes.create') }}"
+                                            class="px-4 py-2 hover:bg-orange-50 text-sm font-bold flex items-center gap-2 no-underline">
+                                            <i class="bi bi-plus-circle text-orange-500"></i>
+                                            <span class="bg-linear-to-r text-orange-500 bg-clip-text">Tambah
+                                                Resep</span>
+                                        </a>
+                                    </li>
                                     @if (Auth::user()->is_admin)
-                                        <li>
-                                            <a href="{{ route('recipes.create') }}"
-                                                class="px-4 py-2 hover:bg-orange-50 text-sm font-bold flex items-center gap-2 no-underline">
-                                                <i class="bi bi-plus-circle text-orange-500"></i>
-                                                <span class="bg-linear-to-r text-orange-500 bg-clip-text">Tambah
-                                                    Resep</span>
-                                            </a>
-                                        </li>
                                         <li>
                                             <a href="{{ route('admin.tags.index') }}"
                                                 class="px-4 py-2 hover:bg-orange-50 text-sm font-bold flex items-center gap-2 no-underline">
@@ -227,7 +240,7 @@
                     x-transition:leave="transition ease-in duration-150"
                     x-transition:leave-start="opacity-100 translate-y-0"
                     x-transition:leave-end="opacity-0 -translate-y-2"
-                    class="absolute top-full right-0 min-w-70 max-w-80 bg-white/95 backdrop-blur-xl border border-gray-100 rounded-2xl p-4 flex flex-col gap-3 lg:hidden"
+                    class="absolute top-full right-0 min-w-70 max-w-80 bg-white/95 backdrop-blur-xl border border-gray-100 rounded-2xl p-4 flex flex-col gap-3 lg:hidden shadow-2xl"
                     @click.outside="mobileMenuOpen = false">
 
                     @auth

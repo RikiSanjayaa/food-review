@@ -139,7 +139,7 @@
                             @foreach ($user->recipes as $recipe)
                                 <div
                                     class="group h-full bg-white rounded-4xl p-3 shadow-sm hover:shadow-2xl hover:shadow-orange-100/60 transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 relative">
-                                    <div class="relative aspect-video overflow-hidden rounded-3xl bg-gray-100 mb-3">
+                                    <div class="relative aspect-video overflow-hidden rounded-3xl bg-gray-100 group-hover:brightness-[1.02] transition-all mb-3">
                                         <a href="{{ route('recipes.show', $recipe) }}" class="block w-full h-full">
                                             <img src="{{ $recipe->hero_image ? Storage::url($recipe->hero_image) : asset('images/placeholder-recipe.jpg') }}"
                                                 class="w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-in-out">

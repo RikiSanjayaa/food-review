@@ -17,6 +17,7 @@ class Review extends Model
         'comment',
         'is_hidden',
         'is_reported',
+        'parent_id',
     ];
 
     protected $casts = [
@@ -32,6 +33,16 @@ class Review extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(Review::class, 'parent_id');
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Review::class, 'parent_id');
     }
 }
 

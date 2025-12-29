@@ -51,6 +51,11 @@ class Recipe extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function images(): HasMany
+    {
+        return $this->hasMany(RecipeImage::class);
+    }
+
     public function totalTime(): ?int
     {
         if ($this->prep_time === null && $this->cook_time === null) {
@@ -62,14 +67,17 @@ class Recipe extends Model
 
     public function recalculateRatings(): void
     {
-        $stats = $this->reviews()
+        $reviews = $this->reviews()
             ->where('is_hidden', false)
-            ->selectRaw('COUNT(*) as count, COALESCE(AVG(rating), 0) as avg')
-            ->first();
+            ->whereNull('parent_id') // Only top-level reviews count for rating
+            ->get();
+
+        $avg = $reviews->avg('rating');
+        $count = $reviews->count();
 
         $this->update([
-            'rating_avg' => round((float) ($stats->avg ?? 0), 2),
-            'rating_count' => (int) ($stats->count ?? 0),
+            'rating_avg' => round((float) ($avg ?? 0), 2),
+            'rating_count' => (int) ($count ?? 0),
         ]);
     }
 }

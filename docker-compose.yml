@@ -24,6 +24,7 @@ services:
     volumes:
       - public_data:/var/www/html/public
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./storage:/var/www/html/storage
     networks:
       - food-review-network
     depends_on:

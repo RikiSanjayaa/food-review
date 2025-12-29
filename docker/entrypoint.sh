@@ -21,12 +21,13 @@ if [ -z "$(grep '^APP_KEY=' .env)" ] || [ "$(grep '^APP_KEY=' .env)" = "APP_KEY=
     php artisan key:generate
 fi
 
-if [ ! -L public/storage ]; then
-    php artisan storage:link
-fi
+php artisan optimize:clear
+
+rm -rf public/storage
+php artisan storage:link
 
 php artisan migrate --force --seed
 
-chown -R www-data:www-data storage bootstrap/cache
+chmod -R 777 storage bootstrap/cache
 
 exec "$@"

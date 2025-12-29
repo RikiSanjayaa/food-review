@@ -34,6 +34,6 @@ php artisan storage:link
 
 php artisan migrate --force --seed
 
-chmod -R 777 storage bootstrap/cache
+chmod -R 777 storage bootstrap/cache database
 
 exec "$@"

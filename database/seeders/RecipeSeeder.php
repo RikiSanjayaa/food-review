@@ -87,20 +87,28 @@ class RecipeSeeder extends Seeder
         ];
 
         foreach ($indonesianRecipes as $data) {
-            $recipe = Recipe::create(array_merge([
-                'user_id' => $users->random()->id,
-                'title' => $data['title'],
-                'slug' => \Illuminate\Support\Str::slug($data['title']),
-                'description' => $data['description'],
-                'ingredients' => $data['ingredients'],
-                'steps' => $data['steps'],
-                'difficulty' => $data['difficulty'],
-                'hero_image' => $data['hero_image'],
-            ], $data['other_attributes'] ?? []));
+            $slug = \Illuminate\Support\Str::slug($data['title']);
+            
+            // Check if recipe exists
+            $recipe = Recipe::where('slug', $slug)->first();
 
-            $recipe->tags()->sync(
-                $tags->random(rand(2, 3))->pluck('id')->all()
-            );
+            if (! $recipe) {
+                $recipe = Recipe::create(array_merge([
+                    'user_id' => $users->random()->id,
+                    'title' => $data['title'],
+                    'slug' => $slug,
+                    'description' => $data['description'],
+                    'ingredients' => $data['ingredients'],
+                    'steps' => $data['steps'],
+                    'difficulty' => $data['difficulty'],
+                    'hero_image' => $data['hero_image'],
+                ], $data['other_attributes'] ?? []));
+
+                // Only attach tags if new recipe
+                $recipe->tags()->sync(
+                    $tags->random(rand(2, 3))->pluck('id')->all()
+                );
+            }
         }
     }
 }

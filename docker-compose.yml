@@ -10,7 +10,6 @@ services:
       - ./:/var/www/html
       - ./storage:/var/www/html/storage
       - ./database:/var/www/html/database
-      - public_data:/var/www/html/public
       - /var/www/html/vendor
     networks:
       - food-review-network
@@ -22,16 +21,13 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - public_data:/var/www/html/public
+      - ./public:/var/www/html/public
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
       - ./storage:/var/www/html/storage
     networks:
       - food-review-network
     depends_on:
       - app
-
-volumes:
-  public_data:
 
 networks:
   food-review-network:

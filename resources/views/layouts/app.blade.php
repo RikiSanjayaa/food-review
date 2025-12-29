@@ -57,15 +57,16 @@
         .navbar-logo:hover {
             transform: scale(1.05);
         }
-        
-        [x-cloak] { display: none !important; }
+
+        [x-cloak] {
+            display: none !important;
+        }
     </style>
-    
-<body class="transition-colors duration-500"
-    x-data="{
-        scrolled: false,
-        mobileMenuOpen: false
-    }">
+
+<body class="transition-colors duration-500" x-data="{
+    scrolled: false,
+    mobileMenuOpen: false
+}">
 
     <div class="app-wrapper">
 
@@ -139,11 +140,13 @@
                                             'text-white' :
                                             'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent font-bold'
                                         ]">{{ Auth::user()->name }}</span>
-                                    <i class="bi bi-chevron-down text-xs" :class="[
-                                        {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} && !scrolled 
-                                        ? 'text-white' 
-                                        : 'text-gray-500'
-                                    ]"></i>
+                                    <i class="bi bi-chevron-down text-xs"
+                                        :class="[
+                                            {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
+                                            !scrolled ?
+                                            'text-white' :
+                                            'text-gray-500'
+                                        ]"></i>
                                 </button>
 
                                 <ul x-show="open" @click.outside="open = false"
@@ -166,15 +169,15 @@
                                                 Profil Saya</span>
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="{{ route('recipes.create') }}"
+                                            class="px-4 py-2 hover:bg-orange-50 text-sm font-bold flex items-center gap-2 no-underline">
+                                            <i class="bi bi-plus-circle text-orange-500"></i>
+                                            <span class="bg-linear-to-r text-orange-500 bg-clip-text">Tambah
+                                                Resep</span>
+                                        </a>
+                                    </li>
                                     @if (Auth::user()->is_admin)
-                                        <li>
-                                            <a href="{{ route('recipes.create') }}"
-                                                class="px-4 py-2 hover:bg-orange-50 text-sm font-bold flex items-center gap-2 no-underline">
-                                                <i class="bi bi-plus-circle text-orange-500"></i>
-                                                <span class="bg-linear-to-r text-orange-500 bg-clip-text">Tambah
-                                                    Resep</span>
-                                            </a>
-                                        </li>
                                         <li>
                                             <a href="{{ route('admin.tags.index') }}"
                                                 class="px-4 py-2 hover:bg-orange-50 text-sm font-bold flex items-center gap-2 no-underline">

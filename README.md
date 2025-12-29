@@ -11,46 +11,54 @@ Minimalist Baker–style mini food review site with recipe search, filters, user
 ### Getting started
 
 1. **Install dependencies**
-   ```bash
-   composer install
-   npm install
-   ```
+
+    ```bash
+    composer install
+    npm install
+    ```
 
 2. **Setup Environtment**
-   ```bash
-   cp .env.example .env
-   php artisan key:generate
-   ```
 
-3. **Configure Database & Seed**
-   ```bash
-   touch database/database.sqlite
-   php artisan migrate --seed
-   ```
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
 
-4. **[NEW] Configure Email (Required for Forgot Password)**
-   Update your `.env` file with Gmail SMTP settings to enable the Forgot Password feature:
+3. **Configure Seed & Storage**
 
-   ```env
-   MAIL_MAILER=smtp
-   MAIL_HOST=smtp.gmail.com
-   MAIL_PORT=465
-   MAIL_USERNAME=your-email@gmail.com
-   MAIL_PASSWORD=your-app-password
-   MAIL_ENCRYPTION=ssl
-   MAIL_FROM_ADDRESS="admin@yourdomain.com"
-   MAIL_FROM_NAME="Food Reviews"
-   
-   APP_NAME="Food Reviews"
-   APP_LOCALE=id
-   ```
-   > **Note:** Use an **App Password** from Google Account (2-Step Verification), not your login password.
+    ```bash
+    php artisan storage:link
+    php artisan migrate --seed
+    ```
+
+4. **Configure Email (Required for Forgot Password)**
+
+    To enable the Forgot Password feature, configure Gmail SMTP in your `.env` file:
+
+    **Step 1:** Enable 2-Factor Authentication on your Google account
+
+    **Step 2:** Generate an App Password at https://myaccount.google.com/apppasswords
+
+    **Step 3:** Update your `.env` with these settings:
+
+    ```env
+    MAIL_MAILER=smtp
+    MAIL_HOST=smtp.gmail.com
+    MAIL_PORT=587
+    MAIL_USERNAME=your-email@gmail.com
+    MAIL_PASSWORD=your-16-char-app-password
+    MAIL_ENCRYPTION=tls
+    MAIL_FROM_ADDRESS="your-email@gmail.com"
+    MAIL_FROM_NAME="Food Reviews"
+    ```
+
+    > **Note:** Use the App Password (without spaces) for the `MAIL_PASSWORD`, not your regular Gmail password. The `MAIL_FROM_ADDRESS` should match your Gmail address.
 
 5. **Run Application**
-   ```bash
-   npm run build
-   php artisan serve
-   ```
+    ```bash
+    npm run build
+    php artisan serve
+    ```
 
 ### Demo accounts
 
@@ -68,4 +76,3 @@ Minimalist Baker–style mini food review site with recipe search, filters, user
 ### Testing
 
 -   Feature coverage in progress. Run `php artisan test`.
-

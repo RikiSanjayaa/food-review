@@ -8,8 +8,11 @@ if [ ! -f .env ]; then
     elif [ -f .env.example ]; then
         cp .env.example .env
     fi
+fi
 
-    # Force file driver for cache and session to avoid 'no such table' errors on startup
+# Force file driver for cache and session to avoid 'no such table' errors on startup
+# We do this every time to ensure configuration is correct even if .env exists
+if [ -f .env ]; then
     sed -i 's/CACHE_STORE=database/CACHE_STORE=file/g' .env
     sed -i 's/SESSION_DRIVER=database/SESSION_DRIVER=file/g' .env
 fi

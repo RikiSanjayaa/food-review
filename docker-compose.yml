@@ -1,0 +1,36 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: food-review-app
+    container_name: food-review-app
+    restart: unless-stopped
+    volumes:
+      - ./:/var/www/html
+      - ./storage:/var/www/html/storage
+      - ./database:/var/www/html/database
+      - public_data:/var/www/html/public
+    networks:
+      - food-review-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: food-review-nginx
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - public_data:/var/www/html/public
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - food-review-network
+    depends_on:
+      - app
+
+volumes:
+  public_data:
+
+networks:
+  food-review-network:
+    driver: bridge

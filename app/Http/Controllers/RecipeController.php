@@ -63,12 +63,6 @@ class RecipeController extends Controller
         $recipes = $query->paginate(8)->withQueryString();
         $tags = Tag::orderBy('name')->get();
 
-        // Get top 5 recipes with most ratings for carousel
-        $topRatedRecipes = Recipe::where('rating_count', '>', 0)
-            ->orderByDesc('rating_count')
-            ->limit(5)
-            ->get();
-
         $diets = [
             'vegan' => 'Vegan',
             'vegetarian' => 'Vegetarian',
@@ -80,7 +74,7 @@ class RecipeController extends Controller
             return view('recipes._recipe_list', compact('recipes'))->render();
         }
 
-        return view('recipes.index', compact('recipes', 'tags', 'filters', 'sort', 'topRatedRecipes', 'diets'));
+        return view('recipes.index', compact('recipes', 'tags', 'filters', 'sort', 'diets'));
     }
 
     public function create()

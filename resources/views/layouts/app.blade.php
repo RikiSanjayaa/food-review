@@ -89,15 +89,15 @@
 
         <nav x-data="{ scrolled: false, mobileMenuOpen: false }" @scroll.window="scrolled = (window.pageYOffset > 50)"
             class="h-14.5 flex items-center transition-all duration-1000 ease-in-out z-1000
-             {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'fixed top-0 left-0 right-0' : 'sticky top-0 bg-white dark:bg-neutral-900 border-b border-gray-200 dark:border-neutral-800' }}"
+             {{ request()->routeIs('home', 'login', 'register') ? 'fixed top-0 left-0 right-0' : 'sticky top-0 bg-white dark:bg-neutral-900 border-b border-gray-200 dark:border-neutral-800' }}"
             :class="{
-                'bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md': {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
+                'bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md': {{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} &&
                     (scrolled || mobileMenuOpen),
                 'bg-white dark:bg-neutral-900': !
-                    {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} ||
-                    ({{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
+                    {{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} ||
+                    ({{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} &&
                         (scrolled || mobileMenuOpen)),
-                'bg-transparent': {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
+                'bg-transparent': {{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} &&
                     !scrolled && !mobileMenuOpen
             }">
 
@@ -105,16 +105,16 @@
                 <div class="w-full flex justify-between items-center h-full">
 
                     <a class="flex items-center gap-2 font-bold transition-colors duration-1000 ease-in-out h-14.5 pl-3 tracking-tight no-underline"
-                        href="{{ route('recipes.index') }}">
+                        href="{{ route('home') }}">
 
                         <img src="{{ asset('logo.svg') }}" alt="Logo" class="navbar-logo">
 
                         <span class="hidden sm:block whitespace-nowrap ml-2 text-lg font-bold leading-none pt-0.5"
                             :class="[
-                                {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
+                                {{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} &&
                                 (scrolled || mobileMenuOpen) ?
                                 'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent' :
-                                ({{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} ?
+                                ({{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} ?
                                     'text-white' :
                                     'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent')
                             ]">Food
@@ -123,16 +123,39 @@
 
                     <ul
                         class="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 mb-0 list-none p-0">
-                        <li>
-                            <a class="transition-colors duration-1000 ease-in-out px-3 flex items-center text-sm font-medium leading-14.5 no-underline"
+                        {{-- Home Link --}}
+                        <li class="relative group/nav">
+                            <a class="transition-colors duration-1000 ease-in-out px-4 flex flex-col items-center text-sm font-bold leading-14.5 no-underline"
+                                href="{{ route('home') }}">
+                                <span
+                                    :class="{{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} 
+                                        ? (scrolled ? 
+                                            ( '{{ request()->routeIs('home') }}' ? 'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent' : 'text-gray-900 dark:text-gray-100 hover:text-orange-600' ) 
+                                            : ( '{{ request()->routeIs('home') }}' ? 'text-white' : 'text-white/60 hover:text-white' )
+                                          ) 
+                                        : ( '{{ request()->routeIs('home') }}' ? 'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent' : 'text-gray-900 dark:text-gray-100 hover:text-orange-600' )">
+                                    Home
+                                </span>
+                                {{-- Underline Indicator --}}
+                                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-orange-500 transition-all duration-300 {{ request()->routeIs('home') ? 'opacity-100 scale-100' : 'opacity-0 scale-0 group-hover/nav:opacity-50 group-hover/nav:scale-100' }}"></div>
+                            </a>
+                        </li>
+
+                        {{-- Recipes Link --}}
+                        <li class="relative group/nav">
+                            <a class="transition-colors duration-1000 ease-in-out px-4 flex flex-col items-center text-sm font-bold leading-14.5 no-underline"
                                 href="{{ route('recipes.index') }}">
                                 <span
-                                    :class="{{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }}
-                                        ?
-                                        (scrolled ?
-                                            'font-bold bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent' :
-                                            'text-white hover:text-white/80') :
-                                        'text-gray-900 dark:text-gray-100 hover:text-orange-600 dark:hover:text-orange-400'">Beranda</span>
+                                    :class="{{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} 
+                                        ? (scrolled ? 
+                                            ( '{{ request()->routeIs('recipes.*') }}' ? 'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent' : 'text-gray-900 dark:text-gray-100 hover:text-orange-600' ) 
+                                            : ( '{{ request()->routeIs('recipes.*') }}' ? 'text-white' : 'text-white/60 hover:text-white' )
+                                          ) 
+                                        : ( '{{ request()->routeIs('recipes.*') }}' ? 'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent' : 'text-gray-900 dark:text-gray-100 hover:text-orange-600' )">
+                                    Recipes
+                                </span>
+                                {{-- Underline Indicator --}}
+                                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-orange-500 transition-all duration-300 {{ request()->routeIs('recipes.*') ? 'opacity-100 scale-100' : 'opacity-0 scale-0 group-hover/nav:opacity-50 group-hover/nav:scale-100' }}"></div>
                             </a>
                         </li>
                     </ul>
@@ -143,23 +166,23 @@
                                 <button
                                     class="px-3.5 py-1 rounded-full border-0 transition-all duration-1000 ease-in-out flex items-center gap-1 text-sm cursor-pointer"
                                     type="button" @click="open = !open" :class="[
-                                            {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
-                                            !scrolled ?
-                                            'bg-white/20 text-white backdrop-blur-sm hover:bg-white/30' :
-                                            'hover:bg-orange-50 dark:hover:bg-neutral-800 border border-orange-200 dark:border-neutral-700'
-                                        ]">
+                                                    {{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} &&
+                                                    !scrolled ?
+                                                    'bg-white/20 text-white backdrop-blur-sm hover:bg-white/30' :
+                                                    'hover:bg-orange-50 dark:hover:bg-neutral-800 border border-orange-200 dark:border-neutral-700'
+                                                ]">
                                     <span :class="[
-                                                {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
-                                                !scrolled ?
-                                                'text-white' :
-                                                'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent font-bold'
-                                            ]">{{ Auth::user()->name }}</span>
+                                                        {{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} &&
+                                                        !scrolled ?
+                                                        'text-white' :
+                                                        'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent font-bold'
+                                                    ]">{{ Auth::user()->name }}</span>
                                     <i class="bi bi-chevron-down text-xs" :class="[
-                                                {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
-                                                !scrolled ?
-                                                'text-white' :
-                                                'text-gray-500 dark:text-gray-400'
-                                            ]"></i>
+                                                        {{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} &&
+                                                        !scrolled ?
+                                                        'text-white' :
+                                                        'text-gray-500 dark:text-gray-400'
+                                                    ]"></i>
                                 </button>
 
                                 <ul x-show="open" @click.outside="open = false"
@@ -215,20 +238,20 @@
                         @else
                             <a href="{{ route('login') }}"
                                 class="no-underline transition-colors duration-300 ease-in-out text-sm font-bold py-2 px-3"
-                                :class="{{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }}
-                                        &&
-                                        !scrolled ? 'text-white hover:text-white/80' :
-                                        'text-gray-500 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400'">
+                                :class="{{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }}
+                                                &&
+                                                !scrolled ? 'text-white hover:text-white/80' :
+                                                'text-gray-500 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400'">
                                 Masuk
                             </a>
                             <a href="{{ route('register') }}"
                                 class="no-underline rounded-md px-4 transition-all duration-300 ease-in-out text-sm py-2 font-bold"
                                 :class="[
-                                        {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
-                                        !scrolled ?
-                                        'bg-transparent border-2 border-white text-white hover:bg-white hover:text-orange-600' :
-                                        'border-0 bg-linear-to-r from-amber-500 to-orange-600 text-white'
-                                    ]">
+                                                {{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} &&
+                                                !scrolled ?
+                                                'bg-transparent border-2 border-white text-white hover:bg-white hover:text-orange-600' :
+                                                'border-0 bg-linear-to-r from-amber-500 to-orange-600 text-white'
+                                            ]">
                                 Daftar
                             </a>
                         @endauth
@@ -245,7 +268,7 @@
                         type="button" @click="mobileMenuOpen = !mobileMenuOpen">
                         <i class="bi text-2xl" :class="[
                                 mobileMenuOpen ? 'bi-x' : 'bi-list',
-                                {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
+                                {{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} &&
                                 !scrolled && !mobileMenuOpen ? 'text-white' : 'text-gray-900 dark:text-gray-100'
                             ]"></i>
                     </button>

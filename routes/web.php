@@ -9,9 +9,11 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Admin\TagController as AdminTagController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [RecipeController::class, 'index'])->name('recipes.index');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/recipes', [RecipeController::class, 'index'])->name('recipes.index');
 
 Route::get('/login', [LoginController::class, 'create'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);

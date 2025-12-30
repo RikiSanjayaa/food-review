@@ -37,7 +37,7 @@ class RecipeController extends Controller
             });
         }
 
-        if (! empty($filters['tags'])) {
+        if (!empty($filters['tags'])) {
             $query->whereHas('tags', fn($q) => $q->whereIn('tags.id', $filters['tags']));
         }
 
@@ -60,7 +60,7 @@ class RecipeController extends Controller
             default => $query->latest('published_at')->latest(),
         };
 
-        $recipes = $query->paginate(9)->withQueryString();
+        $recipes = $query->paginate(8)->withQueryString();
         $tags = Tag::orderBy('name')->get();
 
         // Get top 5 recipes with most ratings for carousel
@@ -75,6 +75,10 @@ class RecipeController extends Controller
             'gluten-free' => 'Bebas Gluten',
             'halal' => 'Halal',
         ];
+
+        if ($request->ajax()) {
+            return view('recipes._recipe_list', compact('recipes'))->render();
+        }
 
         return view('recipes.index', compact('recipes', 'tags', 'filters', 'sort', 'topRatedRecipes', 'diets'));
     }
@@ -120,9 +124,13 @@ class RecipeController extends Controller
         $reviews = $recipe->reviews()
             ->with(['user', 'replies.user'])
             ->whereNull('parent_id') // Only top-level reviews
-            ->when(! $user || ! $user->is_admin, fn($q) => $q->where('is_hidden', false))
+            ->when(!$user || !$user->is_admin, fn($q) => $q->where('is_hidden', false))
             ->latest()
             ->paginate(5);
+
+        if ($request->ajax()) {
+            return view('reviews._list', compact('recipe', 'reviews'))->render();
+        }
 
         return view('recipes.show', compact('recipe', 'reviews'));
     }
@@ -186,8 +194,8 @@ class RecipeController extends Controller
 
         while (
             Recipe::where('slug', $slug)
-            ->when($ignoreId, fn($q) => $q->where('id', '!=', $ignoreId))
-            ->exists()
+                ->when($ignoreId, fn($q) => $q->where('id', '!=', $ignoreId))
+                ->exists()
         ) {
             $slug = "{$base}-{$i}";
             $i++;
@@ -198,7 +206,7 @@ class RecipeController extends Controller
 
     private function handleHeroImageUpload(Request $request, ?string $existingPath = null): ?string
     {
-        if (! $request->hasFile('hero_image')) {
+        if (!$request->hasFile('hero_image')) {
             return $existingPath;
         }
 

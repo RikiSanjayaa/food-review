@@ -168,6 +168,6 @@
 
 @if (method_exists($reviews, 'links'))
     <div class="mt-4 flex justify-center">
-        {{ $reviews->links() }}
+        {{ $reviews->links('vendor.pagination.bootstrap-5') }}
     </div>
 @endif

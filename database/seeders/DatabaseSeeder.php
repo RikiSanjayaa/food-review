@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Recipe;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -17,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         $admin = User::where('email', 'admin@example.com')->first();
 
-        if (! $admin) {
+        if (!$admin) {
             $admin = User::factory()->create([
                 'name' => 'Admin Kuliner',
                 'email' => 'admin@example.com',
@@ -34,5 +35,12 @@ class DatabaseSeeder extends Seeder
             RecipeSeeder::class,
             ReviewSeeder::class,
         ]);
+
+        // tambah dummy data resep untuk testing pagination
+        Recipe::factory(10)->create([
+            'user_id' => $users->random()->id,
+        ])->each(function ($recipe) use ($users) {
+            $recipe->tags()->attach($users->random(2)->pluck('id'));
+        });
     }
 }

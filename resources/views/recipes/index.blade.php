@@ -3,7 +3,7 @@
 @section('content')
     {{-- Search/Filter Header --}}
     <section class="py-12 bg-gray-50 dark:bg-neutral-900 border-b border-gray-100 dark:border-neutral-800">
-        <div class="container mx-auto px-6">
+        <div class="w-full max-w-7xl mx-auto px-6">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
                 <div>
                     <h1 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-gray-100 mb-2 tracking-tight">Katalog
@@ -39,7 +39,7 @@
         </div>
     </section>
 
-    <section class="pb-12 relative overflow-hidden" id="recipe-results">
+    <section class="pb-12 pt-6 relative overflow-hidden" id="recipe-results">
         <div class="w-full max-w-7xl mx-auto px-6">
             <div x-data="recipeTable()" id="recipe-list-container" class="relative">
                 <!-- Loading Overlay -->

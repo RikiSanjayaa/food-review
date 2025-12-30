@@ -265,15 +265,44 @@
             </div>
 
             <!-- Sidebar -->
-            <div class="lg:col-span-1">
-                <div class="bg-white dark:bg-neutral-800 shadow-sm rounded-2xl" data-aos="fade-left">
-                    <div class="p-4">
-                        <h5 class="font-bold mb-4 dark:text-gray-100">Ulasan Komunitas</h5>
+            <div class="lg:col-span-1" x-data="sidebarHeight()" x-init="init()">
+                <div class="bg-white dark:bg-neutral-800 shadow-sm rounded-2xl lg:sticky lg:top-24" data-aos="fade-left">
+                    <div class="p-4 flex flex-col" :style="maxHeightStyle">
+                        <h5 class="font-bold mb-4 dark:text-gray-100 shrink-0">Ulasan Komunitas</h5>
+
+                        <!-- Star Filter -->
+                        @if (!empty($ratingDistribution) && array_sum($ratingDistribution) > 0)
+                            <div class="mb-4 shrink-0" x-data="starFilter()">
+                                <div class="flex flex-wrap gap-1.5">
+                                    <button @click="filterBy(null)"
+                                        class="px-3 py-1.5 rounded-full text-xs font-bold transition-all border"
+                                        :class="currentFilter === null
+                                            ? 'bg-orange-500 text-white border-orange-500'
+                                            : 'bg-gray-100 dark:bg-neutral-700 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-neutral-600 hover:border-orange-400'">
+                                        Semua
+                                    </button>
+                                    @for ($star = 5; $star >= 1; $star--)
+                                        @php $count = $ratingDistribution[$star] ?? 0; @endphp
+                                        @if ($count > 0)
+                                            <button @click="filterBy({{ $star }})"
+                                                class="px-3 py-1.5 rounded-full text-xs font-bold transition-all border flex items-center gap-1"
+                                                :class="currentFilter === {{ $star }}
+                                                    ? 'bg-orange-500 text-white border-orange-500'
+                                                    : 'bg-gray-100 dark:bg-neutral-700 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-neutral-600 hover:border-orange-400'">
+                                                <i class="bi bi-star-fill text-amber-400" :class="currentFilter === {{ $star }} && 'text-white'"></i>
+                                                {{ $star }}
+                                                <span class="text-[10px] opacity-70">({{ $count }})</span>
+                                            </button>
+                                        @endif
+                                    @endfor
+                                </div>
+                            </div>
+                        @endif
 
                         @auth
                             @include('reviews._form', ['recipe' => $recipe])
                         @else
-                            <div class="bg-gray-100 dark:bg-neutral-700 rounded-2xl text-center py-8 mb-4">
+                            <div class="bg-gray-100 dark:bg-neutral-700 rounded-2xl text-center py-8 mb-4 shrink-0">
                                 <i class="bi bi-lock text-4xl text-gray-300 dark:text-gray-500 block mb-2"></i>
                                 <p class="text-sm mb-0 dark:text-gray-400">Silakan <a href="{{ route('login') }}"
                                         class="text-orange-600 dark:text-orange-400 font-bold no-underline hover:underline">masuk</a>
@@ -281,7 +310,7 @@
                             </div>
                         @endauth
 
-                        <div x-data="reviewPagination()" id="review-list-container" class="relative">
+                        <div x-data="reviewPagination()" id="review-list-container" class="relative flex-1 overflow-y-auto min-h-0">
                             <!-- Review Loading Overlay -->
                             <div x-show="loading" x-transition.opacity
                                 class="absolute inset-0 z-50 bg-white/50 dark:bg-neutral-800/50 backdrop-blur-[1px] flex items-center justify-center rounded-2xl">
@@ -318,18 +347,77 @@
                                                 }
                                             });
                                             const html = await response.text();
-                                            document.getElementById('review-list-content').innerHTML = html;
+                                            const reviewContent = document.getElementById('review-list-content');
+                                            reviewContent.innerHTML = html;
 
-                                            // Re-initialize AOS for new elements
-                                            if (window.AOS) {
-                                                window.AOS.refresh();
+                                            // Re-initialize Alpine.js for new elements
+                                            if (window.Alpine) {
+                                                Alpine.initTree(reviewContent);
                                             }
-                                            // Update URL without refreshing (DISABLED for reviews to prevent confusing global pagination)
-                                            // window.history.pushState({}, '', url);
                                         } catch (error) {
                                             console.error('Error fetching reviews:', error);
                                         } finally {
                                             this.loading = false;
+                                        }
+                                    }
+                                }
+                            }
+
+                            function sidebarHeight() {
+                                return {
+                                    maxHeightStyle: '',
+                                    init() {
+                                        this.calculateHeight();
+                                        window.addEventListener('resize', () => this.calculateHeight());
+                                    },
+                                    calculateHeight() {
+                                        // Only apply on lg screens and up
+                                        if (window.innerWidth < 1024) {
+                                            this.maxHeightStyle = '';
+                                            return;
+                                        }
+                                        // Calculate: viewport height - sticky top offset - some padding
+                                        const viewportHeight = window.innerHeight;
+                                        const topOffset = 96; // lg:top-24 = 6rem = 96px
+                                        const bottomPadding = 40; // py-10 bottom padding
+                                        const maxHeight = viewportHeight - topOffset - bottomPadding;
+                                        this.maxHeightStyle = `max-height: ${maxHeight}px`;
+                                    }
+                                }
+                            }
+
+                            function starFilter() {
+                                return {
+                                    currentFilter: {{ $starFilter ?? 'null' }},
+                                    async filterBy(star) {
+                                        if (this.currentFilter === star) return;
+                                        this.currentFilter = star;
+
+                                        const baseUrl = '{{ route('recipes.show', $recipe) }}';
+                                        const url = star ? `${baseUrl}?star=${star}` : baseUrl;
+
+                                        const reviewContent = document.getElementById('review-list-content');
+
+                                        // Show loading state
+                                        reviewContent.classList.add('opacity-50', 'pointer-events-none');
+
+                                        try {
+                                            const response = await fetch(url, {
+                                                headers: {
+                                                    'X-Requested-With': 'XMLHttpRequest'
+                                                }
+                                            });
+                                            const html = await response.text();
+                                            reviewContent.innerHTML = html;
+
+                                            // Re-initialize Alpine.js for new elements
+                                            if (window.Alpine) {
+                                                Alpine.initTree(reviewContent);
+                                            }
+                                        } catch (error) {
+                                            console.error('Error filtering reviews:', error);
+                                        } finally {
+                                            reviewContent.classList.remove('opacity-50', 'pointer-events-none');
                                         }
                                     }
                                 }

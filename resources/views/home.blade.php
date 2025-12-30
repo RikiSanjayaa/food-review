@@ -64,9 +64,10 @@
             </div>
         </div>
 
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce duration-2000">
-            <i class="bi bi-chevron-down text-white/40 text-2xl"></i>
-        </div>
+        <button @click="window.scrollBy({ top: window.innerHeight, behavior: 'smooth' })"
+            class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce duration-2000 cursor-pointer hover:scale-110 transition-transform">
+            <i class="bi bi-chevron-down text-white/40 hover:text-white/70 text-2xl transition-colors"></i>
+        </button>
     </section>
 
     <style>
@@ -100,24 +101,66 @@
     <section class="py-32 bg-white dark:bg-neutral-950 overflow-hidden">
         <div class="max-w-350uto px-6 mb-20 text-center" data-aos="fade-up">
             <span class="text-xs font-black uppercase tracking-[0.4em] text-orange-500 mb-4 block">The Hall of Fame</span>
-            <h2 class="text-5xl md:text-8xl font-black text-gray-900 dark:text-white tracking-tighter mb-4 leading-none">
-                The <span class="bg-linear-to-r from-orange-400 to-amber-600 bg-clip-text text-transparent italic">Top
-                    Five</span>
+            <h2 class="text-5xl md:text-8xl font-black text-gray-900 dark:text-white mb-4 leading-none">
+                The <span class="bg-linear-to-r from-orange-400 to-amber-600 bg-clip-text text-transparent">
+                    Top Five</span>
             </h2>
             <p class="text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto">Pilihan kurasi terbaik dengan rating
                 tertinggi minggu ini. Eksplorasi cita rasa yang paling dicintai komunitas kami.</p>
         </div>
 
-        <div class="coverflow-container flex justify-center items-center">
-            <div class="flex -space-x-24 md:-space-x-48 group-flow">
+        {{-- Mobile: Horizontal scroll carousel --}}
+        <div class="md:hidden overflow-x-auto scrollbar-hide">
+            <div class="flex gap-4 px-6 pb-4" style="width: max-content;">
                 @foreach ($popularRecipes->take(5) as $index => $recipe)
-                    <div class="coverflow-card relative w-70 md:w-120 shrink-0 pointer-events-auto"
+                    <div class="relative w-72 shrink-0" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
+                        <a href="{{ route('recipes.show', $recipe) }}" class="block no-underline group/card">
+                            <div
+                                class="relative aspect-4/5 rounded-2xl overflow-hidden shadow-2xl border border-white/5 bg-neutral-900">
+                                @if ($recipe->hero_image)
+                                    <img src="{{ Storage::url($recipe->hero_image) }}" alt="{{ $recipe->title }}"
+                                        class="w-full h-full object-cover">
+                                @else
+                                    <div
+                                        class="w-full h-full bg-linear-to-br from-neutral-800 to-neutral-900 flex items-center justify-center">
+                                        <i class="bi bi-egg-fried text-neutral-700 text-5xl"></i>
+                                    </div>
+                                @endif
+                                <div
+                                    class="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/95 via-black/60 to-transparent p-6 flex flex-col justify-end min-h-[60%]">
+                                    <span
+                                        class="inline-block w-fit px-3 py-1 bg-orange-600/90 text-white text-[10px] font-black uppercase tracking-widest rounded-full mb-3">
+                                        #{{ $index + 1 }}
+                                    </span>
+                                    <h3
+                                        class="text-white text-xl font-black tracking-tight leading-tight mb-3 line-clamp-2">
+                                        {{ $recipe->title }}
+                                    </h3>
+                                    <div class="flex items-center gap-2 text-sm">
+                                        <i class="bi bi-star-fill text-amber-500"></i>
+                                        <span
+                                            class="text-white font-bold">{{ number_format($recipe->rating_avg, 1) }}</span>
+                                        <span class="text-white/40 text-xs">({{ $recipe->rating_count }})</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
+        {{-- Desktop: Coverflow effect --}}
+        <div class="hidden md:flex coverflow-container justify-center items-center">
+            <div class="flex -space-x-20 lg:-space-x-32 xl:-space-x-40 2xl:-space-x-48 group-flow">
+                @foreach ($popularRecipes->take(5) as $index => $recipe)
+                    <div class="coverflow-card relative w-52 lg:w-72 xl:w-96 2xl:w-120 shrink-0 pointer-events-auto rounded-2xl lg:rounded-3xl xl:rounded-[2.5rem]"
                         style="transform: rotateY({{ ($index - 2) * -15 }}deg) rotateZ({{ ($index - 2) * -2 }}deg) translateX({{ ($index - 2) * 30 }}px); z-index: {{ 5 - abs($index - 2) }};"
                         data-aos="fade-up" data-aos-delay="{{ $index * 150 }}">
 
                         <a href="{{ route('recipes.show', $recipe) }}" class="block no-underline group/card">
                             <div
-                                class="relative aspect-4/5 md:aspect-3/4 rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/5 bg-neutral-900">
+                                class="relative aspect-3/4 rounded-2xl lg:rounded-3xl xl:rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/5 bg-neutral-900">
                                 @if ($recipe->hero_image)
                                     <img src="{{ Storage::url($recipe->hero_image) }}" alt="{{ $recipe->title }}"
                                         class="w-full h-full object-cover transition-transform duration-1000 group-hover/card:scale-110">
@@ -130,32 +173,32 @@
 
                                 {{-- Glassmorphism Content Overlay --}}
                                 <div
-                                    class="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/95 via-black/40 to-transparent p-10 flex flex-col justify-end min-h-[50%] opacity-100">
-                                    <div class="mb-4">
+                                    class="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/95 via-black/40 to-transparent p-4 lg:p-6 xl:p-10 flex flex-col justify-end min-h-[50%] opacity-100">
+                                    <div class="mb-2 xl:mb-4">
                                         <span
-                                            class="px-4 py-1.5 bg-orange-600/90 backdrop-blur-md text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-full">
-                                            Ranking #{{ $index + 1 }}
+                                            class="px-2 lg:px-3 xl:px-4 py-1 xl:py-1.5 bg-orange-600/90 backdrop-blur-md text-white text-[8px] lg:text-[9px] xl:text-[10px] font-black uppercase tracking-widest xl:tracking-[0.2em] rounded-full">
+                                            #{{ $index + 1 }}
                                         </span>
                                     </div>
                                     <h3
-                                        class="text-white text-3xl md:text-5xl font-black tracking-tighter leading-[0.9] mb-6 group-hover/card:text-orange-400 transition-colors">
+                                        class="text-white text-lg lg:text-2xl xl:text-4xl 2xl:text-5xl font-black tracking-tighter leading-[0.9] mb-2 lg:mb-4 xl:mb-6 group-hover/card:text-orange-400 transition-colors line-clamp-2">
                                         {{ $recipe->title }}
                                     </h3>
                                     <div
-                                        class="flex items-center justify-between pt-6 border-t border-white/10 group-hover/card:border-orange-500/30 transition-colors">
-                                        <div class="flex items-center gap-3">
-                                            <div class="flex items-center gap-1.5 text-amber-500">
-                                                <i class="bi bi-star-fill text-sm"></i>
+                                        class="flex items-center justify-between pt-2 lg:pt-4 xl:pt-6 border-t border-white/10 group-hover/card:border-orange-500/30 transition-colors">
+                                        <div class="flex items-center gap-1 lg:gap-2 xl:gap-3">
+                                            <div class="flex items-center gap-1 text-amber-500">
+                                                <i class="bi bi-star-fill text-xs lg:text-sm"></i>
                                                 <span
-                                                    class="text-xl font-black text-white italic tracking-tighter">{{ number_format($recipe->rating_avg, 1) }}</span>
+                                                    class="text-sm lg:text-base xl:text-xl font-black text-white italic tracking-tighter">{{ number_format($recipe->rating_avg, 1) }}</span>
                                             </div>
                                             <span
-                                                class="text-white/30 text-[10px] font-black uppercase tracking-widest pl-3 border-l border-white/10">{{ $recipe->rating_count }}
+                                                class="text-white/30 text-[8px] lg:text-[9px] xl:text-[10px] font-black uppercase tracking-wider xl:tracking-widest pl-1 lg:pl-2 xl:pl-3 border-l border-white/10 hidden lg:inline">{{ $recipe->rating_count }}
                                                 Ratings</span>
                                         </div>
                                         <div
-                                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover/card:bg-orange-500 transition-all duration-500">
-                                            <i class="bi bi-arrow-right text-white"></i>
+                                            class="w-6 h-6 lg:w-8 lg:h-8 xl:w-10 xl:h-10 rounded-full bg-white/10 flex items-center justify-center group-hover/card:bg-orange-500 transition-all duration-500">
+                                            <i class="bi bi-arrow-right text-white text-xs lg:text-sm xl:text-base"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -188,7 +231,7 @@
                 <span class="text-xs font-black uppercase tracking-[0.4em] text-orange-500 mb-4 block">Our Philosophy</span>
                 <h2 class="text-6xl md:text-8xl font-black text-gray-900 dark:text-white tracking-tighter leading-[0.9]">
                     Karya Seni <br /> Dalam <span
-                        class="bg-linear-to-r from-orange-400 to-amber-600 bg-clip-text text-transparent italic overflow-visible">Setiap
+                        class="bg-linear-to-r from-orange-400 to-amber-600 bg-clip-text text-transparent overflow-visible">Setiap
                         Suapan</span>
                 </h2>
             </div>

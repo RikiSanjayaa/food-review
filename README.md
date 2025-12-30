@@ -78,6 +78,7 @@ Minimalist Baker–style mini food review site with recipe search, filters, user
 For a quick local setup using Docker, just run:
 
 ```bash
+cp .env.docker .env
 docker compose up -d
 ```
 

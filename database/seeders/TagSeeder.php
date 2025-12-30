@@ -14,7 +14,7 @@ class TagSeeder extends Seeder
             'Sarapan',
             'Makan Siang',
             'Makan Malam',
-            'Camilan',
+            'Cemilan',
             'Pedas',
             'Sehat',
             'Tradisional',
@@ -30,4 +30,3 @@ class TagSeeder extends Seeder
         }
     }
 }
-

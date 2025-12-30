@@ -35,12 +35,5 @@ class DatabaseSeeder extends Seeder
             RecipeSeeder::class,
             ReviewSeeder::class,
         ]);
-
-        // tambah dummy data resep untuk testing pagination
-        Recipe::factory(10)->create([
-            'user_id' => $users->random()->id,
-        ])->each(function ($recipe) use ($users) {
-            $recipe->tags()->attach($users->random(2)->pluck('id'));
-        });
     }
 }

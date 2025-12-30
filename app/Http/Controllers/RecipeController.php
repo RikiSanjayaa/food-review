@@ -115,18 +115,33 @@ class RecipeController extends Controller
         $recipe->load(['tags', 'user']);
         $user = $request->user();
 
+        // Star filter (null = all, 1-5 = specific rating)
+        $starFilter = $request->integer('star') ?: null;
+
         $reviews = $recipe->reviews()
-            ->with(['user', 'replies.user'])
+            ->with(['user'])
+            ->withCount('replies')
             ->whereNull('parent_id') // Only top-level reviews
             ->when(!$user || !$user->is_admin, fn($q) => $q->where('is_hidden', false))
+            ->when($starFilter, fn($q) => $q->where('rating', $starFilter))
             ->latest()
-            ->paginate(5);
+            ->paginate(5)
+            ->withQueryString();
+
+        // Get rating distribution for filter UI
+        $ratingDistribution = $recipe->reviews()
+            ->whereNull('parent_id')
+            ->when(!$user || !$user->is_admin, fn($q) => $q->where('is_hidden', false))
+            ->selectRaw('rating, COUNT(*) as count')
+            ->groupBy('rating')
+            ->pluck('count', 'rating')
+            ->toArray();
 
         if ($request->ajax()) {
-            return view('reviews._list', compact('recipe', 'reviews'))->render();
+            return view('reviews._list', compact('recipe', 'reviews', 'starFilter'))->render();
         }
 
-        return view('recipes.show', compact('recipe', 'reviews'));
+        return view('recipes.show', compact('recipe', 'reviews', 'ratingDistribution', 'starFilter'));
     }
 
     public function edit(Recipe $recipe)

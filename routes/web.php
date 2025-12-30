@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function (): void {
     Route::delete('/recipes/{recipe}/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
     Route::post('/reviews/{review}/report', [ReviewController::class, 'report'])->name('reviews.report');
     Route::patch('/reviews/{review}/moderate', [ReviewController::class, 'moderate'])->name('reviews.moderate');
+    Route::get('/recipes/{recipe}/reviews/{review}/replies', [ReviewController::class, 'replies'])->name('reviews.replies');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -12,7 +12,7 @@
 
     <div class="mb-4">
         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Foto Utama</label>
-        <input type="file" name="hero_image"
+        <input type="file" name="hero_image" accept="image/*"
             class="w-full px-3 py-1.5 border border-gray-300 dark:border-neutral-600 rounded-lg text-sm dark:text-gray-300 dark:bg-neutral-700 file:mr-3 file:py-1 file:px-3 file:rounded-md file:border-0 file:bg-orange-50 dark:file:bg-orange-900/30 file:text-orange-600 dark:file:text-orange-400 file:font-medium hover:file:bg-orange-100 dark:hover:file:bg-orange-900/50 cursor-pointer">
         @if ($recipe->hero_image)
             <img src="{{ Storage::url($recipe->hero_image) }}" alt=""

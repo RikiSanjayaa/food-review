@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Recipe;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -17,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         $admin = User::where('email', 'admin@example.com')->first();
 
-        if (! $admin) {
+        if (!$admin) {
             $admin = User::factory()->create([
                 'name' => 'Admin Kuliner',
                 'email' => 'admin@example.com',

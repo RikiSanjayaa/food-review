@@ -28,19 +28,18 @@
                     @if ($allImages->count() > 1)
                         <!-- Alpine.js Carousel -->
                         <div x-data="{
-                            activeSlide: 0,
-                            total: {{ $allImages->count() }},
-                            next() { this.activeSlide = (this.activeSlide === this.total - 1) ? 0 : this.activeSlide + 1 },
-                            prev() { this.activeSlide = (this.activeSlide === 0) ? this.total - 1 : this.activeSlide - 1 },
-                            autoPlay() { setInterval(() => { this.next() }, 5000) }
-                        }" x-init="autoPlay()" class="relative w-full h-96 group">
+                                    activeSlide: 0,
+                                    total: {{ $allImages->count() }},
+                                    next() { this.activeSlide = (this.activeSlide === this.total - 1) ? 0 : this.activeSlide + 1 },
+                                    prev() { this.activeSlide = (this.activeSlide === 0) ? this.total - 1 : this.activeSlide - 1 },
+                                    autoPlay() { setInterval(() => { this.next() }, 5000) }
+                                }" x-init="autoPlay()" class="relative w-full h-96 group">
 
                             <!-- Slides -->
                             @foreach ($allImages as $index => $image)
-                                <div x-show="activeSlide === {{ $index }}"
-                                    x-transition:enter="transition ease-out duration-700"
-                                    x-transition:enter-start="opacity-0 scale-105"
-                                    x-transition:enter-end="opacity-100 scale-100" class="absolute inset-0 w-full h-full">
+                                <div x-show="activeSlide === {{ $index }}" x-transition:enter="transition ease-out duration-700"
+                                    x-transition:enter-start="opacity-0 scale-105" x-transition:enter-end="opacity-100 scale-100"
+                                    class="absolute inset-0 w-full h-full">
                                     <img src="{{ Storage::url($image) }}" alt="{{ $recipe->title }}"
                                         class="w-full h-full object-cover">
                                 </div>
@@ -60,9 +59,8 @@
                             <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
                                 @foreach ($allImages as $index => $image)
                                     <button @click="activeSlide = {{ $index }}"
-                                        class="h-2 rounded-full transition-all duration-300 shadow-sm"
-                                        :class="activeSlide === {{ $index }} ? 'w-6 bg-orange-500' :
-                                            'w-2 bg-white/60 hover:bg-white'">
+                                        class="h-2 rounded-full transition-all duration-300 shadow-sm" :class="activeSlide === {{ $index }} ? 'w-6 bg-orange-500' :
+                                                        'w-2 bg-white/60 hover:bg-white'">
                                     </button>
                                 @endforeach
                             </div>
@@ -75,7 +73,8 @@
                         </div>
                     @else
                         <!-- Fallback -->
-                        <div class="w-full h-96 bg-gray-100 dark:bg-neutral-700 flex items-center justify-center text-gray-400 dark:text-gray-500">
+                        <div
+                            class="w-full h-96 bg-gray-100 dark:bg-neutral-700 flex items-center justify-center text-gray-400 dark:text-gray-500">
                             <i class="bi bi-image text-6xl"></i>
                         </div>
                     @endif
@@ -92,7 +91,8 @@
                                 <div class="font-bold text-amber-500 text-2xl flex items-center justify-end gap-2">
                                     <i class="bi bi-star-fill"></i> {{ number_format($recipe->rating_avg, 1) }}
                                 </div>
-                                <div class="text-gray-500 dark:text-gray-400 text-sm">{{ $recipe->rating_count }} ulasan</div>
+                                <div class="text-gray-500 dark:text-gray-400 text-sm">{{ $recipe->rating_count }} ulasan
+                                </div>
                             </div>
                         </div>
 
@@ -129,13 +129,14 @@
                                                 <input type="checkbox" id="ing-{{ $index }}" class="sr-only">
                                                 <div
                                                     class="checkbox-box w-6 h-6 shrink-0 rounded-lg border-2 border-gray-300 dark:border-neutral-600 flex items-center justify-center transition-all">
-                                                    <svg class="checkbox-icon w-4 h-4 text-white transition-all"
-                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                                    <svg class="checkbox-icon w-4 h-4 text-white transition-all" fill="none"
+                                                        stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                                                            d="M5 13l4 4L19 7"></path>
                                                     </svg>
                                                 </div>
-                                                <span class="ingredient-text text-base text-gray-700 dark:text-gray-300 transition-all">
+                                                <span
+                                                    class="ingredient-text text-base text-gray-700 dark:text-gray-300 transition-all">
                                                     {{ trim($ingredient) }}
                                                 </span>
                                             </label>
@@ -177,7 +178,8 @@
                 </div>
 
                 <!-- Recipe Information -->
-                <div class="bg-white dark:bg-neutral-800 shadow-sm rounded-2xl mt-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="bg-white dark:bg-neutral-800 shadow-sm rounded-2xl mt-6" data-aos="fade-up"
+                    data-aos-delay="300">
                     <div class="p-6 md:p-8">
                         <h3 class="font-bold mb-4 text-xl dark:text-gray-100">Informasi Resep</h3>
 
@@ -189,7 +191,8 @@
                                     class="text-xs font-extrabold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-0.5">
                                     Waktu Persiapan</div>
                                 <div class="font-bold text-base text-gray-900 dark:text-gray-100">
-                                    {{ $recipe->prep_time ?? '-' }} mnt</div>
+                                    {{ $recipe->prep_time ?? '-' }} mnt
+                                </div>
                             </div>
 
                             <div
@@ -199,7 +202,8 @@
                                     class="text-xs font-extrabold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-0.5">
                                     Waktu Masak</div>
                                 <div class="font-bold text-base text-gray-900 dark:text-gray-100">
-                                    {{ $recipe->cook_time ?? '-' }} mnt</div>
+                                    {{ $recipe->cook_time ?? '-' }} mnt
+                                </div>
                             </div>
 
                             <div
@@ -209,7 +213,8 @@
                                     class="text-xs font-extrabold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-0.5">
                                     Porsi</div>
                                 <div class="font-bold text-base text-gray-900 dark:text-gray-100">
-                                    {{ $recipe->servings ?? '-' }} org</div>
+                                    {{ $recipe->servings ?? '-' }} org
+                                </div>
                             </div>
 
                             <div
@@ -219,7 +224,8 @@
                                     class="text-xs font-extrabold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-0.5">
                                     Asal Masakan</div>
                                 <div class="font-bold text-base text-gray-900 dark:text-gray-100">
-                                    {{ $recipe->cuisine ?? '-' }}</div>
+                                    {{ $recipe->cuisine ?? '-' }}
+                                </div>
                             </div>
 
                             <!-- Full width -->
@@ -230,7 +236,8 @@
                                     class="text-xs font-extrabold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-0.5">
                                     Tingkat Kesulitan</div>
                                 <div class="font-bold text-base text-gray-900 dark:text-gray-100 capitalize">
-                                    {{ $recipe->difficulty ?? '-' }}</div>
+                                    {{ $recipe->difficulty ?? '-' }}
+                                </div>
                             </div>
                         </div>
 
@@ -258,15 +265,44 @@
             </div>
 
             <!-- Sidebar -->
-            <div class="lg:col-span-1">
-                <div class="bg-white dark:bg-neutral-800 shadow-sm rounded-2xl" data-aos="fade-left">
-                    <div class="p-4">
-                        <h5 class="font-bold mb-4 dark:text-gray-100">Ulasan Komunitas</h5>
+            <div class="lg:col-span-1" x-data="sidebarHeight()" x-init="init()">
+                <div class="bg-white dark:bg-neutral-800 shadow-sm rounded-2xl lg:sticky lg:top-24" data-aos="fade-left">
+                    <div class="p-4 flex flex-col" :style="maxHeightStyle">
+                        <h5 class="font-bold mb-4 dark:text-gray-100 shrink-0">Ulasan Komunitas</h5>
+
+                        <!-- Star Filter -->
+                        @if (!empty($ratingDistribution) && array_sum($ratingDistribution) > 0)
+                            <div class="mb-4 shrink-0" x-data="starFilter()">
+                                <div class="flex flex-wrap gap-1.5">
+                                    <button @click="filterBy(null)"
+                                        class="px-3 py-1.5 rounded-full text-xs font-bold transition-all border"
+                                        :class="currentFilter === null
+                                            ? 'bg-orange-500 text-white border-orange-500'
+                                            : 'bg-gray-100 dark:bg-neutral-700 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-neutral-600 hover:border-orange-400'">
+                                        Semua
+                                    </button>
+                                    @for ($star = 5; $star >= 1; $star--)
+                                        @php $count = $ratingDistribution[$star] ?? 0; @endphp
+                                        @if ($count > 0)
+                                            <button @click="filterBy({{ $star }})"
+                                                class="px-3 py-1.5 rounded-full text-xs font-bold transition-all border flex items-center gap-1"
+                                                :class="currentFilter === {{ $star }}
+                                                    ? 'bg-orange-500 text-white border-orange-500'
+                                                    : 'bg-gray-100 dark:bg-neutral-700 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-neutral-600 hover:border-orange-400'">
+                                                <i class="bi bi-star-fill text-amber-400" :class="currentFilter === {{ $star }} && 'text-white'"></i>
+                                                {{ $star }}
+                                                <span class="text-[10px] opacity-70">({{ $count }})</span>
+                                            </button>
+                                        @endif
+                                    @endfor
+                                </div>
+                            </div>
+                        @endif
 
                         @auth
                             @include('reviews._form', ['recipe' => $recipe])
                         @else
-                            <div class="bg-gray-100 dark:bg-neutral-700 rounded-2xl text-center py-8 mb-4">
+                            <div class="bg-gray-100 dark:bg-neutral-700 rounded-2xl text-center py-8 mb-4 shrink-0">
                                 <i class="bi bi-lock text-4xl text-gray-300 dark:text-gray-500 block mb-2"></i>
                                 <p class="text-sm mb-0 dark:text-gray-400">Silakan <a href="{{ route('login') }}"
                                         class="text-orange-600 dark:text-orange-400 font-bold no-underline hover:underline">masuk</a>
@@ -274,7 +310,119 @@
                             </div>
                         @endauth
 
-                        @include('reviews._list', ['reviews' => $reviews, 'recipe' => $recipe])
+                        <div x-data="reviewPagination()" id="review-list-container" class="relative flex-1 overflow-y-auto min-h-0">
+                            <!-- Review Loading Overlay -->
+                            <div x-show="loading" x-transition.opacity
+                                class="absolute inset-0 z-50 bg-white/50 dark:bg-neutral-800/50 backdrop-blur-[1px] flex items-center justify-center rounded-2xl">
+                                <div
+                                    class="w-8 h-8 border-3 border-orange-500/20 border-t-orange-500 rounded-full animate-spin">
+                                </div>
+                            </div>
+
+                            <div id="review-list-content"
+                                :class="{ 'opacity-50 pointer-events-none transition-opacity duration-300': loading }">
+                                @include('reviews._list', ['reviews' => $reviews, 'recipe' => $recipe])
+                            </div>
+                        </div>
+
+                        <script>
+                            function reviewPagination() {
+                                return {
+                                    loading: false,
+                                    init() {
+                                        this.$el.addEventListener('click', (e) => {
+                                            const link = e.target.closest('a.pagination-link') || e.target.closest('.pagination-links a');
+                                            if (link) {
+                                                e.preventDefault();
+                                                this.fetchReviews(link.href);
+                                            }
+                                        });
+                                    },
+                                    async fetchReviews(url) {
+                                        this.loading = true;
+                                        try {
+                                            const response = await fetch(url, {
+                                                headers: {
+                                                    'X-Requested-With': 'XMLHttpRequest'
+                                                }
+                                            });
+                                            const html = await response.text();
+                                            const reviewContent = document.getElementById('review-list-content');
+                                            reviewContent.innerHTML = html;
+
+                                            // Re-initialize Alpine.js for new elements
+                                            if (window.Alpine) {
+                                                Alpine.initTree(reviewContent);
+                                            }
+                                        } catch (error) {
+                                            console.error('Error fetching reviews:', error);
+                                        } finally {
+                                            this.loading = false;
+                                        }
+                                    }
+                                }
+                            }
+
+                            function sidebarHeight() {
+                                return {
+                                    maxHeightStyle: '',
+                                    init() {
+                                        this.calculateHeight();
+                                        window.addEventListener('resize', () => this.calculateHeight());
+                                    },
+                                    calculateHeight() {
+                                        // Only apply on lg screens and up
+                                        if (window.innerWidth < 1024) {
+                                            this.maxHeightStyle = '';
+                                            return;
+                                        }
+                                        // Calculate: viewport height - sticky top offset - some padding
+                                        const viewportHeight = window.innerHeight;
+                                        const topOffset = 96; // lg:top-24 = 6rem = 96px
+                                        const bottomPadding = 40; // py-10 bottom padding
+                                        const maxHeight = viewportHeight - topOffset - bottomPadding;
+                                        this.maxHeightStyle = `max-height: ${maxHeight}px`;
+                                    }
+                                }
+                            }
+
+                            function starFilter() {
+                                return {
+                                    currentFilter: {{ $starFilter ?? 'null' }},
+                                    async filterBy(star) {
+                                        if (this.currentFilter === star) return;
+                                        this.currentFilter = star;
+
+                                        const baseUrl = '{{ route('recipes.show', $recipe) }}';
+                                        const url = star ? `${baseUrl}?star=${star}` : baseUrl;
+
+                                        const reviewContent = document.getElementById('review-list-content');
+
+                                        // Show loading state
+                                        reviewContent.classList.add('opacity-50', 'pointer-events-none');
+
+                                        try {
+                                            const response = await fetch(url, {
+                                                headers: {
+                                                    'X-Requested-With': 'XMLHttpRequest'
+                                                }
+                                            });
+                                            const html = await response.text();
+                                            reviewContent.innerHTML = html;
+
+                                            // Re-initialize Alpine.js for new elements
+                                            if (window.Alpine) {
+                                                Alpine.initTree(reviewContent);
+                                            }
+                                        } catch (error) {
+                                            console.error('Error filtering reviews:', error);
+                                        } finally {
+                                            reviewContent.classList.remove('opacity-50', 'pointer-events-none');
+                                        }
+                                    }
+                                }
+                            }
+                        </script>
                     </div>
                 </div>
             </div>

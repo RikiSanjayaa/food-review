@@ -37,7 +37,7 @@ class RecipeController extends Controller
             });
         }
 
-        if (! empty($filters['tags'])) {
+        if (!empty($filters['tags'])) {
             $query->whereHas('tags', fn($q) => $q->whereIn('tags.id', $filters['tags']));
         }
 
@@ -60,14 +60,8 @@ class RecipeController extends Controller
             default => $query->latest('published_at')->latest(),
         };
 
-        $recipes = $query->paginate(9)->withQueryString();
+        $recipes = $query->paginate(8)->withQueryString();
         $tags = Tag::orderBy('name')->get();
-
-        // Get top 5 recipes with most ratings for carousel
-        $topRatedRecipes = Recipe::where('rating_count', '>', 0)
-            ->orderByDesc('rating_count')
-            ->limit(5)
-            ->get();
 
         $diets = [
             'vegan' => 'Vegan',
@@ -76,7 +70,11 @@ class RecipeController extends Controller
             'halal' => 'Halal',
         ];
 
-        return view('recipes.index', compact('recipes', 'tags', 'filters', 'sort', 'topRatedRecipes', 'diets'));
+        if ($request->ajax()) {
+            return view('recipes._recipe_list', compact('recipes'))->render();
+        }
+
+        return view('recipes.index', compact('recipes', 'tags', 'filters', 'sort', 'diets'));
     }
 
     public function create()
@@ -117,14 +115,33 @@ class RecipeController extends Controller
         $recipe->load(['tags', 'user']);
         $user = $request->user();
 
-        $reviews = $recipe->reviews()
-            ->with(['user', 'replies.user'])
-            ->whereNull('parent_id') // Only top-level reviews
-            ->when(! $user || ! $user->is_admin, fn($q) => $q->where('is_hidden', false))
-            ->latest()
-            ->paginate(5);
+        // Star filter (null = all, 1-5 = specific rating)
+        $starFilter = $request->integer('star') ?: null;
 
-        return view('recipes.show', compact('recipe', 'reviews'));
+        $reviews = $recipe->reviews()
+            ->with(['user'])
+            ->withCount('replies')
+            ->whereNull('parent_id') // Only top-level reviews
+            ->when(!$user || !$user->is_admin, fn($q) => $q->where('is_hidden', false))
+            ->when($starFilter, fn($q) => $q->where('rating', $starFilter))
+            ->latest()
+            ->paginate(5)
+            ->withQueryString();
+
+        // Get rating distribution for filter UI
+        $ratingDistribution = $recipe->reviews()
+            ->whereNull('parent_id')
+            ->when(!$user || !$user->is_admin, fn($q) => $q->where('is_hidden', false))
+            ->selectRaw('rating, COUNT(*) as count')
+            ->groupBy('rating')
+            ->pluck('count', 'rating')
+            ->toArray();
+
+        if ($request->ajax()) {
+            return view('reviews._list', compact('recipe', 'reviews', 'starFilter'))->render();
+        }
+
+        return view('recipes.show', compact('recipe', 'reviews', 'ratingDistribution', 'starFilter'));
     }
 
     public function edit(Recipe $recipe)
@@ -186,8 +203,8 @@ class RecipeController extends Controller
 
         while (
             Recipe::where('slug', $slug)
-            ->when($ignoreId, fn($q) => $q->where('id', '!=', $ignoreId))
-            ->exists()
+                ->when($ignoreId, fn($q) => $q->where('id', '!=', $ignoreId))
+                ->exists()
         ) {
             $slug = "{$base}-{$i}";
             $i++;
@@ -198,7 +215,7 @@ class RecipeController extends Controller
 
     private function handleHeroImageUpload(Request $request, ?string $existingPath = null): ?string
     {
-        if (! $request->hasFile('hero_image')) {
+        if (!$request->hasFile('hero_image')) {
             return $existingPath;
         }
 

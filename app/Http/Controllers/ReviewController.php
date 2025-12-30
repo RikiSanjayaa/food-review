@@ -69,5 +69,19 @@ class ReviewController extends Controller
 
         return back()->with('status', 'Review moderation updated.');
     }
+
+    public function replies(Recipe $recipe, Review $review)
+    {
+        if ($review->recipe_id !== $recipe->id || $review->parent_id !== null) {
+            abort(404);
+        }
+
+        $replies = $review->replies()
+            ->with('user')
+            ->latest()
+            ->get();
+
+        return view('reviews._replies', compact('recipe', 'review', 'replies'))->render();
+    }
 }
 

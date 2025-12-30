@@ -9,9 +9,11 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Admin\TagController as AdminTagController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [RecipeController::class, 'index'])->name('recipes.index');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/recipes', [RecipeController::class, 'index'])->name('recipes.index');
 
 Route::get('/login', [LoginController::class, 'create'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
@@ -35,6 +37,7 @@ Route::middleware('auth')->group(function (): void {
     Route::delete('/recipes/{recipe}/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
     Route::post('/reviews/{review}/report', [ReviewController::class, 'report'])->name('reviews.report');
     Route::patch('/reviews/{review}/moderate', [ReviewController::class, 'moderate'])->name('reviews.moderate');
+    Route::get('/recipes/{recipe}/reviews/{review}/replies', [ReviewController::class, 'replies'])->name('reviews.replies');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');

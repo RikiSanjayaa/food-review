@@ -1,13 +1,38 @@
 <div class="flex flex-col gap-4">
     @forelse ($reviews as $review)
-        <div data-aos="fade-up" data-aos-duration="500" x-data="{ replyOpen: false }">
+        <div
+            x-data="{
+                replyOpen: false,
+                showReplies: false,
+                repliesLoaded: false,
+                repliesHtml: '',
+                loadingReplies: false,
+                async loadReplies() {
+                    if (this.repliesLoaded) {
+                        this.showReplies = !this.showReplies;
+                        return;
+                    }
+                    this.loadingReplies = true;
+                    try {
+                        const response = await fetch('{{ route('reviews.replies', [$recipe, $review]) }}');
+                        this.repliesHtml = await response.text();
+                        this.repliesLoaded = true;
+                        this.showReplies = true;
+                    } catch (error) {
+                        console.error('Error loading replies:', error);
+                    } finally {
+                        this.loadingReplies = false;
+                    }
+                }
+            }">
             <div class="bg-gray-100 dark:bg-neutral-900/50 rounded-2xl p-4">
                 <div class="flex justify-between items-start mb-2">
                     <div class="flex gap-3 items-center">
                         <!-- Avatar -->
                         <a href="{{ route('users.show', $review->user) }}" class="shrink-0 group block">
                             @if ($review->user->avatar)
-                                <img src="{{ asset('storage/' . $review->user->avatar) }}" alt="{{ $review->user->name }}"
+                                <img src="{{ asset('storage/' . $review->user->avatar) }}"
+                                    alt="{{ $review->user->name }}"
                                     class="w-10 h-10 aspect-square rounded-full object-cover ring-2 ring-transparent group-hover:ring-orange-400 transition-all">
                             @else
                                 <div
@@ -56,6 +81,24 @@
                                 <i class="bi bi-reply-fill"></i> Balas
                             </button>
                         @endauth
+
+                        @if ($review->replies_count > 0)
+                            <button @click="loadReplies()"
+                                class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 font-bold text-xs bg-transparent border-0 cursor-pointer flex items-center gap-1"
+                                :disabled="loadingReplies">
+                                <template x-if="loadingReplies">
+                                    <span class="flex items-center gap-1">
+                                        <i class="bi bi-arrow-repeat animate-spin"></i> Memuat...
+                                    </span>
+                                </template>
+                                <template x-if="!loadingReplies">
+                                    <span class="flex items-center gap-1">
+                                        <i class="bi" :class="showReplies ? 'bi-chevron-up' : 'bi-chat-dots'"></i>
+                                        <span x-text="showReplies ? 'Sembunyikan' : '{{ $review->replies_count }} Balasan'"></span>
+                                    </span>
+                                </template>
+                            </button>
+                        @endif
                     </div>
 
                     <div class="flex gap-3 opacity-60 hover:opacity-100 transition-opacity">
@@ -122,40 +165,10 @@
                 </div>
             @endauth
 
-            <!-- Replies List -->
-            @if ($review->replies->count() > 0)
-                <div class="mt-2 ml-8 flex flex-col gap-2 border-l-2 border-gray-200 dark:border-neutral-800 pl-4 py-1">
-                    @foreach ($review->replies as $reply)
-                        <div
-                            class="bg-white dark:bg-neutral-800 p-3 rounded-xl border border-gray-100 dark:border-neutral-700 shadow-sm">
-                            <div class="flex justify-between items-start mb-1">
-                                <div class="flex gap-2 items-center">
-                                    <a href="{{ route('users.show', $reply->user) }}"
-                                        class="font-bold text-xs text-gray-900 dark:text-gray-100 hover:text-orange-600 dark:hover:text-orange-400 no-underline">
-                                        {{ $reply->user->name }}
-                                    </a>
-                                    <span class="text-gray-400 dark:text-gray-500 text-[10px]">&bull;</span>
-                                    <small
-                                        class="text-gray-500 dark:text-gray-400 text-[10px]">{{ $reply->created_at->diffForHumans() }}</small>
-                                </div>
-
-                                @can('delete', $reply)
-                                    <form method="POST" action="{{ route('reviews.destroy', [$recipe, $reply]) }}"
-                                        onsubmit="return showConfirmModal(this, 'Hapus Balasan', 'Hapus balasan ini?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="text-red-400 hover:text-red-600 border-0 bg-transparent cursor-pointer text-[10px]">
-                                            <i class="bi bi-x-lg"></i>
-                                        </button>
-                                    </form>
-                                @endcan
-                            </div>
-                            <p class="text-gray-700 dark:text-gray-300 text-xs">{{ $reply->comment }}</p>
-                        </div>
-                    @endforeach
-                </div>
-            @endif
+            <!-- Replies List (Lazy Loaded) -->
+            <div x-show="showReplies" x-transition class="mt-2 ml-8 flex flex-col gap-2 border-l-2 border-gray-200 dark:border-neutral-800 pl-4 py-1"
+                x-html="repliesHtml">
+            </div>
         </div>
     @empty
         <div

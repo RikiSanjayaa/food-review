@@ -26,7 +26,7 @@
 
     {{-- Immediately set dark mode to prevent flash --}}
     <script>
-        (function () {
+        (function() {
             const theme = localStorage.getItem('foodreview-theme');
             // Only apply dark mode if explicitly set in localStorage
             if (theme === 'dark') {
@@ -89,15 +89,15 @@
 
         <nav x-data="{ scrolled: false, mobileMenuOpen: false }" @scroll.window="scrolled = (window.pageYOffset > 50)"
             class="h-14.5 flex items-center transition-all duration-1000 ease-in-out z-1000
-             {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'fixed top-0 left-0 right-0' : 'sticky top-0 bg-white dark:bg-neutral-900 border-b border-gray-200 dark:border-neutral-800' }}"
+             {{ request()->routeIs('home', 'login', 'register') ? 'fixed top-0 left-0 right-0' : 'sticky top-0 bg-white dark:bg-neutral-900 border-b border-gray-200 dark:border-neutral-800' }}"
             :class="{
-                'bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md': {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
+                'bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md': {{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} &&
                     (scrolled || mobileMenuOpen),
                 'bg-white dark:bg-neutral-900': !
-                    {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} ||
-                    ({{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
+                    {{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} ||
+                    ({{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} &&
                         (scrolled || mobileMenuOpen)),
-                'bg-transparent': {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
+                'bg-transparent': {{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} &&
                     !scrolled && !mobileMenuOpen
             }">
 
@@ -105,16 +105,16 @@
                 <div class="w-full flex justify-between items-center h-full">
 
                     <a class="flex items-center gap-2 font-bold transition-colors duration-1000 ease-in-out h-14.5 pl-3 tracking-tight no-underline"
-                        href="{{ route('recipes.index') }}">
+                        href="{{ route('home') }}">
 
                         <img src="{{ asset('logo.svg') }}" alt="Logo" class="navbar-logo">
 
                         <span class="hidden sm:block whitespace-nowrap ml-2 text-lg font-bold leading-none pt-0.5"
                             :class="[
-                                {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
+                                {{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} &&
                                 (scrolled || mobileMenuOpen) ?
                                 'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent' :
-                                ({{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} ?
+                                ({{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} ?
                                     'text-white' :
                                     'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent')
                             ]">Food
@@ -123,16 +123,55 @@
 
                     <ul
                         class="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 mb-0 list-none p-0">
-                        <li>
-                            <a class="transition-colors duration-1000 ease-in-out px-3 flex items-center text-sm font-medium leading-14.5 no-underline"
-                                href="{{ route('recipes.index') }}">
+                        {{-- Home Link --}}
+                        <li class="relative group/nav">
+                            <a class="transition-colors duration-1000 ease-in-out px-4 flex flex-col items-center text-sm font-bold leading-14.5 no-underline"
+                                href="{{ route('home') }}">
                                 <span
-                                    :class="{{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }}
+                                    :class="{{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }}
                                         ?
                                         (scrolled ?
-                                            'font-bold bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent' :
-                                            'text-white hover:text-white/80') :
-                                        'text-gray-900 dark:text-gray-100 hover:text-orange-600 dark:hover:text-orange-400'">Beranda</span>
+                                            ('{{ request()->routeIs('home') }}' ?
+                                                'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent' :
+                                                'text-gray-900 dark:text-gray-100 hover:text-orange-600') :
+                                            ('{{ request()->routeIs('home') }}' ? 'text-white' :
+                                                'text-white/60 hover:text-white')
+                                        ) :
+                                        ('{{ request()->routeIs('home') }}' ?
+                                            'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent' :
+                                            'text-gray-900 dark:text-gray-100 hover:text-orange-600')">
+                                    Home
+                                </span>
+                                {{-- Underline Indicator --}}
+                                <div
+                                    class="absolute bottom-3 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-orange-500 transition-all duration-300 {{ request()->routeIs('home') ? 'opacity-100 scale-100' : 'opacity-0 scale-0 group-hover/nav:opacity-50 group-hover/nav:scale-100' }}">
+                                </div>
+                            </a>
+                        </li>
+
+                        {{-- Recipes Link --}}
+                        <li class="relative group/nav">
+                            <a class="transition-colors duration-1000 ease-in-out px-4 flex flex-col items-center text-sm font-bold leading-14.5 no-underline"
+                                href="{{ route('recipes.index') }}">
+                                <span
+                                    :class="{{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }}
+                                        ?
+                                        (scrolled ?
+                                            ('{{ request()->routeIs('recipes.*') }}' ?
+                                                'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent' :
+                                                'text-gray-900 dark:text-gray-100 hover:text-orange-600') :
+                                            ('{{ request()->routeIs('recipes.*') }}' ? 'text-white' :
+                                                'text-white/60 hover:text-white')
+                                        ) :
+                                        ('{{ request()->routeIs('recipes.*') }}' ?
+                                            'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent' :
+                                            'text-gray-900 dark:text-gray-100 hover:text-orange-600')">
+                                    Recipes
+                                </span>
+                                {{-- Underline Indicator --}}
+                                <div
+                                    class="absolute bottom-3 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-orange-500 transition-all duration-300 {{ request()->routeIs('recipes.*') ? 'opacity-100 scale-100' : 'opacity-0 scale-0 group-hover/nav:opacity-50 group-hover/nav:scale-100' }}">
+                                </div>
                             </a>
                         </li>
                     </ul>
@@ -142,24 +181,27 @@
                             <div x-data="{ open: false }" class="relative">
                                 <button
                                     class="px-3.5 py-1 rounded-full border-0 transition-all duration-1000 ease-in-out flex items-center gap-1 text-sm cursor-pointer"
-                                    type="button" @click="open = !open" :class="[
-                                            {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
+                                    type="button" @click="open = !open"
+                                    :class="[
+                                        {{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} &&
+                                        !scrolled ?
+                                        'bg-white/20 text-white backdrop-blur-sm hover:bg-white/30' :
+                                        'hover:bg-orange-50 dark:hover:bg-neutral-800 border border-orange-200 dark:border-neutral-700'
+                                    ]">
+                                    <span
+                                        :class="[
+                                            {{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} &&
                                             !scrolled ?
-                                            'bg-white/20 text-white backdrop-blur-sm hover:bg-white/30' :
-                                            'hover:bg-orange-50 dark:hover:bg-neutral-800 border border-orange-200 dark:border-neutral-700'
-                                        ]">
-                                    <span :class="[
-                                                {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
-                                                !scrolled ?
-                                                'text-white' :
-                                                'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent font-bold'
-                                            ]">{{ Auth::user()->name }}</span>
-                                    <i class="bi bi-chevron-down text-xs" :class="[
-                                                {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
-                                                !scrolled ?
-                                                'text-white' :
-                                                'text-gray-500 dark:text-gray-400'
-                                            ]"></i>
+                                            'text-white' :
+                                            'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent font-bold'
+                                        ]">{{ Auth::user()->name }}</span>
+                                    <i class="bi bi-chevron-down text-xs"
+                                        :class="[
+                                            {{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} &&
+                                            !scrolled ?
+                                            'text-white' :
+                                            'text-gray-500 dark:text-gray-400'
+                                        ]"></i>
                                 </button>
 
                                 <ul x-show="open" @click.outside="open = false"
@@ -215,20 +257,20 @@
                         @else
                             <a href="{{ route('login') }}"
                                 class="no-underline transition-colors duration-300 ease-in-out text-sm font-bold py-2 px-3"
-                                :class="{{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }}
-                                        &&
-                                        !scrolled ? 'text-white hover:text-white/80' :
-                                        'text-gray-500 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400'">
+                                :class="{{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }}
+                                    &&
+                                    !scrolled ? 'text-white hover:text-white/80' :
+                                    'text-gray-500 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400'">
                                 Masuk
                             </a>
                             <a href="{{ route('register') }}"
                                 class="no-underline rounded-md px-4 transition-all duration-300 ease-in-out text-sm py-2 font-bold"
                                 :class="[
-                                        {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
-                                        !scrolled ?
-                                        'bg-transparent border-2 border-white text-white hover:bg-white hover:text-orange-600' :
-                                        'border-0 bg-linear-to-r from-amber-500 to-orange-600 text-white'
-                                    ]">
+                                    {{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} &&
+                                    !scrolled ?
+                                    'bg-transparent border-2 border-white text-white hover:bg-white hover:text-orange-600' :
+                                    'border-0 bg-linear-to-r from-amber-500 to-orange-600 text-white'
+                                ]">
                                 Daftar
                             </a>
                         @endauth
@@ -243,9 +285,10 @@
                     <button
                         class="lg:hidden border-0 bg-transparent transition-all duration-1000 ease-in-out py-1 cursor-pointer"
                         type="button" @click="mobileMenuOpen = !mobileMenuOpen">
-                        <i class="bi text-2xl" :class="[
+                        <i class="bi text-2xl"
+                            :class="[
                                 mobileMenuOpen ? 'bi-x' : 'bi-list',
-                                {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
+                                {{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} &&
                                 !scrolled && !mobileMenuOpen ? 'text-white' : 'text-gray-900 dark:text-gray-100'
                             ]"></i>
                     </button>
@@ -259,8 +302,30 @@
                     x-transition:leave="transition ease-in duration-150"
                     x-transition:leave-start="opacity-100 translate-y-0"
                     x-transition:leave-end="opacity-0 -translate-y-2"
-                    class="absolute top-full right-0 min-w-70 max-w-80 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-xl border border-gray-100 dark:border-neutral-800 rounded-2xl p-4 flex flex-col gap-3 lg:hidden shadow-2xl"
+                    class="absolute top-full right-0 min-w-70 max-w-80 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-xl border border-gray-100 dark:border-neutral-800 rounded-2xl p-4 flex flex-col gap-1 lg:hidden shadow-2xl"
                     @click.outside="mobileMenuOpen = false">
+
+                    {{-- Navigation Links --}}
+                    <div class="px-4 py-2 text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
+                        Navigasi
+                    </div>
+
+                    <a href="{{ route('home') }}"
+                        class="flex items-center gap-3 px-4 py-3 rounded-xl transition-colors no-underline {{ request()->routeIs('home') ? 'bg-orange-50 dark:bg-orange-900/20 text-orange-600' : 'hover:bg-gray-50 dark:hover:bg-neutral-800 text-gray-700 dark:text-gray-300' }}">
+                        <i
+                            class="bi bi-house-door{{ request()->routeIs('home') ? '-fill' : '' }} text-lg {{ request()->routeIs('home') ? 'text-orange-500' : '' }}"></i>
+                        <span class="font-bold">Home</span>
+                    </a>
+
+                    <a href="{{ route('recipes.index') }}"
+                        class="flex items-center gap-3 px-4 py-3 rounded-xl transition-colors no-underline {{ request()->routeIs('recipes.*') ? 'bg-orange-50 dark:bg-orange-900/20 text-orange-600' : 'hover:bg-gray-50 dark:hover:bg-neutral-800 text-gray-700 dark:text-gray-300' }}">
+                        <i
+                            class="bi bi-book{{ request()->routeIs('recipes.*') ? '-fill' : '' }} text-lg {{ request()->routeIs('recipes.*') ? 'text-orange-500' : '' }}"></i>
+                        <span class="font-bold">Recipes</span>
+                    </a>
+
+                    {{-- Divider --}}
+                    <div class="my-2 border-t border-gray-100 dark:border-neutral-800"></div>
 
                     @auth
                         <div class="px-4 py-2 text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
@@ -274,23 +339,24 @@
                                 Profil Saya</span>
                         </a>
 
+                        <a href="{{ route('recipes.create') }}"
+                            class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-orange-50 dark:hover:bg-neutral-800 text-orange-600 font-bold transition-colors no-underline">
+                            <i class="bi bi-plus-circle text-lg text-orange-500"></i>
+                            <span class="text-orange-500">Tambah Resep</span>
+                        </a>
+
                         @if (Auth::user()->is_admin)
-                            <a href="{{ route('recipes.create') }}"
-                                class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-orange-50 dark:hover:bg-neutral-800 text-orange-600 font-bold transition-colors no-underline">
-                                <i class="bi bi-plus-circle text-lg"></i>
-                                Tambah Resep
-                            </a>
                             <a href="{{ route('admin.tags.index') }}"
                                 class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-orange-50 dark:hover:bg-neutral-800 text-orange-600 font-bold transition-colors no-underline">
-                                <i class="bi bi-tags text-lg"></i>
-                                Kelola Kategori
+                                <i class="bi bi-tags text-lg text-orange-500"></i>
+                                <span class="text-orange-500">Kelola Kategori</span>
                             </a>
                         @endif
 
                         <form method="POST" action="{{ route('logout') }}" class="w-full">
                             @csrf
                             <button type="submit"
-                                class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-red-50 dark:hover:bg-red-950/30 text-red-500 font-bold transition-colors text-left cursor-pointer border-0">
+                                class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-red-50 dark:hover:bg-red-950/30 text-red-500 font-bold transition-colors text-left cursor-pointer border-0 bg-transparent">
                                 <i class="bi bi-box-arrow-right text-lg"></i>
                                 Keluar
                             </button>
@@ -307,6 +373,30 @@
                             </a>
                         </div>
                     @endauth
+
+                    {{-- Divider --}}
+                    <div class="my-2 border-t border-gray-100 dark:border-neutral-800"></div>
+
+                    {{-- Theme Toggle --}}
+                    <div class="px-4 py-2 text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
+                        Tampilan
+                    </div>
+
+                    <button id="mobileThemeToggle"
+                        class="flex items-center justify-between w-full px-4 py-3 rounded-xl hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors cursor-pointer border-0 bg-transparent">
+                        <div class="flex items-center gap-3">
+                            <i class="bi bi-moon-fill text-lg text-gray-500 dark:hidden"></i>
+                            <i class="bi bi-sun-fill text-lg text-amber-400 hidden dark:inline"></i>
+                            <span class="font-bold text-gray-700 dark:text-gray-300">
+                                <span>Tema</span>
+                            </span>
+                        </div>
+                        <div class="relative w-11 h-6 bg-gray-200 dark:bg-orange-500 rounded-full transition-colors">
+                            <div
+                                class="absolute top-0.5 left-0.5 dark:left-5 w-5 h-5 bg-white rounded-full shadow transition-all">
+                            </div>
+                        </div>
+                    </button>
                 </div>
 
             </div>
@@ -341,7 +431,8 @@
                         <i class="bi bi-check-circle-fill mr-2 text-lg"></i>
                         <span>{{ session('status') }}</span>
                     </div>
-                    <button type="button" class="toast-close p-2 mr-2 text-white/80 hover:text-white" aria-label="Close">
+                    <button type="button" class="toast-close p-2 mr-2 text-white/80 hover:text-white"
+                        aria-label="Close">
                         <i class="bi bi-x-lg"></i>
                     </button>
                 </div>
@@ -393,10 +484,11 @@
             this.formToSubmit = null;
             this.open = false;
         }
-    }" x-cloak @open-confirm-modal.window="show($event.detail.form, $event.detail.title, $event.detail.message)">
+    }" x-cloak
+        @open-confirm-modal.window="show($event.detail.form, $event.detail.title, $event.detail.message)">
 
-        <div x-show="open" class="fixed inset-0 z-9999 overflow-y-auto" aria-labelledby="modal-title" role="dialog"
-            aria-modal="true">
+        <div x-show="open" class="fixed inset-0 z-9999 overflow-y-auto" aria-labelledby="modal-title"
+            role="dialog" aria-modal="true">
             <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
                 <div x-show="open" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
                     x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
@@ -421,7 +513,8 @@
                         </svg>
                     </div>
 
-                    <h3 class="text-xl font-bold text-center text-gray-900 dark:text-gray-100 mb-2" x-text="title"></h3>
+                    <h3 class="text-xl font-bold text-center text-gray-900 dark:text-gray-100 mb-2" x-text="title">
+                    </h3>
 
                     <p class="text-center text-gray-500 dark:text-gray-400 mb-8" x-text="message"></p>
 
@@ -461,9 +554,9 @@
             offset: 60
         });
 
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const toastElements = document.querySelectorAll('.toast');
-            toastElements.forEach(function (toastEl) {
+            toastElements.forEach(function(toastEl) {
                 toastEl.classList.add('show');
                 const delay = parseInt(toastEl.dataset.delay) || 5000;
                 setTimeout(() => {
@@ -499,8 +592,19 @@
             let isDark = localStorage.getItem('foodreview-theme') === 'dark';
             applyDarkMode(isDark);
 
+            // Desktop toggle
             if (darkToggleBtn) {
-                darkToggleBtn.addEventListener('click', function () {
+                darkToggleBtn.addEventListener('click', function() {
+                    isDark = !document.documentElement.classList.contains('dark');
+                    applyDarkMode(isDark);
+                    localStorage.setItem('foodreview-theme', isDark ? 'dark' : 'light');
+                });
+            }
+
+            // Mobile toggle
+            const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+            if (mobileThemeToggle) {
+                mobileThemeToggle.addEventListener('click', function() {
                     isDark = !document.documentElement.classList.contains('dark');
                     applyDarkMode(isDark);
                     localStorage.setItem('foodreview-theme', isDark ? 'dark' : 'light');

@@ -11,7 +11,7 @@
         <div class="max-w-7xl mx-auto px-4 relative z-10 py-10">
             <div class="flex justify-center">
                 <div class="w-full max-w-sm">
-                    <div class="bg-white/80 backdrop-blur-xl shadow-xl rounded-3xl overflow-hidden" data-aos="zoom-in"
+                    <div class="bg-white/80 dark:bg-neutral-800/90 backdrop-blur-xl shadow-xl rounded-3xl overflow-hidden" data-aos="zoom-in"
                         data-aos-duration="800">
                         <div class="p-6 md:p-8">
 
@@ -20,28 +20,28 @@
                                     class="inline-flex items-center justify-center bg-linear-to-r from-amber-500 to-orange-600 text-white rounded-full mb-3 w-14 h-14 text-2xl">
                                     <i class="bi bi-person-fill"></i>
                                 </div>
-                                <h2 class="font-bold text-gray-900 mb-1 text-xl">Selamat Datang!</h2>
-                                <p class="text-gray-500 text-sm">Masuk untuk mulai berbagi resep.</p>
+                                <h2 class="font-bold text-gray-900 dark:text-gray-100 mb-1 text-xl">Selamat Datang!</h2>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm">Masuk untuk mulai berbagi resep.</p>
                             </div>
 
                             <form method="POST" action="{{ route('login') }}" class="mb-3" x-data="{ showPassword: false }">
                                 @csrf
                                 <div class="relative mb-3">
                                     <input type="email" name="email"
-                                        class="w-full px-4 pt-6 pb-2 bg-gray-100 border-0 rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none transition peer placeholder-transparent"
+                                        class="w-full px-4 pt-6 pb-2 bg-gray-100 dark:bg-neutral-700 border-0 rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none transition peer placeholder-transparent dark:text-gray-100"
                                         id="emailInput" placeholder="Email" value="{{ old('email') }}" required>
                                     <label for="emailInput"
-                                        class="absolute left-4 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-xs peer-[:not(:placeholder-shown)]:top-1 peer-[:not(:placeholder-shown)]:text-xs">Email</label>
+                                        class="absolute left-4 top-3 text-gray-500 dark:text-gray-400 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-xs peer-[:not(:placeholder-shown)]:top-1 peer-[:not(:placeholder-shown)]:text-xs">Email</label>
                                 </div>
                                 <div class="relative mb-4">
                                     <input :type="showPassword ? 'text' : 'password'" name="password"
-                                        class="w-full px-4 pt-6 pb-2 bg-gray-100 border-0 rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none transition peer placeholder-transparent"
+                                        class="w-full px-4 pt-6 pb-2 bg-gray-100 dark:bg-neutral-700 border-0 rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none transition peer placeholder-transparent dark:text-gray-100"
                                         id="passwordInput" placeholder="Kata Sandi" required>
                                     <label for="passwordInput"
-                                        class="absolute left-4 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-xs peer-[:not(:placeholder-shown)]:top-1 peer-[:not(:placeholder-shown)]:text-xs">Kata
+                                        class="absolute left-4 top-3 text-gray-500 dark:text-gray-400 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-xs peer-[:not(:placeholder-shown)]:top-1 peer-[:not(:placeholder-shown)]:text-xs">Kata
                                         Sandi</label>
                                     <button type="button" @click="showPassword = !showPassword"
-                                        class="absolute right-4 top-3 text-gray-500 hover:text-orange-600 focus:outline-none cursor-pointer">
+                                        class="absolute right-4 top-3 text-gray-500 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 focus:outline-none cursor-pointer">
                                         <i class="bi" :class="showPassword ? 'bi-eye-slash-fill' : 'bi-eye-fill'"></i>
                                     </button>
                                 </div>
@@ -49,14 +49,14 @@
                                 <div class="flex justify-between items-center mb-4">
                                     <label class="flex items-center cursor-pointer">
                                         <input
-                                            class="w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500 mr-2"
+                                            class="w-4 h-4 rounded border-gray-300 dark:border-neutral-600 text-orange-500 focus:ring-orange-500 mr-2"
                                             type="checkbox" name="remember" id="remember"
                                             {{ old('remember') ? 'checked' : '' }}>
-                                        <span class="text-sm text-gray-500">Ingat Saya</span>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">Ingat Saya</span>
                                     </label>
-                                    
+
                                     @if (Route::has('password.request'))
-                                        <a class="text-sm font-medium text-gray-500 hover:text-orange-500 transition-colors no-underline" 
+                                        <a class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-orange-500 dark:hover:text-orange-400 transition-colors no-underline"
                                            href="{{ route('password.request') }}">
                                             Lupa Password?
                                         </a>
@@ -70,9 +70,9 @@
                             </form>
 
                             <div class="text-center">
-                                <p class="text-gray-500 text-sm mb-0">Belum punya akun?
+                                <p class="text-gray-500 dark:text-gray-400 text-sm mb-0">Belum punya akun?
                                     <a href="{{ route('register') }}"
-                                        class="text-orange-600 font-bold no-underline hover:underline">Daftar Gratis</a>
+                                        class="text-orange-600 dark:text-orange-400 font-bold no-underline hover:underline">Daftar Gratis</a>
                                 </p>
                             </div>
 

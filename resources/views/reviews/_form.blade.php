@@ -5,17 +5,20 @@
         ->first();
 @endphp
 
-<form method="POST" action="{{ route('reviews.store', $recipe) }}" class="mb-4 bg-gray-100 p-4 rounded-2xl">
+<form method="POST" action="{{ route('reviews.store', $recipe) }}"
+    class="mb-4 bg-gray-100 dark:bg-neutral-900/50 p-4 rounded-2xl">
     @csrf
-    <h5 class="font-bold mb-3 flex items-center gap-2">
-        <i class="bi bi-pencil-square"></i>
+    <h5 class="font-bold mb-3 flex items-center gap-2 dark:text-gray-100">
+        <i class="bi bi-pencil-square text-orange-500"></i>
         {{ $existingReview ? 'Edit Ulasan Anda' : 'Tulis Ulasan' }}
     </h5>
 
     <div class="mb-3">
-        <label class="block font-medium text-xs uppercase text-gray-500 mb-1">Rating</label>
+        <label
+            class="block font-bold text-[10px] uppercase text-gray-500 dark:text-gray-400 mb-2 tracking-widest">Rating</label>
         <div class="star-rating">
-            <input type="radio" name="rating" value="5" id="star5" @checked(old('rating', $existingReview?->rating) == 5) required>
+            <input type="radio" name="rating" value="5" id="star5" @checked(old('rating', $existingReview?->rating) == 5)
+                required>
             <label for="star5" title="5 bintang"><i class="bi bi-star-fill"></i></label>
 
             <input type="radio" name="rating" value="4" id="star4" @checked(old('rating', $existingReview?->rating) == 4)>
@@ -33,10 +36,12 @@
     </div>
 
     <div class="mb-3">
-        <label class="block font-medium text-xs uppercase text-gray-500 mb-1">Komentar</label>
+        <label
+            class="block font-bold text-[10px] uppercase text-gray-500 dark:text-gray-400 mb-2 tracking-widest">Komentar</label>
         <textarea name="comment" rows="3"
-            class="w-full px-3 py-2 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition"
-            placeholder="Bagikan pengalaman memasak Anda..." required>{{ old('comment', $existingReview?->comment) }}</textarea>
+            class="w-full px-4 py-3 border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-gray-900 dark:text-gray-100 rounded-2xl shadow-xs focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500 outline-none transition-all placeholder-gray-500"
+            placeholder="Bagikan pengalaman memasak Anda..."
+            required>{{ old('comment', $existingReview?->comment) }}</textarea>
     </div>
 
     <div class="flex items-center gap-2">

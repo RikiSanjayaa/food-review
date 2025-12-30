@@ -24,6 +24,17 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    {{-- Immediately set dark mode to prevent flash --}}
+    <script>
+        (function () {
+            const theme = localStorage.getItem('foodreview-theme');
+            // Only apply dark mode if explicitly set in localStorage
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
+
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
@@ -31,6 +42,12 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             background: #f4f7f6;
             color: #212529;
+        }
+
+        .dark body,
+        html.dark body {
+            background: #171717;
+            color: #f3f3f3;
         }
 
         .app-wrapper {
@@ -62,21 +79,21 @@
             display: none !important;
         }
     </style>
+</head>
 
 <body class="transition-colors duration-500" x-data="{
     scrolled: false,
     mobileMenuOpen: false
 }">
-
     <div class="app-wrapper">
 
-        <nav @scroll.window="scrolled = (window.pageYOffset > 50)"
+        <nav x-data="{ scrolled: false, mobileMenuOpen: false }" @scroll.window="scrolled = (window.pageYOffset > 50)"
             class="h-14.5 flex items-center transition-all duration-1000 ease-in-out z-1000
-             {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'fixed top-0 left-0 right-0' : 'sticky top-0 bg-white border-b border-gray-200' }}"
+             {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'fixed top-0 left-0 right-0' : 'sticky top-0 bg-white dark:bg-neutral-900 border-b border-gray-200 dark:border-neutral-800' }}"
             :class="{
-                'bg-white/95 backdrop-blur-md': {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
+                'bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md': {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
                     (scrolled || mobileMenuOpen),
-                'bg-white': !
+                'bg-white dark:bg-neutral-900': !
                     {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} ||
                     ({{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
                         (scrolled || mobileMenuOpen)),
@@ -115,38 +132,34 @@
                                         (scrolled ?
                                             'font-bold bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent' :
                                             'text-white hover:text-white/80') :
-                                        'text-gray-900 hover:text-orange-600'">Beranda</span>
+                                        'text-gray-900 dark:text-gray-100 hover:text-orange-600 dark:hover:text-orange-400'">Beranda</span>
                             </a>
                         </li>
                     </ul>
 
                     <div class="hidden lg:flex items-center gap-3 -mr-4">
                         @auth
-
                             <div x-data="{ open: false }" class="relative">
                                 <button
                                     class="px-3.5 py-1 rounded-full border-0 transition-all duration-1000 ease-in-out flex items-center gap-1 text-sm cursor-pointer"
-                                    type="button" @click="open = !open"
-                                    :class="[
-                                        {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
-                                        !scrolled ?
-                                        'bg-white/20 text-white backdrop-blur-sm hover:bg-white/30' :
-                                        'hover:bg-orange-50 border border-orange-200'
-                                    ]">
-                                    <span
-                                        :class="[
+                                    type="button" @click="open = !open" :class="[
                                             {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
                                             !scrolled ?
-                                            'text-white' :
-                                            'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent font-bold'
-                                        ]">{{ Auth::user()->name }}</span>
-                                    <i class="bi bi-chevron-down text-xs"
-                                        :class="[
-                                            {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
-                                            !scrolled ?
-                                            'text-white' :
-                                            'text-gray-500'
-                                        ]"></i>
+                                            'bg-white/20 text-white backdrop-blur-sm hover:bg-white/30' :
+                                            'hover:bg-orange-50 dark:hover:bg-neutral-800 border border-orange-200 dark:border-neutral-700'
+                                        ]">
+                                    <span :class="[
+                                                {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
+                                                !scrolled ?
+                                                'text-white' :
+                                                'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent font-bold'
+                                            ]">{{ Auth::user()->name }}</span>
+                                    <i class="bi bi-chevron-down text-xs" :class="[
+                                                {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
+                                                !scrolled ?
+                                                'text-white' :
+                                                'text-gray-500 dark:text-gray-400'
+                                            ]"></i>
                                 </button>
 
                                 <ul x-show="open" @click.outside="open = false"
@@ -156,14 +169,15 @@
                                     x-transition:leave="transition ease-in duration-75"
                                     x-transition:leave-start="opacity-100 scale-100"
                                     x-transition:leave-end="opacity-0 scale-95"
-                                    class="absolute right-0 mt-2 w-48 bg-white border-0 rounded-xl py-2 list-none z-50 shadow-xl shadow-gray-200/50">
-                                    <div class="px-4 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider">
+                                    class="absolute right-0 mt-2 w-48 bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 rounded-xl py-2 shadow-xl list-none z-50">
+                                    <div
+                                        class="px-4 py-2 text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
                                         Menu User
                                     </div>
 
                                     <li>
                                         <a href="{{ route('profile.index') }}"
-                                            class="px-4 py-2 hover:bg-orange-50 text-sm font-bold flex items-center gap-2 no-underline">
+                                            class="px-4 py-2 hover:bg-orange-50 dark:hover:bg-neutral-800 text-sm font-bold flex items-center gap-2 no-underline">
                                             <i class="bi bi-person-circle text-orange-500"></i>
                                             <span class="bg-linear-to-r text-orange-500 bg-clip-text">
                                                 Profil Saya</span>
@@ -171,7 +185,7 @@
                                     </li>
                                     <li>
                                         <a href="{{ route('recipes.create') }}"
-                                            class="px-4 py-2 hover:bg-orange-50 text-sm font-bold flex items-center gap-2 no-underline">
+                                            class="px-4 py-2 hover:bg-orange-50 dark:hover:bg-neutral-800 text-sm font-bold flex items-center gap-2 no-underline">
                                             <i class="bi bi-plus-circle text-orange-500"></i>
                                             <span class="bg-linear-to-r text-orange-500 bg-clip-text">Tambah
                                                 Resep</span>
@@ -180,7 +194,7 @@
                                     @if (Auth::user()->is_admin)
                                         <li>
                                             <a href="{{ route('admin.tags.index') }}"
-                                                class="px-4 py-2 hover:bg-orange-50 text-sm font-bold flex items-center gap-2 no-underline">
+                                                class="px-4 py-2 hover:bg-orange-50 dark:hover:bg-neutral-800 text-sm font-bold flex items-center gap-2 no-underline">
                                                 <i class="bi bi-tags text-orange-500"></i>
                                                 <span class="bg-linear-to-r text-orange-500 bg-clip-text">Kelola
                                                     Kategori</span>
@@ -191,7 +205,7 @@
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
                                             <button type="submit"
-                                                class="w-full text-left block px-4 py-2 text-red-500 hover:bg-red-50 text-sm cursor-pointer">
+                                                class="w-full text-left block px-4 py-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 text-sm cursor-pointer border-0">
                                                 Keluar
                                             </button>
                                         </form>
@@ -202,32 +216,37 @@
                             <a href="{{ route('login') }}"
                                 class="no-underline transition-colors duration-300 ease-in-out text-sm font-bold py-2 px-3"
                                 :class="{{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }}
-                                    &&
-                                    !scrolled ? 'text-white hover:text-white/80' :
-                                    'text-gray-500 hover:text-orange-600'">
+                                        &&
+                                        !scrolled ? 'text-white hover:text-white/80' :
+                                        'text-gray-500 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400'">
                                 Masuk
                             </a>
                             <a href="{{ route('register') }}"
                                 class="no-underline rounded-md px-4 transition-all duration-300 ease-in-out text-sm py-2 font-bold"
                                 :class="[
-                                    {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
-                                    !scrolled ?
-                                    'bg-transparent border-2 border-white text-white hover:bg-white hover:text-orange-600' :
-                                    'border-0 bg-linear-to-r from-amber-500 to-orange-600 text-white'
-                                ]">
+                                        {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
+                                        !scrolled ?
+                                        'bg-transparent border-2 border-white text-white hover:bg-white hover:text-orange-600' :
+                                        'border-0 bg-linear-to-r from-amber-500 to-orange-600 text-white'
+                                    ]">
                                 Daftar
                             </a>
                         @endauth
+
+                        <button id="darkModeToggle"
+                            class="ml-2 w-10 h-10 rounded-full transition bg-neutral-200 hover:bg-neutral-300 text-neutral-700 dark:bg-neutral-800 dark:text-amber-200 dark:border dark:border-neutral-600 flex items-center justify-center border-0 cursor-pointer"
+                            title="Toggle Mode Gelap/Cerah" aria-label="Toggle Dark Mode">
+                            <i id="darkModeIcon" class="bi bi-moon-fill text-xl"></i>
+                        </button>
                     </div>
 
                     <button
                         class="lg:hidden border-0 bg-transparent transition-all duration-1000 ease-in-out py-1 cursor-pointer"
                         type="button" @click="mobileMenuOpen = !mobileMenuOpen">
-                        <i class="bi text-2xl"
-                            :class="[
+                        <i class="bi text-2xl" :class="[
                                 mobileMenuOpen ? 'bi-x' : 'bi-list',
                                 {{ in_array(request()->route()->getName(), ['recipes.index', 'login', 'register']) ? 'true' : 'false' }} &&
-                                !scrolled && !mobileMenuOpen ? 'text-white' : 'text-gray-900'
+                                !scrolled && !mobileMenuOpen ? 'text-white' : 'text-gray-900 dark:text-gray-100'
                             ]"></i>
                     </button>
 
@@ -240,16 +259,16 @@
                     x-transition:leave="transition ease-in duration-150"
                     x-transition:leave-start="opacity-100 translate-y-0"
                     x-transition:leave-end="opacity-0 -translate-y-2"
-                    class="absolute top-full right-0 min-w-70 max-w-80 bg-white/95 backdrop-blur-xl border border-gray-100 rounded-2xl p-4 flex flex-col gap-3 lg:hidden shadow-2xl"
+                    class="absolute top-full right-0 min-w-70 max-w-80 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-xl border border-gray-100 dark:border-neutral-800 rounded-2xl p-4 flex flex-col gap-3 lg:hidden shadow-2xl"
                     @click.outside="mobileMenuOpen = false">
 
                     @auth
-                        <div class="px-4 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider">
+                        <div class="px-4 py-2 text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
                             Menu User
                         </div>
 
                         <a href="{{ route('profile.index') }}"
-                            class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-orange-50 text-orange-600 font-bold transition-colors">
+                            class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-orange-50 dark:hover:bg-neutral-800 text-orange-600 font-bold transition-colors no-underline">
                             <i class="bi bi-person-circle text-orange-500"></i>
                             <span class="bg-linear-to-r text-orange-500 bg-clip-text">
                                 Profil Saya</span>
@@ -257,12 +276,12 @@
 
                         @if (Auth::user()->is_admin)
                             <a href="{{ route('recipes.create') }}"
-                                class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-orange-50 text-orange-600 font-bold transition-colors">
+                                class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-orange-50 dark:hover:bg-neutral-800 text-orange-600 font-bold transition-colors no-underline">
                                 <i class="bi bi-plus-circle text-lg"></i>
                                 Tambah Resep
                             </a>
                             <a href="{{ route('admin.tags.index') }}"
-                                class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-orange-50 text-orange-600 font-bold transition-colors">
+                                class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-orange-50 dark:hover:bg-neutral-800 text-orange-600 font-bold transition-colors no-underline">
                                 <i class="bi bi-tags text-lg"></i>
                                 Kelola Kategori
                             </a>
@@ -271,7 +290,7 @@
                         <form method="POST" action="{{ route('logout') }}" class="w-full">
                             @csrf
                             <button type="submit"
-                                class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-red-50 text-red-500 font-bold transition-colors text-left cursor-pointer">
+                                class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-red-50 dark:hover:bg-red-950/30 text-red-500 font-bold transition-colors text-left cursor-pointer border-0">
                                 <i class="bi bi-box-arrow-right text-lg"></i>
                                 Keluar
                             </button>
@@ -279,7 +298,7 @@
                     @else
                         <div class="flex flex-col gap-2">
                             <a href="{{ route('login') }}"
-                                class="flex items-center justify-center py-3 rounded-full border border-gray-200 text-gray-600 font-bold hover:bg-gray-50 transition-colors no-underline">
+                                class="flex items-center justify-center py-3 rounded-full border border-gray-200 dark:border-neutral-700 text-gray-600 dark:text-gray-300 font-bold hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors no-underline">
                                 Masuk
                             </a>
                             <a href="{{ route('register') }}"
@@ -301,9 +320,9 @@
         </main>
 
         @if (!in_array(request()->route()->getName(), ['login', 'register']))
-            <footer class="bg-white border-t border-gray-200 py-4">
+            <footer class="bg-white dark:bg-neutral-900 border-t border-gray-200 dark:border-neutral-800 py-8">
                 <div class="max-w-7xl mx-auto px-4 text-center">
-                    <p class="text-gray-500 text-sm mb-0">
+                    <p class="text-gray-500 dark:text-gray-400 text-sm mb-0">
                         &copy; {{ date('Y') }} Food Reviews.
                         Dibuat di Lombok.
                     </p>
@@ -322,8 +341,7 @@
                         <i class="bi bi-check-circle-fill mr-2 text-lg"></i>
                         <span>{{ session('status') }}</span>
                     </div>
-                    <button type="button" class="toast-close p-2 mr-2 text-white/80 hover:text-white"
-                        aria-label="Close">
+                    <button type="button" class="toast-close p-2 mr-2 text-white/80 hover:text-white" aria-label="Close">
                         <i class="bi bi-x-lg"></i>
                     </button>
                 </div>
@@ -354,7 +372,6 @@
         @endif
     </div>
 
-    <!-- Confirm Modal -->
     <div id="confirm-modal" x-data="{
         open: false,
         title: '',
@@ -376,30 +393,27 @@
             this.formToSubmit = null;
             this.open = false;
         }
-    }" x-cloak
-        @open-confirm-modal.window="show($event.detail.form, $event.detail.title, $event.detail.message)">
+    }" x-cloak @open-confirm-modal.window="show($event.detail.form, $event.detail.title, $event.detail.message)">
 
-        <div x-show="open" class="fixed inset-0 z-9999 overflow-y-auto" aria-labelledby="modal-title"
-            role="dialog" aria-modal="true">
+        <div x-show="open" class="fixed inset-0 z-9999 overflow-y-auto" aria-labelledby="modal-title" role="dialog"
+            aria-modal="true">
             <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
-                <!-- Background overlay -->
                 <div x-show="open" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
                     x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
                     x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
                     class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm transition-opacity" @click="cancel()">
                 </div>
 
-                <!-- Modal panel -->
                 <div x-show="open" x-transition:enter="ease-out duration-300"
                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
                     x-transition:leave="ease-in duration-200"
                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    class="relative inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-2xl rounded-3xl sm:p-8">
+                    class="relative inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-neutral-900 shadow-2xl rounded-3xl sm:p-8 border border-gray-100 dark:border-neutral-800">
 
-                    <!-- Icon -->
-                    <div class="flex items-center justify-center w-16 h-16 mx-auto mb-6 rounded-full bg-red-100">
+                    <div
+                        class="flex items-center justify-center w-16 h-16 mx-auto mb-6 rounded-full bg-red-100 dark:bg-red-900/30">
                         <svg class="w-8 h-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                             stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -407,16 +421,13 @@
                         </svg>
                     </div>
 
-                    <!-- Title -->
-                    <h3 class="text-xl font-bold text-center text-gray-900 mb-2" x-text="title"></h3>
+                    <h3 class="text-xl font-bold text-center text-gray-900 dark:text-gray-100 mb-2" x-text="title"></h3>
 
-                    <!-- Message -->
-                    <p class="text-center text-gray-500 mb-8" x-text="message"></p>
+                    <p class="text-center text-gray-500 dark:text-gray-400 mb-8" x-text="message"></p>
 
-                    <!-- Buttons -->
                     <div class="flex flex-col-reverse sm:flex-row gap-3">
                         <button type="button" @click="cancel()"
-                            class="flex-1 px-6 py-3 text-sm font-semibold text-gray-700 bg-gray-100 rounded-xl hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300">
+                            class="flex-1 px-6 py-3 text-sm font-semibold text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-neutral-800 rounded-xl hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300 dark:focus:ring-neutral-600 border-0">
                             Batal
                         </button>
                         <button type="button" @click="confirm()"
@@ -450,9 +461,9 @@
             offset: 60
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const toastElements = document.querySelectorAll('.toast');
-            toastElements.forEach(function(toastEl) {
+            toastElements.forEach(function (toastEl) {
                 toastEl.classList.add('show');
                 const delay = parseInt(toastEl.dataset.delay) || 5000;
                 setTimeout(() => {
@@ -468,6 +479,33 @@
                     });
                 }
             });
+
+            // DARK MODE TOGGLE - Uses 'dark' class on <html> for Tailwind dark: utilities
+            const darkToggleBtn = document.getElementById('darkModeToggle');
+            const darkModeIcon = document.getElementById('darkModeIcon');
+
+            function applyDarkMode(isDark) {
+                if (isDark) {
+                    document.documentElement.classList.add('dark');
+                    darkModeIcon.className = 'bi bi-sun-fill';
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    darkModeIcon.className = 'bi bi-moon-fill';
+                }
+                darkModeIcon.style.fontSize = '1.2rem';
+            }
+
+            // Check current state from localStorage only
+            let isDark = localStorage.getItem('foodreview-theme') === 'dark';
+            applyDarkMode(isDark);
+
+            if (darkToggleBtn) {
+                darkToggleBtn.addEventListener('click', function () {
+                    isDark = !document.documentElement.classList.contains('dark');
+                    applyDarkMode(isDark);
+                    localStorage.setItem('foodreview-theme', isDark ? 'dark' : 'light');
+                });
+            }
         });
     </script>
 

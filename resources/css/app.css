@@ -1,333 +1,16 @@
 @import "tailwindcss";
 
-/* Hide elements with x-cloak until Alpine.js initializes */
+/* Enable class-based dark mode for Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
 [x-cloak] {
     display: none !important;
 }
 
-body {
-    background: #f8f9fa;
-    color: #212529;
-}
+/* ======================= ESSENTIAL STYLES ======================= */
+/* Only styles that require CSS selectors not available in Tailwind */
 
-.recipe-info-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.85rem;
-}
-
-.recipe-info-grid .info-box {
-    background: #ffffff;
-    border-radius: 18px;
-    padding: 1rem 0.75rem;
-    text-align: center;
-    border: 2px solid #e9ecef;
-    transition: 0.25s ease;
-}
-
-:is(.dark .recipe-info-grid .info-box) {
-    background: #0f172a; /* slate-900 */
-    border-color: #1e293b; /* slate-800 */
-}
-
-.recipe-info-grid .info-box:hover {
-    border: 2px solid #f97316;
-}
-
-:is(.dark .recipe-info-grid .info-box:hover) {
-    border-color: #f97316;
-}
-
-.recipe-info-grid .info-box i {
-    font-size: 1.6rem;
-    color: #ea580c;
-    margin-bottom: 0.35rem;
-    display: block;
-}
-
-.recipe-info-grid .info-box .label {
-    font-size: 0.7rem;
-    font-weight: 800;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: #6c757d;
-    margin-bottom: 0.15rem;
-}
-
-:is(.dark .recipe-info-grid .info-box .label) {
-    color: #94a3b8; /* slate-400 */
-}
-
-.recipe-info-grid .info-box .value {
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: #212529;
-}
-
-:is(.dark .recipe-info-grid .info-box .value) {
-    color: #e2e8f0; /* slate-200 */
-}
-
-.recipe-info-grid .info-box.full {
-    grid-column: span 2;
-}
-
-@media (max-width: 992px) {
-    .recipe-info-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .recipe-info-grid .info-box.full {
-        grid-column: span 1;
-    }
-}
-
-/* HERO SECTION */
-.explore-hero {
-    position: relative;
-    background: linear-gradient(
-            135deg,
-            rgba(245, 158, 11, 0.88),
-            rgba(234, 88, 12, 0.88)
-        ),
-        url("/images/food-bg.png");
-    background-size: cover;
-    background-position: center;
-    color: #ffffff;
-    overflow: hidden;
-}
-
-.explore-hero-content {
-    position: relative;
-    margin: auto;
-    z-index: 2;
-}
-
-.hero-badge {
-    background: rgba(255, 255, 255, 0.22);
-    padding: 0.5rem 1.4rem;
-    border-radius: 999px;
-    font-weight: 600;
-    font-size: 0.85rem;
-    display: inline-flex;
-    gap: 0.4rem;
-    margin-bottom: 1.5rem;
-}
-
-.hero-title {
-    font-size: 3rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
-}
-
-.hero-subtitle {
-    max-width: 640px;
-    font-size: 1.05rem;
-    opacity: 0.95;
-    margin-bottom: 3.2rem;
-}
-
-/* HERO CAROUSEL */
-.recipe-carousel-wrapper {
-    position: relative;
-    padding: 0 3.5rem;
-}
-
-.recipe-carousel {
-    display: flex;
-    gap: 1.8rem;
-    overflow-x: auto;
-    padding-bottom: 1.5rem;
-    scroll-behavior: smooth;
-}
-
-.recipe-carousel::-webkit-scrollbar {
-    display: none;
-}
-
-.recipe-slide {
-    min-width: 340px;
-    height: 230px;
-    border-radius: 24px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 24px 55px rgba(0, 0, 0, 0.3);
-    transition: 0.35s ease;
-}
-
-.recipe-slide:hover {
-    transform: translateY(-8px);
-}
-
-.recipe-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.recipe-slide::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.7),
-        rgba(0, 0, 0, 0.4),
-        transparent
-    );
-}
-
-.slide-overlay {
-    position: absolute;
-    inset: 0;
-    padding: 1.4rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    color: #ffffff;
-    z-index: 2;
-}
-
-.slide-overlay h4 {
-    font-size: 1.2rem;
-    font-weight: 800;
-    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.8);
-    margin: 0;
-}
-
-.slide-tag {
-    display: inline-block;
-    width: auto;
-    max-width: max-content;
-    background: linear-gradient(135deg, #f59e0b, #ea580c);
-    padding: 0.35rem 0.9rem;
-    border-radius: 999px;
-    font-size: 0.7rem;
-    font-weight: 800;
-    line-height: 1;
-    margin-bottom: 0.45rem;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
-}
-
-/* CAROUSEL NAV */
-.carousel-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.95);
-    color: #ea580c;
-    font-size: 1.6rem;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.3);
-    z-index: 5;
-}
-
-.carousel-nav.prev {
-    left: 0;
-}
-.carousel-nav.next {
-    right: 0;
-}
-
-.carousel-nav:hover {
-    transform: translateY(-50%) scale(1.08);
-}
-
-/* FILTER SECTION  */
-.search-section {
-    margin-top: -4.5rem;
-    padding-bottom: 6rem;
-}
-
-.filter-outer {
-    margin: auto;
-    background: #ffffff;
-    border-radius: 32px;
-    padding: 3rem;
-    position: relative;
-}
-
-/* SEARCH BAR */
-.filter-search {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    border-radius: 999px;
-    padding: 1rem 1.6rem;
-    border: 2px solid #fed7aa;
-}
-
-.filter-search input {
-    border: none;
-    outline: none;
-    background: transparent;
-    width: 100%;
-}
-
-/* FILTER TAGS */
-.filter-label {
-    font-size: 0.9rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-    color: #212529;
-}
-.filter-tags {
-    gap: 2rem;
-}
-
-.tag-chip {
-    margin: 0.3rem;
-    padding: 0.6rem 1.4rem;
-    border-radius: 999px;
-    background: #fff7ed;
-    border: 1.5px solid #ffedd5;
-    font-size: 0.85rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.25s ease;
-}
-
-.tag-chip input {
-    display: none;
-}
-
-.tag-chip:hover {
-    background: #fed7aa;
-}
-
-.tag-chip:has(input:checked) {
-    background: linear-gradient(135deg, #f59e0b, #ea580c);
-    color: #ffffff;
-}
-
-/* ACTION BUTTON */
-.filter-actions {
-    display: flex;
-    gap: 1.2rem;
-    margin-top: 3rem;
-}
-
-.filter-btn {
-    padding: 0.9rem 3.2rem;
-    border-radius: 999px;
-    background: linear-gradient(135deg, #f59e0b, #ea580c);
-    color: #ffffff;
-    border: none;
-    font-weight: 700;
-    box-shadow: 0 8px 24px rgba(234, 88, 12, 0.45);
-}
-
-/* ======================================================
-   RESPONSIVE
-   ====================================================== */
-
-/* ======================================================
-   STAR RATING (Interactive)
-   ====================================================== */
+/* Star Rating (requires :checked ~ sibling selectors) */
 .star-rating {
     display: flex;
     flex-direction: row-reverse;
@@ -362,6 +45,16 @@ body {
     animation: starPulse 0.4s ease;
 }
 
+.dark .star-rating label {
+    color: #404040;
+}
+
+.dark .star-rating input[type="radio"]:checked ~ label,
+.dark .star-rating label:hover,
+.dark .star-rating label:hover ~ label {
+    color: #ffc107;
+}
+
 @keyframes starPulse {
     0%,
     100% {
@@ -379,9 +72,7 @@ body {
     }
 }
 
-/* ======================================================
-   TOAST NOTIFICATIONS (Pure CSS/JS - No Bootstrap)
-   ====================================================== */
+/* Toast Notifications (requires show/hide animation states) */
 .toast {
     min-width: 300px;
     border-radius: 12px;
@@ -401,6 +92,11 @@ body {
     transform: translateX(100%);
 }
 
+.dark .toast {
+    background: linear-gradient(135deg, #262626 80%, #ea580c) !important;
+    color: #ffe6b1 !important;
+}
+
 @media (max-width: 576px) {
     .toast {
         min-width: 280px;
@@ -408,9 +104,7 @@ body {
     }
 }
 
-/* ======================================================
-   INGREDIENT CHECKBOX (Stylish Custom Checkbox)
-   ====================================================== */
+/* Ingredient Checkbox (requires :has selector) */
 .ingredient-item .checkbox-icon {
     opacity: 0;
     transform: scale(0.5);
@@ -435,57 +129,31 @@ body {
     color: #9ca3af;
 }
 
-/* FLOATING BACK BUTTON */
-.btn-float-back {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 56px;
-    height: 56px;
-    background: linear-gradient(135deg, #f59e0b, #ea580c);
-    color: #ffffff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    box-shadow: 0 8px 24px rgba(234, 88, 12, 0.35);
-    transition: all 0.3s ease;
-    z-index: 1000;
-    text-decoration: none;
+.dark .ingredient-item:has(input:checked) {
+    background: #28291b !important;
 }
 
-.btn-float-back:hover {
-    background: linear-gradient(135deg, #d97706, #c2410c);
-    color: #ffffff;
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 12px 32px rgba(234, 88, 12, 0.5);
+/* Number Input Spinner (webkit pseudo-element) */
+.dark input[type="number"]::-webkit-inner-spin-button,
+.dark input[type="number"]::-webkit-outer-spin-button {
+    filter: invert(1);
 }
 
-.btn-float-back:active {
-    transform: translateY(-2px) scale(1);
+/* Scrollbar (webkit pseudo-elements) */
+.dark ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
 }
 
-.btn-float-back i {
-    line-height: 1;
+.dark ::-webkit-scrollbar-track {
+    background: #1a1a1a;
 }
 
-@media (max-width: 768px) {
-    .btn-float-back {
-        bottom: 1.5rem;
-        right: 1.5rem;
-        width: 52px;
-        height: 52px;
-        font-size: 1.3rem;
-    }
+.dark ::-webkit-scrollbar-thumb {
+    background: #404040;
+    border-radius: 4px;
 }
 
-@media (max-width: 576px) {
-    .btn-float-back {
-        bottom: 1rem;
-        right: 1rem;
-        width: 48px;
-        height: 48px;
-        font-size: 1.2rem;
-    }
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #525252;
 }

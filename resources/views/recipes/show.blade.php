@@ -3,15 +3,17 @@
 @section('content')
     <div class="max-w-7xl mx-auto px-4">
         <!-- Floating Back Button -->
-        <a href="{{ url()->previous() }}" class="btn-float-back" title="Kembali">
-            <i class="bi bi-arrow-left"></i>
+        <a href="{{ url()->previous() }}"
+            class="fixed bottom-8 right-8 w-14 h-14 bg-linear-to-br from-amber-500 to-orange-600 text-white rounded-full flex items-center justify-center text-2xl shadow-lg shadow-orange-600/35 transition-all z-1000 no-underline hover:from-amber-600 hover:to-orange-700 hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:shadow-orange-600/50 active:-translate-y-0.5 active:scale-100 max-md:bottom-6 max-md:right-6 max-md:w-13 max-md:h-13 max-md:text-xl max-sm:bottom-4 max-sm:right-4 max-sm:w-12 max-sm:h-12 max-sm:text-lg"
+            title="Kembali">
+            <i class="bi bi-arrow-left leading-none"></i>
         </a>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 py-10">
             <!-- Main Content -->
             <div class="lg:col-span-2">
                 <!-- Hero Image & Header -->
-                <div class="bg-white shadow-sm rounded-2xl overflow-hidden mb-4" data-aos="fade-up">
+                <div class="bg-white dark:bg-neutral-800 shadow-sm rounded-2xl overflow-hidden mb-4" data-aos="fade-up">
 
                     @php
                         $allImages = collect();
@@ -38,8 +40,7 @@
                                 <div x-show="activeSlide === {{ $index }}"
                                     x-transition:enter="transition ease-out duration-700"
                                     x-transition:enter-start="opacity-0 scale-105"
-                                    x-transition:enter-end="opacity-100 scale-100"
-                                    class="absolute inset-0 w-full h-full">
+                                    x-transition:enter-end="opacity-100 scale-100" class="absolute inset-0 w-full h-full">
                                     <img src="{{ Storage::url($image) }}" alt="{{ $recipe->title }}"
                                         class="w-full h-full object-cover">
                                 </div>
@@ -60,7 +61,8 @@
                                 @foreach ($allImages as $index => $image)
                                     <button @click="activeSlide = {{ $index }}"
                                         class="h-2 rounded-full transition-all duration-300 shadow-sm"
-                                        :class="activeSlide === {{ $index }} ? 'w-6 bg-orange-500' : 'w-2 bg-white/60 hover:bg-white'">
+                                        :class="activeSlide === {{ $index }} ? 'w-6 bg-orange-500' :
+                                            'w-2 bg-white/60 hover:bg-white'">
                                     </button>
                                 @endforeach
                             </div>
@@ -73,7 +75,7 @@
                         </div>
                     @else
                         <!-- Fallback -->
-                        <div class="w-full h-96 bg-gray-100 flex items-center justify-center text-gray-400">
+                        <div class="w-full h-96 bg-gray-100 dark:bg-neutral-700 flex items-center justify-center text-gray-400 dark:text-gray-500">
                             <i class="bi bi-image text-6xl"></i>
                         </div>
                     @endif
@@ -81,27 +83,27 @@
                     <div class="p-6 md:p-8">
                         <div class="flex flex-col md:flex-row justify-between items-start gap-4 mb-3">
                             <div>
-                                <h1 class="font-bold text-3xl md:text-4xl mb-2">{{ $recipe->title }}</h1>
-                                <p class="text-gray-500 mb-0">Oleh <span
-                                        class="font-semibold text-gray-900">{{ $recipe->user?->name ?? 'Anonim' }}</span>
+                                <h1 class="font-bold text-3xl md:text-4xl mb-2 dark:text-gray-100">{{ $recipe->title }}</h1>
+                                <p class="text-gray-500 dark:text-gray-400 mb-0">Oleh <span
+                                        class="font-semibold text-gray-900 dark:text-gray-200">{{ $recipe->user?->name ?? 'Anonim' }}</span>
                                 </p>
                             </div>
-                            <div class="text-right bg-gray-100 p-3 rounded-2xl">
+                            <div class="text-right bg-gray-100 dark:bg-neutral-700 p-3 rounded-2xl">
                                 <div class="font-bold text-amber-500 text-2xl flex items-center justify-end gap-2">
                                     <i class="bi bi-star-fill"></i> {{ number_format($recipe->rating_avg, 1) }}
                                 </div>
-                                <div class="text-gray-500 text-sm">{{ $recipe->rating_count }} ulasan</div>
+                                <div class="text-gray-500 dark:text-gray-400 text-sm">{{ $recipe->rating_count }} ulasan</div>
                             </div>
                         </div>
 
                         @if ($recipe->description)
-                            <p class="text-gray-500 text-base">{{ $recipe->description }}</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-base">{{ $recipe->description }}</p>
                         @endif
 
                         <div class="flex flex-wrap gap-2 mt-4">
                             @foreach ($recipe->tags as $tag)
                                 <span
-                                    class="bg-orange-100 text-orange-700 border border-orange-200 rounded-full px-3 py-1.5 text-sm font-medium">{{ $tag->name }}</span>
+                                    class="bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400 border border-orange-200 dark:border-orange-800 rounded-full px-3 py-1.5 text-sm font-medium">{{ $tag->name }}</span>
                             @endforeach
                         </div>
                     </div>
@@ -110,9 +112,9 @@
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
                     <!-- Ingredients Checklist -->
                     <div class="md:col-span-2" data-aos="fade-up" data-aos-delay="100">
-                        <div class="bg-white shadow-sm rounded-2xl h-full">
+                        <div class="bg-white dark:bg-neutral-800 shadow-sm rounded-2xl h-full">
                             <div class="p-6">
-                                <h4 class="font-bold mb-4 flex items-center text-lg">
+                                <h4 class="font-bold mb-4 flex items-center text-lg dark:text-gray-100">
                                     <span
                                         class="bg-linear-to-r from-amber-500 to-orange-600 text-white rounded-full flex items-center justify-center mr-2 w-8 h-8">
                                         <i class="bi bi-basket"></i>
@@ -123,17 +125,17 @@
                                     @foreach (explode("\n", $recipe->ingredients) as $index => $ingredient)
                                         @if (trim($ingredient))
                                             <label
-                                                class="ingredient-item flex items-center gap-3 cursor-pointer p-2 rounded-xl hover:bg-gray-50 transition-all">
+                                                class="ingredient-item flex items-center gap-3 cursor-pointer p-2 rounded-xl hover:bg-gray-50 dark:hover:bg-neutral-700 transition-all">
                                                 <input type="checkbox" id="ing-{{ $index }}" class="sr-only">
                                                 <div
-                                                    class="checkbox-box w-6 h-6 shrink-0 rounded-lg border-2 border-gray-300 flex items-center justify-center transition-all">
+                                                    class="checkbox-box w-6 h-6 shrink-0 rounded-lg border-2 border-gray-300 dark:border-neutral-600 flex items-center justify-center transition-all">
                                                     <svg class="checkbox-icon w-4 h-4 text-white transition-all"
                                                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             stroke-width="3" d="M5 13l4 4L19 7"></path>
                                                     </svg>
                                                 </div>
-                                                <span class="ingredient-text text-base text-gray-700 transition-all">
+                                                <span class="ingredient-text text-base text-gray-700 dark:text-gray-300 transition-all">
                                                     {{ trim($ingredient) }}
                                                 </span>
                                             </label>
@@ -146,9 +148,9 @@
 
                     <!-- Cooking Steps -->
                     <div class="md:col-span-3" data-aos="fade-up" data-aos-delay="200">
-                        <div class="bg-white shadow-sm rounded-2xl h-full">
+                        <div class="bg-white dark:bg-neutral-800 shadow-sm rounded-2xl h-full">
                             <div class="p-6">
-                                <h4 class="font-bold mb-4 flex items-center text-lg">
+                                <h4 class="font-bold mb-4 flex items-center text-lg dark:text-gray-100">
                                     <span
                                         class="bg-linear-to-r from-amber-500 to-orange-600 text-white rounded-full flex items-center justify-center mr-2 w-8 h-8">
                                         <i class="bi bi-fire"></i>
@@ -158,11 +160,11 @@
                                 <div class="flex flex-col gap-3">
                                     @foreach (explode("\n", $recipe->steps) as $index => $step)
                                         @if (trim($step))
-                                            <div class="flex gap-3 p-3 bg-gray-100 rounded-2xl">
-                                                <div class="shrink-0 font-bold text-orange-600 text-lg">
+                                            <div class="flex gap-3 p-3 bg-gray-100 dark:bg-neutral-700 rounded-2xl">
+                                                <div class="shrink-0 font-bold text-orange-600 dark:text-orange-400 text-lg">
                                                     {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}
                                                 </div>
-                                                <div class="text-gray-900">
+                                                <div class="text-gray-900 dark:text-gray-200">
                                                     {{ trim($step) }}
                                                 </div>
                                             </div>
@@ -175,52 +177,73 @@
                 </div>
 
                 <!-- Recipe Information -->
-                <div class="bg-white shadow-sm rounded-2xl mt-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="bg-white dark:bg-neutral-800 shadow-sm rounded-2xl mt-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="p-6 md:p-8">
-                        <h3 class="font-bold mb-4 text-xl">Informasi Resep</h3>
+                        <h3 class="font-bold mb-4 text-xl dark:text-gray-100">Informasi Resep</h3>
 
-                        <div class="recipe-info-grid">
-                            <div class="info-box">
-                                <i class="bi bi-clock-history"></i>
-                                <div class="label">Waktu Persiapan</div>
-                                <div class="value">{{ $recipe->prep_time ?? '-' }} mnt</div>
+                        <div class="grid grid-cols-2 gap-3.5 max-lg:grid-cols-1">
+                            <div
+                                class="bg-white dark:bg-neutral-800 rounded-2xl p-4 text-center border-2 border-gray-200 dark:border-neutral-700 transition-all duration-300 hover:border-orange-500">
+                                <i class="bi bi-clock-history block text-2xl text-orange-600 mb-1"></i>
+                                <div
+                                    class="text-xs font-extrabold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-0.5">
+                                    Waktu Persiapan</div>
+                                <div class="font-bold text-base text-gray-900 dark:text-gray-100">
+                                    {{ $recipe->prep_time ?? '-' }} mnt</div>
                             </div>
 
-                            <div class="info-box">
-                                <i class="bi bi-stopwatch"></i>
-                                <div class="label">Waktu Masak</div>
-                                <div class="value">{{ $recipe->cook_time ?? '-' }} mnt</div>
+                            <div
+                                class="bg-white dark:bg-neutral-800 rounded-2xl p-4 text-center border-2 border-gray-200 dark:border-neutral-700 transition-all duration-300 hover:border-orange-500">
+                                <i class="bi bi-stopwatch block text-2xl text-orange-600 mb-1"></i>
+                                <div
+                                    class="text-xs font-extrabold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-0.5">
+                                    Waktu Masak</div>
+                                <div class="font-bold text-base text-gray-900 dark:text-gray-100">
+                                    {{ $recipe->cook_time ?? '-' }} mnt</div>
                             </div>
 
-                            <div class="info-box">
-                                <i class="bi bi-people"></i>
-                                <div class="label">Porsi</div>
-                                <div class="value">{{ $recipe->servings ?? '-' }} org</div>
+                            <div
+                                class="bg-white dark:bg-neutral-800 rounded-2xl p-4 text-center border-2 border-gray-200 dark:border-neutral-700 transition-all duration-300 hover:border-orange-500">
+                                <i class="bi bi-people block text-2xl text-orange-600 mb-1"></i>
+                                <div
+                                    class="text-xs font-extrabold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-0.5">
+                                    Porsi</div>
+                                <div class="font-bold text-base text-gray-900 dark:text-gray-100">
+                                    {{ $recipe->servings ?? '-' }} org</div>
                             </div>
 
-                            <div class="info-box">
-                                <i class="bi bi-globe-americas"></i>
-                                <div class="label">Asal Masakan</div>
-                                <div class="value">{{ $recipe->cuisine ?? '-' }}</div>
+                            <div
+                                class="bg-white dark:bg-neutral-800 rounded-2xl p-4 text-center border-2 border-gray-200 dark:border-neutral-700 transition-all duration-300 hover:border-orange-500">
+                                <i class="bi bi-globe-americas block text-2xl text-orange-600 mb-1"></i>
+                                <div
+                                    class="text-xs font-extrabold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-0.5">
+                                    Asal Masakan</div>
+                                <div class="font-bold text-base text-gray-900 dark:text-gray-100">
+                                    {{ $recipe->cuisine ?? '-' }}</div>
                             </div>
 
                             <!-- Full width -->
-                            <div class="info-box full">
-                                <i class="bi bi-bar-chart-fill"></i>
-                                <div class="label">Tingkat Kesulitan</div>
-                                <div class="value capitalize">{{ $recipe->difficulty ?? '-' }}</div>
+                            <div
+                                class="col-span-2 max-lg:col-span-1 bg-white dark:bg-neutral-800 rounded-2xl p-4 text-center border-2 border-gray-200 dark:border-neutral-700 transition-all duration-300 hover:border-orange-500">
+                                <i class="bi bi-bar-chart-fill block text-2xl text-orange-600 mb-1"></i>
+                                <div
+                                    class="text-xs font-extrabold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-0.5">
+                                    Tingkat Kesulitan</div>
+                                <div class="font-bold text-base text-gray-900 dark:text-gray-100 capitalize">
+                                    {{ $recipe->difficulty ?? '-' }}</div>
                             </div>
                         </div>
 
                         @can('update', $recipe)
-                            <hr class="my-4 border-gray-200">
+                            <hr class="my-4 border-gray-200 dark:border-neutral-700">
                             <div class="flex gap-2 flex-wrap">
                                 <a href="{{ route('recipes.edit', $recipe) }}"
-                                    class="px-4 py-2 border border-gray-300 text-gray-700 rounded-full font-bold hover:bg-gray-100 transition no-underline flex-1 text-center">
+                                    class="px-4 py-2 border border-gray-300 dark:border-neutral-600 text-gray-700 dark:text-gray-300 rounded-full font-bold hover:bg-gray-100 dark:hover:bg-neutral-700 transition no-underline flex-1 text-center">
                                     <i class="bi bi-pencil mr-1"></i> Edit Resep
                                 </a>
                                 <form method="POST" action="{{ route('recipes.destroy', $recipe) }}"
-                                    onsubmit="return showConfirmModal(this, 'Hapus Resep', 'Apakah Anda yakin ingin menghapus resep ini? Tindakan ini tidak dapat dibatalkan.')" class="flex-1">
+                                    onsubmit="return showConfirmModal(this, 'Hapus Resep', 'Apakah Anda yakin ingin menghapus resep ini? Tindakan ini tidak dapat dibatalkan.')"
+                                    class="flex-1">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
@@ -236,17 +259,17 @@
 
             <!-- Sidebar -->
             <div class="lg:col-span-1">
-                <div class="bg-white shadow-sm rounded-2xl" data-aos="fade-left">
+                <div class="bg-white dark:bg-neutral-800 shadow-sm rounded-2xl" data-aos="fade-left">
                     <div class="p-4">
-                        <h5 class="font-bold mb-4">Ulasan Komunitas</h5>
+                        <h5 class="font-bold mb-4 dark:text-gray-100">Ulasan Komunitas</h5>
 
                         @auth
                             @include('reviews._form', ['recipe' => $recipe])
                         @else
-                            <div class="bg-gray-100 rounded-2xl text-center py-8 mb-4">
-                                <i class="bi bi-lock text-4xl text-gray-300 block mb-2"></i>
-                                <p class="text-sm mb-0">Silakan <a href="{{ route('login') }}"
-                                        class="text-orange-600 font-bold no-underline hover:underline">masuk</a>
+                            <div class="bg-gray-100 dark:bg-neutral-700 rounded-2xl text-center py-8 mb-4">
+                                <i class="bi bi-lock text-4xl text-gray-300 dark:text-gray-500 block mb-2"></i>
+                                <p class="text-sm mb-0 dark:text-gray-400">Silakan <a href="{{ route('login') }}"
+                                        class="text-orange-600 dark:text-orange-400 font-bold no-underline hover:underline">masuk</a>
                                     untuk memberikan ulasan.</p>
                             </div>
                         @endauth

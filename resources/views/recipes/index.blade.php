@@ -97,26 +97,26 @@
     <section class="pb-24 min-h-screen relative overflow-hidden" id="recipe-results">
 
         <div
-            class="absolute top-0 right-0 w-96 h-96 bg-orange-100/30 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2">
+            class="absolute top-0 right-0 w-96 h-96 bg-orange-100/30 dark:bg-orange-900/20 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2">
         </div>
         <div
-            class="absolute bottom-0 left-0 w-125 h-125 bg-amber-50/40 rounded-full blur-3xl -z-10 -translate-x-1/3 translate-y-1/3">
+            class="absolute bottom-0 left-0 w-125 h-125 bg-amber-50/40 dark:bg-amber-900/20 rounded-full blur-3xl -z-10 -translate-x-1/3 translate-y-1/3">
         </div>
 
         <div class="w-full max-w-400 mx-auto px-6 md:px-12">
 
             <div class="mb-12 text-center" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">Jelajahi Resep</h2>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-4 tracking-tight">Jelajahi Resep</h2>
                 <div class="w-20 h-1.5 bg-linear-to-r from-amber-400 to-orange-500 rounded-full mx-auto"></div>
             </div>
 
             @if ($recipes->isEmpty())
                 <div class="flex flex-col items-center justify-center py-32 text-center" data-aos="fade-up">
-                    <div class="w-32 h-32 bg-gray-50 rounded-full flex items-center justify-center mb-8 shadow-inner">
-                        <i class="bi bi-search text-5xl text-gray-300"></i>
+                    <div class="w-32 h-32 bg-gray-50 dark:bg-neutral-800 rounded-full flex items-center justify-center mb-8 shadow-inner">
+                        <i class="bi bi-search text-5xl text-gray-300 dark:text-gray-600"></i>
                     </div>
-                    <h3 class="text-3xl font-bold text-gray-800 mb-3">Tidak ditemukan</h3>
-                    <p class="text-gray-500 text-lg max-w-lg mx-auto leading-relaxed">Maaf, kami tidak menemukan resep yang
+                    <h3 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-3">Tidak ditemukan</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-lg max-w-lg mx-auto leading-relaxed">Maaf, kami tidak menemukan resep yang
                         cocok dengan pencarian Anda. Coba kata kunci lain atau reset filter.</p>
                 </div>
             @else
@@ -126,9 +126,9 @@
                             data-aos-duration="1000">
 
                             <a href="{{ route('recipes.show', $recipe) }}"
-                                class="block h-full bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-orange-100/60 transition-all duration-500 transform hover:-translate-y-2 relative border border-gray-100/50 no-underline! text-gray-900!">
+                                class="block h-full bg-white dark:bg-neutral-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-orange-100/60 dark:hover:shadow-orange-900/30 transition-all duration-500 transform hover:-translate-y-2 relative border border-gray-100/50 dark:border-neutral-700 no-underline! text-gray-900! dark:text-gray-100!">
 
-                                    <div class="relative w-full aspect-video overflow-hidden bg-gray-100 group-hover:brightness-[1.02] transition-all">
+                                    <div class="relative w-full aspect-video overflow-hidden bg-gray-100 dark:bg-neutral-700 group-hover:brightness-[1.02] transition-all">
                                         @php
                                             $allImages = collect();
                                             if ($recipe->hero_image) {
@@ -187,7 +187,7 @@
                                                 alt="{{ $recipe->title }}" loading="lazy">
                                         @else
                                             <div
-                                                class="w-full h-full flex flex-col items-center justify-center text-gray-300 gap-1 bg-gray-50">
+                                                class="w-full h-full flex flex-col items-center justify-center text-gray-300 dark:text-gray-600 gap-1 bg-gray-50 dark:bg-neutral-700">
                                                 <i class="bi bi-card-image text-3xl opacity-50"></i>
                                                 <span class="text-[10px] uppercase tracking-widest font-bold opacity-30">No
                                                     Image</span>
@@ -209,21 +209,21 @@
 
                                     <div class="absolute top-3 right-3">
                                         <div
-                                            class="bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-extrabold text-gray-900 border border-white/20 flex items-center gap-1 shadow-sm">
+                                            class="bg-white/95 dark:bg-neutral-800/95 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-extrabold text-gray-900 dark:text-gray-100 border border-white/20 dark:border-neutral-600 flex items-center gap-1 shadow-sm">
                                             <i class="bi bi-star-fill text-amber-400"></i>
                                             {{ number_format($recipe->rating_avg, 1) }}
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="p-4 flex flex-col h-full bg-white relative">
+                                <div class="p-4 flex flex-col h-full bg-white dark:bg-neutral-800 relative">
 
                                     <div class="flex flex-wrap gap-1.5 mb-2.5">
                                         @php
                                             $tags_styles = [
-                                                'bg-orange-50 text-orange-600 border-orange-100',
-                                                'bg-blue-50 text-blue-600 border-blue-100',
-                                                'bg-emerald-50 text-emerald-600 border-emerald-100',
+                                                'bg-orange-50 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 border-orange-100 dark:border-orange-800',
+                                                'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border-blue-100 dark:border-blue-800',
+                                                'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 border-emerald-100 dark:border-emerald-800',
                                             ];
                                         @endphp
                                         @foreach ($recipe->tags->take(2) as $index => $tag)
@@ -234,38 +234,38 @@
                                         @endforeach
                                         @if ($recipe->tags->count() > 2)
                                             <div
-                                                class="px-2 py-0.75 rounded-md text-[9px] font-bold text-gray-400 bg-gray-50 border border-gray-100">
+                                                class="px-2 py-0.75 rounded-md text-[9px] font-bold text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-neutral-700 border border-gray-100 dark:border-neutral-600">
                                                 +{{ $recipe->tags->count() - 2 }}
                                             </div>
                                         @endif
                                     </div>
 
                                     <h3
-                                        class="text-[15px] font-extrabold text-gray-900 mb-1.5 leading-snug group-hover:text-orange-600 transition-colors line-clamp-1 tracking-tight">
+                                        class="text-[15px] font-extrabold text-gray-900 dark:text-gray-100 mb-1.5 leading-snug group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors line-clamp-1 tracking-tight">
                                         {{ $recipe->title }}
                                     </h3>
 
                                     <p
-                                        class="text-gray-500 text-[11px] leading-relaxed mb-2 line-clamp-2 font-medium tracking-wide">
+                                        class="text-gray-500 dark:text-gray-400 text-[11px] leading-relaxed mb-2 line-clamp-2 font-medium tracking-wide">
                                         {{ Str::limit($recipe->description, 90) }}
                                     </p>
 
-                                    <div class="border-t border-gray-100 w-full my-2"></div>
+                                    <div class="border-t border-gray-100 dark:border-neutral-700 w-full my-2"></div>
 
                                     <div class="flex items-center justify-between">
 
                                         <div
-                                            class="flex items-center gap-1.5 text-xs text-gray-500 font-medium group-hover:text-orange-500 transition-colors">
+                                            class="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 font-medium group-hover:text-orange-500 dark:group-hover:text-orange-400 transition-colors">
                                             <i class="bi bi-chat-text-fill text-orange-400"></i>
                                             <span>
                                                 <span
-                                                    class="font-bold text-gray-700 group-hover:text-orange-600">{{ $recipe->visible_reviews_count ?? 0 }}</span>
+                                                    class="font-bold text-gray-700 dark:text-gray-300 group-hover:text-orange-600 dark:group-hover:text-orange-400">{{ $recipe->visible_reviews_count ?? 0 }}</span>
                                                 Ulasan
                                             </span>
                                         </div>
 
                                         <div
-                                            class="flex items-center gap-1 text-xs font-bold text-gray-700 group-hover:text-orange-600 transition-colors">
+                                            class="flex items-center gap-1 text-xs font-bold text-gray-700 dark:text-gray-300 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
                                             Lihat Detail Resep <i class="bi bi-arrow-right"></i>
                                         </div>
                                     </div>

@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="max-w-4xl mx-auto my-4 px-4">
-        <div class="bg-white shadow-sm rounded-2xl">
+        <div class="bg-white dark:bg-neutral-800 shadow-sm rounded-2xl">
             <div class="p-6">
                 <div class="flex items-center justify-between mb-4">
-                    <h1 class="text-xl font-bold">Edit Resep</h1>
-                    <a href="{{ route('recipes.show', $recipe) }}" class="text-gray-500 text-sm no-underline hover:text-gray-700 hidden">Kembali</a>
+                    <h1 class="text-xl font-bold dark:text-gray-100">Edit Resep</h1>
+                    <a href="{{ route('recipes.show', $recipe) }}" class="text-gray-500 dark:text-gray-400 text-sm no-underline hover:text-gray-700 dark:hover:text-gray-300 hidden">Kembali</a>
                 </div>
 
                 @include('recipes._form', [

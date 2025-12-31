@@ -15,8 +15,8 @@ class RecipeSeeder extends Seeder
         $users = User::all();
         $tags = Tag::all();
 
-        // Copy images from public/images/Conten to storage/app/public/recipes
-        $sourceDir = public_path('images/Conten');
+        // Copy images from public/images/seeder to storage/app/public/recipes
+        $sourceDir = public_path('images/seeder');
         $destDir = storage_path('app/public/recipes');
 
         // Create destination directory if it doesn't exist
@@ -88,7 +88,7 @@ class RecipeSeeder extends Seeder
 
         foreach ($indonesianRecipes as $data) {
             $slug = \Illuminate\Support\Str::slug($data['title']);
-            
+
             // Check if recipe exists
             $recipe = Recipe::where('slug', $slug)->first();
 

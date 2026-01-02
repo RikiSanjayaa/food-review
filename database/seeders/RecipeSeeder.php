@@ -64,7 +64,7 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Tusuk potongan ayam dengan tusuk sate.\n2. Campur semua bahan bumbu kacang, masak hingga mengental dan berminyak.\n3. Ambil sedikit bumbu kacang, campur dengan kecap manis dan sedikit minyak untuk olesan.\n4. Lumuri sate dengan bumbu olesan, bakar di atas arang hingga matang dan kecokelatan.\n5. Sajikan sate dengan siraman bumbu kacang kental, kecap manis, dan irisan bawang merah.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/sate.jpg',
-                'other_attributes' => ['prep_time' => 30, 'cook_time' => 20, 'servings' => 4, 'cuisine' => 'Madura']
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 10, 'servings' => 4, 'cuisine' => 'Madura']
             ],
             [
                 'title' => 'Gado-Gado Jakarta',
@@ -100,8 +100,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "Aduk rata bumbu halus, tambahkan garam dan Bango Kecap Manis.\n Aduk rata bersama daging sapi. Diamkan dalam kulkas selama 1 jam hingga meresap.\n Tusukkan daging ke dalam tusuk satai.\n Panaskan wajan pemanggang, panggang satai sambil sesekali dibolak balik hingga matang. Angkat.\nSajikan sate rembiga. ",
                 'difficulty' => 'Mudah',
                 'hero_image' => 'recipes/sate-rembiga.jpg',
-                'other_attributes' => ['prep_time' => 35, 'cook_time' => 120, 'servings' => 2, 'cuisine' => 'Lombok']
-            ], 
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 13, 'servings' => 2, 'cuisine' => 'Lombok']
+            ],
             [
                 'title' => 'Nasi Balap Puyung Lombok',
                 'description' => 'Nasi Balap Puyung adalah makanan khas yang berasal dari Desa Puyung, Kec. Lombok Tengah, NTB.',
@@ -110,7 +110,7 @@ class RecipeSeeder extends Seeder
                 'difficulty' => 'Sedang',
                 'hero_image' => 'recipes/nasi-balap.jpg',
                 'other_attributes' => ['prep_time' => 38, 'cook_time' => 70, 'servings' => 2, 'cuisine' => 'Lombok Tengah']
-            ], 
+            ],
             [
                 'title' => 'Sate Pusut Ayam',
                 'description' => 'kuliner khas Lombok yang terbuat dari daging ayam cincang yang dicampur dengan parutan kelapa dan bumbu rempah khas, menawarkan tekstur lembut dan cita rasa gurih.',
@@ -118,7 +118,7 @@ class RecipeSeeder extends Seeder
                 'steps' => "Cincang ayam dan tulang muda hingga halus. Lalu, haluskan bumbu + 1 sdm bawang goreng.\n Campur bumbu halus, ayam cincang, kelapa parut dan irisan daun jeruk.\n Lilitkan adonan sate pada tusuk sate.\n Bakar sate sambil dioles minyak kelapa sesekali. \nSate siap disajikan ",
                 'difficulty' => 'Mudah',
                 'hero_image' => 'recipes/sate-pusut.jpg',
-                'other_attributes' => ['prep_time' => 15, 'cook_time' => 45, 'servings' => 2, 'cuisine' => 'Lombok']
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 15, 'servings' => 2, 'cuisine' => 'Lombok']
             ],
             [
                 'title' => 'Beberuk Terong Lombok',
@@ -127,8 +127,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "Siapkan bahan-bahan yang diperlukan. Cuci terlebih dahulu bahan-bahan yang akan digunakan agar tetap  higienis dan sehat.\n Potong terong menjadi dadu atau kubus. Jangan terlalu besar atau  terlalu kecil. Jangan terlalu tebal atau  terlalu tipis. Iris terong agar tidak pahit saat dimakan\n Setelah dipotong kotak-kotak, masukkan terong ke dalam air agar tidak berubah warna.\n  Iris kacang hijau sesuai selera. Bisa sedikit tebal atau bahkan sedikit tipis, rasanya tetap enak \nCampur kacang hijau dengan terong yang direndam dalam air. Diamkan dalam air sambil membuat saus\nSiapkan lesung dan bahan untuk membuat sambal garam dan gula secukupnya, lalu giling hingga halus \nCukup tambahkan sedikit terasi dan aduk. Tambahkan  tomat dan tumbuk serta sambal cabai yang ditumbuk halus. \nSaat cabai sudah jadi, cicipi rasanya. Apakah rasanya enak atau tidak. Jika terlalu pedas tambahkan sedikit gula atau bisa juga tambahkan tomat  \nMasukkan irisan terong dan kacang hijau ke dalam cobek yang berisi sambal  \nSajikan dengan beberuq dicampur sambal ",
                 'difficulty' => 'Mudah',
                 'hero_image' => 'recipes/beberuk.jpg',
-                'other_attributes' => ['prep_time' => 5, 'cook_time' => 13, 'servings' => 3, 'cuisine' => 'Lombok']
-            ], 
+                'other_attributes' => ['prep_time' => 5, 'cook_time' => 12, 'servings' => 3, 'cuisine' => 'Lombok']
+            ],
             [
                 'title' => 'Plecing Kangkung Dompu',
                 'description' => 'hidangan khas dari Dompu, Nusa Tenggara Barat, yang terkenal dengan rasa pedas dan segar',
@@ -136,8 +136,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "Siapkan bahan-bahan dan bumbu yang diperlukan. Cuci terlebih dahulu bahan-bahan yang akan digunakan agar tetap  higienis.\n Potong kangkung panjang - panjang, kemudian cuci bersih bersama taugenya\n Didihkan air & garam (ini agar supaya warna kangkung tetep hijau) lalu masukkan kangkung...masak sampai layu, angkat & tiriskan\n  Haluskan semua bahan sambal\nTumis bahan sambal hingga harum\nLalu tuangi sedikit air & perasan air jeruk limau... aduk rata \nSajikan kangkung & tauge rebus bersama tumisan sambal  \n campur dan siap di sajikan ",
                 'difficulty' => 'Mudah',
                 'hero_image' => 'recipes/plecing.jpg',
-                'other_attributes' => ['prep_time' => 10 , 'cook_time' => 30, 'servings' => 2, 'cuisine' => 'Dompu NTB']
-            ], 
+                'other_attributes' => ['prep_time' => 10 , 'cook_time' => 25, 'servings' => 2, 'cuisine' => 'Dompu NTB']
+            ],
             [
                 'title' => 'Ayam Rarang Lombok',
                 'description' => 'Ayam Rarang menawarkan perpaduan rasa pedas, gurih, dan aromatik rempah yang kuat',
@@ -145,11 +145,83 @@ class RecipeSeeder extends Seeder
                 'steps' => "Siapkan dan cuci bersih semua bahan. Potong-potong ayam sesuai dengan jumlah selera.\n Ulek bumbu halus. Sisihkan. Siapkan pan utk memanggang ayam. Beri minyak goreng secukupnya, sebagai olesan di pan. Panggang ayam selama 3-4 menit atau hingga agak berwarna agak kecoklatan. Pastikan ayam dibolak-balik untuk memastikan agar tidak gosong\n Tumis bumbu halus hingga agak asat/kering. Lalu beri air secukupnya. Jika sudah mendidih, masukkan garam, gula dan penyedap serta ayam. Koreksi rasa. Jika sudah terasa pas, aduk-aduk dan diamkan hingga air agak menyusut. Terakhir, siapkan pan lagi. Olesi ayam dengan bumbu yg sudah matang, lalu panggang kembali selama 2 menit atau hingga berwarna kecoklatan.\n  Selesai dan siap disajikan.",
                 'difficulty' => 'Sedang',
                 'hero_image' => 'recipes/ayam-rarang.jpg',
-                'other_attributes' => ['prep_time' => 30 , 'cook_time' => 90, 'servings' => 4, 'cuisine' => 'Lombok']
-            ], 
-    
+                'other_attributes' => ['prep_time' => 30 , 'cook_time' => 80, 'servings' => 4, 'cuisine' => 'Lombok']
+            ],
+            [
+                'title' => 'Bebalung',
+                'description' => 'Bebalung adalah hidangan tradisional khas suku Sasak, Lombok, Nusa Tenggara Barat, berupa sup tulang iga sapi atau kerbau.',
+                'ingredients' => "1 kg tulang iga sapi\n 4 sdm air asam jawa \n50 gram daun asam jawa \n2 buah belimbing wuluh \n5 buah cabe rawit utuh \nair asam jawa secukupnya \nGaram, gula, kaldu bubuk \nBumbu Halus : 8 siung bawang merah, 4 siung bawang putih, 3 buah cabe merah, 1 ruas jahe, 1 sdt ketumbar, 1 ruas kencur \nBumbu Aromatik : 2 batang serai, 5 lembar daun salam, 3 lembar daun jeruk, 1 ruas lengkuas.  ",
+                'steps' => "Cuci tulang sapi sampai bersih lalu presto sampai lunak\n Tumis bumbu halus dan masukan bumbu aromatik. Sisihkan, Setelah lapisan lemak dibuang, panaskan lagi, setelah mendidih masukan bumbu yang sudah ditumis.\n Beri garam, kaldu bubuk dan gula, Rebus sampai bumbu meresap.\n  Siap dihidangkan bersama nasi.",
+                'difficulty' => 'Sedang',
+                'hero_image' => 'recipes/bebalung.jpg',
+                'other_attributes' => ['prep_time' => 35 , 'cook_time' => 95, 'servings' => 5, 'cuisine' => 'Lombok']
+            ],
+            [
+                'title' => 'Poteng Jaje Tujak',
+                'description' => 'Poteng Jaje Tujak merupakan jajanan khas Lombok yang sering disajikan pada acara-acara keagamaan.',
+                'ingredients' => "Bahan Poteng :\n 1kg beras ketan putih\n 800 ml air  \n¼ bagian ragi tape \nDaun saga \ngula secukupnya\nDaun pisang untuk membungkus \n Bahan Jaje:\n 1 kg beras ketan putih \nKelapa parut dari 1 butir kelapa + garam secukupnya. ",
+                'steps' => " Berikut beberapa langkah pembuatan poteng:\nRendam beras ketan putih dalam 2 liter air selama semalam, lalu tiriskan\n Kukus beras ketan putih hingga mengeluarkan uap yang banyak, setelah itu siram menggunakan air saga 800ml\n Kemudian dikukus lagi selama kurang lebih 15 menit, angkat dan biarkan dingin.\n  Ambil ½ beras ketan putih taruh dalam wadah kemudian, lalu taburi gula dan ragi \nTutupi ketan yang sudah ditaburi ragi dengan sisa setengah ketan \nBungkus ketan dengan kain lap, kemudian tutup wadah ketan dengan rapat \nBiarkan berfermentasi selama 2-3 hari. \nSementara untuk Jaje Tujak dibuat dengan cara : \nPertama cuci beras ketan putih, dan kemudian rendam kurang lebih 2 jam \nKukus beras ketan sampai matang kira-kira 30 menit. Siram dengan air garam, lalu angkat \nCampur ketan dengan kelapa parut, aduk rata \nKukus lagi ketan yang sudah dicampur kelapa parut hingga matang sempurna \nAngkat ketan, ratakan dan haluskan panas-panas. \nBungkus jaje tujak dengan daun pisang sisihkan \n Siap disajikan ",
+                'difficulty' => 'Sedang',
+                'hero_image' => 'recipes/poteng-jaje.jpg',
+                'other_attributes' => ['prep_time' => 30 , 'cook_time' => 85, 'servings' => 6, 'cuisine' => 'Lombok']
+            ],
+            [
+                'title' => 'Sate Bulayak',
+                'description' => 'Sate khas Lombok yang disajikan dengan kuah santan kaya rasa, bukan bumbu kacang, dan dinikmati bersama lontong khas bernama "bulayak.',
+                'ingredients' => "Daging sapi sepanyak 400 gram, potong bentuk dadu\n Kelapa setengah tua sebanyak 100 gram, diparut\n Kacang tanah goreng sebanyak 75 gram, ditumbuk  \nSantan kental sebanyak 200 ml \nJeruk nipis sebanyak 1 sdm \nGula merah sebanyak 2 sdm\nTusuk sate sebanyak 25 buah\n Bulayak sebanyak 10 buah\n cabe rawit merah sebanyak 12 buah \nBawang merah sebanyak 6 siung \nBawang putih sebanyak 4 siung \nMerica sebanyak 1 sdt \nGaram secukupnya ",
+                'steps' => " Daging yang sudah dipotong dadu kemudian dibaluri dengan air jeruk nipis dan diamkan selama 15 menit. Setelah itu campur daging dengan setengah bumbu halus dan kasih kelapa parut, kemudian aduk dengan rata.\nTusuklah sate ke dalam tusukan sate, kemudian kukus selama 20 menit atau sampai matang.\n Siapkan alat untuk membakar, kemudian bakar sate sampai warnanya kecokelatan.\n Panaskan minyak goreng, tumis bumbu hingga halus dan hingga mengeluarkan aroma yang sedap. Kemudian masukkan kacang tanah yang sudah ditumbuk, gula merah dan santan, kemudian aduk merata hingga kental.\n  Siapkan piring dan letakkan sate bulayak diatas piring tersebut dan baluri dengan sambal kacang. \nSate bulayak siap disajikan. ",
+                'difficulty' => 'Sedang',
+                'hero_image' => 'recipes/sate-bulayak.jpg',
+                'other_attributes' => ['prep_time' => 25 , 'cook_time' => 10, 'servings' => 4, 'cuisine' => 'Lombok']
+            ],
+            [
+                'title' => 'Nasi Cumi',
+                'description' => 'Nasi Cumi adalah hidangan ikonik dari Surabaya yang menggabungkan keunikan dan kekayaan rasa laut dalam satu piring.',
+                'ingredients' => "Nasi putih hangat\n Serundeng (kelapa sangrai berbumbu)\n Peyek teri  \nTelor pindang hitam \n Bahan Cumi : 250 gram cumi segar, 2 buah daun salam, 200 mL air, 6 buah cabe keriting merah, 5 buah bawang merah, 2 buah bawang putih, 1/2 buah tomat, 1/2 sdt garam , 1 sdm gula merah. ",
+                'steps' => " Cuci bersih cumi tapi harus hati-hati jangan sampai tinta cumi terbung\nHaluskan cabe, bawang merah, bawang putih, tomat. Lalu tumis bumbu tersebut dan daun salam hingga matang dan harum.\n Masukan cumi, garam dan gula lalu aduk rata. Biarkan sampai tinta cumi keluar dan bumbu meresap\n Kemudian, tuang air dan masak hingga air menyusut tapi tidak sampai kering. Jangan lupa koreksi rasa terlebih dahulu\n  Siapkan piring dan letakkan sate bulayak diatas piring tersebut dan baluri dengan sambal kacang. \nTuk penyajian, siapkan nasi dalam piring. Letakan semua bahan pelengkap di sisi nasi, lalu siramkan cumi hitam di atas nasi. ",
+                'difficulty' => 'Sedang',
+                'hero_image' => 'recipes/nasi-cumii.jpg',
+                'other_attributes' => ['prep_time' => 25 , 'cook_time' => 40, 'servings' => 5, 'cuisine' => 'Surabaya']
+            ],
+            [
+                'title' => 'Kare Ayam',
+                'description' => 'Kare Ayam khas Jawa Timur dikenal dengan kuah santan berwarna kuning yang gurih, "medok" (kental dan berani bumbu), serta sedikit sentuhan manis.',
+                'ingredients' => "1 kg ayam \n 15 siung bawang merah\n 8 siung bawang putih  \n4 biji cabe merah \n1 ruas jahe \n1 sdt ketumbar \n1 sdt merica (opsional)\n Bahan Pelengkap : 1 ruas lengkuas yg di geprek, 3 ruas serai, 5 helai daun jeruk, 2-2.5 bungkus santan instan kara, 1 sdm garam, 1 sdm gula, Bawang goreng utk taburan.",
+                'steps' => " Ulek/blender bumbu halus. lalu, masukkan ke dalam wajan yg berisi minyak panas lalu tambahkan serai, lengkuas dan daun jeruk. tumis hingga aromanya tidak langu lagi. sisihkan.\nSiapkan panci yg berisi air. lalu, rebus ayam. masukkan juga bumbu halus yg sebelumnya sudah ditumis. rebus hingga ayam empuk dan matang. jika sudah agak mendidih, masukkan garam dan gula. cek rasa.\n Jika rasa sudah sesuai selera, kecilkan api kompor, lalu tambahkan santan. segera aduk, agar santan tidak pecah/menggumpal. jika dirasa masih kurang kental, silakan ditambah lagi yaa santannya. cek rasa kembali, jika masih kurang garam dan gula. segera tambahkan. lalu, sajikan dengan taburan bawang goreng dan perasan jeruk nipis serta sambal sebagai pelengkap.",
+                'difficulty' => 'Sedang',
+                'hero_image' => 'recipes/karee-ayam.jpg',
+                'other_attributes' => ['prep_time' => 25 , 'cook_time' => 55, 'servings' => 7, 'cuisine' => 'Jawa Timur']
+            ],
+            [
+                'title' => 'Tahu Telur',
+                'description' => 'Tahu Telur adalah kuliner khas Surabaya yang terdiri dari tahu dan telur yang digoreng bersamaan, disajikan dengan lontong, kentang goreng, tauge, kerupuk, dan disiram dengan saus kacang yang kental berbumbu petis.',
+                'ingredients' => "3 buah tahu putih \n 3 butir telur ayam\n garam secukupnya  \nmerica bubuk secukupnya \nkaldu ayam bubuk \n1 batang daun bawang \nBahan Pelengkap : Secukupnya tauge, Secukupnya krupuk kanji, Secukupnya bawang goreng \nBumbu Kcang: 100 gram kacang tanah goreng / sangrai, 2 siung bawang putih, goreng, 3 cabai rawit merah, goreng (sesuai selera pedasnya).",
+                'steps' => " Ulek semua bahan sambal kacang, campur dgn air matang, dan kecap aduk rata.\nPotong tahu putih kotak kecil. Kocok lepas telur, tambahkan garam dan merica, masukkan tahu.\n Buat dadar tahu telur ( jadi 2 atau 3 ). Sajikan dengan disiram sambal kacang, tauge, daun bawang dan bawang merah goreng.",
+                'difficulty' => 'Sedang',
+                'hero_image' => 'recipes/tahu-telur.jpg',
+                'other_attributes' => ['prep_time' => 20 , 'cook_time' => 30, 'servings' => 2, 'cuisine' => 'Surabaya']
+            ],
+            [
+                'title' => 'Nasi Bebek Goreng',
+                'description' => 'Nasi bebek goreng Surabaya adalah hidangan ikonik yang terdiri dari potongan bebek berbumbu rempah yang digoreng hingga garing, disajikan bersama nasi hangat, sambal pedas, dan lalapan.',
+                'ingredients' => "1 ekor bebek yg dipotong \n 1 buah jeruk nipis \n 2 batang serai  \n6 lembar daun jeruk \n500 ml Air \nBumbu halus : 8 siung bawang merah, 6 siung bawang putih, 6 butir kemiri, 2 sdt ketumbar,1 1/2 ruas kunyit, 1 ruas jahe, 1 ruas lengkuas, 1/2 sdt lada bubuk, 1/2 sdt jintan, 1 batang serai, garam & royco sapi secukupnya. \nSambal Bawang: 3 siung bawang putih, 6 buah cabe merah, Secukupnya garam, Minyak panas (tuang setelah bahan diatas dihaluskan).",
+                'steps' => " Lumuri potongan bebek dengan air jeruk nipis diamkan selama 30 menit di lemari es setelah itu cuci bersih. Masukan potongan bebek dengan semua bumbu halus, serai, daun jeruk dan air, rebus selama 25menit\nPisahkan potongan bebek dengan sisa bumbu hasil rebusan, kemudian goreng bebek hingga kecoklatan.\n Siapkan wajan dengan sedikit minyak, ambil secukupnya sisa bumbu hasil rebusan, masak hingga kental. Siap dihidangkan bersama bebek goreng, aku coba pake sambal matah dan sambal bawang rasanya enak .",
+                'difficulty' => 'Sedang',
+                'hero_image' => 'recipes/nasi-bebek.jpg',
+                'other_attributes' => ['prep_time' => 25 , 'cook_time' => 35, 'servings' => 5, 'cuisine' => 'Surabaya']
+            ],
+            [
+                'title' => 'Ote-Ote Udang',
+                'description' => 'Ote-ote udang adalah varian gorengan khas Surabaya dan sekitarnya (Sidoarjo, Gresik) yang di daerah lain lebih dikenal sebagai bakwan sayur atau bala-bala.',
+                'ingredients' => "1/4 kg Udang Segar \n 2 Buah Wortel \n 2 bungkus kecambah  \n4 bungkus tepung bakwan kobe \nbawang prai dan seledri secukupnya \nBumbu halus : 5 siung bawang merah, 3 siung bawang putih, 2 buah ketumbar, Garam secukupnya, merica bubuk merica.",
+                'steps' => " Cuci sampai bersih udang\nHaluskan semua bumbu halus dan tambahkan sedikit air.\n Campurkan semua bahan dan cuci bersih, Masukkan bumbu halus ke adonan sayuran, kemudian tambahkan tepung bumbu serta air dan aduk adonan hingga mengental, Setelah adonan tercampur, cetak adonan dgn menggunakan sendok sayur, tambahkan udang di atasnya, Panaskan minyak di atas wajan, Goreng Adonan di atas minyak panas, gunakan api kecil agar tdk gosong, Setelah matang, angkat,tiriskan dan siap dihidangkan bersama teman atau keluarga  ",
+                'difficulty' => 'Mudah',
+                'hero_image' => 'recipes/ote-ote.jpg',
+                'other_attributes' => ['prep_time' => 20 , 'cook_time' => 30, 'servings' => 9, 'cuisine' => 'Surabaya']
+            ],
 
-            
+
+
 
         ];
 

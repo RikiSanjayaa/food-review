@@ -219,10 +219,645 @@ class RecipeSeeder extends Seeder
                 'hero_image' => 'recipes/ote-ote.jpg',
                 'other_attributes' => ['prep_time' => 20 , 'cook_time' => 30, 'servings' => 9, 'cuisine' => 'Surabaya']
             ],
-
-
-
-
+            [
+                'title' => 'Bakso Sapi',
+                'description' => 'Bakso sapi kenyal dengan kuah kaldu gurih, favorit semua kalangan.',
+                'ingredients' => "500 gram daging sapi giling\n100 gram tepung tapioka\n4 siung bawang putih\n1 sdt merica\n1 sdt garam\nAir secukupnya",
+                'steps' => "1. Haluskan bawang putih.\n2. Campur daging, bawang, tepung, garam, dan merica.\n3. Bentuk bulat-bulat.\n4. Rebus hingga bakso mengapung.\n5. Sajikan dengan kuah panas.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/bakso.jpg',
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 20, 'servings' => 4, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Ayam Goreng Lengkuas',
+                'description' => 'Ayam goreng dengan taburan serundeng lengkuas yang gurih dan renyah.',
+                'ingredients' => "1 ekor ayam\n3 siung bawang putih\n2 cm lengkuas\n1 sdt ketumbar\nGaram secukupnya\nAir secukupnya",
+                'steps' => "1. Haluskan bumbu dan lengkuas.\n2. Rebus ayam dengan bumbu hingga meresap.\n3. Goreng ayam hingga kecokelatan.\n4. Sajikan dengan serundeng.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/ayam-lengkuas.jpg',
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 30, 'servings' => 4, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Rawon',
+                'description' => 'Sup daging sapi khas Jawa Timur dengan kuah hitam dari kluwek.',
+                'ingredients' => "500 gram daging sapi\n3 buah kluwek\n6 siung bawang merah\n3 siung bawang putih\n2 lembar daun jeruk\nGaram secukupnya",
+                'steps' => "1. Haluskan bumbu dan kluwek.\n2. Tumis bumbu hingga harum.\n3. Masukkan daging dan air.\n4. Masak hingga daging empuk.\n5. Sajikan hangat.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/rawon.jpg',
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 90, 'servings' => 4, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Pempek Palembang',
+                'description' => 'Olahan ikan khas Palembang yang disajikan dengan kuah cuko asam manis.',
+                'ingredients' => "500 gram ikan tenggiri\n250 gram tepung sagu\n2 siung bawang putih\nGaram secukupnya\nAir secukupnya",
+                'steps' => "1. Campur ikan, bawang, dan garam.\n2. Tambahkan tepung sagu.\n3. Bentuk pempek.\n4. Rebus hingga mengapung.\n5. Sajikan dengan cuko.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/pempek.jpg',
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 30, 'servings' => 4, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Gudeg Jogja',
+                'description' => 'Masakan manis khas Yogyakarta berbahan nangka muda dan santan.',
+                'ingredients' => "1 kg nangka muda\n1 liter santan\n5 siung bawang merah\n3 siung bawang putih\nGula aren\nGaram",
+                'steps' => "1. Rebus nangka hingga empuk.\n2. Tumis bumbu halus.\n3. Masukkan nangka dan santan.\n4. Masak lama hingga meresap.\n5. Sajikan dengan pelengkap.",
+                'difficulty' => 'sulit',
+                'hero_image' => 'recipes/gudeg.jpg',
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 180, 'servings' => 5, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Nasi Uduk',
+                'description' => 'Nasi gurih yang dimasak dengan santan dan rempah, disajikan dengan lauk sederhana.',
+                'ingredients' => "500 gram beras\n400 ml santan\n2 lembar daun salam\n1 batang serai\nGaram secukupnya",
+                'steps' => "1. Cuci beras hingga bersih.\n2. Masak beras dengan santan dan bumbu.\n3. Aduk hingga matang.\n4. Sajikan hangat.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/nasi-uduk.jpg',
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 25, 'servings' => 3, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Ayam Penyet',
+                'description' => 'Ayam goreng yang dipenyet dengan sambal pedas dan lalapan.',
+                'ingredients' => "1 ekor ayam\n5 buah cabai rawit\n2 siung bawang putih\nGaram secukupnya\nMinyak goreng",
+                'steps' => "1. Goreng ayam hingga matang.\n2. Haluskan sambal.\n3. Penyet ayam di atas sambal.\n4. Sajikan dengan lalapan.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/ayam-penyet.jpg',
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 20, 'servings' => 2, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Sayur Asem',
+                'description' => 'Sayur berkuah segar dengan cita rasa asam.',
+                'ingredients' => "Jagung manis\nKacang panjang\nAsam jawa\nBawang merah\nGaram",
+                'steps' => "1. Rebus air hingga mendidih.\n2. Masukkan sayuran.\n3. Tambahkan asam dan garam.\n4. Masak hingga matang.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/sayur-asem.jpg',
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 20, 'servings' => 4, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Perkedel Kentang',
+                'description' => 'Gorengan kentang lembut dengan rasa gurih.',
+                'ingredients' => "500 gram kentang\n1 butir telur\nBawang goreng\nGaram",
+                'steps' => "1. Goreng kentang lalu haluskan.\n2. Campur telur dan bumbu.\n3. Bentuk bulat.\n4. Goreng hingga keemasan.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/perkedel.jpg',
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 15, 'servings' => 3, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Capcay Goreng',
+                'description' => 'Tumis sayuran dengan rasa gurih.',
+                'ingredients' => "Wortel\nSawi\nKembang kol\nBawang putih\nKecap asin",
+                'steps' => "1. Tumis bawang putih.\n2. Masukkan sayuran.\n3. Tambahkan kecap.\n4. Masak hingga matang.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/capcay.jpg',
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 10, 'servings' => 2, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Oseng Kangkung',
+                'description' => 'Tumis kangkung sederhana dengan bawang.',
+                'ingredients' => "Kangkung\nBawang putih\nCabai\nGaram",
+                'steps' => "1. Tumis bawang dan cabai.\n2. Masukkan kangkung.\n3. Aduk cepat.\n4. Sajikan.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/oseng-kangkung.jpg',
+                'other_attributes' => ['prep_time' => 5, 'cook_time' => 5, 'servings' => 2, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Ikan Bakar Kecap',
+                'description' => 'Ikan bakar dengan olesan kecap manis.',
+                'ingredients' => "Ikan laut\nKecap manis\nBawang putih\nJeruk nipis",
+                'steps' => "1. Lumuri ikan dengan bumbu.\n2. Diamkan 15 menit.\n3. Bakar hingga matang.\n4. Sajikan.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/ikan-bakar.jpg',
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 20, 'servings' => 2, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Sambal Goreng Kentang',
+                'description' => 'Kentang goreng pedas manis.',
+                'ingredients' => "Kentang\nCabai merah\nBawang merah\nGula\nGaram",
+                'steps' => "1. Goreng kentang.\n2. Tumis bumbu.\n3. Masukkan kentang.\n4. Aduk rata.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/sambal-kentang.jpg',
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 20, 'servings' => 3, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Nasi Liwet Solo',
+                'description' => 'Nasi gurih khas Solo yang dimasak dengan santan dan disajikan dengan lauk sederhana.',
+                'ingredients' => "500 gram beras\n500 ml santan\n2 lembar daun salam\n1 batang serai\nGaram secukupnya",
+                'steps' => "1. Cuci beras hingga bersih.\n2. Masak beras bersama santan dan bumbu.\n3. Aduk hingga matang dan pulen.\n4. Sajikan hangat.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/nasi-liwet.jpg',
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 30, 'servings' => 4, 'cuisine' => 'Solo']
+            ],
+            [
+                'title' => 'Ayam Betutu Bali',
+                'description' => 'Ayam utuh berbumbu rempah Bali yang dimasak perlahan hingga empuk dan meresap.',
+                'ingredients' => "1 ekor ayam\nBumbu betutu lengkap\nDaun pisang\nGaram secukupnya",
+                'steps' => "1. Lumuri ayam dengan bumbu.\n2. Bungkus dengan daun pisang.\n3. Panggang atau kukus hingga empuk.\n4. Sajikan hangat.",
+                'difficulty' => 'sulit',
+                'hero_image' => 'recipes/ayam-betutu.jpg',
+                'other_attributes' => ['prep_time' => 40, 'cook_time' => 180, 'servings' => 4, 'cuisine' => 'Bali']
+            ],
+            [
+                'title' => 'Tinutuan Manado',
+                'description' => 'Bubur Manado dengan campuran sayuran yang sehat dan mengenyangkan.',
+                'ingredients' => "Beras\nBayam\nLabu kuning\nJagung\nGaram",
+                'steps' => "1. Masak beras hingga menjadi bubur.\n2. Masukkan sayuran.\n3. Aduk hingga matang.\n4. Sajikan hangat.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/tinutuan.jpg',
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 45, 'servings' => 4, 'cuisine' => 'Manado']
+            ],
+            [
+                'title' => 'Ikan Kuah Asam',
+                'description' => 'Masakan ikan segar dengan kuah asam pedas khas Maluku.',
+                'ingredients' => "Ikan laut segar\nBelimbing wuluh\nCabai\nBawang merah\nAir",
+                'steps' => "1. Rebus air dengan bumbu.\n2. Masukkan ikan.\n3. Masak hingga matang.\n4. Sajikan panas.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/ikan-kuah-asam.jpg',
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 25, 'servings' => 3, 'cuisine' => 'Maluku']
+            ],
+            [
+                'title' => 'Lontong Sayur Padang',
+                'description' => 'Lontong dengan kuah santan sayur khas Padang.',
+                'ingredients' => "Lontong\nNangka muda\nSantan\nCabai merah\nGaram",
+                'steps' => "1. Masak sayur dengan santan.\n2. Potong lontong.\n3. Siram kuah sayur.\n4. Sajikan.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/lontong-sayur.jpg',
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 40, 'servings' => 4, 'cuisine' => 'Padang']
+            ],
+            [
+                'title' => 'Kerak Telor Betawi',
+                'description' => 'Makanan tradisional Betawi berbahan telur dan beras ketan.',
+                'ingredients' => "Beras ketan\nTelur bebek\nKelapa parut\nBawang goreng",
+                'steps' => "1. Masak ketan setengah matang.\n2. Tambahkan telur.\n3. Panggang hingga kering.\n4. Taburi kelapa.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/kerak-telor.jpg',
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 20, 'servings' => 2, 'cuisine' => 'Betawi']
+            ],
+            [
+                'title' => 'Bubur Ayam Cianjur',
+                'description' => 'Bubur ayam lembut dengan kuah kaldu ringan.',
+                'ingredients' => "Beras\nAyam\nBawang putih\nGaram\nAir",
+                'steps' => "1. Masak beras hingga menjadi bubur.\n2. Rebus ayam dan suwir.\n3. Sajikan bubur dengan ayam.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/bubur-ayam.jpg',
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 40, 'servings' => 3, 'cuisine' => 'Cianjur']
+            ],
+            [
+                'title' => 'Sup Konro Makassar',
+                'description' => 'Sup iga sapi khas Makassar dengan kuah rempah berwarna gelap.',
+                'ingredients' => "1 kg iga sapi\nKetumbar\nKluwek\nKayu manis\nGaram\nAir",
+                'steps' => "1. Rebus iga hingga empuk.\n2. Tumis bumbu halus.\n3. Masukkan ke dalam kaldu.\n4. Masak hingga meresap.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/sup-konro.jpg',
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 90, 'servings' => 4, 'cuisine' => 'Makassar']
+            ],
+            [
+                'title' => 'Pecel Madiun',
+                'description' => 'Sayuran rebus dengan siraman sambal kacang pedas khas Madiun.',
+                'ingredients' => "Bayam\nKacang panjang\nTauge\nKacang tanah\nCabai\nGula merah",
+                'steps' => "1. Rebus semua sayuran.\n2. Haluskan bumbu kacang.\n3. Siram bumbu di atas sayur.\n4. Sajikan.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/pecel-madiun.jpg',
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 15, 'servings' => 2, 'cuisine' => 'Madiun']
+            ],
+            [
+                'title' => 'Karedok Sunda',
+                'description' => 'Hidangan khas Sunda dari sayuran mentah dengan saus kacang segar.',
+                'ingredients' => "Kacang panjang\nTimun\nTauge\nTerong\nBumbu kacang",
+                'steps' => "1. Potong semua sayuran.\n2. Haluskan bumbu kacang.\n3. Campur sayur dengan bumbu.\n4. Sajikan segar.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/karedok.jpg',
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 0, 'servings' => 2, 'cuisine' => 'Sunda']
+            ],
+            [
+                'title' => 'Opor Ayam',
+                'description' => 'Masakan ayam berkuah santan dengan rasa gurih dan aroma rempah.',
+                'ingredients' => "1 ekor ayam\nSantan\nBawang putih\nKetumbar\nDaun salam\nGaram",
+                'steps' => "1. Tumis bumbu hingga harum.\n2. Masukkan ayam.\n3. Tuang santan.\n4. Masak hingga matang.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/opor-ayam.jpg',
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 50, 'servings' => 4, 'cuisine' => 'Jawa']
+            ],
+            [
+                'title' => 'Dendeng Balado',
+                'description' => 'Irisan daging sapi tipis goreng dengan sambal balado pedas.',
+                'ingredients' => "500 gram daging sapi\nCabai merah\nBawang merah\nGaram\nMinyak",
+                'steps' => "1. Rebus daging hingga empuk.\n2. Iris tipis dan goreng.\n3. Tumis sambal balado.\n4. Campur dendeng dengan sambal.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/dendeng-balado.jpg',
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 40, 'servings' => 4, 'cuisine' => 'Minang']
+            ],
+            [
+                'title' => 'Ikan Woku',
+                'description' => 'Masakan ikan khas Manado dengan bumbu rempah segar dan daun aromatik.',
+                'ingredients' => "Ikan laut\nDaun kemangi\nCabai\nJahe\nKunyit\nSerai",
+                'steps' => "1. Tumis bumbu hingga harum.\n2. Masukkan ikan.\n3. Tambahkan daun aromatik.\n4. Masak hingga matang.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/ikan-woku.jpg',
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 30, 'servings' => 3, 'cuisine' => 'Manado']
+            ],
+            [
+                'title' => 'Laksa Betawi',
+                'description' => 'Hidangan berkuah santan dengan mie dan topping khas Betawi.',
+                'ingredients' => "Mie\nSantan\nUdang\nBawang putih\nKetumbar",
+                'steps' => "1. Masak kuah santan berbumbu.\n2. Rebus mie.\n3. Tata mie dan siram kuah.\n4. Sajikan.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/laksa-betawi.jpg',
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 35, 'servings' => 3, 'cuisine' => 'Betawi']
+            ],
+            [
+                'title' => 'Sayur Lodeh',
+                'description' => 'Sayur berkuah santan dengan aneka sayuran tradisional.',
+                'ingredients' => "Labu siam\nTerong\nKacang panjang\nSantan\nBawang putih",
+                'steps' => "1. Tumis bumbu hingga harum.\n2. Masukkan sayuran.\n3. Tuang santan.\n4. Masak hingga matang.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/sayur-lodeh.jpg',
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 30, 'servings' => 4, 'cuisine' => 'Jawa']
+            ],
+            [
+                'title' => 'Sop Buntut',
+                'description' => 'Sup buntut sapi dengan kuah bening gurih dan aroma rempah.',
+                'ingredients' => "1 kg buntut sapi\nWortel\nKentang\nBawang putih\nMerica\nGaram",
+                'steps' => "1. Rebus buntut hingga empuk.\n2. Tumis bawang putih.\n3. Masukkan ke dalam kaldu.\n4. Tambahkan sayuran dan masak hingga matang.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/sop-buntut.jpg',
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 120, 'servings' => 4, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Coto Makassar',
+                'description' => 'Sup daging dan jeroan sapi khas Makassar dengan kuah kacang yang kaya rasa.',
+                'ingredients' => "500 gram daging sapi\nJeroan sapi\nKacang tanah sangrai\nBawang merah\nKetumbar",
+                'steps' => "1. Rebus daging dan jeroan hingga empuk.\n2. Tumis bumbu halus.\n3. Masukkan kacang dan kaldu.\n4. Sajikan panas.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/coto-makassar.jpg',
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 90, 'servings' => 4, 'cuisine' => 'Makassar']
+            ],
+            [
+                'title' => 'Sate Lilit Bali',
+                'description' => 'Sate khas Bali berbahan ikan cincang dengan rempah dan kelapa.',
+                'ingredients' => "Ikan tenggiri\nKelapa parut\nSerai\nBawang putih\nKetumbar",
+                'steps' => "1. Campur ikan dengan bumbu.\n2. Lilitkan pada batang serai.\n3. Panggang hingga matang.\n4. Sajikan.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/sate-lilit.jpg',
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 20, 'servings' => 3, 'cuisine' => 'Bali']
+            ],
+            [
+                'title' => 'Urap Sayur',
+                'description' => 'Sayuran rebus dengan kelapa parut berbumbu gurih.',
+                'ingredients' => "Bayam\nKacang panjang\nTauge\nKelapa parut\nCabai",
+                'steps' => "1. Rebus sayuran.\n2. Kukus kelapa berbumbu.\n3. Campur sayur dan kelapa.\n4. Sajikan.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/urap.jpg',
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 10, 'servings' => 3, 'cuisine' => 'Jawa']
+            ],
+            [
+                'title' => 'Nasi Megono',
+                'description' => 'Nasi khas Pekalongan dengan cacahan nangka muda berbumbu kelapa.',
+                'ingredients' => "Nangka muda\nKelapa parut\nCabai\nNasi putih",
+                'steps' => "1. Masak nangka dengan bumbu.\n2. Campur dengan kelapa.\n3. Sajikan di atas nasi.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/nasi-megono.jpg',
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 25, 'servings' => 3, 'cuisine' => 'Pekalongan']
+            ],
+            [
+                'title' => 'Tumis Genjer',
+                'description' => 'Tumis sayur genjer dengan bumbu sederhana khas rumahan.',
+                'ingredients' => "Genjer\nBawang merah\nCabai\nGaram",
+                'steps' => "1. Tumis bawang dan cabai.\n2. Masukkan genjer.\n3. Aduk hingga layu.\n4. Sajikan.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/tumis-genjer.jpg',
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 10, 'servings' => 2, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Gulai Ikan Patin',
+                'description' => 'Masakan ikan patin berkuah santan kuning dengan rempah.',
+                'ingredients' => "Ikan patin\nSantan\nKunyit\nSerai\nDaun jeruk",
+                'steps' => "1. Tumis bumbu hingga harum.\n2. Masukkan ikan.\n3. Tuang santan.\n4. Masak hingga matang.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/gulai-patin.jpg',
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 35, 'servings' => 3, 'cuisine' => 'Sumatera']
+            ],
+            [
+                'title' => 'Nasi Timbel Sunda',
+                'description' => 'Nasi hangat yang dibungkus daun pisang khas Sunda dengan aroma alami.',
+                'ingredients' => "Beras putih\nDaun pisang\nAir\nGaram secukupnya",
+                'steps' => "1. Cuci beras hingga bersih.\n2. Masak nasi hingga matang.\n3. Bungkus nasi dengan daun pisang.\n4. Sajikan hangat.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/nasi-timbel.jpg',
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 25, 'servings' => 3, 'cuisine' => 'Sunda']
+            ],
+            [
+                'title' => 'Ayam Woku Belanga',
+                'description' => 'Ayam berbumbu woku khas Manado yang dimasak dalam belanga.',
+                'ingredients' => "1 ekor ayam\nDaun kemangi\nCabai\nJahe\nSerai\nDaun jeruk",
+                'steps' => "1. Tumis bumbu hingga harum.\n2. Masukkan ayam dan aduk rata.\n3. Tambahkan air secukupnya.\n4. Masak hingga ayam empuk.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/ayam-woku.jpg',
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 45, 'servings' => 4, 'cuisine' => 'Manado']
+            ],
+            [
+                'title' => 'Gulai Kambing',
+                'description' => 'Masakan daging kambing berkuah santan dengan rempah kuat.',
+                'ingredients' => "Daging kambing\nSantan\nKetumbar\nJahe\nKunyit\nSerai",
+                'steps' => "1. Rebus daging kambing.\n2. Tumis bumbu hingga harum.\n3. Masukkan santan dan daging.\n4. Masak hingga empuk.",
+                'difficulty' => 'sulit',
+                'hero_image' => 'recipes/gulai-kambing.jpg',
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 120, 'servings' => 4, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Pepes Tahu',
+                'description' => 'Tahu berbumbu rempah yang dikukus dalam daun pisang.',
+                'ingredients' => "Tahu\nDaun pisang\nCabai\nBawang merah\nKemangi",
+                'steps' => "1. Haluskan tahu dan bumbu.\n2. Bungkus dengan daun pisang.\n3. Kukus hingga matang.\n4. Sajikan.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/pepes-tahu.jpg',
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 25, 'servings' => 3, 'cuisine' => 'Jawa']
+            ],
+            [
+                'title' => 'Nasi Kuning Banjar',
+                'description' => 'Nasi kuning khas Banjar dengan aroma rempah dan santan.',
+                'ingredients' => "Beras\nSantan\nKunyit\nDaun salam\nSerai",
+                'steps' => "1. Cuci beras.\n2. Masak dengan santan dan kunyit.\n3. Aduk hingga matang.\n4. Sajikan.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/nasi-kuning.jpg',
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 30, 'servings' => 4, 'cuisine' => 'Banjar']
+            ],
+            [
+                'title' => 'Ikan Rica-Rica',
+                'description' => 'Masakan ikan dengan sambal rica pedas khas Sulawesi.',
+                'ingredients' => "Ikan laut\nCabai rawit\nBawang merah\nJahe\nJeruk nipis",
+                'steps' => "1. Goreng ikan setengah matang.\n2. Tumis bumbu rica.\n3. Masukkan ikan.\n4. Masak hingga meresap.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/ikan-rica.jpg',
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 25, 'servings' => 3, 'cuisine' => 'Sulawesi']
+            ],
+            [
+                'title' => 'Sayur Ares',
+                'description' => 'Sayur khas Lombok berbahan batang pisang dengan santan.',
+                'ingredients' => "Batang pisang\nSantan\nCabai\nBawang merah\nLengkuas",
+                'steps' => "1. Iris batang pisang.\n2. Rebus hingga lunak.\n3. Masak dengan bumbu dan santan.\n4. Sajikan.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/sayur-ares.jpg',
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 35, 'servings' => 4, 'cuisine' => 'Lombok']
+            ],
+            [
+                'title' => 'Oseng Mercon',
+                'description' => 'Masakan pedas ekstrem berbahan daging sapi dan cabai rawit.',
+                'ingredients' => "Daging sapi\nCabai rawit\nBawang merah\nBawang putih",
+                'steps' => "1. Rebus daging hingga empuk.\n2. Tumis bumbu.\n3. Masukkan daging.\n4. Masak hingga pedas meresap.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/oseng-mercon.jpg',
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 40, 'servings' => 3, 'cuisine' => 'Yogyakarta']
+            ],
+            [
+                'title' => 'Bakwan Jagung',
+                'description' => 'Gorengan renyah dari jagung manis dan tepung.',
+                'ingredients' => "Jagung manis\nTepung terigu\nDaun bawang\nGaram",
+                'steps' => "1. Campur semua bahan.\n2. Panaskan minyak.\n3. Goreng hingga kuning keemasan.\n4. Angkat dan sajikan.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/bakwan-jagung.jpg',
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 15, 'servings' => 4, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Seblak Bandung',
+                'description' => 'Seblak khas Bandung dengan kerupuk basah, kuah pedas gurih, dan aroma kencur yang kuat.',
+                'ingredients' => "100g kerupuk bawang mentah\n1 butir telur\n2 siung bawang putih\n3 buah cabai rawit\n1/2 sdt kencur\nGaram dan kaldu bubuk secukupnya\nAir secukupnya",
+                'steps' => "1. Rebus kerupuk hingga lunak, tiriskan.\n2. Haluskan bawang putih, cabai, dan kencur.\n3. Tumis bumbu halus hingga harum.\n4. Masukkan telur, orak-arik hingga matang.\n5. Masukkan kerupuk dan air, bumbui.\n6. Masak hingga kuah mengental, sajikan panas.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/seblak.jpg',
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 10, 'servings' => 1, 'cuisine' => 'Bandung']
+            ],
+            [
+                'title' => 'Batagor Bandung',
+                'description' => 'Bakso tahu goreng renyah dengan siraman saus kacang yang gurih manis.',
+                'ingredients' => "5 buah tahu putih\n200g ikan tenggiri halus\n2 siung bawang putih\n1 butir telur\nGaram dan lada secukupnya\nBumbu kacang secukupnya",
+                'steps' => "1. Campur ikan, bawang putih, telur, dan bumbu.\n2. Isi adonan ke dalam tahu.\n3. Goreng hingga kuning keemasan.\n4. Sajikan dengan saus kacang dan kecap manis.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/batagor.jpg',
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 15, 'servings' => 3, 'cuisine' => 'Bandung']
+            ],
+            [
+                'title' => 'Tahu Gejrot',
+                'description' => 'Tahu goreng dengan siraman kuah asam manis pedas khas Cirebon.',
+                'ingredients' => "5 buah tahu pong\n2 siung bawang putih\n3 buah cabai rawit\n2 sdm gula merah\n2 sdm air asam jawa\nGaram secukupnya",
+                'steps' => "1. Goreng tahu hingga garing, potong-potong.\n2. Haluskan bawang putih dan cabai.\n3. Campur gula merah, air asam, dan garam.\n4. Siram kuah ke atas tahu, aduk rata.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/tahu-gejrot.jpg',
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 10, 'servings' => 2, 'cuisine' => 'Cirebon']
+            ],
+            [
+                'title' => 'Sate Taichan',
+                'description' => 'Sate ayam tanpa kecap dengan sambal pedas segar dan perasan jeruk nipis.',
+                'ingredients' => "500g dada ayam fillet\nTusuk sate\nCabai rawit\nBawang putih\nGaram dan jeruk nipis",
+                'steps' => "1. Tusuk potongan ayam.\n2. Bakar hingga matang dan sedikit gosong.\n3. Haluskan cabai dan bawang putih, beri garam dan jeruk nipis.\n4. Sajikan sate dengan sambal pedas.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/taichan.jpg',
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 15, 'servings' => 3, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Martabak Telur Mini',
+                'description' => 'Martabak telur ukuran mini dengan isian daging dan telur yang gurih.',
+                'ingredients' => "Kulit lumpia\n2 butir telur\n100g daging cincang\nDaun bawang\nGaram dan lada",
+                'steps' => "1. Campur telur, daging, daun bawang, dan bumbu.\n2. Isi adonan ke kulit lumpia.\n3. Lipat dan goreng hingga kecokelatan.\n4. Sajikan dengan acar dan cabai.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/martabak-mini.jpg',
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 15, 'servings' => 4, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Onde-Onde',
+                'description' => 'Kue tradisional berlapis wijen dengan isian kacang hijau manis.',
+                'ingredients' => "200g tepung ketan\n100g kacang hijau kupas\nGula\nWijen\nMinyak goreng",
+                'steps' => "1. Kukus kacang hijau, haluskan dan beri gula.\n2. Campur tepung ketan dengan air, uleni.\n3. Isi adonan dengan kacang hijau.\n4. Balur wijen, goreng hingga mengembang dan matang.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/onde-onde.jpg',
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 15, 'servings' => 5, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Klepon Gula Merah',
+                'description' => 'Kue tradisional berbentuk bulat dengan isian gula merah cair dan balutan kelapa parut.',
+                'ingredients' => "200g tepung ketan\n100g gula merah sisir\nKelapa parut kukus\nAir daun pandan secukupnya\nSejumput garam",
+                'steps' => "1. Campur tepung ketan dengan air pandan.\n2. Bentuk bulat, isi gula merah.\n3. Rebus hingga mengapung.\n4. Gulingkan ke kelapa parut, sajikan.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/klepon.jpg',
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 10, 'servings' => 4, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Dadar Gulung',
+                'description' => 'Pancake hijau pandan dengan isian kelapa parut manis khas jajanan pasar.',
+                'ingredients' => "150g tepung terigu\n200ml santan\nKelapa parut\nGula merah\nDaun pandan",
+                'steps' => "1. Buat adonan kulit dadar.\n2. Masak tipis di teflon.\n3. Isi kelapa gula.\n4. Gulung dan sajikan.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/dadar-gulung.jpg',
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 15, 'servings' => 5, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Serabi Solo',
+                'description' => 'Serabi lembut berbahan santan dengan kuah kinca gula merah.',
+                'ingredients' => "200g tepung beras\n400ml santan\nRagi instan\nGula merah cair",
+                'steps' => "1. Campur adonan serabi.\n2. Diamkan hingga mengembang.\n3. Masak di wajan kecil.\n4. Sajikan dengan kuah gula.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/serabi.jpg',
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 20, 'servings' => 6, 'cuisine' => 'Solo']
+            ],
+            [
+                'title' => 'Lupis Ketan',
+                'description' => 'Ketan kukus berbentuk segitiga disajikan dengan gula merah cair dan kelapa parut.',
+                'ingredients' => "300g beras ketan\nKelapa parut\nGula merah cair\nDaun pisang",
+                'steps' => "1. Bungkus ketan dengan daun pisang.\n2. Rebus hingga matang.\n3. Sajikan dengan gula dan kelapa.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/lupis.jpg',
+                'other_attributes' => ['prep_time' => 40, 'cook_time' => 60, 'servings' => 6, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Es Cendol',
+                'description' => 'Minuman manis segar dari cendol hijau, santan, dan gula aren.',
+                'ingredients' => "Cendol\nSantan\nGula aren cair\nEs batu",
+                'steps' => "1. Siapkan gelas.\n2. Masukkan cendol dan es.\n3. Tuang santan dan gula aren.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/cendol.jpg',
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 5, 'servings' => 2, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Bubur Sumsum',
+                'description' => 'Bubur lembut dari tepung beras dengan kuah gula merah.',
+                'ingredients' => "100g tepung beras\n500ml santan\nGula merah cair\nGaram",
+                'steps' => "1. Masak tepung dan santan hingga kental.\n2. Sajikan dengan gula merah.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/bubur-sumsum.jpg',
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 15, 'servings' => 3, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Kolak Pisang',
+                'description' => 'Hidangan manis dari pisang dan santan dengan gula aren.',
+                'ingredients' => "Pisang kepok\nSantan\nGula aren\nDaun pandan",
+                'steps' => "1. Rebus santan dan gula.\n2. Masukkan pisang.\n3. Masak hingga matang.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/kolak.jpg',
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 20, 'servings' => 4, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Es Pisang Ijo',
+                'description' => 'Pisang dibalut adonan hijau, disajikan dengan sirup dan santan dingin.',
+                'ingredients' => "Pisang raja\nTepung beras\nDaun pandan\nSantan\nSirup merah",
+                'steps' => "1. Bungkus pisang dengan adonan.\n2. Kukus hingga matang.\n3. Sajikan dengan es dan sirup.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/pisang-ijo.jpg',
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 20, 'servings' => 5, 'cuisine' => 'Makassar']
+            ],
+            [
+                'title' => 'Es Teh Manis',
+                'description' => 'Minuman sederhana dan menyegarkan dari teh hitam dan gula, disajikan dengan es batu.',
+                'ingredients' => "2 kantong teh hitam\n2 sdm gula pasir\n300 ml air panas\nEs batu secukupnya",
+                'steps' => "1. Seduh teh dengan air panas.\n2. Tambahkan gula, aduk hingga larut.\n3. Tuang ke gelas berisi es batu.\n4. Sajikan dingin.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/es-teh.jpg',
+                'other_attributes' => ['prep_time' => 5, 'cook_time' => 5, 'servings' => 1, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Es Jeruk Peras',
+                'description' => 'Minuman segar dari perasan jeruk asli dengan rasa manis dan asam seimbang.',
+                'ingredients' => "3 buah jeruk manis\n2 sdm gula cair\nEs batu secukupnya\nAir matang secukupnya",
+                'steps' => "1. Peras jeruk, saring bijinya.\n2. Campur dengan gula dan air.\n3. Tambahkan es batu.\n4. Sajikan dingin.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/es-jeruk.jpg',
+                'other_attributes' => ['prep_time' => 5, 'cook_time' => 0, 'servings' => 1, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Wedang Jahe',
+                'description' => 'Minuman tradisional hangat dari jahe dengan aroma rempah yang menenangkan.',
+                'ingredients' => "2 ruas jahe, bakar dan memarkan\n2 sdm gula merah\n400 ml air\nDaun pandan",
+                'steps' => "1. Rebus air bersama jahe dan pandan.\n2. Tambahkan gula merah.\n3. Masak hingga harum.\n4. Sajikan hangat.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/wedang-jahe.jpg',
+                'other_attributes' => ['prep_time' => 5, 'cook_time' => 15, 'servings' => 2, 'cuisine' => 'Jawa']
+            ],
+            [
+                'title' => 'Es Kopi Susu Gula Aren',
+                'description' => 'Minuman kopi dingin dengan perpaduan susu dan manis alami gula aren.',
+                'ingredients' => "1 shot kopi hitam\n100 ml susu cair\n2 sdm gula aren cair\nEs batu secukupnya",
+                'steps' => "1. Siapkan gelas berisi es batu.\n2. Tuang gula aren dan susu.\n3. Tambahkan kopi hitam.\n4. Aduk dan sajikan.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/kopi-susu-aren.jpg',
+                'other_attributes' => ['prep_time' => 5, 'cook_time' => 5, 'servings' => 1, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Bajigur',
+                'description' => 'Minuman hangat khas Sunda berbahan santan, gula aren, dan jahe.',
+                'ingredients' => "500 ml santan\n2 sdm gula aren\n1 ruas jahe\nSejumput garam",
+                'steps' => "1. Rebus santan bersama jahe.\n2. Tambahkan gula aren dan garam.\n3. Aduk hingga hangat dan harum.\n4. Sajikan panas.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/bajigur.jpg',
+                'other_attributes' => ['prep_time' => 5, 'cook_time' => 15, 'servings' => 3, 'cuisine' => 'Sunda']
+            ],
+            [
+                'title' => 'Pisang Goreng',
+                'description' => 'Pisang goreng renyah di luar dan lembut di dalam, cocok sebagai cemilan sore.',
+                'ingredients' => "5 buah pisang kepok\n100g tepung terigu\n1 sdm gula\nSejumput garam\nAir secukupnya\nMinyak goreng",
+                'steps' => "1. Campur tepung, gula, garam, dan air hingga kental.\n2. Celupkan pisang ke adonan.\n3. Goreng hingga kuning keemasan.\n4. Angkat dan sajikan.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/pisang-goreng.jpg',
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 10, 'servings' => 3, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Tahu Crispy',
+                'description' => 'Tahu goreng berbalut tepung renyah dengan rasa gurih.',
+                'ingredients' => "10 buah tahu putih\n100g tepung bumbu serbaguna\nAir secukupnya\nMinyak goreng",
+                'steps' => "1. Potong tahu sesuai selera.\n2. Celupkan tahu ke adonan tepung.\n3. Goreng hingga renyah dan kering.\n4. Sajikan hangat.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/tahu-crispy.jpg',
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 10, 'servings' => 3, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Bakwan Sayur',
+                'description' => 'Gorengan sayur renyah dengan rasa gurih, favorit segala usia.',
+                'ingredients' => "100g tepung terigu\nWortel iris\nKol iris\nDaun bawang\nBawang putih\nAir dan garam secukupnya",
+                'steps' => "1. Campur semua bahan hingga rata.\n2. Panaskan minyak.\n3. Goreng adonan hingga kecokelatan.\n4. Angkat dan tiriskan.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/bakwan.jpg',
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 10, 'servings' => 4, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Risoles Mayo',
+                'description' => 'Risoles isi smoked beef, telur, dan mayones dengan kulit lembut dan renyah.',
+                'ingredients' => "Kulit risoles\nSmoked beef\nTelur rebus\nMayones\nTepung panir\nMinyak goreng",
+                'steps' => "1. Isi kulit risoles dengan bahan isian.\n2. Gulung dan rekatkan.\n3. Celupkan ke tepung panir.\n4. Goreng hingga keemasan.",
+                'difficulty' => 'sedang',
+                'hero_image' => 'recipes/risoles.jpg',
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 10, 'servings' => 4, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Tempe Mendoan',
+                'description' => 'Tempe tipis khas Banyumas yang digoreng setengah matang dengan balutan tepung berbumbu.',
+                'ingredients' => "10 lembar tempe mendoan\n100g tepung terigu\n2 siung bawang putih\nKetumbar bubuk\nDaun bawang\nAir secukupnya\nMinyak goreng",
+                'steps' => "1. Campur tepung, bawang putih halus, ketumbar, dan daun bawang.\n2. Tambahkan air hingga adonan encer.\n3. Celupkan tempe ke adonan.\n4. Goreng sebentar hingga matang lembut.\n5. Sajikan hangat.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/tempe-mendoan.jpg',
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 5, 'servings' => 3, 'cuisine' => 'Banyumas']
+            ],
+            [
+                'title' => 'Tahu Isi Sayur',
+                'description' => 'Tahu goreng berisi sayuran tumis dengan rasa gurih dan tekstur renyah.',
+                'ingredients' => "8 buah tahu pong\nWortel iris\nKol iris\nTauge\nBawang putih\nTepung terigu\nAir dan garam secukupnya",
+                'steps' => "1. Tumis bawang putih dan sayuran hingga layu.\n2. Belah tahu, isi dengan tumisan sayur.\n3. Celupkan ke adonan tepung.\n4. Goreng hingga kecokelatan.\n5. Sajikan hangat.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/tahu-isi.jpg',
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 10, 'servings' => 4, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Singkong Goreng',
+                'description' => 'Singkong goreng empuk di dalam dan renyah di luar, cemilan sederhana khas rumahan.',
+                'ingredients' => "500g singkong\nBawang putih\nGaram\nAir\nMinyak goreng",
+                'steps' => "1. Rebus singkong dengan bawang putih dan garam hingga empuk.\n2. Tiriskan singkong.\n3. Goreng hingga kuning keemasan.\n4. Sajikan hangat.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/singkong-goreng.jpg',
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 20, 'servings' => 3, 'cuisine' => 'Indonesia']
+            ],
+            [
+                'title' => 'Ubi Goreng',
+                'description' => 'Ubi goreng manis alami dengan tekstur lembut dan aroma khas.',
+                'ingredients' => "500g ubi jalar\nMinyak goreng secukupnya",
+                'steps' => "1. Kupas dan potong ubi.\n2. Panaskan minyak.\n3. Goreng ubi hingga matang dan keemasan.\n4. Angkat dan sajikan.",
+                'difficulty' => 'mudah',
+                'hero_image' => 'recipes/ubi-goreng.jpg',
+                'other_attributes' => ['prep_time' => 5, 'cook_time' => 15, 'servings' => 3, 'cuisine' => 'Indonesia']
+            ]
         ];
 
         foreach ($indonesianRecipes as $data) {

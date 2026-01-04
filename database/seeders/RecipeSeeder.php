@@ -46,7 +46,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Ulek halus bawang merah, bawang putih, cabai rawit, dan terasi.\n2. Panaskan minyak, tumis bumbu halus hingga harum matang.\n3. Masukkan telur, buat orak-arik, lalu sisihkan di pinggir wajan.\n4. Masukkan nasi putih, aduk rata dengan bumbu dan telur.\n5. Tambahkan kecap manis dan garam. Aduk terus dengan api besar hingga nasi berasap dan bumbu meresap.\n6. Sajikan hangat dengan pelengkap.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/goreng.jpg',
-                'other_attributes' => ['prep_time' => 10, 'cook_time' => 10, 'servings' => 2, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 10, 'servings' => 2, 'cuisine' => 'Indonesia'],
+                'tags' => ['Sarapan', 'Makan Siang', 'Tradisional']
             ],
             [
                 'title' => 'Rendang Daging Sapi',
@@ -55,7 +56,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Masukkan santan, serai, daun jeruk, daun kunyit, dan bumbu halus ke dalam wajan. Masak sambil diaduk hingga mendidih.\n2. Masukkan daging sapi. Masak dengan api sedang sambil sesekali diaduk agar santan tidak pecah.\n3. Lanjutkan memasak hingga santan menyusut dan mengeluarkan minyak (menjadi kalio).\n4. Kecilkan api, masak terus sambil diaduk perlahan hingga bumbu kering dan berwarna cokelat gelap.\n5. Angkat dan siap disajikan.",
                 'difficulty' => 'sulit',
                 'hero_image' => 'recipes/rendang.jpg',
-                'other_attributes' => ['prep_time' => 45, 'cook_time' => 240, 'servings' => 8, 'cuisine' => 'Minang']
+                'other_attributes' => ['prep_time' => 45, 'cook_time' => 240, 'servings' => 8, 'cuisine' => 'Minang'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Pedas', 'Tradisional']
             ],
             [
                 'title' => 'Sate Ayam Madura',
@@ -64,7 +66,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Tusuk potongan ayam dengan tusuk sate.\n2. Campur semua bahan bumbu kacang, masak hingga mengental dan berminyak.\n3. Ambil sedikit bumbu kacang, campur dengan kecap manis dan sedikit minyak untuk olesan.\n4. Lumuri sate dengan bumbu olesan, bakar di atas arang hingga matang dan kecokelatan.\n5. Sajikan sate dengan siraman bumbu kacang kental, kecap manis, dan irisan bawang merah.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/sate.jpg',
-                'other_attributes' => ['prep_time' => 30, 'cook_time' => 10, 'servings' => 4, 'cuisine' => 'Madura']
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 10, 'servings' => 4, 'cuisine' => 'Madura'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Tradisional']
             ],
             [
                 'title' => 'Gado-Gado Jakarta',
@@ -73,7 +76,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Haluskan cabai, bawang putih, terasi, gula merah, dan garam.\n2. Tambahkan kacang tanah, ulek hingga halus. Beri air asam jawa dan air matang secukupnya hingga kekentalan pas.\n3. Tata potongan lontong, sayuran rebus, tahu, tempe, dan telur di piring.\n4. Siram dengan saus kacang melimpah.\n5. Taburi bawang goreng dan kerupuk.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/gado.jpg',
-                'other_attributes' => ['prep_time' => 20, 'cook_time' => 15, 'servings' => 4, 'cuisine' => 'Betawi']
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 15, 'servings' => 4, 'cuisine' => 'Betawi'],
+                'tags' => ['Makan Siang', 'Sehat', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Soto Ayam Lamongan',
@@ -82,7 +86,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Rebus ayam hingga empuk, angkat dan suwir-suwir dagingnya. Sisihkan air kaldu.\n2. Tumis bumbu halus bersama serai, daun jeruk, dan lengkuas hingga harum.\n3. Masukkan tumisan bumbu ke dalam air kaldu ayam. Tambahkan garam dan gula, masak hingga mendidih.\n4. Tata soun, kol, tauge, dan ayam suwir di mangkuk.\n5. Siram kuah soto panas. Taburi bubuk koya dan seledri.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/Soto Ayam Lamongan.jpg',
-                'other_attributes' => ['prep_time' => 30, 'cook_time' => 60, 'servings' => 5, 'cuisine' => 'Lamongan']
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 60, 'servings' => 5, 'cuisine' => 'Lamongan'],
+                'tags' => ['Sarapan', 'Makan Siang', 'Tradisional']
             ],
             [
                 'title' => 'Ayam Taliwang Lombok',
@@ -91,7 +96,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "Belah ayam sampai bagian belakang dan tidak terputus. Tekan hingga terbuka lebar. Lipat sayapnya ke arah belakang.\n Lumuri ayam dengan air jeruk nipis dan garam. Diamkan 15 menit.\n Panaskan minyak goreng. Tumis bumbu halus hingga matang dan harum. Tambahkan Kobe Bumbu Kalasan dan Kobe Bumbu Nasi Goreng Poll Pedas. Aduk rata.\n Panggang ayam hingga setengah matang dan sambil dibolak balik hingga ayam kaku.\nOlesi ayam dengan bumbu tumisan dan sambil di panggang hingga matang dan bumbu meresap. \nOlesi loyang dengan minyak sayur. Letakkan ayam dalam loyang. Olesi ayam dengan bumbu sisa. Panggang ayam dalam oven panas selama 20 menit.\nKeluarkan ayam dari oven jika sudah matang. Pindahkan ke piring dan sajikan",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/ayam-taliwang.jpg',
-                'other_attributes' => ['prep_time' => 25, 'cook_time' => 90, 'servings' => 4, 'cuisine' => 'Lombok']
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 90, 'servings' => 4, 'cuisine' => 'Lombok'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Pedas', 'Tradisional']
             ],
             [
                 'title' => 'Sate Rembiga Lombok',
@@ -100,7 +106,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "Aduk rata bumbu halus, tambahkan garam dan Bango Kecap Manis.\n Aduk rata bersama daging sapi. Diamkan dalam kulkas selama 1 jam hingga meresap.\n Tusukkan daging ke dalam tusuk satai.\n Panaskan wajan pemanggang, panggang satai sambil sesekali dibolak balik hingga matang. Angkat.\nSajikan sate rembiga. ",
                 'difficulty' => 'Mudah',
                 'hero_image' => 'recipes/sate-rembiga.jpg',
-                'other_attributes' => ['prep_time' => 30, 'cook_time' => 13, 'servings' => 2, 'cuisine' => 'Lombok']
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 13, 'servings' => 2, 'cuisine' => 'Lombok'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Pedas', 'Tradisional']
             ],
             [
                 'title' => 'Nasi Balap Puyung Lombok',
@@ -109,7 +116,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "Siapkan bahan. Haluskan bawang merah dan putih, sisihkan.\n Kupas dan cuci bersih kentang, kemudian parut menggunakan parutan panjang ukuran korek api.\n Rendam dengan air garam selama 30 menit.\n Siapkan ayam sisit: rebus ayam, suwir kecil kecil. \nHaluskan bumbu dan tumis hingga harum. \nTambahkan sereh, lengkuas dan jahe, aduk rata. Masukkan ayam, tambahkan minyak wijen. \nAduk dan masak hingga matang Tambahkan kacang panjang, aduk rata.\nTaburkan kacang tanah goreng di atasnya. Sajikan dengan nasi putih. ",
                 'difficulty' => 'Sedang',
                 'hero_image' => 'recipes/nasi-balap.jpg',
-                'other_attributes' => ['prep_time' => 38, 'cook_time' => 70, 'servings' => 2, 'cuisine' => 'Lombok Tengah']
+                'other_attributes' => ['prep_time' => 38, 'cook_time' => 70, 'servings' => 2, 'cuisine' => 'Lombok Tengah'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Tradisional']
             ],
             [
                 'title' => 'Sate Pusut Ayam',
@@ -118,7 +126,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "Cincang ayam dan tulang muda hingga halus. Lalu, haluskan bumbu + 1 sdm bawang goreng.\n Campur bumbu halus, ayam cincang, kelapa parut dan irisan daun jeruk.\n Lilitkan adonan sate pada tusuk sate.\n Bakar sate sambil dioles minyak kelapa sesekali. \nSate siap disajikan ",
                 'difficulty' => 'Mudah',
                 'hero_image' => 'recipes/sate-pusut.jpg',
-                'other_attributes' => ['prep_time' => 15, 'cook_time' => 15, 'servings' => 2, 'cuisine' => 'Lombok']
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 15, 'servings' => 2, 'cuisine' => 'Lombok'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Pedas', 'Tradisional']
             ],
             [
                 'title' => 'Beberuk Terong Lombok',
@@ -127,7 +136,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "Siapkan bahan-bahan yang diperlukan. Cuci terlebih dahulu bahan-bahan yang akan digunakan agar tetap  higienis dan sehat.\n Potong terong menjadi dadu atau kubus. Jangan terlalu besar atau  terlalu kecil. Jangan terlalu tebal atau  terlalu tipis. Iris terong agar tidak pahit saat dimakan\n Setelah dipotong kotak-kotak, masukkan terong ke dalam air agar tidak berubah warna.\n  Iris kacang hijau sesuai selera. Bisa sedikit tebal atau bahkan sedikit tipis, rasanya tetap enak \nCampur kacang hijau dengan terong yang direndam dalam air. Diamkan dalam air sambil membuat saus\nSiapkan lesung dan bahan untuk membuat sambal garam dan gula secukupnya, lalu giling hingga halus \nCukup tambahkan sedikit terasi dan aduk. Tambahkan  tomat dan tumbuk serta sambal cabai yang ditumbuk halus. \nSaat cabai sudah jadi, cicipi rasanya. Apakah rasanya enak atau tidak. Jika terlalu pedas tambahkan sedikit gula atau bisa juga tambahkan tomat  \nMasukkan irisan terong dan kacang hijau ke dalam cobek yang berisi sambal  \nSajikan dengan beberuq dicampur sambal ",
                 'difficulty' => 'Mudah',
                 'hero_image' => 'recipes/beberuk.jpg',
-                'other_attributes' => ['prep_time' => 5, 'cook_time' => 12, 'servings' => 3, 'cuisine' => 'Lombok']
+                'other_attributes' => ['prep_time' => 5, 'cook_time' => 12, 'servings' => 3, 'cuisine' => 'Lombok'],
+                'tags' => ['Makan Siang', 'Pedas', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Plecing Kangkung Dompu',
@@ -136,7 +146,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "Siapkan bahan-bahan dan bumbu yang diperlukan. Cuci terlebih dahulu bahan-bahan yang akan digunakan agar tetap  higienis.\n Potong kangkung panjang - panjang, kemudian cuci bersih bersama taugenya\n Didihkan air & garam (ini agar supaya warna kangkung tetep hijau) lalu masukkan kangkung...masak sampai layu, angkat & tiriskan\n  Haluskan semua bahan sambal\nTumis bahan sambal hingga harum\nLalu tuangi sedikit air & perasan air jeruk limau... aduk rata \nSajikan kangkung & tauge rebus bersama tumisan sambal  \n campur dan siap di sajikan ",
                 'difficulty' => 'Mudah',
                 'hero_image' => 'recipes/plecing.jpg',
-                'other_attributes' => ['prep_time' => 10 , 'cook_time' => 25, 'servings' => 2, 'cuisine' => 'Dompu NTB']
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 25, 'servings' => 2, 'cuisine' => 'Dompu NTB'],
+                'tags' => ['Makan Siang', 'Pedas', 'Sehat', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Ayam Rarang Lombok',
@@ -145,7 +156,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "Siapkan dan cuci bersih semua bahan. Potong-potong ayam sesuai dengan jumlah selera.\n Ulek bumbu halus. Sisihkan. Siapkan pan utk memanggang ayam. Beri minyak goreng secukupnya, sebagai olesan di pan. Panggang ayam selama 3-4 menit atau hingga agak berwarna agak kecoklatan. Pastikan ayam dibolak-balik untuk memastikan agar tidak gosong\n Tumis bumbu halus hingga agak asat/kering. Lalu beri air secukupnya. Jika sudah mendidih, masukkan garam, gula dan penyedap serta ayam. Koreksi rasa. Jika sudah terasa pas, aduk-aduk dan diamkan hingga air agak menyusut. Terakhir, siapkan pan lagi. Olesi ayam dengan bumbu yg sudah matang, lalu panggang kembali selama 2 menit atau hingga berwarna kecoklatan.\n  Selesai dan siap disajikan.",
                 'difficulty' => 'Sedang',
                 'hero_image' => 'recipes/ayam-rarang.jpg',
-                'other_attributes' => ['prep_time' => 30 , 'cook_time' => 80, 'servings' => 4, 'cuisine' => 'Lombok']
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 80, 'servings' => 4, 'cuisine' => 'Lombok'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Pedas', 'Tradisional']
             ],
             [
                 'title' => 'Bebalung',
@@ -154,7 +166,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "Cuci tulang sapi sampai bersih lalu presto sampai lunak\n Tumis bumbu halus dan masukan bumbu aromatik. Sisihkan, Setelah lapisan lemak dibuang, panaskan lagi, setelah mendidih masukan bumbu yang sudah ditumis.\n Beri garam, kaldu bubuk dan gula, Rebus sampai bumbu meresap.\n  Siap dihidangkan bersama nasi.",
                 'difficulty' => 'Sedang',
                 'hero_image' => 'recipes/bebalung.jpg',
-                'other_attributes' => ['prep_time' => 35 , 'cook_time' => 95, 'servings' => 5, 'cuisine' => 'Lombok']
+                'other_attributes' => ['prep_time' => 35, 'cook_time' => 95, 'servings' => 5, 'cuisine' => 'Lombok'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Tradisional']
             ],
             [
                 'title' => 'Poteng Jaje Tujak',
@@ -163,7 +176,8 @@ class RecipeSeeder extends Seeder
                 'steps' => " Berikut beberapa langkah pembuatan poteng:\nRendam beras ketan putih dalam 2 liter air selama semalam, lalu tiriskan\n Kukus beras ketan putih hingga mengeluarkan uap yang banyak, setelah itu siram menggunakan air saga 800ml\n Kemudian dikukus lagi selama kurang lebih 15 menit, angkat dan biarkan dingin.\n  Ambil ½ beras ketan putih taruh dalam wadah kemudian, lalu taburi gula dan ragi \nTutupi ketan yang sudah ditaburi ragi dengan sisa setengah ketan \nBungkus ketan dengan kain lap, kemudian tutup wadah ketan dengan rapat \nBiarkan berfermentasi selama 2-3 hari. \nSementara untuk Jaje Tujak dibuat dengan cara : \nPertama cuci beras ketan putih, dan kemudian rendam kurang lebih 2 jam \nKukus beras ketan sampai matang kira-kira 30 menit. Siram dengan air garam, lalu angkat \nCampur ketan dengan kelapa parut, aduk rata \nKukus lagi ketan yang sudah dicampur kelapa parut hingga matang sempurna \nAngkat ketan, ratakan dan haluskan panas-panas. \nBungkus jaje tujak dengan daun pisang sisihkan \n Siap disajikan ",
                 'difficulty' => 'Sedang',
                 'hero_image' => 'recipes/poteng-jaje.jpg',
-                'other_attributes' => ['prep_time' => 30 , 'cook_time' => 85, 'servings' => 6, 'cuisine' => 'Lombok']
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 85, 'servings' => 6, 'cuisine' => 'Lombok'],
+                'tags' => ['Cemilan', 'Tradisional']
             ],
             [
                 'title' => 'Sate Bulayak',
@@ -172,7 +186,8 @@ class RecipeSeeder extends Seeder
                 'steps' => " Daging yang sudah dipotong dadu kemudian dibaluri dengan air jeruk nipis dan diamkan selama 15 menit. Setelah itu campur daging dengan setengah bumbu halus dan kasih kelapa parut, kemudian aduk dengan rata.\nTusuklah sate ke dalam tusukan sate, kemudian kukus selama 20 menit atau sampai matang.\n Siapkan alat untuk membakar, kemudian bakar sate sampai warnanya kecokelatan.\n Panaskan minyak goreng, tumis bumbu hingga halus dan hingga mengeluarkan aroma yang sedap. Kemudian masukkan kacang tanah yang sudah ditumbuk, gula merah dan santan, kemudian aduk merata hingga kental.\n  Siapkan piring dan letakkan sate bulayak diatas piring tersebut dan baluri dengan sambal kacang. \nSate bulayak siap disajikan. ",
                 'difficulty' => 'Sedang',
                 'hero_image' => 'recipes/sate-bulayak.jpg',
-                'other_attributes' => ['prep_time' => 25 , 'cook_time' => 10, 'servings' => 4, 'cuisine' => 'Lombok']
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 10, 'servings' => 4, 'cuisine' => 'Lombok'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Pedas', 'Tradisional']
             ],
             [
                 'title' => 'Nasi Cumi',
@@ -181,7 +196,8 @@ class RecipeSeeder extends Seeder
                 'steps' => " Cuci bersih cumi tapi harus hati-hati jangan sampai tinta cumi terbung\nHaluskan cabe, bawang merah, bawang putih, tomat. Lalu tumis bumbu tersebut dan daun salam hingga matang dan harum.\n Masukan cumi, garam dan gula lalu aduk rata. Biarkan sampai tinta cumi keluar dan bumbu meresap\n Kemudian, tuang air dan masak hingga air menyusut tapi tidak sampai kering. Jangan lupa koreksi rasa terlebih dahulu\n  Siapkan piring dan letakkan sate bulayak diatas piring tersebut dan baluri dengan sambal kacang. \nTuk penyajian, siapkan nasi dalam piring. Letakan semua bahan pelengkap di sisi nasi, lalu siramkan cumi hitam di atas nasi. ",
                 'difficulty' => 'Sedang',
                 'hero_image' => 'recipes/nasi-cumii.jpg',
-                'other_attributes' => ['prep_time' => 25 , 'cook_time' => 40, 'servings' => 5, 'cuisine' => 'Surabaya']
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 40, 'servings' => 5, 'cuisine' => 'Surabaya'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Tradisional']
             ],
             [
                 'title' => 'Kare Ayam',
@@ -190,7 +206,8 @@ class RecipeSeeder extends Seeder
                 'steps' => " Ulek/blender bumbu halus. lalu, masukkan ke dalam wajan yg berisi minyak panas lalu tambahkan serai, lengkuas dan daun jeruk. tumis hingga aromanya tidak langu lagi. sisihkan.\nSiapkan panci yg berisi air. lalu, rebus ayam. masukkan juga bumbu halus yg sebelumnya sudah ditumis. rebus hingga ayam empuk dan matang. jika sudah agak mendidih, masukkan garam dan gula. cek rasa.\n Jika rasa sudah sesuai selera, kecilkan api kompor, lalu tambahkan santan. segera aduk, agar santan tidak pecah/menggumpal. jika dirasa masih kurang kental, silakan ditambah lagi yaa santannya. cek rasa kembali, jika masih kurang garam dan gula. segera tambahkan. lalu, sajikan dengan taburan bawang goreng dan perasan jeruk nipis serta sambal sebagai pelengkap.",
                 'difficulty' => 'Sedang',
                 'hero_image' => 'recipes/karee-ayam.jpg',
-                'other_attributes' => ['prep_time' => 25 , 'cook_time' => 55, 'servings' => 7, 'cuisine' => 'Jawa Timur']
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 55, 'servings' => 7, 'cuisine' => 'Jawa Timur'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Tradisional']
             ],
             [
                 'title' => 'Tahu Telur',
@@ -199,7 +216,8 @@ class RecipeSeeder extends Seeder
                 'steps' => " Ulek semua bahan sambal kacang, campur dgn air matang, dan kecap aduk rata.\nPotong tahu putih kotak kecil. Kocok lepas telur, tambahkan garam dan merica, masukkan tahu.\n Buat dadar tahu telur ( jadi 2 atau 3 ). Sajikan dengan disiram sambal kacang, tauge, daun bawang dan bawang merah goreng.",
                 'difficulty' => 'Sedang',
                 'hero_image' => 'recipes/tahu-telur.jpg',
-                'other_attributes' => ['prep_time' => 20 , 'cook_time' => 30, 'servings' => 2, 'cuisine' => 'Surabaya']
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 30, 'servings' => 2, 'cuisine' => 'Surabaya'],
+                'tags' => ['Makan Siang', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Nasi Bebek Goreng',
@@ -208,7 +226,8 @@ class RecipeSeeder extends Seeder
                 'steps' => " Lumuri potongan bebek dengan air jeruk nipis diamkan selama 30 menit di lemari es setelah itu cuci bersih. Masukan potongan bebek dengan semua bumbu halus, serai, daun jeruk dan air, rebus selama 25menit\nPisahkan potongan bebek dengan sisa bumbu hasil rebusan, kemudian goreng bebek hingga kecoklatan.\n Siapkan wajan dengan sedikit minyak, ambil secukupnya sisa bumbu hasil rebusan, masak hingga kental. Siap dihidangkan bersama bebek goreng, aku coba pake sambal matah dan sambal bawang rasanya enak .",
                 'difficulty' => 'Sedang',
                 'hero_image' => 'recipes/nasi-bebek.jpg',
-                'other_attributes' => ['prep_time' => 25 , 'cook_time' => 35, 'servings' => 5, 'cuisine' => 'Surabaya']
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 35, 'servings' => 5, 'cuisine' => 'Surabaya'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Pedas', 'Tradisional']
             ],
             [
                 'title' => 'Ote-Ote Udang',
@@ -217,7 +236,8 @@ class RecipeSeeder extends Seeder
                 'steps' => " Cuci sampai bersih udang\nHaluskan semua bumbu halus dan tambahkan sedikit air.\n Campurkan semua bahan dan cuci bersih, Masukkan bumbu halus ke adonan sayuran, kemudian tambahkan tepung bumbu serta air dan aduk adonan hingga mengental, Setelah adonan tercampur, cetak adonan dgn menggunakan sendok sayur, tambahkan udang di atasnya, Panaskan minyak di atas wajan, Goreng Adonan di atas minyak panas, gunakan api kecil agar tdk gosong, Setelah matang, angkat,tiriskan dan siap dihidangkan bersama teman atau keluarga  ",
                 'difficulty' => 'Mudah',
                 'hero_image' => 'recipes/ote-ote.jpg',
-                'other_attributes' => ['prep_time' => 20 , 'cook_time' => 30, 'servings' => 9, 'cuisine' => 'Surabaya']
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 30, 'servings' => 9, 'cuisine' => 'Surabaya'],
+                'tags' => ['Cemilan', 'Tradisional']
             ],
             [
                 'title' => 'Bakso Sapi',
@@ -226,7 +246,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Haluskan bawang putih.\n2. Campur daging, bawang, tepung, garam, dan merica.\n3. Bentuk bulat-bulat.\n4. Rebus hingga bakso mengapung.\n5. Sajikan dengan kuah panas.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/bakso.jpg',
-                'other_attributes' => ['prep_time' => 25, 'cook_time' => 20, 'servings' => 4, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 20, 'servings' => 4, 'cuisine' => 'Indonesia'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Tradisional']
             ],
             [
                 'title' => 'Ayam Goreng Lengkuas',
@@ -235,7 +256,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Haluskan bumbu dan lengkuas.\n2. Rebus ayam dengan bumbu hingga meresap.\n3. Goreng ayam hingga kecokelatan.\n4. Sajikan dengan serundeng.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/ayam-lengkuas.jpg',
-                'other_attributes' => ['prep_time' => 20, 'cook_time' => 30, 'servings' => 4, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 30, 'servings' => 4, 'cuisine' => 'Indonesia'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Tradisional']
             ],
             [
                 'title' => 'Rawon',
@@ -244,7 +266,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Haluskan bumbu dan kluwek.\n2. Tumis bumbu hingga harum.\n3. Masukkan daging dan air.\n4. Masak hingga daging empuk.\n5. Sajikan hangat.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/rawon.jpg',
-                'other_attributes' => ['prep_time' => 25, 'cook_time' => 90, 'servings' => 4, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 90, 'servings' => 4, 'cuisine' => 'Indonesia'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Tradisional']
             ],
             [
                 'title' => 'Pempek Palembang',
@@ -253,7 +276,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Campur ikan, bawang, dan garam.\n2. Tambahkan tepung sagu.\n3. Bentuk pempek.\n4. Rebus hingga mengapung.\n5. Sajikan dengan cuko.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/pempek.jpg',
-                'other_attributes' => ['prep_time' => 30, 'cook_time' => 30, 'servings' => 4, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 30, 'servings' => 4, 'cuisine' => 'Indonesia'],
+                'tags' => ['Cemilan', 'Makan Siang', 'Tradisional']
             ],
             [
                 'title' => 'Gudeg Jogja',
@@ -262,7 +286,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Rebus nangka hingga empuk.\n2. Tumis bumbu halus.\n3. Masukkan nangka dan santan.\n4. Masak lama hingga meresap.\n5. Sajikan dengan pelengkap.",
                 'difficulty' => 'sulit',
                 'hero_image' => 'recipes/gudeg.jpg',
-                'other_attributes' => ['prep_time' => 30, 'cook_time' => 180, 'servings' => 5, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 180, 'servings' => 5, 'cuisine' => 'Indonesia'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Nasi Uduk',
@@ -271,7 +296,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Cuci beras hingga bersih.\n2. Masak beras dengan santan dan bumbu.\n3. Aduk hingga matang.\n4. Sajikan hangat.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/nasi-uduk.jpg',
-                'other_attributes' => ['prep_time' => 10, 'cook_time' => 25, 'servings' => 3, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 25, 'servings' => 3, 'cuisine' => 'Indonesia'],
+                'tags' => ['Sarapan', 'Makan Siang', 'Tradisional']
             ],
             [
                 'title' => 'Ayam Penyet',
@@ -280,7 +306,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Goreng ayam hingga matang.\n2. Haluskan sambal.\n3. Penyet ayam di atas sambal.\n4. Sajikan dengan lalapan.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/ayam-penyet.jpg',
-                'other_attributes' => ['prep_time' => 15, 'cook_time' => 20, 'servings' => 2, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 20, 'servings' => 2, 'cuisine' => 'Indonesia'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Pedas', 'Tradisional']
             ],
             [
                 'title' => 'Sayur Asem',
@@ -289,7 +316,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Rebus air hingga mendidih.\n2. Masukkan sayuran.\n3. Tambahkan asam dan garam.\n4. Masak hingga matang.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/sayur-asem.jpg',
-                'other_attributes' => ['prep_time' => 10, 'cook_time' => 20, 'servings' => 4, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 20, 'servings' => 4, 'cuisine' => 'Indonesia'],
+                'tags' => ['Makan Siang', 'Sehat', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Perkedel Kentang',
@@ -298,7 +326,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Goreng kentang lalu haluskan.\n2. Campur telur dan bumbu.\n3. Bentuk bulat.\n4. Goreng hingga keemasan.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/perkedel.jpg',
-                'other_attributes' => ['prep_time' => 15, 'cook_time' => 15, 'servings' => 3, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 15, 'servings' => 3, 'cuisine' => 'Indonesia'],
+                'tags' => ['Cemilan', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Capcay Goreng',
@@ -307,7 +336,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Tumis bawang putih.\n2. Masukkan sayuran.\n3. Tambahkan kecap.\n4. Masak hingga matang.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/capcay.jpg',
-                'other_attributes' => ['prep_time' => 10, 'cook_time' => 10, 'servings' => 2, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 10, 'servings' => 2, 'cuisine' => 'Indonesia'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Sehat', 'Vegetarian']
             ],
             [
                 'title' => 'Oseng Kangkung',
@@ -316,7 +346,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Tumis bawang dan cabai.\n2. Masukkan kangkung.\n3. Aduk cepat.\n4. Sajikan.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/oseng-kangkung.jpg',
-                'other_attributes' => ['prep_time' => 5, 'cook_time' => 5, 'servings' => 2, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 5, 'cook_time' => 5, 'servings' => 2, 'cuisine' => 'Indonesia'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Sehat', 'Vegetarian']
             ],
             [
                 'title' => 'Ikan Bakar Kecap',
@@ -325,7 +356,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Lumuri ikan dengan bumbu.\n2. Diamkan 15 menit.\n3. Bakar hingga matang.\n4. Sajikan.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/ikan-bakar.jpg',
-                'other_attributes' => ['prep_time' => 15, 'cook_time' => 20, 'servings' => 2, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 20, 'servings' => 2, 'cuisine' => 'Indonesia'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Tradisional']
             ],
             [
                 'title' => 'Sambal Goreng Kentang',
@@ -334,7 +366,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Goreng kentang.\n2. Tumis bumbu.\n3. Masukkan kentang.\n4. Aduk rata.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/sambal-kentang.jpg',
-                'other_attributes' => ['prep_time' => 15, 'cook_time' => 20, 'servings' => 3, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 20, 'servings' => 3, 'cuisine' => 'Indonesia'],
+                'tags' => ['Cemilan', 'Pedas', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Nasi Liwet Solo',
@@ -343,7 +376,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Cuci beras hingga bersih.\n2. Masak beras bersama santan dan bumbu.\n3. Aduk hingga matang dan pulen.\n4. Sajikan hangat.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/nasi-liwet.jpg',
-                'other_attributes' => ['prep_time' => 15, 'cook_time' => 30, 'servings' => 4, 'cuisine' => 'Solo']
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 30, 'servings' => 4, 'cuisine' => 'Solo'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Tradisional']
             ],
             [
                 'title' => 'Ayam Betutu Bali',
@@ -352,7 +386,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Lumuri ayam dengan bumbu.\n2. Bungkus dengan daun pisang.\n3. Panggang atau kukus hingga empuk.\n4. Sajikan hangat.",
                 'difficulty' => 'sulit',
                 'hero_image' => 'recipes/ayam-betutu.jpg',
-                'other_attributes' => ['prep_time' => 40, 'cook_time' => 180, 'servings' => 4, 'cuisine' => 'Bali']
+                'other_attributes' => ['prep_time' => 40, 'cook_time' => 180, 'servings' => 4, 'cuisine' => 'Bali'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Pedas', 'Tradisional']
             ],
             [
                 'title' => 'Tinutuan Manado',
@@ -361,7 +396,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Masak beras hingga menjadi bubur.\n2. Masukkan sayuran.\n3. Aduk hingga matang.\n4. Sajikan hangat.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/tinutuan.jpg',
-                'other_attributes' => ['prep_time' => 15, 'cook_time' => 45, 'servings' => 4, 'cuisine' => 'Manado']
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 45, 'servings' => 4, 'cuisine' => 'Manado'],
+                'tags' => ['Sarapan', 'Sehat', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Ikan Kuah Asam',
@@ -370,7 +406,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Rebus air dengan bumbu.\n2. Masukkan ikan.\n3. Masak hingga matang.\n4. Sajikan panas.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/ikan-kuah-asam.jpg',
-                'other_attributes' => ['prep_time' => 15, 'cook_time' => 25, 'servings' => 3, 'cuisine' => 'Maluku']
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 25, 'servings' => 3, 'cuisine' => 'Maluku'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Pedas', 'Tradisional']
             ],
             [
                 'title' => 'Lontong Sayur Padang',
@@ -379,7 +416,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Masak sayur dengan santan.\n2. Potong lontong.\n3. Siram kuah sayur.\n4. Sajikan.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/lontong-sayur.jpg',
-                'other_attributes' => ['prep_time' => 25, 'cook_time' => 40, 'servings' => 4, 'cuisine' => 'Padang']
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 40, 'servings' => 4, 'cuisine' => 'Padang'],
+                'tags' => ['Sarapan', 'Makan Siang', 'Tradisional']
             ],
             [
                 'title' => 'Kerak Telor Betawi',
@@ -388,7 +426,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Masak ketan setengah matang.\n2. Tambahkan telur.\n3. Panggang hingga kering.\n4. Taburi kelapa.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/kerak-telor.jpg',
-                'other_attributes' => ['prep_time' => 20, 'cook_time' => 20, 'servings' => 2, 'cuisine' => 'Betawi']
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 20, 'servings' => 2, 'cuisine' => 'Betawi'],
+                'tags' => ['Cemilan', 'Tradisional']
             ],
             [
                 'title' => 'Bubur Ayam Cianjur',
@@ -397,7 +436,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Masak beras hingga menjadi bubur.\n2. Rebus ayam dan suwir.\n3. Sajikan bubur dengan ayam.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/bubur-ayam.jpg',
-                'other_attributes' => ['prep_time' => 15, 'cook_time' => 40, 'servings' => 3, 'cuisine' => 'Cianjur']
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 40, 'servings' => 3, 'cuisine' => 'Cianjur'],
+                'tags' => ['Sarapan', 'Tradisional']
             ],
             [
                 'title' => 'Sup Konro Makassar',
@@ -406,7 +446,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Rebus iga hingga empuk.\n2. Tumis bumbu halus.\n3. Masukkan ke dalam kaldu.\n4. Masak hingga meresap.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/sup-konro.jpg',
-                'other_attributes' => ['prep_time' => 30, 'cook_time' => 90, 'servings' => 4, 'cuisine' => 'Makassar']
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 90, 'servings' => 4, 'cuisine' => 'Makassar'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Tradisional']
             ],
             [
                 'title' => 'Pecel Madiun',
@@ -415,7 +456,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Rebus semua sayuran.\n2. Haluskan bumbu kacang.\n3. Siram bumbu di atas sayur.\n4. Sajikan.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/pecel-madiun.jpg',
-                'other_attributes' => ['prep_time' => 15, 'cook_time' => 15, 'servings' => 2, 'cuisine' => 'Madiun']
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 15, 'servings' => 2, 'cuisine' => 'Madiun'],
+                'tags' => ['Makan Siang', 'Pedas', 'Sehat', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Karedok Sunda',
@@ -424,7 +466,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Potong semua sayuran.\n2. Haluskan bumbu kacang.\n3. Campur sayur dengan bumbu.\n4. Sajikan segar.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/karedok.jpg',
-                'other_attributes' => ['prep_time' => 10, 'cook_time' => 0, 'servings' => 2, 'cuisine' => 'Sunda']
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 0, 'servings' => 2, 'cuisine' => 'Sunda'],
+                'tags' => ['Makan Siang', 'Sehat', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Opor Ayam',
@@ -433,7 +476,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Tumis bumbu hingga harum.\n2. Masukkan ayam.\n3. Tuang santan.\n4. Masak hingga matang.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/opor-ayam.jpg',
-                'other_attributes' => ['prep_time' => 20, 'cook_time' => 50, 'servings' => 4, 'cuisine' => 'Jawa']
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 50, 'servings' => 4, 'cuisine' => 'Jawa'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Tradisional']
             ],
             [
                 'title' => 'Dendeng Balado',
@@ -442,7 +486,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Rebus daging hingga empuk.\n2. Iris tipis dan goreng.\n3. Tumis sambal balado.\n4. Campur dendeng dengan sambal.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/dendeng-balado.jpg',
-                'other_attributes' => ['prep_time' => 30, 'cook_time' => 40, 'servings' => 4, 'cuisine' => 'Minang']
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 40, 'servings' => 4, 'cuisine' => 'Minang'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Pedas', 'Tradisional']
             ],
             [
                 'title' => 'Ikan Woku',
@@ -451,7 +496,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Tumis bumbu hingga harum.\n2. Masukkan ikan.\n3. Tambahkan daun aromatik.\n4. Masak hingga matang.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/ikan-woku.jpg',
-                'other_attributes' => ['prep_time' => 20, 'cook_time' => 30, 'servings' => 3, 'cuisine' => 'Manado']
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 30, 'servings' => 3, 'cuisine' => 'Manado'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Pedas', 'Tradisional']
             ],
             [
                 'title' => 'Laksa Betawi',
@@ -460,7 +506,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Masak kuah santan berbumbu.\n2. Rebus mie.\n3. Tata mie dan siram kuah.\n4. Sajikan.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/laksa-betawi.jpg',
-                'other_attributes' => ['prep_time' => 25, 'cook_time' => 35, 'servings' => 3, 'cuisine' => 'Betawi']
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 35, 'servings' => 3, 'cuisine' => 'Betawi'],
+                'tags' => ['Makan Siang', 'Tradisional']
             ],
             [
                 'title' => 'Sayur Lodeh',
@@ -469,7 +516,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Tumis bumbu hingga harum.\n2. Masukkan sayuran.\n3. Tuang santan.\n4. Masak hingga matang.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/sayur-lodeh.jpg',
-                'other_attributes' => ['prep_time' => 15, 'cook_time' => 30, 'servings' => 4, 'cuisine' => 'Jawa']
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 30, 'servings' => 4, 'cuisine' => 'Jawa'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Sop Buntut',
@@ -478,7 +526,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Rebus buntut hingga empuk.\n2. Tumis bawang putih.\n3. Masukkan ke dalam kaldu.\n4. Tambahkan sayuran dan masak hingga matang.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/sop-buntut.jpg',
-                'other_attributes' => ['prep_time' => 30, 'cook_time' => 120, 'servings' => 4, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 120, 'servings' => 4, 'cuisine' => 'Indonesia'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Tradisional']
             ],
             [
                 'title' => 'Coto Makassar',
@@ -487,7 +536,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Rebus daging dan jeroan hingga empuk.\n2. Tumis bumbu halus.\n3. Masukkan kacang dan kaldu.\n4. Sajikan panas.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/coto-makassar.jpg',
-                'other_attributes' => ['prep_time' => 30, 'cook_time' => 90, 'servings' => 4, 'cuisine' => 'Makassar']
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 90, 'servings' => 4, 'cuisine' => 'Makassar'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Tradisional']
             ],
             [
                 'title' => 'Sate Lilit Bali',
@@ -496,7 +546,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Campur ikan dengan bumbu.\n2. Lilitkan pada batang serai.\n3. Panggang hingga matang.\n4. Sajikan.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/sate-lilit.jpg',
-                'other_attributes' => ['prep_time' => 25, 'cook_time' => 20, 'servings' => 3, 'cuisine' => 'Bali']
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 20, 'servings' => 3, 'cuisine' => 'Bali'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Tradisional']
             ],
             [
                 'title' => 'Urap Sayur',
@@ -505,7 +556,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Rebus sayuran.\n2. Kukus kelapa berbumbu.\n3. Campur sayur dan kelapa.\n4. Sajikan.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/urap.jpg',
-                'other_attributes' => ['prep_time' => 15, 'cook_time' => 10, 'servings' => 3, 'cuisine' => 'Jawa']
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 10, 'servings' => 3, 'cuisine' => 'Jawa'],
+                'tags' => ['Makan Siang', 'Sehat', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Nasi Megono',
@@ -514,7 +566,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Masak nangka dengan bumbu.\n2. Campur dengan kelapa.\n3. Sajikan di atas nasi.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/nasi-megono.jpg',
-                'other_attributes' => ['prep_time' => 15, 'cook_time' => 25, 'servings' => 3, 'cuisine' => 'Pekalongan']
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 25, 'servings' => 3, 'cuisine' => 'Pekalongan'],
+                'tags' => ['Makan Siang', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Tumis Genjer',
@@ -523,7 +576,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Tumis bawang dan cabai.\n2. Masukkan genjer.\n3. Aduk hingga layu.\n4. Sajikan.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/tumis-genjer.jpg',
-                'other_attributes' => ['prep_time' => 10, 'cook_time' => 10, 'servings' => 2, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 10, 'servings' => 2, 'cuisine' => 'Indonesia'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Sehat', 'Vegetarian']
             ],
             [
                 'title' => 'Gulai Ikan Patin',
@@ -532,7 +586,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Tumis bumbu hingga harum.\n2. Masukkan ikan.\n3. Tuang santan.\n4. Masak hingga matang.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/gulai-patin.jpg',
-                'other_attributes' => ['prep_time' => 20, 'cook_time' => 35, 'servings' => 3, 'cuisine' => 'Sumatera']
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 35, 'servings' => 3, 'cuisine' => 'Sumatera'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Tradisional']
             ],
             [
                 'title' => 'Nasi Timbel Sunda',
@@ -541,7 +596,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Cuci beras hingga bersih.\n2. Masak nasi hingga matang.\n3. Bungkus nasi dengan daun pisang.\n4. Sajikan hangat.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/nasi-timbel.jpg',
-                'other_attributes' => ['prep_time' => 10, 'cook_time' => 25, 'servings' => 3, 'cuisine' => 'Sunda']
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 25, 'servings' => 3, 'cuisine' => 'Sunda'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Tradisional']
             ],
             [
                 'title' => 'Ayam Woku Belanga',
@@ -550,7 +606,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Tumis bumbu hingga harum.\n2. Masukkan ayam dan aduk rata.\n3. Tambahkan air secukupnya.\n4. Masak hingga ayam empuk.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/ayam-woku.jpg',
-                'other_attributes' => ['prep_time' => 25, 'cook_time' => 45, 'servings' => 4, 'cuisine' => 'Manado']
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 45, 'servings' => 4, 'cuisine' => 'Manado'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Pedas', 'Tradisional']
             ],
             [
                 'title' => 'Gulai Kambing',
@@ -559,7 +616,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Rebus daging kambing.\n2. Tumis bumbu hingga harum.\n3. Masukkan santan dan daging.\n4. Masak hingga empuk.",
                 'difficulty' => 'sulit',
                 'hero_image' => 'recipes/gulai-kambing.jpg',
-                'other_attributes' => ['prep_time' => 30, 'cook_time' => 120, 'servings' => 4, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 120, 'servings' => 4, 'cuisine' => 'Indonesia'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Tradisional']
             ],
             [
                 'title' => 'Pepes Tahu',
@@ -568,7 +626,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Haluskan tahu dan bumbu.\n2. Bungkus dengan daun pisang.\n3. Kukus hingga matang.\n4. Sajikan.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/pepes-tahu.jpg',
-                'other_attributes' => ['prep_time' => 15, 'cook_time' => 25, 'servings' => 3, 'cuisine' => 'Jawa']
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 25, 'servings' => 3, 'cuisine' => 'Jawa'],
+                'tags' => ['Makan Siang', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Nasi Kuning Banjar',
@@ -577,7 +636,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Cuci beras.\n2. Masak dengan santan dan kunyit.\n3. Aduk hingga matang.\n4. Sajikan.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/nasi-kuning.jpg',
-                'other_attributes' => ['prep_time' => 15, 'cook_time' => 30, 'servings' => 4, 'cuisine' => 'Banjar']
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 30, 'servings' => 4, 'cuisine' => 'Banjar'],
+                'tags' => ['Sarapan', 'Makan Siang', 'Tradisional']
             ],
             [
                 'title' => 'Ikan Rica-Rica',
@@ -586,7 +646,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Goreng ikan setengah matang.\n2. Tumis bumbu rica.\n3. Masukkan ikan.\n4. Masak hingga meresap.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/ikan-rica.jpg',
-                'other_attributes' => ['prep_time' => 20, 'cook_time' => 25, 'servings' => 3, 'cuisine' => 'Sulawesi']
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 25, 'servings' => 3, 'cuisine' => 'Sulawesi'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Pedas', 'Tradisional']
             ],
             [
                 'title' => 'Sayur Ares',
@@ -595,7 +656,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Iris batang pisang.\n2. Rebus hingga lunak.\n3. Masak dengan bumbu dan santan.\n4. Sajikan.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/sayur-ares.jpg',
-                'other_attributes' => ['prep_time' => 20, 'cook_time' => 35, 'servings' => 4, 'cuisine' => 'Lombok']
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 35, 'servings' => 4, 'cuisine' => 'Lombok'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Oseng Mercon',
@@ -604,7 +666,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Rebus daging hingga empuk.\n2. Tumis bumbu.\n3. Masukkan daging.\n4. Masak hingga pedas meresap.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/oseng-mercon.jpg',
-                'other_attributes' => ['prep_time' => 25, 'cook_time' => 40, 'servings' => 3, 'cuisine' => 'Yogyakarta']
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 40, 'servings' => 3, 'cuisine' => 'Yogyakarta'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Pedas', 'Tradisional']
             ],
             [
                 'title' => 'Bakwan Jagung',
@@ -613,7 +676,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Campur semua bahan.\n2. Panaskan minyak.\n3. Goreng hingga kuning keemasan.\n4. Angkat dan sajikan.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/bakwan-jagung.jpg',
-                'other_attributes' => ['prep_time' => 10, 'cook_time' => 15, 'servings' => 4, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 15, 'servings' => 4, 'cuisine' => 'Indonesia'],
+                'tags' => ['Cemilan', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Seblak Bandung',
@@ -622,7 +686,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Rebus kerupuk hingga lunak, tiriskan.\n2. Haluskan bawang putih, cabai, dan kencur.\n3. Tumis bumbu halus hingga harum.\n4. Masukkan telur, orak-arik hingga matang.\n5. Masukkan kerupuk dan air, bumbui.\n6. Masak hingga kuah mengental, sajikan panas.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/seblak.jpg',
-                'other_attributes' => ['prep_time' => 10, 'cook_time' => 10, 'servings' => 1, 'cuisine' => 'Bandung']
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 10, 'servings' => 1, 'cuisine' => 'Bandung'],
+                'tags' => ['Cemilan', 'Pedas', 'Tradisional']
             ],
             [
                 'title' => 'Batagor Bandung',
@@ -631,7 +696,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Campur ikan, bawang putih, telur, dan bumbu.\n2. Isi adonan ke dalam tahu.\n3. Goreng hingga kuning keemasan.\n4. Sajikan dengan saus kacang dan kecap manis.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/batagor.jpg',
-                'other_attributes' => ['prep_time' => 20, 'cook_time' => 15, 'servings' => 3, 'cuisine' => 'Bandung']
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 15, 'servings' => 3, 'cuisine' => 'Bandung'],
+                'tags' => ['Cemilan', 'Tradisional']
             ],
             [
                 'title' => 'Tahu Gejrot',
@@ -640,7 +706,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Goreng tahu hingga garing, potong-potong.\n2. Haluskan bawang putih dan cabai.\n3. Campur gula merah, air asam, dan garam.\n4. Siram kuah ke atas tahu, aduk rata.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/tahu-gejrot.jpg',
-                'other_attributes' => ['prep_time' => 10, 'cook_time' => 10, 'servings' => 2, 'cuisine' => 'Cirebon']
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 10, 'servings' => 2, 'cuisine' => 'Cirebon'],
+                'tags' => ['Cemilan', 'Pedas', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Sate Taichan',
@@ -649,7 +716,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Tusuk potongan ayam.\n2. Bakar hingga matang dan sedikit gosong.\n3. Haluskan cabai dan bawang putih, beri garam dan jeruk nipis.\n4. Sajikan sate dengan sambal pedas.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/taichan.jpg',
-                'other_attributes' => ['prep_time' => 20, 'cook_time' => 15, 'servings' => 3, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 15, 'servings' => 3, 'cuisine' => 'Indonesia'],
+                'tags' => ['Makan Siang', 'Makan Malam', 'Pedas', 'Tradisional']
             ],
             [
                 'title' => 'Martabak Telur Mini',
@@ -658,7 +726,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Campur telur, daging, daun bawang, dan bumbu.\n2. Isi adonan ke kulit lumpia.\n3. Lipat dan goreng hingga kecokelatan.\n4. Sajikan dengan acar dan cabai.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/martabak-mini.jpg',
-                'other_attributes' => ['prep_time' => 20, 'cook_time' => 15, 'servings' => 4, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 15, 'servings' => 4, 'cuisine' => 'Indonesia'],
+                'tags' => ['Cemilan', 'Tradisional']
             ],
             [
                 'title' => 'Onde-Onde',
@@ -667,7 +736,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Kukus kacang hijau, haluskan dan beri gula.\n2. Campur tepung ketan dengan air, uleni.\n3. Isi adonan dengan kacang hijau.\n4. Balur wijen, goreng hingga mengembang dan matang.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/onde-onde.jpg',
-                'other_attributes' => ['prep_time' => 30, 'cook_time' => 15, 'servings' => 5, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 15, 'servings' => 5, 'cuisine' => 'Indonesia'],
+                'tags' => ['Cemilan', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Klepon Gula Merah',
@@ -676,7 +746,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Campur tepung ketan dengan air pandan.\n2. Bentuk bulat, isi gula merah.\n3. Rebus hingga mengapung.\n4. Gulingkan ke kelapa parut, sajikan.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/klepon.jpg',
-                'other_attributes' => ['prep_time' => 20, 'cook_time' => 10, 'servings' => 4, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 20, 'cook_time' => 10, 'servings' => 4, 'cuisine' => 'Indonesia'],
+                'tags' => ['Cemilan', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Dadar Gulung',
@@ -685,7 +756,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Buat adonan kulit dadar.\n2. Masak tipis di teflon.\n3. Isi kelapa gula.\n4. Gulung dan sajikan.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/dadar-gulung.jpg',
-                'other_attributes' => ['prep_time' => 25, 'cook_time' => 15, 'servings' => 5, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 15, 'servings' => 5, 'cuisine' => 'Indonesia'],
+                'tags' => ['Cemilan', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Serabi Solo',
@@ -694,7 +766,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Campur adonan serabi.\n2. Diamkan hingga mengembang.\n3. Masak di wajan kecil.\n4. Sajikan dengan kuah gula.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/serabi.jpg',
-                'other_attributes' => ['prep_time' => 30, 'cook_time' => 20, 'servings' => 6, 'cuisine' => 'Solo']
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 20, 'servings' => 6, 'cuisine' => 'Solo'],
+                'tags' => ['Cemilan', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Lupis Ketan',
@@ -703,7 +776,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Bungkus ketan dengan daun pisang.\n2. Rebus hingga matang.\n3. Sajikan dengan gula dan kelapa.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/lupis.jpg',
-                'other_attributes' => ['prep_time' => 40, 'cook_time' => 60, 'servings' => 6, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 40, 'cook_time' => 60, 'servings' => 6, 'cuisine' => 'Indonesia'],
+                'tags' => ['Cemilan', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Es Cendol',
@@ -712,7 +786,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Siapkan gelas.\n2. Masukkan cendol dan es.\n3. Tuang santan dan gula aren.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/cendol.jpg',
-                'other_attributes' => ['prep_time' => 10, 'cook_time' => 5, 'servings' => 2, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 5, 'servings' => 2, 'cuisine' => 'Indonesia'],
+                'tags' => ['Minuman', 'Tradisional']
             ],
             [
                 'title' => 'Bubur Sumsum',
@@ -721,7 +796,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Masak tepung dan santan hingga kental.\n2. Sajikan dengan gula merah.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/bubur-sumsum.jpg',
-                'other_attributes' => ['prep_time' => 10, 'cook_time' => 15, 'servings' => 3, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 15, 'servings' => 3, 'cuisine' => 'Indonesia'],
+                'tags' => ['Cemilan', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Kolak Pisang',
@@ -730,7 +806,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Rebus santan dan gula.\n2. Masukkan pisang.\n3. Masak hingga matang.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/kolak.jpg',
-                'other_attributes' => ['prep_time' => 10, 'cook_time' => 20, 'servings' => 4, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 20, 'servings' => 4, 'cuisine' => 'Indonesia'],
+                'tags' => ['Cemilan', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Es Pisang Ijo',
@@ -739,7 +816,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Bungkus pisang dengan adonan.\n2. Kukus hingga matang.\n3. Sajikan dengan es dan sirup.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/pisang-ijo.jpg',
-                'other_attributes' => ['prep_time' => 30, 'cook_time' => 20, 'servings' => 5, 'cuisine' => 'Makassar']
+                'other_attributes' => ['prep_time' => 30, 'cook_time' => 20, 'servings' => 5, 'cuisine' => 'Makassar'],
+                'tags' => ['Cemilan', 'Minuman', 'Tradisional']
             ],
             [
                 'title' => 'Es Teh Manis',
@@ -748,7 +826,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Seduh teh dengan air panas.\n2. Tambahkan gula, aduk hingga larut.\n3. Tuang ke gelas berisi es batu.\n4. Sajikan dingin.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/es-teh.jpg',
-                'other_attributes' => ['prep_time' => 5, 'cook_time' => 5, 'servings' => 1, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 5, 'cook_time' => 5, 'servings' => 1, 'cuisine' => 'Indonesia'],
+                'tags' => ['Minuman']
             ],
             [
                 'title' => 'Es Jeruk Peras',
@@ -757,7 +836,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Peras jeruk, saring bijinya.\n2. Campur dengan gula dan air.\n3. Tambahkan es batu.\n4. Sajikan dingin.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/es-jeruk.jpg',
-                'other_attributes' => ['prep_time' => 5, 'cook_time' => 0, 'servings' => 1, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 5, 'cook_time' => 0, 'servings' => 1, 'cuisine' => 'Indonesia'],
+                'tags' => ['Minuman', 'Sehat']
             ],
             [
                 'title' => 'Wedang Jahe',
@@ -766,7 +846,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Rebus air bersama jahe dan pandan.\n2. Tambahkan gula merah.\n3. Masak hingga harum.\n4. Sajikan hangat.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/wedang-jahe.jpg',
-                'other_attributes' => ['prep_time' => 5, 'cook_time' => 15, 'servings' => 2, 'cuisine' => 'Jawa']
+                'other_attributes' => ['prep_time' => 5, 'cook_time' => 15, 'servings' => 2, 'cuisine' => 'Jawa'],
+                'tags' => ['Minuman', 'Sehat', 'Tradisional']
             ],
             [
                 'title' => 'Es Kopi Susu Gula Aren',
@@ -775,7 +856,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Siapkan gelas berisi es batu.\n2. Tuang gula aren dan susu.\n3. Tambahkan kopi hitam.\n4. Aduk dan sajikan.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/kopi-susu-aren.jpg',
-                'other_attributes' => ['prep_time' => 5, 'cook_time' => 5, 'servings' => 1, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 5, 'cook_time' => 5, 'servings' => 1, 'cuisine' => 'Indonesia'],
+                'tags' => ['Minuman']
             ],
             [
                 'title' => 'Bajigur',
@@ -784,7 +866,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Rebus santan bersama jahe.\n2. Tambahkan gula aren dan garam.\n3. Aduk hingga hangat dan harum.\n4. Sajikan panas.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/bajigur.jpg',
-                'other_attributes' => ['prep_time' => 5, 'cook_time' => 15, 'servings' => 3, 'cuisine' => 'Sunda']
+                'other_attributes' => ['prep_time' => 5, 'cook_time' => 15, 'servings' => 3, 'cuisine' => 'Sunda'],
+                'tags' => ['Minuman', 'Tradisional']
             ],
             [
                 'title' => 'Pisang Goreng',
@@ -793,7 +876,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Campur tepung, gula, garam, dan air hingga kental.\n2. Celupkan pisang ke adonan.\n3. Goreng hingga kuning keemasan.\n4. Angkat dan sajikan.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/pisang-goreng.jpg',
-                'other_attributes' => ['prep_time' => 10, 'cook_time' => 10, 'servings' => 3, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 10, 'servings' => 3, 'cuisine' => 'Indonesia'],
+                'tags' => ['Cemilan', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Tahu Crispy',
@@ -802,7 +886,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Potong tahu sesuai selera.\n2. Celupkan tahu ke adonan tepung.\n3. Goreng hingga renyah dan kering.\n4. Sajikan hangat.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/tahu-crispy.jpg',
-                'other_attributes' => ['prep_time' => 10, 'cook_time' => 10, 'servings' => 3, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 10, 'servings' => 3, 'cuisine' => 'Indonesia'],
+                'tags' => ['Cemilan', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Bakwan Sayur',
@@ -811,7 +896,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Campur semua bahan hingga rata.\n2. Panaskan minyak.\n3. Goreng adonan hingga kecokelatan.\n4. Angkat dan tiriskan.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/bakwan.jpg',
-                'other_attributes' => ['prep_time' => 15, 'cook_time' => 10, 'servings' => 4, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 10, 'servings' => 4, 'cuisine' => 'Indonesia'],
+                'tags' => ['Cemilan', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Risoles Mayo',
@@ -820,7 +906,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Isi kulit risoles dengan bahan isian.\n2. Gulung dan rekatkan.\n3. Celupkan ke tepung panir.\n4. Goreng hingga keemasan.",
                 'difficulty' => 'sedang',
                 'hero_image' => 'recipes/risoles.jpg',
-                'other_attributes' => ['prep_time' => 25, 'cook_time' => 10, 'servings' => 4, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 25, 'cook_time' => 10, 'servings' => 4, 'cuisine' => 'Indonesia'],
+                'tags' => ['Cemilan', 'Tradisional']
             ],
             [
                 'title' => 'Tempe Mendoan',
@@ -829,7 +916,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Campur tepung, bawang putih halus, ketumbar, dan daun bawang.\n2. Tambahkan air hingga adonan encer.\n3. Celupkan tempe ke adonan.\n4. Goreng sebentar hingga matang lembut.\n5. Sajikan hangat.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/tempe-mendoan.jpg',
-                'other_attributes' => ['prep_time' => 10, 'cook_time' => 5, 'servings' => 3, 'cuisine' => 'Banyumas']
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 5, 'servings' => 3, 'cuisine' => 'Banyumas'],
+                'tags' => ['Cemilan', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Tahu Isi Sayur',
@@ -838,7 +926,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Tumis bawang putih dan sayuran hingga layu.\n2. Belah tahu, isi dengan tumisan sayur.\n3. Celupkan ke adonan tepung.\n4. Goreng hingga kecokelatan.\n5. Sajikan hangat.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/tahu-isi.jpg',
-                'other_attributes' => ['prep_time' => 15, 'cook_time' => 10, 'servings' => 4, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 15, 'cook_time' => 10, 'servings' => 4, 'cuisine' => 'Indonesia'],
+                'tags' => ['Cemilan', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Singkong Goreng',
@@ -847,7 +936,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Rebus singkong dengan bawang putih dan garam hingga empuk.\n2. Tiriskan singkong.\n3. Goreng hingga kuning keemasan.\n4. Sajikan hangat.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/singkong-goreng.jpg',
-                'other_attributes' => ['prep_time' => 10, 'cook_time' => 20, 'servings' => 3, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 10, 'cook_time' => 20, 'servings' => 3, 'cuisine' => 'Indonesia'],
+                'tags' => ['Cemilan', 'Tradisional', 'Vegetarian']
             ],
             [
                 'title' => 'Ubi Goreng',
@@ -856,7 +946,8 @@ class RecipeSeeder extends Seeder
                 'steps' => "1. Kupas dan potong ubi.\n2. Panaskan minyak.\n3. Goreng ubi hingga matang dan keemasan.\n4. Angkat dan sajikan.",
                 'difficulty' => 'mudah',
                 'hero_image' => 'recipes/ubi-goreng.jpg',
-                'other_attributes' => ['prep_time' => 5, 'cook_time' => 15, 'servings' => 3, 'cuisine' => 'Indonesia']
+                'other_attributes' => ['prep_time' => 5, 'cook_time' => 15, 'servings' => 3, 'cuisine' => 'Indonesia'],
+                'tags' => ['Cemilan', 'Tradisional', 'Vegetarian']
             ]
         ];
 
@@ -866,7 +957,7 @@ class RecipeSeeder extends Seeder
             // Check if recipe exists
             $recipe = Recipe::where('slug', $slug)->first();
 
-            if (! $recipe) {
+            if (!$recipe) {
                 $recipe = Recipe::create(array_merge([
                     'user_id' => $users->random()->id,
                     'title' => $data['title'],
@@ -879,9 +970,11 @@ class RecipeSeeder extends Seeder
                 ], $data['other_attributes'] ?? []));
 
                 // Only attach tags if new recipe
-                $recipe->tags()->sync(
-                    $tags->random(rand(2, 3))->pluck('id')->all()
-                );
+                if (isset($data['tags']) && !empty($data['tags'])) {
+                    // Get tag IDs from tag names
+                    $tagIds = $tags->whereIn('name', $data['tags'])->pluck('id')->all();
+                    $recipe->tags()->sync($tagIds);
+                }
             }
         }
     }

@@ -161,12 +161,16 @@
                                 <div class="flex flex-col gap-3">
                                     @foreach (explode("\n", $recipe->steps) as $index => $step)
                                         @if (trim($step))
+                                            @php
+                                                // Strip existing number prefixes like "1.", "1)", "1 ", "01." etc.
+                                                $cleanStep = preg_replace('/^\s*\d+[\.\)\s]\s*/', '', trim($step));
+                                            @endphp
                                             <div class="flex gap-3 p-3 bg-gray-100 dark:bg-neutral-700 rounded-2xl">
                                                 <div class="shrink-0 font-bold text-orange-600 dark:text-orange-400 text-lg">
                                                     {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}
                                                 </div>
                                                 <div class="text-gray-900 dark:text-gray-200">
-                                                    {{ trim($step) }}
+                                                    {{ $cleanStep }}
                                                 </div>
                                             </div>
                                         @endif

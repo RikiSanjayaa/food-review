@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\ReviewController;
@@ -26,7 +27,16 @@ Route::post('forgot-password', [ForgotPasswordController::class, 'store'])->name
 Route::get('reset-password/{token}', [ResetPasswordController::class, 'create'])->name('password.reset');
 Route::post('reset-password', [ResetPasswordController::class, 'store'])->name('password.reset.update');
 
-Route::middleware('auth')->group(function (): void {
+// Email verification routes
+Route::middleware('auth')->group(function () {
+    Route::get('/email/verify', [VerificationController::class, 'notice'])->name('verification.notice');
+    Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])
+        ->middleware('signed')->name('verification.verify');
+    Route::post('/email/resend', [VerificationController::class, 'resend'])
+        ->middleware('throttle:6,1')->name('verification.resend');
+});
+
+Route::middleware(['auth', 'verified'])->group(function (): void {
     Route::get('/recipes/create', [RecipeController::class, 'create'])->name('recipes.create');
     Route::post('/recipes', [RecipeController::class, 'store'])->name('recipes.store');
     Route::get('/recipes/{recipe}/edit', [RecipeController::class, 'edit'])->name('recipes.edit');
@@ -45,7 +55,7 @@ Route::middleware('auth')->group(function (): void {
     Route::put('/password', [ProfileController::class, 'updatePassword'])->name('password.update');
 });
 
-Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', 'verified', 'is_admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('tags', AdminTagController::class)->except(['show']);
 });
 

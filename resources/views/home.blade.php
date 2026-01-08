@@ -42,14 +42,13 @@
                 data-aos="fade-up" data-aos-duration="1200">
                 Cita Rasa <br class="md:hidden" />
                 <span class="bg-linear-to-r from-orange-400 to-amber-500 bg-clip-text text-transparent">
-                    Tanpa Batas
+                    Asli Sasambo
                 </span>
             </h1>
 
             <p class="text-lg md:text-xl text-gray-100 mb-10 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md"
                 data-aos="fade-up" data-aos-delay="200" data-aos-duration="1200">
-                Temukan koleksi resep terbaik dari koki profesional dan komunitas kami.
-                Mulai petualangan kulinermu sekarang.
+                Dari manisnya persaudaraan hingga pedasnya kebersamaan, temukan cita rasa asli Sasambo di sini.
             </p>
 
             <div class="flex gap-4" data-aos="fade-up" data-aos-delay="400">
@@ -342,10 +341,9 @@
                 <i class="bi bi-quote text-9xl absolute -top-16 -left-16 text-orange-500/10"></i>
                 <p
                     class="text-2xl md:text-4xl font-medium text-gray-700 dark:text-neutral-300 leading-tight tracking-tight max-w-4xl mx-auto italic">
-                    "Memasak bukan tentang mengikuti resep, <br class="hidden md:block" />
-                    namun tentang <span
-                        class="text-gray-900 dark:text-white font-black border-b-4 border-orange-500/30">keberanian
-                        dan intuisi</span> yang dituangkan dalam piring."
+                    "Dari manisnya persaudaraan hingga pedasnya kebersamaan, <br class="hidden md:block" />
+                    temukan <span
+                        class="text-gray-900 dark:text-white font-black border-b-4 border-orange-500/30">cita rasa asli Sasambo</span> di sini."
                 </p>
                 <div class="mt-12 flex flex-col items-center">
                     <div class="w-12 h-0.5 bg-orange-500 mb-4"></div>

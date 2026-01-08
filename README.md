@@ -1,130 +1,131 @@
 ## Food Reviews (Laravel + Blade + Tailwind CSS)
 
-Minimalist Baker–style mini food review site with recipe search, filters, user reviews/ratings, and lightweight moderation.
+Situs web ulasan makanan mini bergaya Minimalist Baker dengan pencarian resep, filter, ulasan/penilaian pengguna, dan moderasi ringan.
 
-### Stack
+### Teknologi
 
 -   **Laravel 12** & **Blade**
--   **Tailwind CSS** & **Alpine.js** (Modern UI)
--   SQLite by default (see `.env.example`)
+-   **Tailwind CSS** & **Alpine.js** (Antarmuka Modern)
+-   SQLite secara default (lihat `.env.example`)
 
-### Getting started
+### Cara Memulai
 
-1. **Install dependencies**
+1. **Instal Dependensi**
 
     ```bash
     composer install
     npm install
     ```
 
-2. **Setup Environtment**
+2. **Atur Lingkungan (Environment)**
 
     ```bash
     cp .env.example .env
     php artisan key:generate
     ```
 
-3. **Configure Seed & Storage**
+3. **Konfigurasi Seed & Storage**
 
     ```bash
     php artisan storage:link
     php artisan migrate --seed
     ```
 
-4. **Configure Email (Required for Forgot Password)**
+4. **Konfigurasi Email (Wajib untuk Lupa Kata Sandi)**
 
-    To enable the Forgot Password feature, configure Gmail SMTP in your `.env` file:
+    Untuk mengaktifkan fitur Lupa Kata Sandi, konfigurasi SMTP Gmail di file `.env` Anda:
 
-    **Step 1:** Enable 2-Factor Authentication on your Google account
+    **Langkah 1:** Aktifkan Autentikasi 2-Faktor (2FA) di akun Google Anda
 
-    **Step 2:** Generate an App Password at https://myaccount.google.com/apppasswords
+    **Langkah 2:** Buat Kata Sandi Aplikasi (App Password) di https://myaccount.google.com/apppasswords
 
-    **Step 3:** Update your `.env` with these settings:
+    **Langkah 3:** Perbarui `.env` Anda dengan pengaturan berikut:
 
     ```env
     MAIL_MAILER=smtp
     MAIL_HOST=smtp.gmail.com
     MAIL_PORT=587
-    MAIL_USERNAME=your-email@gmail.com
-    MAIL_PASSWORD=your-16-char-app-password
+    MAIL_USERNAME=email-anda@gmail.com
+    MAIL_PASSWORD=16-karakter-password-aplikasi-anda
     MAIL_ENCRYPTION=tls
-    MAIL_FROM_ADDRESS="your-email@gmail.com"
+    MAIL_FROM_ADDRESS="email-anda@gmail.com"
     MAIL_FROM_NAME="Food Reviews"
     ```
 
-    > **Note:** Use the App Password (without spaces) for the `MAIL_PASSWORD`, not your regular Gmail password. The `MAIL_FROM_ADDRESS` should match your Gmail address.
+    > **Catatan:** Gunakan Kata Sandi Aplikasi (tanpa spasi) untuk `MAIL_PASSWORD`, bukan kata sandi Gmail biasa Anda. `MAIL_FROM_ADDRESS` harus sesuai dengan alamat Gmail Anda.
 
-5. **Run Application**
+5. **Jalankan Aplikasi**
     ```bash
     npm run build
     php artisan serve
     ```
 
-### Demo accounts
+### Akun Demo
 
--   Admin: `admin@example.com` / `password` (can moderate reviews, edit/delete own recipes)
--   Regular users are seeded with password `password`
+-   Admin: `admin@example.com` / `password` (bisa memoderasi ulasan, mengedit/menghapus resep sendiri)
+-   Pengguna biasa dibuatkan (seeded) dengan kata sandi `password`
 
-### Core features
+### Fitur Utama
 
--   **Authentication**: Login, Register, **Forgot Password (Email & Reset)**.
--   **Search + Filters**: Tags, diet, time, sort by rating/newest/shortest.
--   **Recipe Management**: CRUD with tags, hero image, prep/cook times, difficulty, cuisine.
--   **Reviews**: 1–5 stars, report + admin hide/unhide, rating aggregates.
--   **Modern UI**: Glassmorphism design, Dark/Light mode ready (default Light), Responsive.
+-   **Autentikasi**: Login, Daftar, **Lupa Kata Sandi (Email & Reset)**.
+-   **Pencarian + Filter**: Tag, diet, waktu, urutkan berdasarkan penilaian/terbaru/terpendek.
+-   **Manajemen Resep**: CRUD dengan tag, gambar utama, waktu persiapan/masak, tingkat kesulitan, jenis masakan.
+-   **Ulasan**: Bintang 1–5, lapor + admin sembunyikan/tampilkan, agregat penilaian.
+-   **Antarmuka Modern**: Desain Glassmorphism, siap Mode Gelap/Terang (default Terang), Responsif.
 
-### Docker Deployment
+### Deployment Docker
 
-For a quick local setup using Docker, just run:
+Untuk pengaturan lokal cepat menggunakan Docker, cukup jalankan:
 
 ```bash
 cp .env.docker .env
 docker compose up -d
 ```
 
-This automatically handles:
+Ini secara otomatis menangani:
 
--   APP_KEY generation
--   Database migrations
--   Database seeding
--   Asset building
--   Storage linking
+-   Pembuatan APP_KEY
+-   Migrasi database
+-   Seeding database
+-   Build aset
+-   Penautan storage (storage linking)
 
-**Access the app at:** http://localhost:8000
+**Akses aplikasi di:** http://localhost:8000
 
-#### Docker Commands
+#### Perintah Docker
 
 ```bash
-# Start containers
+# Menjalankan container
 docker compose up -d
 
-# Stop containers
+# Mematikan container
 docker compose down
 
-# Rebuild after Dockerfile changes
+# Build ulang setelah perubahan Dockerfile
 docker compose build --no-cache && docker compose up -d
 
-# View logs
+# Melihat log
 docker compose logs -f app
 
-# Enter the app container
+# Masuk ke container aplikasi
 docker exec -it food-reviews-app bash
 
-# Re-seed database (delete marker file first)
+# Re-seed database (hapus file penanda terlebih dahulu)
+#ini di gunakan kalau mau bersihkan database dan isi data manual dari user
 docker exec food-reviews-app rm /var/www/html/storage/.seeded
 docker compose restart app
 ```
 
-#### Docker Environment
+#### Lingkungan Docker
 
-The Docker setup uses `.env.docker` with these defaults:
+Pengaturan Docker menggunakan `.env.docker` dengan default berikut:
 
 -   **Database:** MySQL 8.0 (container: `food-reviews-db`)
 -   **Web server:** Nginx (port 8000)
 -   **PHP:** 8.4-FPM
 
-To customize, copy `.env.docker` to `.env` and modify as needed before running `docker compose up`.
+Untuk menyesuaikan, salin `.env.docker` ke `.env` dan modifikasi sesuai kebutuhan sebelum menjalankan `docker compose up`.
 
-### Testing
+### Pengujian
 
--   Feature coverage in progress. Run `php artisan test`.
+-   Cakupan fitur sedang dalam pengerjaan. Jalankan `php artisan test`.

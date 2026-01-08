@@ -1,4 +1,4 @@
-## SantapanNusatara (Laravel + Blade + Tailwind CSS)
+## SantapanNusantara (Laravel + Blade + Tailwind CSS)
 
 Situs web ulasan makanan mini bergaya Minimalist Baker dengan pencarian resep, filter, ulasan/penilaian pengguna, dan moderasi ringan.
 

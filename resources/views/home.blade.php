@@ -8,11 +8,11 @@
         x-data="{
             activeSlide: 0,
             images: [
-                '{{ asset('images/beranda/gambar1.jpg') }}',
-                '{{ asset('images/beranda/gambar2.jpg') }}',
-                '{{ asset('images/beranda/gambar3.jpg') }}',
-                '{{ asset('images/beranda/gambar4.jpg') }}',
-                '{{ asset('images/beranda/gambar5.jpg') }}'
+                '{{ asset('images/Beranda/gambar1.jpg') }}',
+                '{{ asset('images/Beranda/gambar2.jpg') }}',
+                '{{ asset('images/Beranda/gambar3.jpg') }}',
+                '{{ asset('images/Beranda/gambar4.jpg') }}',
+                '{{ asset('images/Beranda/gambar5.jpg') }}'
             ],
             init() {
                 setInterval(() => {
@@ -289,7 +289,7 @@
                 {{-- Bento: Image Accent --}}
                 <div class="bg-gray-200 dark:bg-neutral-700 rounded-[3rem] relative overflow-hidden group"
                     data-aos="zoom-in" data-aos-delay="200">
-                    <img src="{{ asset('images/beranda/gambar2.jpg') }}"
+                    <img src="{{ asset('images/Beranda/gambar2.jpg') }}"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                         alt="cooking">
                     <div class="absolute inset-0 bg-black/20"></div>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Food Reviews') }}</title>
+    <title>{{ config('app.name', 'SantapanNusatara') }}</title>
 
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
@@ -116,9 +116,8 @@
                                 'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent' :
                                 ({{ request()->routeIs('home', 'login', 'register') ? 'true' : 'false' }} ?
                                     'text-white' :
-                                    'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent')
-                            ]">Food
-                            Reviews</span>
+                            'bg-linear-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent')
+                            ]">SantapanNusatara</span>
                     </a>
 
                     <ul
@@ -413,7 +412,7 @@
             <footer class="bg-white dark:bg-neutral-900 border-t border-gray-200 dark:border-neutral-800 py-8">
                 <div class="max-w-7xl mx-auto px-4 text-center">
                     <p class="text-gray-500 dark:text-gray-400 text-sm mb-0">
-                        &copy; {{ date('Y') }} Food Reviews.
+                        &copy; {{ date('Y') }} SantapanNusatara.
                         Dibuat di Lombok.
                     </p>
                 </div>

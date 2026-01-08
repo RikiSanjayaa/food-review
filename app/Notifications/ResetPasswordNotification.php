@@ -37,13 +37,13 @@ class ResetPasswordNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Reset Password - Food Reviews')
+            ->subject('Reset Password - SantapanNusatara')
             ->greeting('Halo!')
             ->line('Anda menerima email ini karena kami menerima permintaan reset password untuk akun Anda.')
             ->action('Reset Password', route('password.reset', ['token' => $this->token, 'email' => $notifiable->getEmailForPasswordReset()]))
             ->line('Link reset password ini akan kadaluarsa dalam 60 menit.')
             ->line('Jika Anda tidak meminta reset password, abaikan email ini.')
-            ->salutation('Salam, Food Reviews Admin');
+            ->salutation('Salam, SantapanNusatara Admin');
     }
 
     /**

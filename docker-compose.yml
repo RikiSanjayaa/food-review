@@ -18,6 +18,26 @@ services:
     networks:
       - food-reviews-network
 
+  queue:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: food-reviews-queue
+    restart: unless-stopped
+    working_dir: /var/www/html
+    command: php artisan queue:work --verbose --tries=3 --timeout=90
+    volumes:
+      - .:/var/www/html
+      - /var/www/html/vendor
+      - /var/www/html/node_modules
+      - /var/www/html/bootstrap/cache
+      - /var/www/html/public/build
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - food-reviews-network
+
   nginx:
     image: nginx:alpine
     container_name: food-reviews-nginx

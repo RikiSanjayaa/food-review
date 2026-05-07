@@ -30,6 +30,7 @@ bootstrap/cache/*.php
 # ── Container / compose files ──────────────────
 docker-compose.yml
 Dockerfile
+compose.yml
 compose.podman.yml
 .containerignore
 

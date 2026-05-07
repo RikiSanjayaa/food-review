@@ -50,7 +50,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # ── Composer ─────────────────────────────────────
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --from=docker.io/library/composer:latest /usr/bin/composer /usr/bin/composer
 
 # ── Application code ─────────────────────────────
 WORKDIR /var/www/html
@@ -61,7 +61,7 @@ COPY . .
 COPY --from=node-builder /build/public/build /var/www/html/public/build
 
 # Install PHP dependencies (no dev for production)
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+RUN composer install --optimize-autoloader --no-interaction
 
 # ── Permissions ──────────────────────────────────
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \

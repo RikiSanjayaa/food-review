@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Containerfile
       target: app
-    env_file: .env.podman
+    env_file: .env
     volumes:
       - app-storage:/var/www/html/storage
     depends_on:
@@ -29,7 +29,7 @@ services:
 
   db:
     image: docker.io/mysql:8.0
-    env_file: .env.podman
+    env_file: .env
     volumes:
       - db-data:/var/lib/mysql
     healthcheck:
@@ -51,5 +51,8 @@ services:
 
 volumes:
   app-storage:
+    name: food-reviews-app-storage
   db-data:
+    name: food-reviews-db-data
   redis-data:
+    name: food-reviews-redis-data

@@ -26,7 +26,8 @@ Redis is kept in `compose.yml` behind a Compose profile. It is not started by th
 - `docker/app/entrypoint.sh`: waits for MySQL, runs migrations, seeds once, then starts PHP-FPM.
 - `docker/nginx/default.conf`: Nginx virtual host.
 - `compose.yml`: defines `app`, `nginx`, `db`, and named volumes.
-- `.env.podman`: runtime environment for Laravel.
+- `.env.podman`: template environment for Laravel.
+- `.env`: runtime environment used by Compose after you copy the template.
 - `.containerignore` / `.dockerignore`: keeps local dependencies, secrets, tests, and docs out of image context.
 
 ## What Was Cut
@@ -74,9 +75,7 @@ Edit `.env`:
 podman run --rm docker.io/php:8.4-cli php -r 'echo "base64:".base64_encode(random_bytes(32)).PHP_EOL;'
 ```
 
-Then either copy the generated value into `.env`, or keep using `.env.podman` for local demo runs.
-
-For this repo, `compose.yml` reads `.env.podman` directly. On a real VPS, either rename `.env` back to `.env.podman` after editing, or change `env_file` in `compose.yml`.
+Copy the generated value into `APP_KEY` in `.env`.
 
 ### 4. Start the stack
 
@@ -158,11 +157,40 @@ Delete containers and database volume:
 podman compose down -v
 ```
 
+## Migrating From The Old Compose
+
+The old stack used explicit container names such as `food-reviews-db`, `food-reviews-redis`, `food-reviews-app`, and `food-reviews-nginx`.
+
+If `podman-compose stop` tries to stop `food-reviews_db_1` but your running containers are named `food-reviews-db`, stop the old containers by their actual names:
+
+```bash
+podman stop food-reviews-nginx food-reviews-app food-reviews-redis food-reviews-db
+podman rm food-reviews-nginx food-reviews-app food-reviews-redis food-reviews-db
+```
+
+Then pull the simplified config and start normally:
+
+```bash
+git pull
+cp .env.podman .env
+podman compose up --build -d
+```
+
+The compose file keeps the old named volumes:
+
+```text
+food-reviews-db-data
+food-reviews-app-storage
+food-reviews-redis-data
+```
+
+That keeps existing database, storage, and Redis data available after the container names are simplified.
+
 ## Part 2: Add Redis
 
 After the app, Nginx, and MySQL flow is stable, switch Laravel from database-backed session/cache/queue to Redis.
 
-Edit `.env.podman`:
+Edit `.env`:
 
 ```env
 SESSION_DRIVER=redis

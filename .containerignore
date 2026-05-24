@@ -1,18 +1,11 @@
-# =============================================================================
-# .containerignore — Podman build context exclusions
-# Files & directories listed here are NOT copied into the image.
-# =============================================================================
-
-# ── Version control ────────────────────────────
 .git
-.gitignore
-.gitattributes
+.env
+.env.*
+!.env.example
 
-# ── Dependencies (rebuilt inside Containerfile) ─
 node_modules
 vendor
 
-# ── Runtime / storage (persisted via volumes) ──
 storage/logs/*
 storage/framework/cache/*
 storage/framework/sessions/*
@@ -22,38 +15,18 @@ storage/app/public/*
 public/storage
 bootstrap/cache/*.php
 
-# ── Environment files ──────────────────────────
-.env
-.env.backup
-.env.*.local
+tests
+phpunit.xml
+coverage
+.phpunit.result.cache
 
-# ── Container / compose files ──────────────────
-docker-compose.yml
-Dockerfile
-compose.yml
-compose.podman.yml
-.containerignore
-
-# ── IDE / editor ───────────────────────────────
 .idea
 .vscode
 *.swp
 *.swo
 *~
-
-# ── OS artifacts ──────────────────────────────
 .DS_Store
 Thumbs.db
 
-# ── Tests ─────────────────────────────────────
-tests/
-phpunit.xml
-coverage/
-.phpunit.result.cache
-
-# ── Other ─────────────────────────────────────
-backups/
-*.md
-.editorconfig
-.php-cs-fixer.php
-.php-cs-fixer.cache
+README*
+scripts

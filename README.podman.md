@@ -1,150 +1,196 @@
-# 🍜 Food Reviews — Podman Deployment
+# Food Reviews - Manual Podman Flow
 
-Cloud Computing final project. Converted from Docker to Podman with a multi-stage build, 4 services, and Redis.
+Target: run the Laravel app on a VPS with a small, teachable container setup.
 
-## Architecture
+## Final Shape
 
-```
-┌─────────────────────────────────────────────────────┐
-│                     Pod Network                      │
-│                                                      │
-│  ┌──────────┐    ┌──────────┐    ┌──────────┐       │
-│  │  nginx   │◄──►│   app    │    │   db     │       │
-│  │:8004:80  │    │(PHP-FPM) │    │ (MySQL)  │       │
-│  └──────────┘    └────┬─────┘    └──────────┘       │
-│                       │                              │
-│                 ┌─────▼──────┐                       │
-│                 │   redis    │                       │
-│                 │(cache/sess)│                       │
-│                 └────────────┘                       │
-│                                                      │
-│  ┌─────────────────────────────────────┐             │
-│  │        app-init (one-shot)          │             │
-│  │  migrates + seeds, then exits       │             │
-│  └─────────────────────────────────────┘             │
-└─────────────────────────────────────────────────────┘
+```text
+browser -> nginx:80 -> app:9000/php-fpm -> mysql:3306
 ```
 
-## Services (4 + 1 init)
+Default containers:
 
-| Service    | Role                     | Image                          |
-|------------|--------------------------|--------------------------------|
-| `app`      | Laravel PHP-FPM          | Custom Containerfile (multi-stage) |
-| `nginx`    | Web server               | nginx:stable-alpine             |
-| `db`       | MySQL database           | mysql:8.0                       |
-| `redis`    | Cache, session, queue    | redis:7-alpine                  |
-| `app-init` | Migrations & seeding     | Same as `app`, runs once then exits |
+- `nginx`: serves `public/`, compiled Vite assets, and forwards PHP requests.
+- `app`: PHP-FPM Laravel runtime.
+- `db`: MySQL 8.0 with a named volume.
 
-## What Changed from Docker
+Optional Part 2 container:
 
-| Before (Docker)     | After (Podman)            |
-|---------------------|---------------------------|
-| `Dockerfile`        | `Containerfile` (multi-stage) |
-| `docker-compose.yml` | `compose.podman.yml`      |
-| `.env.docker`       | `.env.podman`             |
-| `.dockerignore`     | `.containerignore`        |
-| Monolithic build    | Node builder → PHP app    |
-| 3 containers        | 4 containers + Redis      |
-| Entrypoint: all-in-1| Entrypoint: minimal + separate init service |
-| DB session/cache    | Redis session/cache/queue |
+- `redis`: cache/session/queue backend after the basic architecture is already running.
 
-## Key Improvements
+Redis is kept in `compose.yml` behind a Compose profile. It is not started by the default `podman compose up`, so Part 1 stays simple.
 
-### 1. Multi-stage Containerfile
-- **Stage 1 (node-builder):** Compiles CSS/JS assets via Vite
-- **Stage 2 (PHP-FPM):** Runs the app, copies assets from Stage 1
-- Result: Final image has no Node/NPM — smaller, more secure
+## Files That Matter
 
-### 2. Redis
-- Handles sessions, cache, and queue — offloads MySQL
-- Persistent with AOF, max 128MB memory limit
-- Plug-and-play: Laravel config was already there
+- `Containerfile`: builds the shared asset stage, the PHP-FPM app target, and the Nginx target.
+- `docker/app/entrypoint.sh`: waits for MySQL, runs migrations, seeds once, then starts PHP-FPM.
+- `docker/nginx/default.conf`: Nginx virtual host.
+- `compose.yml`: defines `app`, `nginx`, `db`, and named volumes.
+- `.env.podman`: runtime environment for Laravel.
+- `.containerignore` / `.dockerignore`: keeps local dependencies, secrets, tests, and docs out of image context.
 
-### 3. Separate Init Service
-- `app-init` runs migrations, seeding, and caching
-- Runs once as a one-shot container, then exits
-- App container entrypoint is minimal — just permissions + PHP-FPM
+## What Was Cut
 
-### 4. Proper Health Checks
-Every service has a health check:
-- `db`: mysqladmin ping
-- `redis`: redis-cli ping
-- `app`: artisan about
-- `nginx`: upstream dependency
+- Helper scripts. The stack is meant to run directly with `podman compose up`.
+- Separate Nginx Containerfile. The app and Nginx images now use targets from the same `Containerfile`.
+- Custom network names, container names, app healthcheck, resource hints, and DB host port publishing.
+- Decorative comments that made the config longer without changing behavior.
 
-### 5. Resource Limits
-Memory limits and CPU shares set on every service.
+## Manual VPS Flow
 
-## Quick Start
+Use this as a realistic video script.
 
-### Prerequisites
-- Podman v4+ with compose support (`podman compose`)
-  - Or install `podman-compose`: `pip install podman-compose`
-
-### Deploy
+### 1. Install runtime
 
 ```bash
-# 1. Build and start everything (app, nginx, db, redis)
-./scripts/deploy.sh
-
-# Or manually:
-podman compose -f compose.podman.yml build --pull
-podman compose -f compose.podman.yml up -d db redis
-# Wait for DB to be healthy
-podman compose -f compose.podman.yml up -d app nginx
-# Run migrations and seeding once
-podman compose -f compose.podman.yml run --rm app-init
-
-# 2. Open in browser
-open http://localhost:8004
+sudo apt update
+sudo apt install -y podman podman-compose git
+podman --version
+podman compose version
 ```
 
-### Useful Commands
+If your distro does not ship `podman compose`, install `podman-compose` from the distro package or Python package manager.
+
+### 2. Clone the project
 
 ```bash
-# Check status
-podman compose -f compose.podman.yml ps
-
-# View logs
-podman compose -f compose.podman.yml logs -f app
-podman compose -f compose.podman.yml logs -f nginx
-podman compose -f compose.podman.yml logs -f redis
-
-# Rebuild and restart a service
-podman compose -f compose.podman.yml build app
-podman compose -f compose.podman.yml up -d app
-
-# Re-seed database
-podman compose -f compose.podman.yml run --rm app-init
-
-# Stop everything
-podman compose -f compose.podman.yml down
-
-# Clean volumes (destroys data)
-podman compose -f compose.podman.yml down -v
+git clone <repo-url> food-review
+cd food-review
 ```
 
-### Access the App
+### 3. Prepare environment
 
-- **Frontend:** http://localhost:8004
-- **MySQL (host side):** `mysql -h 127.0.0.1 -P 3307 -u food_reviews -psecret`
-- **Redis (inside network):** `podman compose -f compose.podman.yml exec redis redis-cli`
+```bash
+cp .env.podman .env
+```
 
-## Podman vs Docker Notes
+Edit `.env`:
 
-- Uses `Containerfile` instead of `Dockerfile`
-- Uses `.containerignore` instead of `.dockerignore`
-- Rootless by default — no `sudo` needed
-- `podman compose` is built-in (Podman v4+)
-- For Podman Desktop users: `podman compose` also works
+- set `APP_URL` to your domain or server IP;
+- generate `APP_KEY` with the command below;
+- replace database and mail passwords.
 
-## Architecture Decisions
+```bash
+podman run --rm docker.io/php:8.4-cli php -r 'echo "base64:".base64_encode(random_bytes(32)).PHP_EOL;'
+```
 
-**Why volumes_from instead of copying files to nginx?**
-`volumes_from: app:ro` gives nginx read-only access to the app container's entire filesystem — including compiled assets from the multi-stage build AND the persistent storage volume. This avoids duplicating the build step for nginx.
+Then either copy the generated value into `.env`, or keep using `.env.podman` for local demo runs.
 
-**Why a separate init container?**
-Migrations and seeding should not run every time the app container restarts. The `app-init` service runs once when the stack is first deployed, then exits. Subsequent restarts of `app` don't re-run migrations.
+For this repo, `compose.yml` reads `.env.podman` directly. On a real VPS, either rename `.env` back to `.env.podman` after editing, or change `env_file` in `compose.yml`.
 
-**Why not Laravel Sail?**
-Sail is Docker-specific. This project uses native Podman with manual compose — more educational for a cloud computing final.
+### 4. Start the stack
+
+```bash
+podman compose up --build
+```
+
+What happens:
+
+- The shared `assets` stage runs `npm ci` and `npm run build`.
+- The app target keeps `public/build/manifest.json` so Laravel's Vite helper can render pages.
+- The Nginx target serves the same compiled `public/build` files.
+- The PHP app target installs Composer dependencies without dev packages.
+- `node_modules` and `vendor` from your laptop are ignored and rebuilt inside images.
+
+On first boot, the app container:
+
+- waits until MySQL is reachable;
+- runs `php artisan migrate --force`;
+- runs `php artisan db:seed --force` once;
+- starts `php-fpm`.
+
+After the first build, normal starts can be as short as:
+
+```bash
+podman compose up
+```
+
+Use detached mode when you want it to keep running in the background:
+
+```bash
+podman compose up -d
+```
+
+### 5. Verify
+
+```bash
+podman compose ps
+podman compose logs -f app
+podman compose logs -f nginx
+```
+
+Open:
+
+```text
+http://SERVER_IP:8004
+```
+
+### 6. Operate the app
+
+Run Artisan:
+
+```bash
+podman compose exec app php artisan about
+podman compose exec app php artisan migrate:status
+```
+
+Open MySQL shell:
+
+```bash
+podman compose exec db mysql -u food_reviews -p food_reviews
+```
+
+Rebuild after code changes:
+
+```bash
+podman compose up --build -d
+```
+
+Stop containers without deleting data:
+
+```bash
+podman compose down
+```
+
+Delete containers and database volume:
+
+```bash
+podman compose down -v
+```
+
+## Part 2: Add Redis
+
+After the app, Nginx, and MySQL flow is stable, switch Laravel from database-backed session/cache/queue to Redis.
+
+Edit `.env.podman`:
+
+```env
+SESSION_DRIVER=redis
+CACHE_STORE=redis
+QUEUE_CONNECTION=redis
+```
+
+Then start the Redis profile:
+
+```bash
+podman compose --profile redis up -d
+```
+
+Verify Redis:
+
+```bash
+podman compose exec redis redis-cli ping
+```
+
+If you want the command to return to the simple form later, set `COMPOSE_PROFILES=redis` in your shell or deployment environment, then use:
+
+```bash
+podman compose up -d
+```
+
+## Production Notes
+
+- Put a reverse proxy or firewall in front of port `8004` if this is internet-facing.
+- Do not leave the sample passwords from `.env.podman` on a real VPS.
+- Keep `APP_KEY` stable. Changing it invalidates encrypted cookies and sessions.
+- If you later add real queued jobs, add a `worker` service before relying on Redis queues.
